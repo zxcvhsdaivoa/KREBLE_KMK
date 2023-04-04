@@ -44,9 +44,9 @@
 		
 		<!-- 구매/장바구니/상단버튼 -->
 		<article id="pd_detail_no3">
-			<div>구매</div>
-			<div>장바구니</div>
-			<div>상단으로이동</div>
+			<div>수정</div>
+			<div>삭제</div>
+			<div>목록으로이동</div>
 		</article>
 		
 		<!-- 리뷰 -->

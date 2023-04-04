@@ -441,17 +441,17 @@ public class Database {
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
 			stm=con.createStatement();
-			ResultSet rs= stm.executeQuery("select*from rent_review order by num desc;");
+			ResultSet rs= stm.executeQuery("select*from rent_review order by review_num desc;");
 			while(rs.next()){
 				ReviewData ob=new ReviewData();
-				ob.setNum(rs.getInt("num"));
-				ob.setId(rs.getString("id"));
-				ob.setTitle(rs.getString("title"));
-				ob.setPut(rs.getString("put"));
-				ob.setGood(rs.getInt("good"));
-				ob.setView(rs.getInt("view"));
-				ob.setDate(rs.getString("date"));
-				ob.setRating(rs.getInt("rating"));
+				ob.setNum(rs.getInt("review_num"));
+				ob.setId(rs.getString("user_id"));
+				ob.setTitle(rs.getString("review_title"));
+				ob.setPut(rs.getString("review_content"));
+				ob.setGood(rs.getInt("review_good"));
+				ob.setView(rs.getInt("review_readcount"));
+				ob.setDate(rs.getString("review_date"));
+				ob.setRating(rs.getInt("review_rating"));
 				reviewList.add(ob);
 			}
 		}finally {
@@ -468,16 +468,16 @@ public class Database {
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
 			stm=con.createStatement();
-			ResultSet rs= stm.executeQuery("select * from rent_review where num = '"+ num +"';");
+			ResultSet rs= stm.executeQuery("select * from rent_review where review_num = '"+ num +"';");
 			if(rs.next()){
-				list.setNum(rs.getInt("num"));
-				list.setId(rs.getString("id"));
-				list.setTitle(rs.getString("title"));
-				list.setPut(rs.getString("put"));
-				list.setGood(rs.getInt("good"));
-				list.setView(rs.getInt("view"));
-				list.setDate(rs.getString("date"));
-				list.setRating(rs.getInt("rating"));
+				list.setNum(rs.getInt("review_num"));
+				list.setId(rs.getString("user_id"));
+				list.setTitle(rs.getString("review_title"));
+				list.setPut(rs.getString("review_content"));
+				list.setGood(rs.getInt("review_good"));
+				list.setView(rs.getInt("review_readcount"));
+				list.setDate(rs.getString("review_date"));
+				list.setRating(rs.getInt("review_rating"));
 			}
 		}finally {
 			diconn();
@@ -521,7 +521,7 @@ public class Database {
 					throw new Exception("데이터베이스에 연결할 수 없습니다.");
 				}
 				stm=con.createStatement();
-				String command = String.format("update rent_review set title:='%s',put:='%s',rating:=%s where num=%s",titlein,putin,ratingin,numin);
+				String command = String.format("update rent_review set review_title:='%s',review_content:='%s',review_rating:=%s where review_num=%s",titlein,putin,ratingin,numin);
 				int rowNum = stm.executeUpdate(command);
 				if(rowNum<1){
 					throw new Exception("데이터를 DB에 입력할 수 없습니다.");
@@ -540,7 +540,7 @@ public class Database {
 					throw new Exception("데이터베이스에 연결할 수 없습니다.");
 				}
 				stm=con.createStatement();
-				String command = String.format("delete from rent_review where num = '"+ num +"';");
+				String command = String.format("delete from rent_review where review_num = '"+ num +"';");
 				int rowNum = stm.executeUpdate(command);
 				if(rowNum<1){
 					throw new Exception("데이터를 DB에 입력할 수 없습니다.");
@@ -559,7 +559,7 @@ public class Database {
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
 			stm=con.createStatement();
-			String command = String.format("update rent_review set view:= view + 1 where num = '"+ num +"';");
+			String command = String.format("update rent_review set review_readcount:= review_readcount + 1 where review_num = '"+ num +"';");
 			int rowNum = stm.executeUpdate(command);
 			if(rowNum<1){
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
@@ -577,7 +577,7 @@ public class Database {
 					throw new Exception("데이터베이스에 연결할 수 없습니다.");
 				}
 				stm=con.createStatement();
-				String command = String.format("update rent_review set good:= good + 1 where num = '"+ num +"';");
+				String command = String.format("update rent_review set review_good:= review_good + 1 where review_num = '"+ num +"';");
 				int rowNum = stm.executeUpdate(command);
 				if(rowNum<1){
 					throw new Exception("데이터를 DB에 입력할 수 없습니다.");
@@ -587,7 +587,6 @@ public class Database {
 		  }
 	  
 	}
-
 
 
 

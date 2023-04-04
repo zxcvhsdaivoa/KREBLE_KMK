@@ -19,6 +19,9 @@ pageEncoding="UTF-8"%>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
+
 
 <title>글 목록</title>
 </head>
@@ -34,7 +37,7 @@ pageEncoding="UTF-8"%>
 	<form>
 		<div id="inner">
 			<div class="review_title">
-				<img alt="" src="image/review_tit.jpg" style="width:100%">
+				<img alt="" src="image/review_tit2.jpg" style="width:500px">
 			</div>
 			<div class="review_body">
 				<div class="category">
@@ -42,7 +45,7 @@ pageEncoding="UTF-8"%>
 					<tr>
 						<td class="style1">분류별 검색</td>
 						<td>
-							<select>
+							<select class="serchtext1">
 								<option>대분류 선택</option>
 								<option>아이디</option>
 								<option>제목</option>
@@ -54,8 +57,8 @@ pageEncoding="UTF-8"%>
 					</tr>
 					<tr>
 						<td class="style1">검색</td>
-						<td class="serchtext"><input type='text' value=""></td>
-						<td class="serchbtn"><input type="button" value="검색"></td>
+						<td><input type='text' value="" class="serchtext"  placeholder="검색 내용을 입력해주세요."></td>
+						<td><input type="button" value="검색" class="serchbtn"></td>
 					</tr>
 				</table>
 				</div>
@@ -72,6 +75,7 @@ pageEncoding="UTF-8"%>
 							<th class="head4">평점</th>
 						</tr>
 						</thead>				
+						
 						<jsp:useBean id="rent_review" class="use_data.Database" />
 						<%
 							ArrayList<ReviewData> reviewList= rent_review.db_review_select();
@@ -96,6 +100,9 @@ pageEncoding="UTF-8"%>
 						</tbody>
 					</table>
 					<a href="rent_review_write.jsp"><input type='button' class="writebtn" value="글 쓰기"></a>
+					<div>
+						<div></div>
+					</div>
 				</div>
 			</div>		
 		</div>

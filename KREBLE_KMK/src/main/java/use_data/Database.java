@@ -13,7 +13,7 @@ public class Database {
 	public void conn() throws Exception {//연결 메소드
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble?useUnicode=true&characterEncoding=utf8","root","knight");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble?useUnicode=true&characterEncoding=utf8","root","tmd514107");
 			if(con == null){
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}

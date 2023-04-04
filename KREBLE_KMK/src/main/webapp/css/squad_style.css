@@ -1,0 +1,258 @@
+
+section {
+    height:1100px;
+}
+.blind {position:absolute; left:-9999px;}
+
+
+.mysquad {
+    float:left;
+    width:100%;
+    height:100%;
+    padding-top:130px;
+}
+
+.mysquad .squad_form {
+    width:1200px;
+    margin:-60px auto 20px;
+}
+.mysquad .squad_form #squad_name {
+    float:left;
+    width:715px;
+    height:60px;
+    padding-left: 10px;
+    font-size: 17px;
+    border:none;
+    border-top:4px solid #161616;
+    border-bottom:4px solid #161616;
+    background-color: #555;
+    color:#fff;
+}
+.mysquad .squad_form button {
+    float:left;
+    height:60px;
+    text-align: center;
+    border:4px solid #161616;
+    background-color: #555;
+    font-size:15px;
+    color:#fff;
+}
+.mysquad .squad_form .open_squad{
+    width:185px;
+    border-bottom-left-radius: 20px;
+}
+.mysquad .squad_form .save_squad{
+    width:150px;
+}
+.mysquad .squad_form .reset_squad{
+    width:150px;
+    border-bottom-right-radius: 20px;
+    border-left:none
+}
+
+.mysquad .squad_form select {
+    width:250px;
+    height:50px;
+    position: absolute;
+    top:-70px;
+    left:50%;
+    transform: translateX(-50%);
+    padding:0 15px;
+    font-size: 20px;
+    background-color:#161616;
+    border:none;
+    color:#fff;
+}
+
+.mysquad .squad_wrap {
+    position: relative;
+    clear: both;
+    width:1200px;
+    height:850px;
+    margin:0 auto 30px;
+    background:url(../image/squad_bg2.png) no-repeat center bottom/contain;
+    background-size:1200px 850px;
+}
+.mysquad .squad_wrap ul {
+    width:100%;
+    height:100%;
+}
+.mysquad .squad_wrap ul li {
+    position: absolute;
+    z-index: 3;
+    top:0;
+    left:0;
+    width:106px;
+    height:170px;
+    background: url(../image/player_img/player_bg2.png) no-repeat center/contain;
+    padding-top:25px;
+    overflow: hidden;
+}
+.mysquad .squad_wrap ul li.move{
+    cursor:move;
+}
+.mysquad .squad_wrap ul li.on {
+    background-color: #bbb;
+}
+
+.mysquad .squad_wrap ul li .player_image {
+    display: block;
+    width:100px;
+    height:105px;
+    margin:0 auto;
+    background:no-repeat;
+    background-size:100px;
+    background-position:center -8px;
+}
+.mysquad .squad_wrap ul li p {
+    width:125px;
+    height:30px;
+    position:absolute;
+    bottom:5px;
+    left:50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    text-align: center;
+    font-weight:bold;
+}
+.mysquad .squad_wrap ul li p.eng_name {
+    position:absolute;
+    left:-9999px;
+}
+.mysquad .squad_wrap ul li p.posi {
+    height:auto;
+    bottom:initial;
+    left:initial;
+    transform: none;
+    top:5px;
+    left:50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width:50px;
+    opacity: 0;
+}
+.mysquad .squad_wrap ul li p.posi.on {
+    opacity: 1;
+}
+.mysquad .squad_wrap ul li > span.plus,
+.mysquad .squad_wrap ul li > span.x_bu {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:30px;
+    height:30px;
+    background: url(../image/x_button.png) no-repeat center/cover;
+}
+.mysquad .squad_wrap ul li .plus {
+    
+}
+.mysquad .squad_wrap ul li span.x_bu {
+    width:50px;
+    height:50px;
+    opacity: 0;
+    transform:translate(-50%, -50%) rotate(45deg) ;
+}
+.mysquad .squad_wrap ul li .x_bu:hover {
+    opacity: 1;
+}
+
+.player_wrap {
+    width:100%;
+    height:100%;
+    padding-top: 100px;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: 300;
+    background-color:rgba(0,0,0, 0.3);
+}
+.player_wrap .player_inner .exit {
+    position: absolute;
+    top:-50px;
+    right:0;
+    width:100px;
+    height:50px;
+    background-color: #fff;
+    border:2px solid #333;
+    text-align: center;
+    line-height: 50px;;
+}
+.player_wrap .player_inner {
+    position: relative;
+    width:900px;
+    height:800px;
+    margin:0 auto;
+    background-color: #fff;
+    border:2px solid #333;
+}
+.player_wrap .player_inner #a_here {
+    position:absolute;
+    top:-120px;
+    left:0;
+    opacity: 0;
+}
+.player_wrap .player_inner .list_header {
+    width:100%;
+    height:60px;
+    border-bottom:2px solid #333;
+}
+.player_wrap .player_inner .list_header ul {
+    width:100%;
+    height:100%;
+}
+.player_wrap .player_inner .list_header ul li {
+    float:left;
+    width:20%;
+    height:100%;
+    text-align: center;
+    line-height: 60px;
+}
+.player_wrap .player_inner .list_header ul li a {
+    font-size:20px;
+}
+.player_wrap .player_inner .player_list {
+    clear:both;
+    height:calc(100% - 60px);
+}
+.player_wrap .player_inner .player_list ul {
+    height:100%;
+    overflow:auto;
+}
+.player_wrap .player_inner .player_list ul li {
+    position:relative;
+    float: left;
+    width:20%;
+    height:33%;
+    padding:10px 10px 0;
+    border: 1px solid #333;
+}
+.player_wrap .player_inner .player_list ul li > span {
+    display:block;
+    width:100px;
+    height:125px;
+    margin:0 auto 10px;
+    border-radius: 50%;
+    border:1px solid #333;
+    overflow: hidden;
+}
+.player_wrap .player_inner .player_list ul li span img {
+    width:100%;
+    height:100%;
+}
+.player_wrap .player_inner .player_list ul li .p_name {
+text-align: center;
+font-size:14px;
+}
+.player_wrap .player_inner .player_list ul li .p_profile {
+text-align: center;
+font-size:14px;
+}
+.player_wrap .player_inner .player_list ul li .p_position {
+    position: absolute;
+    top:5px;
+    right:8px;
+    font-weight: bold;
+    font-size:20px;
+}
+

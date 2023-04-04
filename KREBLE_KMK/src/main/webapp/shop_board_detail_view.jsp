@@ -71,11 +71,11 @@
 						작성일 : <input type="text" value="<%=w_date %>" readonly>
 					</div>
 					<div>
-						체결 : <input type="number" placeholder="<%=w_trade %>" name="w_qunt" readonly>
+						체결 : <input type="text" placeholder="<%=w_trade %>" name="w_trade" readonly>
 					</div>
 				</div>
 				<div>
-					<div> 종류 : <input type="number" placeholder="<%=w_cata %>" readonly>
+					<div> 종류 : <input type="text" placeholder="<%=w_cata %>" readonly>
 					</div>
 					<div> 수량 : <input type="number" placeholder="<%=w_qunt %>" name="w_qunt" readonly> </div>
 				</div>

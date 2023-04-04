@@ -50,9 +50,9 @@
                 <li>
                   <a href="krebleshop.jsp">#쇼핑</a>
                   <ul class="sub">
-                    <li><a href="krebleshop.jsp">쇼핑목록</a></li>
-                    <li><a href="#">장바구니</a></li>
-                    <li><a href="#">구매내역</a></li>
+                    <li><a href="shop_prd_list.jsp">쇼핑목록</a></li>
+                    <li><a href="shop_prd_bak.jsp">장바구니</a></li>
+                    <li><a href="shop_buy_list">구매내역</a></li>
                     <li><a href="shop_reform_board.jsp">제작의뢰</a></li>
                   </ul>
                 </li>

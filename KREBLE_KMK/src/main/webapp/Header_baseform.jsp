@@ -43,7 +43,6 @@
                   <ul class="sub">
                     <li><a href="kreblechoi.jsp">시민구장 정보</a></li>
                     <li><a href="#">시민구장 예약</a></li>
-                    <li><a href="#">경기티켓팅</a></li>
                     <li><a href="rent_review.jsp">후기 게시판</a></li>
                   </ul>
                 </li>

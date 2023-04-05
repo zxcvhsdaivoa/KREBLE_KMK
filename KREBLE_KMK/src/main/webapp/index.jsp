@@ -38,18 +38,24 @@
     			<a href="#" class="link_button">정보소개 바로가기</a>
     		</div>
     		<div class="info_wrap">
-    			<a href="#" class="commu_link">
-    				<b>커뮤니티test</b>
-    				<p>여러 사람들과 축구에 대해 이야기하고 싶다면?</p>
-    			</a>
-    			<a href="#" class="rent_link">
-    				<b>예약/대여</b>
-    				<p>축구시설을 대여하고 싶다면?</p>
-    			</a>
-    			<a href="#" class="shop_link">
-    				<b>쇼핑</b>
-    				<p>다양한 축구물품을 구하고 싶다면?</p>
-    			</a>
+    			<div class="big_slick">
+    				<img src="image/bg_player/introduce1.jpg">
+    				<img src="image/bg_player/introduce2.jpg">
+    				<img src="image/bg_player/introduce11.jpg">
+    				<img src="image/bg_player/introduce13.jpg">
+    				<img src="image/bg_player/introduce15.jpg">
+    				<img src="image/bg_player/introduce16.jpg">
+    				<img src="image/bg_player/introduce19.jpg">
+    			</div>
+    			<div class="small_slick">
+    				<img src="image/bg_player/introduce1.jpg">
+    				<img src="image/bg_player/introduce2.jpg">
+    				<img src="image/bg_player/introduce11.jpg">
+    				<img src="image/bg_player/introduce13.jpg">
+    				<img src="image/bg_player/introduce15.jpg">
+    				<img src="image/bg_player/introduce16.jpg">
+    				<img src="image/bg_player/introduce19.jpg">
+    			</div>
     		</div>
     	</div>
     </div>

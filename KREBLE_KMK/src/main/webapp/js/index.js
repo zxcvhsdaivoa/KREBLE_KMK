@@ -1,13 +1,21 @@
 $(function(){
-	$('.img_slide_box2').slick({
-			autoplay: true,
-   			autoplaySpeed: 4000
+	$('.big_slick').slick({
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: false,
+	  fade: true,
+	  asNavFor: '.small_slick'
 	});
-	$('.prd_slide').slick({
-			autoplay:true,
-			autoplaySpeed: 1000,
-			slidesToShow:2,
+	$('.small_slick').slick({
+	  slidesToShow: 3,
+	  slidesToScroll: 1,
+	  asNavFor: '.big_slick',
+	  arrows:false,
+	  dots: true,
+	  centerMode: true,
+	  focusOnSelect: true
 	});
+
 
 
 	$('.matchup > span').hide();

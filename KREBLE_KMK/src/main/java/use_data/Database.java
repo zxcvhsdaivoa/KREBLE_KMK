@@ -13,7 +13,7 @@ public class Database {
 	public void conn() throws Exception {//연결 메소드
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble?useUnicode=true&characterEncoding=utf8","root","tmd514107");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble?useUnicode=true&characterEncoding=utf8","root","knight");
 			if(con == null){
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
@@ -588,6 +588,25 @@ public class Database {
 	  
 	}
 
-
+	public ArrayList<Player_Info> player() throws Exception { //선수 호출 메소드
+		ArrayList<Player_Info> player_list = new ArrayList<Player_Info>();
+		conn();
+		try{
+			ResultSet rs= stm.executeQuery("select * from player;");
+			while(rs.next()) {
+				Player_Info  pl= new Player_Info();
+				pl.setPlayer_name(rs.getString("player_name"));
+				pl.setPlayer_ko_name(rs.getString("player_ko_name"));
+				pl.setPlayer_birth(rs.getDate("player_birth"));
+				pl.setPlayer_gender(rs.getString("player_gender"));
+				pl.setPlayer_position(rs.getString("player_position"));
+				pl.setPlayer_profile(rs.getString("player_profile"));;
+				player_list.add(pl);
+			}
+		}finally {
+			diconn();
+		}
+		return player_list;
+	}
 
 }

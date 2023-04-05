@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
+<jsp:useBean id="ud" class="use_data.Database"/>
+<%@ page import="use_data.Player_Info"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,123 +78,18 @@
 			</div>
 			<div class="player_list">
 				<ul>
+				<%
+				ArrayList<Player_Info> pl = ud.player();
+				
+				for(int i=0; i<pl.size(); i++) {
+				%>
 					<li>
 						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">정우영</span><br><span class="name_eng">JEONG Wooyeong</span></p>
-						<p class="p_profile">프로필 profile<br>SC프라이부르크(독일)</p>
-						<p class="p_position">FW</p>
+						<p class="p_name"><span class="name_ko"><% pl.get(i).getPlayer_ko_name(); %></span><br><span class="name_eng"><% pl.get(i).getPlayer_name(); %></span></p>
+						<p class="p_profile"><% pl.get(i).getPlayer_birth(); %><br><% pl.get(i).getPlayer_gender(); %></p>
+						<p class="p_position"><% pl.get(i).getPlayer_position(); %></p>
 					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">조규성</span><br><span class="name_eng">CHO Guesung</span></p>
-						<p class="p_profile">프로필 profile<br>전북현대모터스</p>
-						<p class="p_position">FW</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">황의조</span><br><span class="name_eng">HWANG Uijo</span></p>
-						<p class="p_profile">프로필 profile<br>올림피아코스(그리스)</p>
-						<p class="p_position">FW</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">권창훈</span><br><span class="name_eng">KWON Changhoon</span></p>
-						<p class="p_profile">프로필 profile<br>김천상무프로축구단</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">나상호</span><br><span class="name_eng">NA Sangho</span></p>
-						<p class="p_profile">프로필 profile<br>FC서울</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">백승호</span><br><span class="name_eng">PAIK Seungho</span></p>
-						<p class="p_profile">프로필 profile<br>전북현대모터스</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">손준호</span><br><span class="name_eng">SON Junho</span></p>
-						<p class="p_profile">프로필 profile<br>산둥타이산FC(중국)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">손흥민</span><br><span class="name_eng">SON Heungmin</span></p>
-						<p class="p_profile">프로필 profile<br>토트넘(잉글랜드)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">송민규</span><br><span class="name_eng">SONG Minkyu</span></p>
-						<p class="p_profile">프로필 profile<br>전북현대모터스</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">이강인</span><br><span class="name_eng">LEE Kangin</span></p>
-						<p class="p_profile">프로필 profile<br>마르요카(스페인)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">이재성</span><br><span class="name_eng">LEE Jaesung</span></p>
-						<p class="p_profile">프로필 profile<br>FSV마인츠05(독일</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">정우영</span><br><span class="name_eng">JUNG Wooyoung</span></p>
-						<p class="p_profile">프로필 profile<br>알사드(카타르)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">황인범</span><br><span class="name_eng">HWANG Inbeom</span></p>
-						<p class="p_profile">프로필 profile<br>올림피아코스(그리스)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">황희찬</span><br><span class="name_eng">HWANG Heechan</span></p>
-						<p class="p_profile">프로필 profile<br>울버햄튼원더러스(잉글랜드)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">권경원</span><br><span class="name_eng">KWON Kyungwon</span></p>
-						<p class="p_profile">프로필 profile<br>감바오사카(일본)</p>
-						<p class="p_position">DF</p>
-					</li>
-
-
-
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">정우영</span><br><span class="name_eng">JUNG Wooyoung</span></p>
-						<p class="p_profile">프로필 profile<br>알사드(카타르)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">황인범</span><br><span class="name_eng">HWANG Inbeom</span></p>
-						<p class="p_profile">프로필 profile<br>올림피아코스(그리스)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">황희찬</span><br><span class="name_eng">HWANG Heechan</span></p>
-						<p class="p_profile">프로필 profile<br>울버햄튼원더러스(잉글랜드)</p>
-						<p class="p_position">MF</p>
-					</li>
-					<li>
-						<span class="p_img"><img></span>
-						<p class="p_name"><span class="name_ko">권경원</span><br><span class="name_eng">KWON Kyungwon</span></p>
-						<p class="p_profile">프로필 profile<br>감바오사카(일본)</p>
-						<p class="p_position">DF</p>
-					</li>
+				<% }%>
 				</ul>
 			</div>
 		</div>

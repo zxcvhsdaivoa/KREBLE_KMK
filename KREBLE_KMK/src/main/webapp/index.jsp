@@ -89,12 +89,7 @@
     						<span class="writer">작성자1</span>
     					</div>
 <textarea readonly>
-이거 내용은 뭘로 써야하나
-아 인덱스 수정하기 귀찮다
-css는 언제 걸고 데이터베이스도 연결해야하는데 언제 다하냐
-이거 나중에 이미지도 있으면 textarea크기 줄이고
-이미지 넣는것도 추가하는게 좋을텐데
-아 머리아프다
+
 </textarea>
     				</div>
     			</div>

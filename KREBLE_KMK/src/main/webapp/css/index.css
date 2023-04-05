@@ -93,8 +93,7 @@ section {
 .info_wrap {
 	float:left;
 	width:700px;
-	height:100%;
-	background-color:rgba(255,255,255,.5);
+	background-color:rgba(255,255,255,1.5);
 }
 .info_wrap > div {
 	width:100%;
@@ -105,14 +104,14 @@ section {
 	height:400px;
 }
 .info_wrap div.small_slick img {
-	height:250px;
+	height:150px;
 }
 .info_wrap div.big_slick {
 	height:400px;
 	margin-bottom: 30px;
 }
 .info_wrap div.small_slick {
-	height:250px;
+	height:200px;
 }
 
 

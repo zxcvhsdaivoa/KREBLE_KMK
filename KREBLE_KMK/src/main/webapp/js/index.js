@@ -10,7 +10,6 @@ $(function(){
 	  slidesToShow: 3,
 	  slidesToScroll: 1,
 	  asNavFor: '.big_slick',
-	  arrows:false,
 	  dots: true,
 	  centerMode: true,
 	  focusOnSelect: true

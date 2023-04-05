@@ -55,10 +55,6 @@
 						</select>
 					</form>
 				</div>
-
-
-
-				</div>
 			</div>
 		</div>
 	</section>
@@ -84,10 +80,10 @@
 				for(int i=0; i<pl.size(); i++) {
 				%>
 					<li>
-						<span class="p_img"><img src="image/player_img/<% pl.get(i).getPlayer_name(); %>.jpg"></span>
-						<p class="p_name"><span class="name_ko"><% pl.get(i).getPlayer_ko_name(); %></span><br><span class="name_eng"><% pl.get(i).getPlayer_name(); %></span></p>
-						<p class="p_profile"><% pl.get(i).getPlayer_birth(); %><br><% pl.get(i).getPlayer_gender(); %></p>
-						<p class="p_position"><% pl.get(i).getPlayer_position(); %></p>
+						<span class="p_img"><img src="image/player_img/<%= pl.get(i).getPlayer_name() %>.jpg"></span>
+						<p class="p_name"><span class="name_ko"><%= pl.get(i).getPlayer_ko_name() %></span><br><span class="name_eng"><%= pl.get(i).getPlayer_name() %></span></p>
+						<p class="p_profile"><%= pl.get(i).getPlayer_birth() %><br><%= pl.get(i).getPlayer_gender() %></p>
+						<p class="p_position"><%= pl.get(i).getPlayer_position() %></p>
 					</li>
 				<% }%>
 				</ul>

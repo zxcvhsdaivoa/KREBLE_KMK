@@ -594,8 +594,9 @@ public class Database {
 		try{
 			ResultSet rs= stm.executeQuery("select * from player;");
 			while(rs.next()) {
-				Player_Info  pl= new Player_Info();
+				Player_Info pl= new Player_Info();
 				pl.setPlayer_name(rs.getString("player_name"));
+				System.out.println(rs.getString("player_name"));
 				pl.setPlayer_ko_name(rs.getString("player_ko_name"));
 				pl.setPlayer_birth(rs.getDate("player_birth"));
 				pl.setPlayer_gender(rs.getString("player_gender"));

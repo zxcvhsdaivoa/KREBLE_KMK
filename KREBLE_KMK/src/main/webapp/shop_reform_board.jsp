@@ -20,14 +20,7 @@
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
 	<script src="js/shop_reform_board.js"></script>
-	
-	<script>
-  		document.getElementById("search3").addEventListener("keydown", function(event) {
-    	if (event.key === "Enter") {
-      	event.preventDefault(); // 엔터 키 동작 막기
-    	}
-  		});
-	</script>
+
 	
 <title>제작의뢰게시판</title>
 </head>
@@ -105,7 +98,7 @@
 								<option>거래중</option>
 								<option>거래완료</option>
 							</select>
-							<input type="text" id = "search3" placeholder="검색하실 게시글의 제목을 입력하세요" value = "">
+							<input type="text" id = "search3" placeholder="검색하실 게시글의 제목을 입력하세요">
 							<input type="button" value = "검색" id="search" onclick="aaa()">
 					</div>
 				</article>

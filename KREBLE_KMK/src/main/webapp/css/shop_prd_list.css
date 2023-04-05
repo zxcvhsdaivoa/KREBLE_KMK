@@ -42,14 +42,14 @@ article{
 
 
 /*카테고리버튼*/
-#pl_art_no2 > div{
+#pl_art_no2 > div:first-child{
 	width: 990px;
 	height: 50px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 }
-#pl_art_no2 > div > input[type=button]{
+#pl_art_no2 > div:first-child > input[type=button]{
 	width: 200px;
 	height: 40px;
 	background: none;
@@ -60,4 +60,24 @@ article{
 	font-family: gothic;
 	font-size: 20px;
 	font-weight: bold;
+}
+#pl_art_no2 > div:last-child{
+	width: 990px;
+	height: 50px;
+	margin: 0 auto;
+}
+#pl_art_no2 > div > .pr_label{
+	width: 100%;
+	height: 40px;
+	
+}
+#pl_art_no2 > div > .pr_radio{
+	width: 100%;
+	height: 40px;
+	padding : 0 70px;
+	display: flex;
+	justify-content: space-evenly;
+	font-size: 18px;
+	line-height: 35px
+	
 }

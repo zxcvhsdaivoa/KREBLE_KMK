@@ -8,10 +8,13 @@ board -top -img => width 880px; height : 130px;
 
 section{
 	width: 100%;
-	min-height : 790px; 
+	overflow: auto;
+	min-height : calc(100vh - 270px);
+	height: auto 
 }
 section > div{
 	width: 1280px;
+	height: 790px;
 	margin: 0 auto;
 }
 

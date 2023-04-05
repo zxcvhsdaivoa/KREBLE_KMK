@@ -318,7 +318,7 @@ public class Database {
 				    }
 				    stm = con.createStatement();
 				    ResultSet rs = stm.executeQuery("select * from shop_reform where shop_recata = '" + cata + "';");
-				    if(rs.next()) {
+				    while(rs.next()) {
 				    	Shop_reform_db ob = new Shop_reform_db();
 				    	ob.setRenum(rs.getInt("shop_renum"));		    	
 				    	ob.setRecata(rs.getString("shop_recata"));		    	

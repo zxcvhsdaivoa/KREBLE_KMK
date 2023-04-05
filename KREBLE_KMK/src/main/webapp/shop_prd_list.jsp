@@ -46,8 +46,8 @@
 				<input type="button" value ="ETC" name = "etc_button" />
 			</div>
 			<div>
-				<div>금액대별 제품 보기</div>
-				<div>
+				<div class = "pr_label">금액대별 제품 보기</div>
+				<div class = "pr_radio">
 					<input type="radio" value="30000" name = "price" />~\30,000
 					<input type="radio" value="60000" name = "price" />~\60,000
 					<input type="radio" value="90000" name = "price" />~\90,000

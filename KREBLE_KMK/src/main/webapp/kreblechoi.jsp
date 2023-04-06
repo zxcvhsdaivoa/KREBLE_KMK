@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.sql.*" %>
@@ -29,8 +30,8 @@
 <script type="text/javascript" src="slick/slick.min.js"></script>
 <jsp:useBean id="info" class="use_data.Database" />
 <%
-	String id= request.getParameter("field_id");
-	KreblechoiData field=info.field_list_check(id);
+	String field_id= request.getParameter("field_id");
+	KreblechoiData field=info.field_list_check(field_id);
 %>
 
 <body >
@@ -136,7 +137,7 @@
 			</div>
 			<form>
 				<div class="stadium_name">
-					<span><%=field.getFullname() %></span>
+					<span><%= field.getFullname()%></span>
 				</div>
 				<div class="stadium_info">
 					<div class="stadium_img">

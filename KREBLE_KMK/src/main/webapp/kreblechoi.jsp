@@ -67,11 +67,11 @@
 							<li class="local on">
 								<a href="#">서울</a>
 								<ul>
-									<li class="on"><a href="#">잠실종합운동장</a></li>
-									<li><a href="#">노량진 축구장</a></li>
-									<li><a href="#">월곡인조잔디<br>축구장</a></li>
-									<li><a href="#">은평구립 축구장</a></li>
-									<li><a href="#">천마공원 축구장</a></li>
+									<li class="on" id="s_000"><a>잠실종합운동장</a></li>
+									<li id="s_001"><a>노량진 축구장</a></li>
+									<li><a>월곡인조잔디<br>축구장</a></li>
+									<li><a>은평구립 축구장</a></li>
+									<li><a>천마공원 축구장</a></li>
 									<li style="border-right: none;"><a>창골 축구장</a></li>
 								</ul>
 							</li>
@@ -88,47 +88,47 @@
 							<li class="local">
 								<a href="#">경기</a>
 								<ul>
-									<li><a href="#">부천체육관<br>축구장</a></li>
-									<li><a href="#">솔터 축구장</a></li>
-									<li><a href="#">의왕 축구장</a></li>
-									<li><a href="#">수원종합 운동장</a></li>
-									<li><a href="#">광명시 축구장</a></li>
+									<li><a>부천체육관<br>축구장</a></li>
+									<li><a>솔터 축구장</a></li>
+									<li><a>의왕 축구장</a></li>
+									<li><a>수원종합 운동장</a></li>
+									<li><a>광명시 축구장</a></li>
 									<li style="border-right: none;"><a href="#">구리시체육회<br>축구장</a></li>
 								</ul>
 							</li>
 							<li class="local">
 								<a href="#">대구</a>
 								<ul>
-									<li><a href="#">대구경북<br>과학기술원축구장</a></li>
-									<li><a href="#">논공축구장</a></li>
-									<li><a href="#">DGB대구<br>은행파크</a></li>
+									<li><a>대구경북<br>과학기술원축구장</a></li>
+									<li><a>논공축구장</a></li>
+									<li><a>DGB대구<br>은행파크</a></li>
 								</ul>
 							</li>
 							<li class="local">
 								<a href="#">대전</a>
 								<ul>
-									<li><a href="#">유등천 축구장</a></li>
-									<li><a href="#">중구체육복지센터<br>축구장</a></li>
-									<li><a href="#">사정동<br>잔디축구장</a></li>
-									<li><a href="#">관저체육공원</a></li>
+									<li><a>유등천 축구장</a></li>
+									<li><a>중구체육복지센터<br>축구장</a></li>
+									<li><a>사정동<br>잔디축구장</a></li>
+									<li><a>관저체육공원</a></li>
 								</ul>
 							</li>
 							<li class="local">
 								<a href="#">부산</a>
 								<ul>
-									<li><a href="#">영도마린 축구장</a></li>
-									<li><a href="#">남부환경체육공원</a></li>
-									<li><a href="#">삼락강변체육공원</a></li>
-									<li><a href="#">다대풋살센터</a></li>
-									<li><a href="#">기장군<br>월드컵빌리지</a></li>
+									<li><a>영도마린 축구장</a></li>
+									<li><a>남부환경체육공원</a></li>
+									<li><a>삼락강변체육공원</a></li>
+									<li><a>다대풋살센터</a></li>
+									<li><a>기장군<br>월드컵빌리지</a></li>
 								</ul>
 							</li>
 							<li class="local">
 								<a href="#">제주</a>
 								<ul>
-									<li><a href="#">중문단지 축구장</a></li>
-									<li><a href="#">사라봉 축구장</a></li>
-									<li><a href="#">외도 축구장</a></li>
+									<li><a>중문단지 축구장</a></li>
+									<li><a>사라봉 축구장</a></li>
+									<li><a>외도 축구장</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -136,7 +136,7 @@
 			</div>
 			<form>
 				<div class="stadium_name">
-					<span>[서울]잠실종합운동장</span>
+					<span><%=field.getFullname() %></span>
 				</div>
 				<div class="stadium_info">
 					<div class="stadium_img">

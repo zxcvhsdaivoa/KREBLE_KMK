@@ -1,5 +1,13 @@
 $(function(){
 	var default_no=1;
+	
+	const urlParams = new URLSearchParams(window.location.search);
+	const field_no = urlParams.get('id');
+	$(".local").removeClass("on");
+	$("#"+field_no).parents(".local").addClass("on");
+	$('.local ul li').removeClass('on');
+	$("#"+field_no).addClass("on");
+	
 	$(".local").click(function(){
 		$(".local").removeClass("on");
 		$(this).addClass("on");
@@ -16,16 +24,6 @@ $(function(){
 			
 			console.log(default_no);
 		}
-
-	})
-	$(".topbutton > a > img").click(function(){
-		$('html').scrollTop(0);
-	})
-	$('.stadium_imgSlide').slick({
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true,
-  		autoplaySpeed: 2000
 	});
 	$(".rentbutton > a > img").click(function(){
 		var result= confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")
@@ -33,12 +31,7 @@ $(function(){
 			location.replace("login.html");
 		} else{}
 	});
-	// $(".favorite_stadium > ul li").click(function(){
-	// 	var result= confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")
-	// 	if (result==true) {
-	// 		location.replace("login.html");
-	// 	} else{}
-	// });
+
 	$('#plusbu').click(function(){
 		if (default_no==5){
 			console.log(default_no);
@@ -71,4 +64,14 @@ $(function(){
 			$('.delete').removeClass('delete');
 		}
 	})
+	$('ul.local_stadium > li > ul > li').click(function(){
+	    var field_id=$(this).attr('id');
+	    var fieldName = "노량진 축구장"; // 데이터 베이스 안에 있는 값 변수 지정
+	    var stadiumName = $(this).find("a").text(); // 클릭한 요소의 a 태그의 텍스트를 가져옴
+	    if (fieldName === stadiumName) {
+	        location.href="kreblechoi.jsp?id="+field_id;
+	    } else if(fieldName != stadiumName){
+			
+	    }
+	});
 });

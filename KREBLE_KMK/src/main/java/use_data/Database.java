@@ -13,7 +13,7 @@ public class Database {
 	public void conn() throws Exception {//연결 메소드
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble?useUnicode=true&characterEncoding=utf8","root","knight");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble","root","qw4589");
 			if(con == null){
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
@@ -230,6 +230,38 @@ public class Database {
 		}
 	}
 
+//	<!--  카테 / 사진 / 상품명 / 상품가격 / 색상 / 등록자 / 등록일	 -->
+//		상품리스트 로드
+	  public ArrayList<Shop_prd> shop_prd_list() throws Exception{
+		  ArrayList<Shop_prd> board = new ArrayList<Shop_prd>();
+		  try{
+			  conn();
+			    if(con == null){
+			      throw new Exception("데이터베이스에 연결할 수 없습니다.");
+			    }
+			    stm = con.createStatement();
+			    ResultSet rs = stm.executeQuery("select * from product;");
+			    while(rs.next()) {
+			    	Shop_prd ob = new Shop_prd();
+			    	ob.setPrd_cata(rs.getString("prd_cata"));		    	
+			    	ob.setPrd_img(rs.getString("prd_img"));		    	
+			    	ob.setPrd_name(rs.getString("prd_name"));		    	
+			    	ob.setPrd_price(rs.getInt("prd_price"));		    	
+			    	ob.setPrd_color(rs.getString(""));		    	
+			    	ob.setPrd_id(rs.getString("prd_id"));		    	
+			    	ob.setPrd_date(rs.getString("prd_date"));		    	
+			    	board.add(ob);
+			    }
+		  		}catch(Exception ignored){
+
+			  }finally{
+				  diconn();
+			  }
+		  
+		  return board;
+	  }
+	
+	
 	//  게시판 로드
 	  public ArrayList<Shop_reform_db> shop_board() throws Exception{
 		  ArrayList<Shop_reform_db> board = new ArrayList<Shop_reform_db>();

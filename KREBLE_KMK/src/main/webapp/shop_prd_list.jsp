@@ -1,25 +1,20 @@
 <%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="use_data.Shop_prd" %>
 <%@ page import="java.util.ArrayList" %>
 
 <% request.setCharacterEncoding("utf-8"); %>
-<% String id = (String) session.getAttribute("ID"); %>
+<%	String id = (String) session.getAttribute("ID");%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/Header_Footer_Aside_baseform.css">
 	<link rel="stylesheet" type="text/css" href="css/shop_prd_list.css">
-	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&family=Jua&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&family=Jua&family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
-	
-	
 	
 <title>제품리스트</title>
 </head>
@@ -27,13 +22,19 @@
     <!-- header -->
   
 	<jsp:include page="Header_baseform.jsp"/>
-	
+	<jsp:useBean id="sp_list" class="use_data.Database"></jsp:useBean>
+	<%
+	ArrayList<Shop_prd> al = new ArrayList<Shop_prd>();
+	al = sp_list.shop_prd_list();
+	%>
 	<!-- section -->
   
 	<section>
 	<div id="section_inner"> <!-- 내용 중앙정렬용 -->
 	<form>
-		
+<!-- 		셀렉문을 여기에 호출? -->
+<!-- 			use_date.loadboard(); -->
+
 		<article id="pl_art_no1"><!-- 페이지타이틀/카테고리 예정 -->
 			<div>(가제)KREBLE SHOP</div>
 		</article>
@@ -56,12 +57,32 @@
 				</div>
 			</div>
 		</article>
-		
+		<!-- 	사진 / 상품명 / 상품가격 / 색상 / 등록자	 -->
 		<!-- 제품리스트 -->
 		<article id="pl_art_no3">
-			<div> 제품리스트</div>
+			<div class="pl_no3_center">
+				<table border="1">
+					<colgroup>
+						<col style ="width: 90px">
+						<col style ="width: 120px">
+						<col style ="width: 460px">
+						<col style ="width: 110px">
+						<col style ="width: 100px">
+						<col style ="width: 100px">
+						<col style ="width: 120px">
+					</colgroup>
+					<tr id = "tr_cr">
+						<td>카테고리</td>
+						<td>사진</td>
+						<td>상품명</td>
+						<td>상품가격</td>
+						<td>색상</td>
+						<td>등록자</td>
+						<td>작성일</td>
+					</tr>
+				</table>
+			</div>
 		</article>
-		
 		
 		<!-- 뭐...기타버튼들 모아두는걸로할까? -->
 		<article id="pl_art_no4">

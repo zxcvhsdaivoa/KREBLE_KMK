@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="use_data.Shop_prd"%>
 
 <% request.setCharacterEncoding("utf-8"); %>
 <% String id = (String) session.getAttribute("ID"); %>
@@ -18,8 +19,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
-	
-	
+	<jsp:useBean id="sp_de" class="use_data.Database"></jsp:useBean>
+	<% 
+	String p_no = (String) request.getParameter("prd_no");
+	Shop_prd aa = sp_de.shop_prd_detail(p_no);
+	%>
 	
 <title>제품상세페이지</title>
 </head>
@@ -33,8 +37,8 @@
 	<section>
 		<!-- 제품정보 -->
 		<article id="pd_detail_no1">
-			<div>제품사진</div>
-			<div>제품정보</div>
+			<div><%=aa.getPrd_img()%></div>
+			<div><%=aa.getPrd_name() %></div>
 		</article>
 		
 		<!-- 제품소개 및 사진 -->

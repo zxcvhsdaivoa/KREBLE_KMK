@@ -92,8 +92,28 @@ article{
 .pl_no3_center{
 	width: 1280px;
 	float: left;
+	max-height: 450px;
+	overflow: auto;
+}
+.pl_no3_center::-webkit-scrollbar {
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+.pl_no3_center::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
+.pl_no3_center::-webkit-scrollbar-thumb:hover {
+  background-color: #555555;
+}
+
+/* 스크롤 버튼 스타일 설정 */
+#scrollBtn {
+  display: block;
+  margin-top: 10px;
 }
 .pl_no3_center > table{
 	width: 990px;
-	margin : 0 auto;	
+	margin : 0 auto;
 }

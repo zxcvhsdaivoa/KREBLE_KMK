@@ -12,9 +12,18 @@
 <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/Header_Footer_Aside_baseform.css">
 	<link rel="stylesheet" type="text/css" href="css/shop_prd_list.css">
+    <link rel="stylesheet" href="css/colorbox.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
+	<script src="js/shop_prd_list.js"></script>
+	<script src="js/jquery.colorbox-min.js"></script>
+    <script>
+        $(function(){
+            $('a.modal').colorbox();
+        })
+    </script>
+	
 	
 <title>제품리스트</title>
 </head>
@@ -24,8 +33,7 @@
 	<jsp:include page="Header_baseform.jsp"/>
 	<jsp:useBean id="sp_list" class="use_data.Database"></jsp:useBean>
 	<%
-	ArrayList<Shop_prd> al = new ArrayList<Shop_prd>();
-	al = sp_list.shop_prd_list();
+	ArrayList<Shop_prd> al = sp_list.shop_prd_list();
 	%>
 	<!-- section -->
   
@@ -63,16 +71,14 @@
 			<div class="pl_no3_center">
 				<table border="1">
 					<colgroup>
-						<col style ="width: 90px">
-						<col style ="width: 120px">
-						<col style ="width: 460px">
-						<col style ="width: 110px">
+						<col style ="width: 100px">
+						<col style ="width: 290px">
 						<col style ="width: 100px">
 						<col style ="width: 100px">
-						<col style ="width: 120px">
+						<col style ="width: 200px">
+						<col style ="width: 100px">
 					</colgroup>
 					<tr id = "tr_cr">
-						<td>카테고리</td>
 						<td>사진</td>
 						<td>상품명</td>
 						<td>상품가격</td>
@@ -80,6 +86,19 @@
 						<td>등록자</td>
 						<td>작성일</td>
 					</tr>
+					<%
+					int i = al.size();
+					for (i = i-1; i >= 0; i = i-1) {
+					    out.println("<tr>");
+					    out.println("<td class='modal'>"+al.get(i).getPrd_img()+"</a></td>");
+					    out.println("<td><a href ='shop_prd_detail.sp?prd_no=" + al.get(i).getPrd_no()+"'>" + al.get(i).getPrd_name()+"</a></td>");
+					    out.println("<td>"+al.get(i).getPrd_price()+"</td>");
+					    out.println("<td>"+al.get(i).getPrd_color()+"</td>");
+					    out.println("<td>"+al.get(i).getPrd_id()+"</td>");
+					    out.println("<td>"+al.get(i).getPrd_date()+"</td>");
+					    out.println("</tr>");
+					}
+					%>
 				</table>
 			</div>
 		</article>

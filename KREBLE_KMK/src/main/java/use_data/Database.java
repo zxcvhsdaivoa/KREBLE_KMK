@@ -7,13 +7,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 
+
 public class Database {
 	Connection con = null;
 	Statement stm = null;
 	public void conn() throws Exception {//연결 메소드
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble","root","tmd514107");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble","root","qw4589");
 			if(con == null){
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
@@ -239,18 +240,22 @@ public class Database {
 			    if(con == null){
 			      throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			    }
+
 			    stm = con.createStatement();
 			    ResultSet rs = stm.executeQuery("select * from product;");
+
+				  
 			    while(rs.next()) {
-			    	Shop_prd ob = new Shop_prd();
-			    	ob.setPrd_cata(rs.getString("prd_cata"));		    	
-			    	ob.setPrd_img(rs.getString("prd_img"));		    	
-			    	ob.setPrd_name(rs.getString("prd_name"));		    	
-			    	ob.setPrd_price(rs.getInt("prd_price"));		    	
-			    	ob.setPrd_color(rs.getString(""));		    	
-			    	ob.setPrd_id(rs.getString("prd_id"));		    	
-			    	ob.setPrd_date(rs.getString("prd_date"));		    	
-			    	board.add(ob);
+			    	Shop_prd aa = new Shop_prd();
+			    	aa.setPrd_no(rs.getString("prd_no"));
+			    	aa.setPrd_cata(rs.getString("prd_cata"));
+			    	aa.setPrd_img(rs.getString("prd_img"));		    	
+			    	aa.setPrd_name(rs.getString("prd_name"));		    	
+			    	aa.setPrd_price(rs.getInt("prd_price"));		    	
+			    	aa.setPrd_color(rs.getString("prd_color"));		    	
+			    	aa.setPrd_id(rs.getString("prd_id"));		    	
+			    	aa.setPrd_date(rs.getString("prd_date"));
+			    	board.add(aa);
 			    }
 		  		}catch(Exception ignored){
 
@@ -261,7 +266,42 @@ public class Database {
 		  return board;
 	  }
 	
-	
+//	상품디테일 로드
+	  public Shop_prd shop_prd_detail(String p_no) throws Exception{
+	    	Shop_prd aa = new Shop_prd();
+		  try{
+			  conn();
+			    if(con == null){
+			      throw new Exception("데이터베이스에 연결할 수 없습니다.");
+			    }
+			    stm = con.createStatement();
+			    ResultSet rs = stm.executeQuery("select * from product where prd_no = '" + p_no + "';");
+			    if(rs.next()) {		    	
+			    	aa.setPrd_img(rs.getString("prd_img"));	
+			    	aa.setPrd_name(rs.getString("prd_name"));	
+			    	aa.setPrd_cata(rs.getString("prd_cata"));	
+			    	aa.setPrd_id(rs.getString("prd_id"));	
+			    	aa.setPrd_meter(rs.getString("prd_meter"));	
+			    	aa.setPrd_note(rs.getString("prd_note"));	
+			    	aa.setPrd_price(rs.getInt("prd_price"));	
+			    	aa.setPrd_size(rs.getString("prd_size"));	
+			    	aa.setPrd_color(rs.getString("prd_color"));	
+			    	aa.setPrd_date(rs.getString("prd_date"));	
+			    	aa.setPrd_create(rs.getString("prd_create"));	
+			    	aa.setPrd_qaul(rs.getString("prd_qaul"));	
+			    	aa.setPrd_as(rs.getString("prd_as"));	
+			    	aa.setPrd_qant(rs.getInt("prd_qant"));	
+			    	aa.setPrd_content(rs.getString("prd_content"));	
+			    }
+		  		}catch(Exception ignored){
+
+			  }finally{
+				  diconn();
+			  }
+		  return aa;
+	  }
+	  
+	  
 	//  게시판 로드
 	  public ArrayList<Shop_reform_db> shop_board() throws Exception{
 		  ArrayList<Shop_reform_db> board = new ArrayList<Shop_reform_db>();

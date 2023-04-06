@@ -70,7 +70,7 @@
 								<ul>
 									<li class="on" id="s_000"><a>잠실종합운동장</a></li>
 									<li id="s_001"><a>노량진 축구장</a></li>
-									<li><a>월곡인조잔디<br>축구장</a></li>
+									<li id="s_002"><a>월곡인조잔디<br>축구장</a></li>
 									<li><a>은평구립 축구장</a></li>
 									<li><a>천마공원 축구장</a></li>
 									<li style="border-right: none;"><a>창골 축구장</a></li>

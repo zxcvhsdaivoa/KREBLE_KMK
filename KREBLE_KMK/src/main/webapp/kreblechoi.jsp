@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
+<%@ page import="java.sql.*" %>
+<%@ page import="use_data.KreblechoiData" %>
 <!doctype html>
 <html>
 <head> <!-- 문서정보 -->
@@ -25,6 +27,12 @@
 <script src="js/Header_Footer_Aside_baseform.js"></script>
 <script src="js/kreblechoi.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script>
+<jsp:useBean id="info" class="use_data.Database" />
+<%
+	String id= request.getParameter("field_id");
+	KreblechoiData field=info.field_list_check(id);
+%>
+
 <body >
 
 

@@ -14,7 +14,7 @@ public class Database {
 	public void conn() throws Exception {//연결 메소드
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble","root","qw4589");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble","root","knight");
 			if(con == null){
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
@@ -682,6 +682,30 @@ public class Database {
 		return player_list;
 	}
 
+	public ArrayList<Director_Info> director() throws Exception { //감독 호출 메소드
+		ArrayList<Director_Info> director_list = new ArrayList<Director_Info>();
+		conn();
+		try{
+			ResultSet rs= stm.executeQuery("select * from director;");
+			while(rs.next()) {
+				Director_Info pl= new Director_Info();
+				System.out.println(rs.getString("director_name"));
+				pl.setDirector_name(rs.getString("director_name"));
+				pl.setDirector_ko_name(rs.getString("director_ko_name"));
+				pl.setDirecotr_birth(rs.getDate("director_birth"));
+				pl.setDirector_gender(rs.getString("director_gender"));
+				pl.setDirector_nation(rs.getString("director_nation"));
+				pl.setDirector_date_in(rs.getDate("director_datein"));
+				pl.setDirector_date_end(rs.getDate("director_dateEnd"));
+				director_list.add(pl);
+			}
+		}finally {
+			diconn();
+		}
+		return director_list;
+	}
+
+	
 	//예약/대여 시민구장 정보,최승혁 db
 	
 	public KreblechoiData field_list_check(String id) throws Exception {

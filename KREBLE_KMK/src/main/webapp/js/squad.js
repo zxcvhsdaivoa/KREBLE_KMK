@@ -24,11 +24,21 @@ $(function(){
 	}
 
 	//n번 선수 선택
-	$(".squad_wrap > ul > li").click(function(){
+	$(".squad_wrap ul > li").click(function(){
 		//선수선택페이지 오픈
 		if($(this).find("span").hasClass("x_bu")==false){
-			$(".squad_wrap > ul > li").removeClass("on")
+			$(".squad_wrap ul > li").removeClass("on")
 			$(this).addClass("on")
+			if($(this).hasClass("director")==true) {
+				$(".player_list").hide();
+				$(".list_header").hide();
+				$(".director_box").show();
+			}
+			else {
+				$(".player_list").show();
+				$(".list_header").show();
+				$(".director_box").hide();
+			}
 			$(".player_wrap").show()
 		}
 		//등록된 선수 제거
@@ -54,7 +64,7 @@ $(function(){
 		}
 	})
 	//선수 선택
-	$(".player_list li").click(function(){
+	$(".select_list li").click(function(){
 		
 		var pl_img=$(this).find("img").attr("src");
 		var pl_name_ko=$(this).find(".name_ko").text();

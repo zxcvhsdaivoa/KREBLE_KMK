@@ -14,7 +14,8 @@ section {
 
 .mysquad .squad_form {
     width:1200px;
-    margin:-60px auto 20px;
+    height:100%;
+    margin:0 auto;
 }
 .mysquad .squad_form #squad_name {
     float:left;
@@ -68,9 +69,9 @@ section {
     position: relative;
     clear: both;
     width:1200px;
-    height:850px;
+    height:790px;
     margin:0 auto 30px;
-    background:url(../image/squad_bg2.png) no-repeat center bottom/contain;
+    background:url(../image/squad_bg2.png) no-repeat center top/contain;
     background-size:1200px 850px;
 }
 .mysquad .squad_wrap ul {
@@ -104,6 +105,10 @@ section {
     background-size:100px;
     background-position:center -8px;
 }
+.mysquad .squad_wrap ul li.director .player_image {
+	background-size:cover;
+	background-position: center;
+} 
 .mysquad .squad_wrap ul li p {
     width:125px;
     height:30px;
@@ -256,3 +261,54 @@ font-size:14px;
     font-size:20px;
 }
 
+
+
+.player_wrap .player_inner .director_box  {
+    height:100%;
+}
+.player_wrap .player_inner .director_box ul {
+    height:100%;
+    overflow:auto;
+}
+.player_wrap .player_inner .director_box ul li {
+    position:relative;
+    width:100%;
+    height:200px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+.player_wrap .player_inner .director_box ul li > span {
+	float:left;
+    width:200px;
+    height:100%;
+    margin-right:20px;
+    border-right:1px solid #333;
+    overflow: hidden;
+}
+.player_wrap .player_inner .director_box ul li span img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.player_wrap .player_inner .director_box ul li p {
+	display:block;
+}
+.player_wrap .player_inner .director_box ul li .p_name {
+	font-size:20px;
+	margin:20px 0 15px;
+}
+.player_wrap .player_inner .director_box ul li .p_profile {
+	font-size:17px;
+}
+.player_wrap .player_inner .director_box ul li .period {
+	position:absolute;
+	top:0;
+	right:0;
+	display:block;
+	width:200px;
+	height:100%;
+	padding-top:20px;
+	text-align:center;
+	border-left:1px solid #333;
+    font-size:20px;
+}

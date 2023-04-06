@@ -10,8 +10,8 @@ import action.Action;
 import vo.ActionForward;
 
 @SuppressWarnings("serial")
-@WebServlet("*.cm")
-public class CommuFrontController extends javax.servlet.http.HttpServlet 
+@WebServlet("*.squad")
+public class SquadFrontController extends javax.servlet.http.HttpServlet 
 {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {

@@ -93,7 +93,6 @@
 				<ul>
 				<%
 				ArrayList<Director_Info> dl = ud.director();
-				
 				for(int i=0; i<dl.size(); i++) {
 				%>
 					<li>

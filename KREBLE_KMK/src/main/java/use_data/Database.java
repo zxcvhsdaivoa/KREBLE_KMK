@@ -33,7 +33,6 @@ public class Database {
 	}
 	
 	
-	
 	public String login_data(String id, String pw) throws Exception {
 		String login;
 		try{

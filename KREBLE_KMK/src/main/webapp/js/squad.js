@@ -65,7 +65,6 @@ $(function(){
 	})
 	//선수 선택
 	$(".select_list li").click(function(){
-		
 		var pl_img=$(this).find("img").attr("src");
 		var pl_name_ko=$(this).find(".name_ko").text();
 		var pl_name_eng=$(this).find(".name_eng").text();

@@ -65,11 +65,11 @@ $(function(){
 		}
 	})
 	$('ul.local_stadium > li > ul > li').click(function(){
-	    var field_id=$(this).attr('id');
+	    var field_num=$(this).attr('id');
 	    var fieldName = "노량진 축구장"; // 데이터 베이스 안에 있는 값 변수 지정
 	    var stadiumName = $(this).find("a").text(); // 클릭한 요소의 a 태그의 텍스트를 가져옴
 	    if (fieldName === stadiumName) {
-	        location.href="kreblechoi.jsp?id="+field_id;
+	        location.href="kreblechoi.jsp?field_id="+field_num;
 	    } else if(fieldName != stadiumName){
 			
 	    }

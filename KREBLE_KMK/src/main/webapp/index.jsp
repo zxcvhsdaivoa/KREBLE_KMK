@@ -71,17 +71,17 @@
     				<p class="squad_name">스쿼드 이름 : 국가대표</p>
 					<ul>
 						<li class="director"><span class="player_img"><img src="image/player_img/Paulo Bento.jpg"></span><p class="name">파울루 벤투</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/SON Heungmin.jpg"></span><p class="name">손흥민</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/HWANG Inbeom.jpg"></span><p class="name">황인범</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/HWANG Heechan.jpg"></span><p class="name">황희찬</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/KIM Jinsu.jpg"></span><p class="name">김진수</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/JUNG Wooyoung.jpg"></span><p class="name">정우영</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/LEE Jaesung.jpg"></span><p class="name">이재성</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/KIM Younggwon.jpg"></span><p class="name">김영권</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/KWON Kyungwon.jpg"></span><p class="name">권경원</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/KIM Moonhwan.jpg"></span><p class="name">김문환</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/KIM Minjae.jpg"></span><p class="name">김민재</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/JO Hyeonwoo.jpg"></span><p class="name">조현우</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Son Heung-Min.jpg"></span><p class="name">손흥민</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Hwang In-Beom.jpg"></span><p class="name">황인범</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Hwang Hee-Chan.jpg"></span><p class="name">황희찬</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Kim Jin-Su.jpg"></span><p class="name">김진수</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Jung Woo-Young.jpg"></span><p class="name">정우영</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Lee Jae-Sung.jpg"></span><p class="name">이재성</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Kim Young-Gwon.jpg"></span><p class="name">김영권</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Kwon Kyung-Won.jpg"></span><p class="name">권경원</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Kim Moon-Hwan.jpg"></span><p class="name">김문환</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Kim Min-Jae.jpg"></span><p class="name">김민재</p></li>
+						<li class="player"><span class="player_img"><img src="image/player_img/Jo Hyeon-Woo.jpg"></span><p class="name">조현우</p></li>
 					</ul>
 				</div>
     		</div>

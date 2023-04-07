@@ -184,6 +184,7 @@ section {
     line-height: 50px;;
 }
 .player_wrap .player_inner {
+	box-sizing:content-box;
     position: relative;
     width:900px;
     height:800px;
@@ -227,8 +228,8 @@ section {
 .player_wrap .player_inner .player_list ul li {
     position:relative;
     float: left;
-    width:20%;
-    height:33%;
+    width:175px;
+    height:250px;
     padding:10px 10px 0;
     border: 1px solid #333;
 }
@@ -244,6 +245,7 @@ section {
 .player_wrap .player_inner .player_list ul li span img {
     width:100%;
     height:100%;
+    object-fit:cover;
 }
 .player_wrap .player_inner .player_list ul li .p_name {
 text-align: center;
@@ -312,4 +314,37 @@ font-size:14px;
 	text-align:center;
 	border-left:1px solid #333;
     font-size:20px;
+}
+
+
+
+.mysquad_wrap {
+    width:100%;
+    height:100%;
+    padding-top: 100px;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: 300;
+    background-color:rgba(0,0,0, 0.3);
+}
+.mysquad_wrap .mysquad_inner .exit {
+    position: absolute;
+    top:-50px;
+    right:0;
+    width:100px;
+    height:50px;
+    background-color: #fff;
+    border:2px solid #333;
+    text-align: center;
+    line-height: 50px;;
+}
+.mysquad_wrap .mysquad_inner {
+	box-sizing:content-box;
+    position: relative;
+    width:900px;
+    height:800px;
+    margin:0 auto;
+    background-color: #fff;
+    border:2px solid #333;
 }

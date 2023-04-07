@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.SquadSaveProAction;
+import action.UserSquadListAction;
 import vo.ActionForward;
 
 @SuppressWarnings("serial")
@@ -25,56 +26,7 @@ public class SquadController extends javax.servlet.http.HttpServlet
 		Action action=null;
 
 		if(command.equals("/squad.sq")){
-			forward=new ActionForward();
-			forward.setPath("/mysquad.jsp");
-		}else if(command.equals("/squadSavePro.sq")){
-			action  = new SquadSaveProAction();
-			try {
-				forward=action.execute(request, response );
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/squadList.sq")){
-			action = null;
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/squadDetail.sq")){
-			action = null;
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/squadModifyForm.sq")){
-			action = null;
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/squadModifyPro.sq")){
-			action = null;
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/squadDeleteForm.sq")){
-			String nowPage = request.getParameter("page");
-			request.setAttribute("page", nowPage);
-			int squad_no=Integer.parseInt(request.getParameter("squad_no"));
-			request.setAttribute("squad_no",squad_no);
-			forward=new ActionForward();
-			forward.setPath("/squad_delete.jsp");
-		}
-		else if(command.equals("/squadDeletePro.sq")){
-			action = null;
+			action = new UserSquadListAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

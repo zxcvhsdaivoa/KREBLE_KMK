@@ -2,6 +2,7 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="ud" class="use_data.Db_method_player"/>
 <%@ page import="use_data.Player_Info"%>
+<%@ page import="vo.SquadInfo"%>
 <%@ page import="use_data.Director_Info"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
@@ -24,7 +25,6 @@
 	<section>
 		<div class="section_inner">
 			<div class="mysquad">
-				
 				<div class="squad_wrap"> 
 					<form class="squad_form" name="squad_form" action="squadSavePro.sq" method="post" onsubmit="return memberjoin()">
 						<input type="hidden" id="user_id" name="user_id" value="<%= (String) session.getAttribute("ID")%> ">
@@ -42,7 +42,7 @@
 							<li class="player"><input type="hidden" value="" name="player10" id="player10" class="squad_member"><span class="player_image"></span><p class="ko_name">선수10</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
 							<li class="player"><input type="hidden" value="" name="player11" id="player11" class="squad_member"><span class="player_image"></span><p class="ko_name">선수11</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
 						</ul>
-						<button type="submit" class="open_squad">저장된 스쿼드 불러오기</button>
+						<button type="button" class="open_squad">저장된 스쿼드 불러오기</button>
 						<label for="squad_name" class="blind">스쿼드의 이름을 입력하세요</label>
 						<input type="text" id="squad_name" name="squad_name">
 						<button type="submit" class="save_squad">스쿼드 저장</button>
@@ -106,6 +106,38 @@
 				<% }%>
 				</ul>
 			</div>
+		</div>
+	</div>
+	<div class="mysquad_wrap">
+		<div class="mysquad_inner">
+			<span class="exit">나가기</span>
+			
+			<%
+			ArrayList<SquadInfo> squadlist =null; 
+			squadlist = (ArrayList<SquadInfo>) request.getAttribute("squadList");
+			
+			if(squadlist==null){
+				out.println("저장된 스쿼드가 없습니다");
+			}
+			else {
+			%>
+			<table>
+				<tr>
+					<th>스쿼드 번호</th>
+					<th>스쿼드 이름</th>
+					<th>포메이션</th>
+					<th>공개 여부</th>
+				</tr>
+			<%
+				for(int i=0; i<squadlist.size(); i++){
+					out.println("<tr><td>"+squadlist.get(i).getSquad_num()+"</td>");
+					out.println("<td>"+squadlist.get(i).getSquad_name()+"</td>");
+					out.println("<td>"+squadlist.get(i).getFormation()+"</td>");
+					out.println("<td>"+squadlist.get(i).getDisclose()+"</td></tr>");
+				}
+			}
+			%>
+			</table>
 		</div>
 	</div>
 </body>

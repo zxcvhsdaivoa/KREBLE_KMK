@@ -14,7 +14,8 @@ $(function(){
 	$(".squad_wrap ul li:nth-of-type(9)").css({'top':'435px','left':'390px'})
 	$(".squad_wrap ul li:nth-of-type(10)").css({'top':'435px','left':'720px'})
 	$(".squad_wrap ul li:nth-of-type(11)").css({'top':'420px','left':'960px'})
-	$(".player_wrap").hide()
+	$(".player_wrap").hide();
+	$(".mysquad_wrap").hide();
 	//$('.mysquad .squad_wrap ul li').draggable();
 
 	//기본 이미지 지정

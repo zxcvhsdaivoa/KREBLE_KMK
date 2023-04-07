@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="data" class="use_data.Database"/>
+<jsp:useBean id="data" class="use_data.Db_method_commu"/>
 <%@ page import="use_data.CommunityData"%>
 <%
 	CommunityData cmd = new CommunityData();

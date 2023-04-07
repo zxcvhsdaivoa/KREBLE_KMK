@@ -20,7 +20,7 @@ function back(){
 	<section>
 		<div class="section_inner">
 			
-				<jsp:useBean id="data" class="use_data.Database"/>
+				<jsp:useBean id="data" class="use_data.Db_method_commu"/>
 				<%@ page import="use_data.CommunityData"%>
 		        <%
 		        int comu_no = Integer.parseInt(request.getParameter("no"));
@@ -44,7 +44,8 @@ function back(){
 					</form>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 <jsp:include page="Footer_baseform.jsp"/>
 </body>
 </html>

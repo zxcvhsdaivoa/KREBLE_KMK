@@ -55,7 +55,7 @@ $(function(){
 				}
 				$(this).find("p.eng_name").text("")
 				$(this).find("p.posi").text("")
-			
+				$(this).find("input[type=hidden]").val("");
 			}
 			$(this).find("span:eq(1)").removeClass("x_bu");
 			$(this).find("span:eq(1)").addClass("plus");
@@ -72,6 +72,7 @@ $(function(){
 		$(".squad_wrap ul li.on .player_image").css({"background-image":'url("' + pl_img + '")'});
 		$(".squad_wrap ul li.on p.ko_name").text(pl_name_ko);
 		$(".squad_wrap ul li.on p.eng_name").text(pl_name_eng);
+		$(".squad_wrap ul li.on input[type=hidden]").val(pl_name_eng);
 		$(".squad_wrap ul li.on p.posi").text(pl_position);
 		$(".squad_wrap ul li.on span:eq(1)").removeClass("plus");
 		$(".squad_wrap ul li.on span:eq(1)").addClass("x_bu");

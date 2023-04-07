@@ -38,7 +38,8 @@ function back(){
 
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 <jsp:include page="Footer_baseform.jsp"/>
 </body>
 </html>

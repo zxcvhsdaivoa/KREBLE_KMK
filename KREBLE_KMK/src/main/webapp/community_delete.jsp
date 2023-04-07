@@ -25,6 +25,7 @@
 					<div class="community">
 						<p>정말 삭제하시겠습니까?<br></p>
 						<a href="community_deleting.jsp?no=<%= comu_no%>&id=<%= id%>">예</a>   <a href="community_borde.jsp?no=<%= comu_no%>">아니요</a>
+					</div>
 				</div>
 			</div>
 		</div>

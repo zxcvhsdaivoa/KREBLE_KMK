@@ -16,7 +16,7 @@
 		<div class="section_inner">
 			
 			<div class="community">
-				<jsp:useBean id="ud" class="use_data.Database"/>
+				<jsp:useBean id="ud" class="use_data.Db_method_commu"/>
 				<%@ page import="use_data.CommunityData"%>
 				<%@ page import="java.util.ArrayList"%>
 				<%
@@ -91,8 +91,8 @@
 				</div>
 			</div>
 			
-			
-		</section>
+		</div>
+	</section>
 <jsp:include page="Footer_baseform.jsp"/>
 </body>
 </html>

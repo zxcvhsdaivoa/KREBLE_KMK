@@ -7,12 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.SquadSaveProAction;
 import vo.ActionForward;
 
 @SuppressWarnings("serial")
-@WebServlet("*.squad")
-public class SquadFrontController extends javax.servlet.http.HttpServlet 
+@WebServlet("*.sq")
+public class SquadController extends javax.servlet.http.HttpServlet 
 {
+	@SuppressWarnings("null")
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -22,18 +24,18 @@ public class SquadFrontController extends javax.servlet.http.HttpServlet
 		ActionForward forward=null;
 		Action action=null;
 
-		if(command.equals("/commuWriteForm.cm")){
+		if(command.equals("/squad.sq")){
 			forward=new ActionForward();
-			forward.setPath("/commu_write.jsp");
-		}else if(command.equals("/commuWritePro.cm")){
-			action  = null;
+			forward.setPath("/mysquad.jsp");
+		}else if(command.equals("/squadSavePro.sq")){
+			action  = new SquadSaveProAction();
 			try {
 				forward=action.execute(request, response );
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/commuList.cm")){
+		else if(command.equals("/squadList.sq")){
 			action = null;
 			try{
 				forward=action.execute(request, response);
@@ -41,7 +43,7 @@ public class SquadFrontController extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/commuDetail.cm")){
+		else if(command.equals("/squadDetail.sq")){
 			action = null;
 			try{
 				forward=action.execute(request, response);
@@ -49,29 +51,29 @@ public class SquadFrontController extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/commuModifyForm.cm")){
+		else if(command.equals("/squadModifyForm.sq")){
 			action = null;
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/commuModifyPro.cm")){
+		}else if(command.equals("/squadModifyPro.sq")){
 			action = null;
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/commuDeleteForm.cm")){
+		}else if(command.equals("/squadDeleteForm.sq")){
 			String nowPage = request.getParameter("page");
 			request.setAttribute("page", nowPage);
-			int commu_no=Integer.parseInt(request.getParameter("commu_no"));
-			request.setAttribute("commu_no",commu_no);
+			int squad_no=Integer.parseInt(request.getParameter("squad_no"));
+			request.setAttribute("squad_no",squad_no);
 			forward=new ActionForward();
-			forward.setPath("/commu_delete.jsp");
+			forward.setPath("/squad_delete.jsp");
 		}
-		else if(command.equals("/commuDeletePro.cm")){
+		else if(command.equals("/squadDeletePro.sq")){
 			action = null;
 			try{
 				forward=action.execute(request, response);

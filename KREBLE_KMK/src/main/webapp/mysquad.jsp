@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id="ud" class="use_data.Database"/>
+<jsp:useBean id="ud" class="use_data.Db_method_player"/>
 <%@ page import="use_data.Player_Info"%>
 <%@ page import="use_data.Director_Info"%>
 <%@ page import="java.util.ArrayList"%>
@@ -26,24 +26,25 @@
 			<div class="mysquad">
 				
 				<div class="squad_wrap"> 
-					<form class="squad_form" name="squad_form">
+					<form class="squad_form" name="squad_form" action="squadSavePro.sq" method="post" onsubmit="return memberjoin()">
+						<input type="hidden" id="user_id" name="user_id" value="<%= (String) session.getAttribute("ID")%> ">
 						<ul>
-							<li class="director"><input type="hidden" value="" id="director" class="squad_member"><span class="player_image"></span><p class="ko_name">감독</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player1" class="squad_member"><span class="player_image"></span><p class="ko_name">선수1</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player2" class="squad_member"><span class="player_image"></span><p class="ko_name">선수2</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player3" class="squad_member"><span class="player_image"></span><p class="ko_name">선수3</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player4" class="squad_member"><span class="player_image"></span><p class="ko_name">선수4</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player5" class="squad_member"><span class="player_image"></span><p class="ko_name">선수5</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player6" class="squad_member"><span class="player_image"></span><p class="ko_name">선수6</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player7" class="squad_member"><span class="player_image"></span><p class="ko_name">선수7</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player8" class="squad_member"><span class="player_image"></span><p class="ko_name">선수8</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player9" class="squad_member"><span class="player_image"></span><p class="ko_name">선수9</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player10" class="squad_member"><span class="player_image"></span><p class="ko_name">선수10</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" id="player11" class="squad_member"><span class="player_image"></span><p class="ko_name">선수11</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="director"><input type="hidden" value="" name="director" id="director" class="squad_member"><span class="player_image"></span><p class="ko_name">감독</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player1" id="player1" class="squad_member"><span class="player_image"></span><p class="ko_name">선수1</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player2" id="player2" class="squad_member"><span class="player_image"></span><p class="ko_name">선수2</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player3" id="player3" class="squad_member"><span class="player_image"></span><p class="ko_name">선수3</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player4" id="player4" class="squad_member"><span class="player_image"></span><p class="ko_name">선수4</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player5" id="player5" class="squad_member"><span class="player_image"></span><p class="ko_name">선수5</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player6" id="player6" class="squad_member"><span class="player_image"></span><p class="ko_name">선수6</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player7" id="player7" class="squad_member"><span class="player_image"></span><p class="ko_name">선수7</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player8" id="player8" class="squad_member"><span class="player_image"></span><p class="ko_name">선수8</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player9" id="player9" class="squad_member"><span class="player_image"></span><p class="ko_name">선수9</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player10" id="player10" class="squad_member"><span class="player_image"></span><p class="ko_name">선수10</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<li class="player"><input type="hidden" value="" name="player11" id="player11" class="squad_member"><span class="player_image"></span><p class="ko_name">선수11</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
 						</ul>
 						<button type="submit" class="open_squad">저장된 스쿼드 불러오기</button>
 						<label for="squad_name" class="blind">스쿼드의 이름을 입력하세요</label>
-						<input type="text" id="squad_name">
+						<input type="text" id="squad_name" name="squad_name">
 						<button type="submit" class="save_squad">스쿼드 저장</button>
 						<button type="reset" class="reset_squad">스쿼드 초기화</button>
 						<label for="formation" class="blind" >포메이션</label>
@@ -97,7 +98,7 @@
 				%>
 					<li>
 						<span class="p_img"><img src="image/player_img/<%= dl.get(i).getDirector_name() %>.jpg"></span>
-						<p class="p_name">이름 : <span class="name_ko"><%= dl.get(i).getDirector_ko_name() %></span><span class="name_eng">(<%= dl.get(i).getDirector_name() %>)<br></span></p>
+						<p class="p_name">이름 : <span class="name_ko"><%= dl.get(i).getDirector_ko_name() %></span>(<span class="name_eng"><%= dl.get(i).getDirector_name() %></span>)<br></p>
 						<p class="p_profile">생일 : <%= dl.get(i).getDirecotr_birth() %><br><br>성별 : <%= dl.get(i).getDirector_gender() %><br><br>국적 : <%= dl.get(i).getDirector_nation() %></p>
 						<p class="nation"></p>
 						<p class="period">부임기간<br><br><%= dl.get(i).getDirector_date_in() %> <br>~<br> <%= dl.get(i).getDirector_date_end() %></p>

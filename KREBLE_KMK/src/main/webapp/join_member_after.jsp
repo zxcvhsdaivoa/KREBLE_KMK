@@ -2,7 +2,7 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <%@page import="java.sql.*"%>
 
-<jsp:useBean id="data" class="use_data.Database"/>
+<jsp:useBean id="data" class="use_data.Db_method_user"/>
 <%@ page import="use_data.UserData"%>
 <%
 	UserData ud= new UserData();

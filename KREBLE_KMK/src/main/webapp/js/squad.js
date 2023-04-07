@@ -178,19 +178,18 @@ $(function(){
 
 	//스쿼드 저장
 	$(".save_squad").click(function(){
-		var sq_n= squad_form.querySelector('#squad_name');
-		var forma=$("#formation option:selected").val();
-		var overlab=false;
-		if(sq_n.value==''){
-			alert('스쿼드의 이름을 입력해주세요');
-		}else {
+		var login_Id = document.getElementById("user_id").value;
+		if(login_Id=="null"){
+			alert("로그인 후 이용해주세요");
+			return false;
+		}
+		else {
 			var sq_mem = document.querySelectorAll(".eng_name");
-
 			for(var i=0; i<sq_mem.length; i++){
 				var null_ch =sq_mem.item(i).innerText;
 				if(null_ch == ''){
 					alert('비어있는 칸이 없도록 선택해주세요');
-					break;
+					return false;
 				}
 				else if(i==sq_mem.length-1) {
 					for(var j=1; j<sq_mem.length; j++){
@@ -201,24 +200,13 @@ $(function(){
 								alert('선수가 중복되지 않게 선택해주세요')
 								i=sq_mem.length;
 								j=sq_mem.length;
-								break;
+								return false;
 					        } else if(j==sq_mem.length-1 && k==j-1) {
-					            overlab=true;
+					            
 					        }
 						}
 					}
 				}
-			}
-
-
-			if(overlab == true) {
-				alert('스쿼드가 저장되었습니다!')
-				alert(sq_n.value);
-				alert(forma);
-				for(var i=0; i<sq_mem.length; i++){
-					alert(sq_mem.item(i).innerText);
-				}
-				overlab=false;
 			}
 		}
 	})

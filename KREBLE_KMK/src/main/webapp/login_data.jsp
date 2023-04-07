@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.ArrayList" %>
 
-<jsp:useBean id="data" class="use_data.Database"/>
+<jsp:useBean id="data" class="use_data.Db_method_user"/>
 <%@ page import="use_data.UserData"%>
 <%
 	String id = request.getParameter("id");

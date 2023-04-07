@@ -1,38 +1,11 @@
 package use_data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
+//이제 쓸일없을듯
 
-
-public class Database {
-	Connection con = null;
-	Statement stm = null;
-	public void conn() throws Exception {//연결 메소드
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/kreble","root","knight");
-			if(con == null){
-				throw new Exception("데이터베이스에 연결할 수 없습니다.");
-			}
-			stm=con.createStatement();
-		} catch (ClassNotFoundException e) {
-			
-		}
-	}
-	public void diconn() {//연결 해제 메소드
-		try{
-			stm.close();
-			con.close();
-		}catch(Exception ignored){
-			
-		}
-	}
-	
-	
+public class Database extends Db_method_conn {
 	public String login_data(String id, String pw) throws Exception {
 		String login;
 		try{

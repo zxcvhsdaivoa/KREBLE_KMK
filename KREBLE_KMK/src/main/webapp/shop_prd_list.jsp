@@ -31,7 +31,7 @@
     <!-- header -->
   
 	<jsp:include page="Header_baseform.jsp"/>
-	<jsp:useBean id="sp_list" class="use_data.Database"></jsp:useBean>
+	<jsp:useBean id="sp_list" class="use_data.Db_method_shop"></jsp:useBean>
 	<%
 	ArrayList<Shop_prd> al = sp_list.shop_prd_list();
 	%>

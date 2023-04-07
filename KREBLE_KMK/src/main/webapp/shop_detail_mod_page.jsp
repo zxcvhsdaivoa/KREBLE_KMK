@@ -37,7 +37,7 @@ String renum = request.getParameter("renum");
 	%>
 <body>
  	<jsp:include page="Header_baseform.jsp"/>
-	<jsp:useBean id="jsp_ub2" class="use_data.Database" />
+	<jsp:useBean id="jsp_ub2" class="use_data.Db_method_shop" />
 	<%
 	Shop_reform_db aab = jsp_ub2.shop_board_1(renum);
 	String aa = request.getParameter("renum");

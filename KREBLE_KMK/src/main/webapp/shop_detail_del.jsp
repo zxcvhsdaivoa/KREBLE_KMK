@@ -13,7 +13,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
 </head>
 <body>
-  	<jsp:useBean id="shop_db" class="use_data.Database"/>
+  	<jsp:useBean id="shop_db" class="use_data.Db_method_shop"/>
 <%
 	String r_id = request.getParameter("w_id");
 	String r_num = request.getParameter("renum");

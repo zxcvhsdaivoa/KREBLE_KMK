@@ -29,7 +29,7 @@
   
 	<jsp:include page="Header_baseform.jsp"/>
 	
-	<jsp:useBean id="jsp_ub2" class="use_data.Database" />
+	<jsp:useBean id="jsp_ub2" class="use_data.Db_method_shop" />
 	<% 
 	ArrayList<Shop_reform_db> al = jsp_ub2.shop_board();
 	%>

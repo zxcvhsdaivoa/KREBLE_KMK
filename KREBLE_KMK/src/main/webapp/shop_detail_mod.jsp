@@ -14,7 +14,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
 </head>
 <body>
-  	<jsp:useBean id="shop_db" class="use_data.Database"/>
+  	<jsp:useBean id="shop_db" class="use_data.Db_method_shop"/>
 <%
 	Shop_reform_db ob = new Shop_reform_db();
 	ob.setRenum(Integer.parseInt(request.getParameter("w_renum")));

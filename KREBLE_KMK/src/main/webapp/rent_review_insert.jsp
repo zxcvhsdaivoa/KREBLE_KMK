@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="insert_result" class="use_data.Database" />
+<jsp:useBean id="insert_result" class="use_data.Db_method_rent" />
 <%
 	ReviewData review_insr= new ReviewData();
 	review_insr.setId(request.getParameter("ID"));

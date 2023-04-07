@@ -3,6 +3,7 @@ package use_data;
 public class KreblechoiData {
 	String field_id;
 	String fullname;
+	String field_image;
 	int field_price;
 	String field_name;
 	String field_location;
@@ -23,6 +24,12 @@ public class KreblechoiData {
 	}
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+	public String getField_image() {
+		return field_image;
+	}
+	public void setField_image(String field_image) {
+		this.field_image = field_image;
 	}
 	public int getField_price() {
 		return field_price;
@@ -74,5 +81,4 @@ public class KreblechoiData {
 	}
 	
 
-	
 }

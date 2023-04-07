@@ -180,6 +180,7 @@ public class Db_method_rent extends Db_method_conn {
 			if(rs.next()){
 				field_list.setField_id(rs.getString("field_id"));
 				field_list.setFullname(rs.getString("field_fullname"));
+				field_list.setField_image(rs.getString("field_image"));
 				field_list.setField_price(rs.getInt("field_price"));
 				field_list.setField_name(rs.getString("field_name"));
 				field_list.setField_location(rs.getString("field_location"));

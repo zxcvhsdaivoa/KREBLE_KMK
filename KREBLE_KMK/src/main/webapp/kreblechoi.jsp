@@ -28,7 +28,7 @@
 <script src="js/Header_Footer_Aside_baseform.js"></script>
 <script src="js/kreblechoi.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script>
-<jsp:useBean id="info" class="use_data.Database" />
+<jsp:useBean id="info" class="use_data.Db_method_rent" />
 <%
 	String field_id= request.getParameter("field_id");
 	KreblechoiData field=info.field_list_check(field_id);
@@ -71,9 +71,9 @@
 									<li class="on" id="s_000"><a>잠실종합운동장</a></li>
 									<li id="s_001"><a>노량진 축구장</a></li>
 									<li id="s_002"><a>월곡인조잔디<br>축구장</a></li>
-									<li><a>은평구립 축구장</a></li>
-									<li><a>천마공원 축구장</a></li>
-									<li style="border-right: none;"><a>창골 축구장</a></li>
+									<li id="s_003"><a>은평구립 축구장</a></li>
+									<li id="s_004"><a>천마공원 축구장</a></li>
+									<li id="s_005" style="border-right: none;"><a>창골 축구장</a></li>
 								</ul>
 							</li>
 							<li class="local">
@@ -141,35 +141,35 @@
 				</div>
 				<div class="stadium_info">
 					<div class="stadium_img">
-					<img style="width: 100%; height:100%; border-radius: 7px;" src="image/rent_stardium/rent5.jpg">
+					<img style="width: 100%; height:100%; border-radius: 7px;" src="image/rent_stardium/<%=field.getField_image() %>.jpg">
 					</div>	
 					<div class="detail_info">
 						<table style="height: 507px">
 							<tr>
 								<th>위치</th>
-								<td>서울특별시 송파구 올림픽로 25 서울종합운동장
-									<a href="http://kko.to/b9jxDcNxg4" target="black"><img class="mapbtn" src="image/rent_stardium/kakaobu.jpg"></a>
+								<td><%= field.getField_location() %>
+									<a href="<%=field.getField_map() %>" target="black"><img class="mapbtn" src="image/rent_stardium/kakaobu.jpg"></a> 
 								</td>
 							</tr>
 							<tr>
 								<th>명칭</th>
-								<td>잠실종합운동장</td>
+								<td><%= field.getField_name() %></td>
 							</tr>
 							<tr>
 								<th>대지면적</th>
-								<td>75,469 ㎡</td>
+								<td><%= field.getField_area() %> ㎡</td>
 							</tr>
 							<tr>
 								<th>이용시간</th>
-								<td>하절기(4~9월) : 조기 05:00~08:00, 주간 08:00~19:00, <br>야간 19:00~05:00 <br>동절기(10~3월) : 조기 06:00~09:00, 주간 09:00~18:00, <br> 야간 18:00~06:00</td>
+								<td><%= field.getField_usetime() %></td>
 							</tr>
 							<tr>
 								<th>주요시설</th>
-								<td>샤워장,관리 사무실,조명 탑,테니스 장,주차장</td>
+								<td><%= field.getField_facility() %></td>
 							</tr>
 							<tr>
 							<th>전화</th>
-								<td>02-2240-8712</td>
+								<td><%= field.getField_call() %></td>
 							</tr>
 						</table>
 						<input type="button" value="예약하기" class="rent_btn">

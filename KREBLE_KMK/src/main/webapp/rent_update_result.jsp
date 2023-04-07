@@ -10,7 +10,7 @@
 <title>DB 조회수 갱신</title>
 </head>
 <body>
-<jsp:useBean id="update_result" class="use_data.Database" />
+<jsp:useBean id="update_result" class="use_data.Db_method_rent" />
 <%
 	ReviewData review_upda= new ReviewData();
 	review_upda.setNum(Integer.parseInt(request.getParameter("NUM")));

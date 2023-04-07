@@ -22,7 +22,7 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="js/Header_Footer_Aside_baseform.js"></script>
-<jsp:useBean id="list" class="use_data.Database" />
+<jsp:useBean id="list" class="use_data.Db_method_rent" />
 <%
 	String no= request.getParameter("no");
 	String id=(String)session.getAttribute("ID");

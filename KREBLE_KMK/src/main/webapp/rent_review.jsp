@@ -76,7 +76,7 @@ pageEncoding="UTF-8"%>
 						</tr>
 						</thead>				
 						
-						<jsp:useBean id="rent_review" class="use_data.Database" />
+						<jsp:useBean id="rent_review" class="use_data.Db_method_rent" />
 						<%
 							ArrayList<ReviewData> reviewList= rent_review.db_review_select();
 						%>	

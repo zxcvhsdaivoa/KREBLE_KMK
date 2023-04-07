@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>DB 추천</title>
 </head>
-<jsp:useBean id="list" class="use_data.Database" />
+<jsp:useBean id="list" class="use_data.Db_method_rent" />
 <%
 	String num= request.getParameter("num");	
 	list.db_good_count(num);

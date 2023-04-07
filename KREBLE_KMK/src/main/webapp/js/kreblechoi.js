@@ -1,13 +1,13 @@
 $(function(){
 	var default_no=1;
 	
-//	const urlParams = new URLSearchParams(window.location.search);
-//	const field_no = urlParams.get('field_id');
-//	$(".local").removeClass("on");
-//	$("#"+field_no).parents(".local").addClass("on");
-//	$('.local ul li').removeClass('on');
-//	$("#"+field_no).addClass("on");
-//	
+	const urlParams = new URLSearchParams(window.location.search);
+	const field_no = urlParams.get('field_id');
+	$(".local").removeClass("on");
+	$("#"+field_no).parents(".local").addClass("on");
+	$('.local ul li').removeClass('on');
+	$("#"+field_no).addClass("on");
+	
 	$(".local").click(function(){
 		$(".local").removeClass("on");
 		$(this).addClass("on");
@@ -66,12 +66,7 @@ $(function(){
 	})
 	$('ul.local_stadium > li > ul > li').click(function(){
 	    var field_num=$(this).attr('id');
-//	    var fieldName = "노량진 축구장"; // 데이터 베이스 안에 있는 값 변수 지정
-//	    var stadiumName = $(this).find("a").text(); // 클릭한 요소의 a 태그의 텍스트를 가져옴
-//	    if (fieldName === stadiumName) {
-	        location.href="kreblechoi.jsp?field_id="+field_num;
-//	    } else if(fieldName != stadiumName){
-//			
-//	    }
+	    location.href="kreblechoi.jsp?field_id="+field_num;
 	});
+	
 });

@@ -2,9 +2,8 @@ package use_data;
 
 public class Shop_prd {
 
-	String prd_no, prd_cata, prd_id, prd_meter, prd_note, prd_size, prd_color, prd_date, prd_create, prd_qaul, prd_as, prd_img, prd_content, prd_name; 
-	int prd_price,  prd_qant;
-	
+	String prd_no, prd_cata, prd_id, prd_meter, prd_note, prd_size, prd_color, prd_date, prd_create, prd_qaul, prd_as, prd_img, prd_content, prd_name, prd_re_ti, prd_re_id, prd_re_text, prd_re_no; 
+	int prd_price,  prd_qant, prd_re_num, prd_re_sc;
 	public String getPrd_no() {
 		return prd_no;
 	}
@@ -83,6 +82,30 @@ public class Shop_prd {
 	public void setPrd_content(String prd_content) {
 		this.prd_content = prd_content;
 	}
+	public String getPrd_name() {
+		return prd_name;
+	}
+	public void setPrd_name(String prd_name) {
+		this.prd_name = prd_name;
+	}
+	public String getPrd_re_id() {
+		return prd_re_id;
+	}
+	public void setPrd_re_id(String prd_re_id) {
+		this.prd_re_id = prd_re_id;
+	}
+	public String getPrd_re_text() {
+		return prd_re_text;
+	}
+	public void setPrd_re_text(String prd_re_text) {
+		this.prd_re_text = prd_re_text;
+	}
+	public String getPrd_re_no() {
+		return prd_re_no;
+	}
+	public void setPrd_re_no(String prd_re_no) {
+		this.prd_re_no = prd_re_no;
+	}
 	public int getPrd_price() {
 		return prd_price;
 	}
@@ -95,11 +118,16 @@ public class Shop_prd {
 	public void setPrd_qant(int prd_qant) {
 		this.prd_qant = prd_qant;
 	}
-	public String getPrd_name() {
-		return prd_name;
+	public int getPrd_re_num() {
+		return prd_re_num;
 	}
-	public void setPrd_name(String prd_name) {
-		this.prd_name = prd_name;
+	public void setPrd_re_num(int prd_re_num) {
+		this.prd_re_num = prd_re_num;
 	}
-	
+	public int getPrd_re_sc() {
+		return prd_re_sc;
+	}
+	public void setPrd_re_sc(int prd_re_sc) {
+		this.prd_re_sc = prd_re_sc;
+	}
 }

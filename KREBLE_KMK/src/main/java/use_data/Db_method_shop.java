@@ -76,6 +76,33 @@ public class Db_method_shop extends Db_method_conn {
 			  }
 		  return aa;
 	  }
+//	  상품디테일_댓글로드
+
+	  public ArrayList<Shop_prd> shop_prde_reply(String p_no) throws Exception{
+		  ArrayList<Shop_prd> pr = new ArrayList<Shop_prd>();
+		  try{
+			  conn();
+			    if(con == null){
+			      throw new Exception("데이터베이스에 연결할 수 없습니다.");
+			    }
+			    stm = con.createStatement();
+			    ResultSet rs = stm.executeQuery("select * from prd_re where prd_re_no = '" + p_no + "';");
+			    while(rs.next()) {		
+					Shop_prd aa = new Shop_prd();
+			    	aa.setPrd_re_id(rs.getString("prd_re_id"));	
+			    	aa.setPrd_re_text(rs.getString("prd_re_text"));	
+			    	aa.setPrd_re_no(rs.getString("prd_re_no"));	
+			    	aa.setPrd_re_num(rs.getInt("prd_re_num"));	
+			    	aa.setPrd_re_sc(rs.getInt("prd_re_sc"));
+			    	pr.add(aa);
+			    }
+		  		}catch(Exception ignored){
+
+			  }finally{
+				  diconn();
+			  }
+		  return pr;
+	  }
 	  
 	  
 	//  게시판 로드

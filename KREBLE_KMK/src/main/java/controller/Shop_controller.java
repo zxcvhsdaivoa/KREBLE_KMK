@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.Shop_re_del;
 import vo.ActionForward;
 
 @SuppressWarnings("serial")
@@ -25,7 +26,8 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 
 //		필요한게
 //		뭐있나하면?
-//		@@샵메인 인덱스 / @@샵 상품리스트/ @@상품상세페이지/ @@상품수정페이지/ @@상품등록페이지/ 장바구니/구매내역/제작의뢰/
+//		@@샵메인 인덱스 / @@샵 상품리스트/ @@상품상세페이지/ @@상품수정페이지/ @@상품등록페이지/ 장바구니/구매내역/제작의뢰
+//		리플관련도 필요
 		if(command.equals("/shop_prd_detail.sp")){
 			forward=new ActionForward();
 			forward.setPath("/shop_prd_detail.jsp");
@@ -42,8 +44,8 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 			forward=new ActionForward();
 			forward.setPath("/shop_prd_.jsp");
 		}
-		else if(command.equals("/commuList.cm")){
-			action = null;
+		else if(command.equals("/boardList.bo")){
+			action = new Shop_re_del();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

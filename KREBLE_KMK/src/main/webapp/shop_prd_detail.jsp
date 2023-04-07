@@ -18,7 +18,11 @@
 	<jsp:useBean id="sp_de" class="use_data.Db_method_shop"></jsp:useBean>
 	<% 
 	String p_no = (String) request.getParameter("prd_no");
+	String p_id = "";
 	Shop_prd aa = sp_de.shop_prd_detail(p_no);
+	p_id = aa.getPrd_id();
+	ArrayList<Shop_prd> spr = sp_de.shop_prde_reply(p_no);
+	
 	%>
 	
 <title>제품상세페이지</title>
@@ -129,25 +133,84 @@
 			</div>
 		</article>
 		
-		<!-- 구매/장바구니/상단버튼 -->
-		<article id="pd_detail_no3">
-			<div>수정</div>
-			<div>삭제</div>
-			<div>목록으로이동</div>
-		</article>
+		<!-- 수정/삭제/리뷰 -->
+		<%
+		if(p_id.equals(id)){
+		%>
+			
+			<article id="pd_detail_no3">
+				<div class="pd_bt">
+					<input type="button" value="수정">
+					<input type="button" value="삭제">
+					<input type="button" value="목록">				
+				</div>
+			</article>
+		<%
+		}else{
+		%>
+			<article id="pd_detail_no3">
+				<div class="pd_review_ti">
+					<input type="button" value="구매">
+					<input type="button" value="장바구니">
+					<input type="button" value="목록">	
+				</div>
+			</article>
+		<%
+		}
+		%>
+		
 		
 		<!-- 리뷰 -->
 		<article id="pd_detail_no4">
-			<div>(리뷰)이제품 참 좋네 1점</div>
-			<div>(리뷰)이제품 왜씀 1점</div>
-			<div>(리뷰)아 ㅅㅂ 1점이 최하점이야 1점</div>			
+			<div>
+				<table>
+					<colgroup>
+					<col style="width:110px" />
+					<col style="width:80px" />
+					<col style="width:620px" />
+					<col style="width:160px" />
+					</colgroup>
+					<tr class = "re_title">
+					<td>작성자</td>
+					<td>평점</td>
+					<td>내용</td>
+					<td>삭제</td>
+					</tr>
+					<%
+					int i = spr.size();
+					for (i = i-1; i >= 0; i = i-1) {
+					    out.println("<tr>");
+					    out.println("<td>"+spr.get(i).getPrd_re_id()+"</td>");
+					    out.println("<td>"+spr.get(i).getPrd_re_sc()+"</td>");
+					    out.println("<td>"+spr.get(i).getPrd_re_text()+"</td>");
+					    out.println("<td><a href='shop_re_del.sp?re_no='"+p_no+"><input type='button' value='댓글삭제'></a></td>");
+					    out.println("</tr>");
+					}
+					%>
+				</table>		
+			</div>
+		</article>		
+		
+		
+		<!-- 댓글작성 -->
+		<article id="pd_detail_no5">
+		<div>
+			<div>
+				<p>작성자 : </p>
+				<input type="text" readonly name="re_id">
+				<p>평점 : </p>
+				<input type="number" name="re_sc" min="1" max ="10" step="0.5">
+			</div>
+			<div>
+				<p>내용 : </p>
+				<textarea name="re_content"></textarea>
+				<input type="hidden" name="prd_no" value="<%=p_no%>">
+				<input type="submit" value="등록">
+			</div>
+		</div>
 		</article>
 		
-		<!-- 여분 -->
-		<article id="pd_detail_no5">
-		</article>
-	
-	</form>
+	</form>	
 	</section>
 	
     <!-- footer -->

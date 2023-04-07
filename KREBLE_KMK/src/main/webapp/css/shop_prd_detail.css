@@ -6,9 +6,10 @@ section{
 article{
 	width: 890px;
 	margin: 0 auto;
-	background-color: orange;
 }
 
+
+/* 제품소개(필수) 사진 */
 #pd_detail_no1{
 	height: 600px;
 }
@@ -16,14 +17,12 @@ article{
 #pd_detail_no1 > .no1_img_info1{
 	width: 890px;
 	height: 350px;
-	background-color: yellow;
 	float: left;	
 }
 
 #pd_detail_no1 > .no1_img_info1 > .info1_img{
 	width: 400px;
 	height: 350px;
-	background-color: green;
 	float:left;
 	padding: 25px;
 } 
@@ -33,7 +32,6 @@ article{
 	width: 300px;
 	height: 250px;
 	margin : 0 auto;
-	background-color: white;
 }
 
 #pd_detail_no1 .no1_img_info1 > .info1_img > span:last-child > span{
@@ -41,14 +39,12 @@ article{
 	width: 150px;
 	height: 60px;
 	float:left;
-	background-color: red;
 }
 
 #pd_detail_no1 > .no1_img_info1 > .info1_info1{
 	width: 490px;
 	height: 350px;
 	padding: 20px;
-	background-color: blue;
 	float:left;
 	
 }
@@ -61,7 +57,6 @@ article{
 	width: 890px;
 	height: 270px;
 	padding : 25px 30px;
-	background-color: yellow;
 	float: left;	
 }
 
@@ -69,10 +64,13 @@ article{
 	height: 40px;	
 }
 
+
+
+
+/* 제품소개(상세) 및 사진 */
 #pd_detail_no2{
 	clear:left;
 	height: 300px;
-	background-color: gray;
 }
 
 #pd_detail_no2 > div> input[type=text]{
@@ -93,26 +91,85 @@ article{
 }
 
 
-#pd_detail_no1{
-	
-}
 
-#pd_detail_no1{
-	
-}
-
-
-
+/* 삭제/수정/구매/장바구니버튼 */
 #pd_detail_no3{
-	
+	width: 890px;
+	height: 50px;
+	margin-bottom: 15px;
+}
+
+#pd_detail_no3 > div{
+	width: 500px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+#pd_detail_no3 > div > input[type=button]{
+	width: 120px;
+	height: 50px;
+	background-color: black;
+	color: white;
 }
 
 
-#pd_detail_no4{
-	
-}
 
 
+/* 댓글작성 */
 #pd_detail_no5{
-	
+	height: 100px;
+	position: relative;
 }
+#pd_detail_no5 >div> div:first-child > p{
+	width: 60px;
+	display: inline-block;
+	margin-left: 30px;
+}
+#pd_detail_no5 > div > div:first-child > input[type=text]{
+	width: 340px;
+	height: 25px;
+	margin-right: 90px;
+}
+
+#pd_detail_no5 > div > div:first-child > input[type=number]{
+	width: 140px;
+	height: 25px;
+}
+
+
+#pd_detail_no5 >div > div:last-child > p{
+	width: 60px;
+	margin-left: 30px;
+}
+#pd_detail_no5 > div > div:last-child > textarea{
+	width: 672px;
+	height: 60px;
+	resize: none;
+	margin-left: 95px;
+	margin-top: -20px;
+}
+
+#pd_detail_no5 > div > div:last-child > input[type=submit]{
+	width: 85px;
+	height: 85px;
+	position: absolute;
+	top : 0;
+	right: 0;
+}
+
+
+
+/* 댓글리뷰 */
+#pd_detail_no4{
+	width: 890px;
+	height: auto;
+	min-height: 100px;
+	max-height: 500px;
+}
+
+
+#pd_detail_no4 td{
+	text-align: center;
+}
+

@@ -12,6 +12,7 @@ $(function(){
 		$(".local").removeClass("on");
 		$(this).addClass("on");
 	})
+	
 	$('.local ul li').click(function(){
 		$('.local ul li').removeClass('on');
 		$(this).addClass("on");
@@ -24,7 +25,14 @@ $(function(){
 			
 			console.log(default_no);
 		}
+		else {
+			$('ul.local_stadium > li > ul > li').click(function(){
+			   var field_num=$(this).attr('id');
+			    location.href="kreblechoi.jsp?field_id="+field_num;
+			});
+		}
 	});
+	
 	$(".rentbutton > a > img").click(function(){
 		var result= confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")
 		if (result==true) {
@@ -64,9 +72,5 @@ $(function(){
 			$('.delete').removeClass('delete');
 		}
 	})
-	$('ul.local_stadium > li > ul > li').click(function(){
-	    var field_num=$(this).attr('id');
-	    location.href="kreblechoi.jsp?field_id="+field_num;
-	});
-	
+
 });

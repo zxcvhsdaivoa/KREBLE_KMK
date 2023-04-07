@@ -188,6 +188,7 @@ section .section_inner {
     color: #666;
     font-family: 'IBMPlexSansKR-Regular';
     font-size: 22px;
+    cursor: pointer;
 }
 .stadium_list .local_stadium .local a:hover{
     color:#FFF;

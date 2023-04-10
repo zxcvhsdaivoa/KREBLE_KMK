@@ -15,6 +15,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
+	<script src="js/shop_prd_detail.js"></script>
 	<jsp:useBean id="sp_de" class="use_data.Db_method_shop"></jsp:useBean>
 	<% 
 	String p_no = (String) request.getParameter("prd_no");
@@ -183,7 +184,13 @@
 					    out.println("<td>"+spr.get(i).getPrd_re_id()+"</td>");
 					    out.println("<td>"+spr.get(i).getPrd_re_sc()+"</td>");
 					    out.println("<td>"+spr.get(i).getPrd_re_text()+"</td>");
-					    out.println("<td><a href='shop_re_del.sp?re_no='"+p_no+"><input type='button' value='댓글삭제'></a></td>");
+					    
+					    if(spr.get(i).getPrd_re_id().equals(id)){
+					    	out.println("<td><a href='shop_re_del.sp?re_no='"+spr.get(i).getPrd_re_no()+"><input type='button' class='del_check' value='댓글삭제'></a></td>");
+					    }else{
+					    	out.println("<td><input type='button' value='삭제불가' class='del_bt_hide'></td>");	
+					    }
+					    
 					    out.println("</tr>");
 					}
 					%>

@@ -173,3 +173,6 @@ article{
 	text-align: center;
 }
 
+.del_bt_hide{
+	display: none;
+}

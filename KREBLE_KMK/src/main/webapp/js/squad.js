@@ -86,6 +86,7 @@ $(function(){
 	$(".exit").click(function(){
 		$(".squad_wrap ul li.on").removeClass("on")
 		$(".player_wrap").hide();
+		$(".mysquad_wrap").hide();
 
 	})
 
@@ -210,6 +211,11 @@ $(function(){
 				}
 			}
 		}
+	})
+	
+	//스쿼드 페이지 오픈
+	$(".open_squad").click(function(){
+		$(".mysquad_wrap").show();
 	})
 })
 //

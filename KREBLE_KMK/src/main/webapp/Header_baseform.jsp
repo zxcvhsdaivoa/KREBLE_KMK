@@ -32,7 +32,7 @@
                 <li>
                   <a href="mysquad.jsp">#유저공간</a>
                   <ul class="sub">
-                    <li><a href="mysquad.jsp">나만의스쿼드</a></li>
+                    <li><a href="squad.sq">나만의스쿼드</a></li>
                     <li><a href="community.jsp?cate=all">유저커뮤니티</a></li>
                     <li><a href="#">승부예측</a></li>
                   </ul>

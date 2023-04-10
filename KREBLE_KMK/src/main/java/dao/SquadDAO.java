@@ -69,9 +69,31 @@ public class SquadDAO {
 		}
 
 		return squadList;
-
 	}
 
+	
+	@SuppressWarnings("null")
+	public int selectSquadLastNo(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int last_no=0;
+		try{
+			pstmt = con.prepareStatement("select mysquad_no from mysquad ORDER BY mysquad_no DESC LIMIT 1;");
+			rs= pstmt.executeQuery();
+			if(rs.next()){
+				last_no=rs.getInt("mysquad_no");
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return last_no;
+
+	}
+	
+	
 	@SuppressWarnings("resource")
 	public int saveSquad(SquadInfo squad){
 		PreparedStatement pstmt = null;

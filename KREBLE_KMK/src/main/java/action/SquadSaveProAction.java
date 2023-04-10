@@ -17,10 +17,17 @@ public class SquadSaveProAction implements Action {
 
 		ActionForward forward=null;
 		SquadInfo squadinfo = new SquadInfo();
-
 		HttpSession session=request.getSession();
+		SquadSaveProService SquadSaveProService = new SquadSaveProService();
 		squadinfo.setUser_id((String)session.getAttribute("ID"));
-		squadinfo.setSquad_name(request.getParameter("squad_name"));
+		System.out.println(request.getParameter("squad_name"));
+		if(request.getParameter("squad_name")!=null) {
+			squadinfo.setSquad_name(request.getParameter("squad_name"));
+		}
+		else {
+			int last_no = SquadSaveProService.squadLastNo()+1;
+			squadinfo.setSquad_name("squad"+last_no);
+		}
 		squadinfo.setFormation(request.getParameter("formation"));
 		squadinfo.setDirector(request.getParameter("director"));
 		squadinfo.setPlayer1(request.getParameter("player1"));
@@ -34,7 +41,6 @@ public class SquadSaveProAction implements Action {
 		squadinfo.setPlayer9(request.getParameter("player9"));
 		squadinfo.setPlayer10(request.getParameter("player10"));
 		squadinfo.setPlayer11(request.getParameter("player11"));
-		SquadSaveProService SquadSaveProService = new SquadSaveProService();
 		boolean isWriteSuccess = SquadSaveProService.registArticle(squadinfo);
 		System.out.println(isWriteSuccess);
 		if(!isWriteSuccess){

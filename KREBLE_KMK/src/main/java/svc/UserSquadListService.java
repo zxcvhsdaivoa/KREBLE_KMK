@@ -19,5 +19,18 @@ public class UserSquadListService {
 		return squadList;
 		
 	}
+	
+	public SquadInfo getArticle(int no ,String user_id) throws Exception{
+		
+		SquadInfo selectSquad = null;
+		Connection con = getConnection();
+		SquadDAO commuDAO = SquadDAO.getInstance();
+		commuDAO.setConnection(con);
+		selectSquad = commuDAO.selectSquad(no,user_id);
+
+		close(con);
+		return selectSquad;
+		
+	}
 
 }

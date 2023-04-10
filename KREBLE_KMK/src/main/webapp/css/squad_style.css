@@ -101,13 +101,11 @@ section {
     width:100px;
     height:105px;
     margin:0 auto;
-    background:no-repeat;
-    background-size:100px;
-    background-position:center -8px;
+	object-fit:cover;
+	object-position:0 -8px;
 }
 .mysquad .squad_wrap ul li.director .player_image {
-	background-size:cover;
-	background-position: center;
+	object-position:center;
 } 
 .mysquad .squad_wrap ul li p {
     width:125px;
@@ -347,4 +345,23 @@ font-size:14px;
     margin:0 auto;
     background-color: #fff;
     border:2px solid #333;
+}
+.mysquad_wrap .mysquad_inner table {
+	text-align:center;
+	border-spacing:0 0;
+}
+.width1 {
+	width:100px;
+}
+.width2 {
+	width:400px;
+}
+.mysquad_wrap .mysquad_inner table th {
+	border-bottom: 1px solid #e6e8e5;
+    background-color: #e6e8e5;
+    height:40px;
+}
+.mysquad_wrap .mysquad_inner table td {
+	border-bottom:1px solid #e6e8e5;
+	height:30px;
 }

@@ -14,14 +14,21 @@ import vo.SquadInfo;
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		 
 		ArrayList<SquadInfo> squadList=new ArrayList<SquadInfo>();
+		SquadInfo selectSquad = new SquadInfo();
 		HttpSession session=request.getSession();
 		String user_id = (String)session.getAttribute("ID");
-		System.out.println(user_id);
+		int squad_no=0;
+		if(request.getParameter("no")!=null&&request.getParameter("no")!=""&&request.getParameter("no")!="null") {
+			squad_no = Integer.parseInt(request.getParameter("no"));
+		}
+		UserSquadListService userSquadListService = new UserSquadListService();
 		if(user_id!=null) {
-			UserSquadListService userSquadListService = new UserSquadListService();
 			squadList = userSquadListService.getArticleList(user_id);
-			System.out.println(squadList.get(1).getSquad_num());
 			request.setAttribute("squadList", squadList);
+		}
+		if(squad_no!=0) {
+			selectSquad = userSquadListService.getArticle(squad_no, user_id);
+			request.setAttribute("squad", selectSquad);
 		}
 		
 		ActionForward forward= new ActionForward();

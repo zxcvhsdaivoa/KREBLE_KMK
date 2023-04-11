@@ -50,7 +50,7 @@
                 <li>
                   <a href="kreble.sp">#쇼핑</a>
                   <ul class="sub">
-                    <li><a href="shop_list.sp">쇼핑목록</a></li>
+                    <li><a href="shop_list_action.sp">쇼핑목록</a></li>
                     <li><a href="shop_bak.sp">장바구니</a></li>
                     <li><a href="shop_prd_buy_list.sp">구매내역</a></li>
                     <li><a href="shop_re_board.sp">제작의뢰</a></li>

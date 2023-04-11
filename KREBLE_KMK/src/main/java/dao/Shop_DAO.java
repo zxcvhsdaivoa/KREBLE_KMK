@@ -60,10 +60,10 @@ public class Shop_DAO {
 	public ArrayList<Shop_prd> selectArticleList(int page,int limit){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String shop_list_sql="select * from product order by prd_no desc limit ?,10";
+		String shop_list_sql="select * from product order by prd_no desc limit ?,15";
 		ArrayList<Shop_prd> articleList = new ArrayList<Shop_prd>();
 		Shop_prd shop_prd = null;
-		int startrow=(page-1)*10; 
+		int startrow=(page-1)*15; 
 
 		try{
 			pstmt = con.prepareStatement(shop_list_sql);

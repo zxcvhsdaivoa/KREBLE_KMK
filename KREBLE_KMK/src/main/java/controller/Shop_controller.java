@@ -70,7 +70,7 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 			forward.setPath("/shop_prd_insert.jsp");
 		}
 		//상품리스트
-		else if(command.equals("/shop_list.sp")){
+		else if(command.equals("/shop_list_action.sp")){
 			action = new Shop_list_action();
 			try{
 				forward=action.execute(request, response);

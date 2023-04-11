@@ -7,7 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
-import action.Shop_re_del;
+import action.Shop_list_action;
+import action.Shop_re_delete_action;
 import vo.ActionForward;
 
 @SuppressWarnings("serial")
@@ -28,24 +29,65 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 //		뭐있나하면?
 //		@@샵메인 인덱스 / @@샵 상품리스트/ @@상품상세페이지/ @@상품수정페이지/ @@상품등록페이지/ 장바구니/구매내역/제작의뢰
 //		리플관련도 필요
+		
+		//상품상세
 		if(command.equals("/shop_prd_detail.sp")){
+			action = new Shop_list_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//크래블샵
+		else if(command.equals("/kreble.sp")){
 			forward=new ActionForward();
-			forward.setPath("/shop_prd_detail.jsp");
-		}else if(command.equals("/shop_prd_list.sp")){
-			forward=new ActionForward();
-			forward.setPath("/shop_prd_list.jsp");
-		}else if(command.equals("/kreble_sp.sp")){
-			forward=new ActionForward();
-			forward.setPath("/Krebleshop.jsp");
-		}else if(command.equals("/shop_prd_mod.sp")){
+			forward.setPath("/krebleshop.jsp");
+		}
+		//상품수정
+		else if(command.equals("/shop_prd_mod.sp")){
 			forward=new ActionForward();
 			forward.setPath("/shop_prd_mod.jsp");
-		}else if(command.equals("/shop_prd_insert.sp")){
+		}
+		//장바구니
+		else if(command.equals("/shop_bak.sp")){
+			forward=new ActionForward();
+			forward.setPath("/shop_prd_bak.jsp");
+		}
+		//구매내역
+		else if(command.equals("/shop_prd_buy_list.sp")){
+			forward=new ActionForward();
+			forward.setPath("/shop_buy_list.jsp");
+		}
+		//주문제작
+		else if(command.equals("/shop_re_board.sp")){
+			forward=new ActionForward();
+			forward.setPath("/shop_reform_board.jsp");
+		}
+		//상품등록
+		else if(command.equals("/shop_prd_insert.sp")){
+			forward=new ActionForward();
+			forward.setPath("/shop_prd_insert.jsp");
+		}
+		//상품리스트
+		else if(command.equals("/shop_list.sp")){
+			action = new Shop_list_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		
+		//여분
+		else if(command.equals("/shop_prd_.sp")){
 			forward=new ActionForward();
 			forward.setPath("/shop_prd_.jsp");
 		}
+		//여분
 		else if(command.equals("/boardList.bo")){
-			action = new Shop_re_del();
+			action = new Shop_re_delete_action();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

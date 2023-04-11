@@ -108,6 +108,29 @@ article{
   background-color: #555555;
 }
 
+.w149{
+	width: 149px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.w99{
+	width: 99px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.w396{
+	width: 396px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.td_hide{
+	display: none;
+}
+
+
+
+
 /* 스크롤 버튼 스타일 설정 */
 #scrollBtn {
   display: block;
@@ -116,4 +139,21 @@ article{
 .pl_no3_center > table{
 	width: 990px;
 	margin : 0 auto;
+}
+
+
+
+/* 페이지 이전 다음 버튼 */
+
+#pl_art_no5{
+	width: 1280px;
+	text-align: center;
+	
+}
+
+
+#emptyArea {
+	margin: auto;
+	width: 500px;
+	text-align: center;
 }

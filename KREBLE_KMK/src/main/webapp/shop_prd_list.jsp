@@ -1,3 +1,4 @@
+<%@page import="vo.PageInfo"%>
 <%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
@@ -5,7 +6,14 @@
 <%@ page import="java.util.ArrayList" %>
 
 <% request.setCharacterEncoding("utf-8"); %>
-<%	String id = (String) session.getAttribute("ID");%>
+<%	String id = (String) session.getAttribute("ID");
+	ArrayList<Shop_prd> articleList =(ArrayList<Shop_prd>) request.getAttribute("articleList");
+	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+	int listCount=pageInfo.getListCount();
+	int nowPage=pageInfo.getPage();
+	int maxPage=pageInfo.getMaxPage();
+	int startPage=pageInfo.getStartPage();
+	int endPage=pageInfo.getEndPage();%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +26,6 @@
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
 	<script src="js/shop_prd_list.js"></script>
 	<script src="js/jquery.colorbox-min.js"></script>
-    <script>
-        $(function(){
-            $('a.modal').colorbox();
-        })
-    </script>
 	
 	
 <title>제품리스트</title>
@@ -31,10 +34,6 @@
     <!-- header -->
   
 	<jsp:include page="Header_baseform.jsp"/>
-	<jsp:useBean id="sp_list" class="use_data.Db_method_shop"></jsp:useBean>
-	<%
-	ArrayList<Shop_prd> al = sp_list.shop_prd_list();
-	%>
 	<!-- section -->
   
 	<section>
@@ -69,49 +68,76 @@
 		<!-- 제품리스트 -->
 		<article id="pl_art_no3">
 			<div class="pl_no3_center">
-				<table border="1">
-					<colgroup>
-						<col style ="width: 100px">
-						<col style ="width: 290px">
-						<col style ="width: 100px">
-						<col style ="width: 100px">
-						<col style ="width: 200px">
-						<col style ="width: 100px">
-					</colgroup>
-					<tr id = "tr_cr">
-						<td>사진</td>
-						<td>상품명</td>
-						<td>상품가격</td>
-						<td>색상</td>
-						<td>등록자</td>
-						<td>작성일</td>
-					</tr>
-					<%
-					int i = al.size();
-					for (i = i-1; i >= 0; i = i-1) {
-					    out.println("<tr>");
-					    out.println("<td class='modal'>"+al.get(i).getPrd_img()+"</a></td>");
-					    out.println("<td><a href ='shop_prd_detail.sp?prd_no=" + al.get(i).getPrd_no()+"'>" + al.get(i).getPrd_name()+"</a></td>");
-					    out.println("<td>"+al.get(i).getPrd_price()+"</td>");
-					    out.println("<td>"+al.get(i).getPrd_color()+"</td>");
-					    out.println("<td>"+al.get(i).getPrd_id()+"</td>");
-					    out.println("<td>"+al.get(i).getPrd_date()+"</td>");
-					    out.println("</tr>");
-					}
-					%>
-				</table>
+		<table>
+			<%
+			if(articleList != null && listCount > 0){
+			%>
+
+			<tr id="tr_top">
+				<td class ="td_hide">번호</td>
+				<td>사진</td>
+				<td>상품명</td>
+				<td>가격</td>
+				<td>색상</td>
+				<td>등록자</td>
+				<td>등록일</td>
+			</tr>
+
+			<%
+			for(int i=0;i<articleList.size();i++){
+			%>
+			<tr>
+				<td class="td_hide"><%=articleList.get(i).getPrd_no()%></td>
+				<td class="w149"><%=articleList.get(i).getPrd_img() %></td>
+				<td class="w396"><%=articleList.get(i).getPrd_name() %></td>
+				<td class="w99"><%=articleList.get(i).getPrd_price() %></td>
+				<td class="w99"><%=articleList.get(i).getPrd_color() %></td>
+				<td class="w149"><%=articleList.get(i).getPrd_id() %></td>
+				<td class="w99"><%=articleList.get(i).getPrd_date() %></td>
+			</tr>
+			<%} %>
+		</table>
 			</div>
 		</article>
 		
-		<!-- 뭐...기타버튼들 모아두는걸로할까? -->
-		<article id="pl_art_no4">
-			<div> 상단으로</div>
+		<!-- 페이지 이전/다음 넘김 -->
+		<article id="pl_art_no5">
+				<%if(nowPage<=1){ %>
+				[이전]&nbsp;
+				<%}else{ %>
+			<a href="shop_list_action.sp?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+				<%} %>
+		
+				<%for(int a=startPage;a<=endPage;a++){
+						if(a==nowPage){%>
+				[<%=a %>]
+				<%}else{ %>
+			<a href="shop_list_action.sp?page=<%=a %>">[<%=a %>]
+			</a>&nbsp;
+				<%} %>
+				<%} %>
+		
+				<%if(nowPage>=maxPage){ %>
+				[다음]
+				<%}else{ %>
+			<a href="shop_list_action.sp?page=<%=nowPage+1 %>">[다음]</a>
+				<%} %>
 		</article>
+				<%
+			    }
+				else
+				{
+				%>
+		<article id="emptyArea">
+			<div>
+				등록된 글이 없습니다.
+			</div>
+		</article>
+				<%
+				}
+				%>
 	
 		
-		<!-- 혹시 몰라 여분 -->
-		<article id="pl_art_no5">
-		</article>
 	</form>
 	</div>
 	</section>

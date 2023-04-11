@@ -188,7 +188,7 @@
 					    if(spr.get(i).getPrd_re_id().equals(id)){
 					    	out.println("<td><a href='shop_re_del.sp?re_no='"+spr.get(i).getPrd_re_no()+"><input type='button' class='del_check' value='댓글삭제'></a></td>");
 					    }else{
-					    	out.println("<td><input type='button' value='삭제불가' class='del_bt_hide'></td>");	
+					    	out.println("<td></td>");	
 					    }
 					    
 					    out.println("</tr>");

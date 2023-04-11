@@ -11,7 +11,7 @@ import use_data.Shop_prd;
 import use_data.UserData;
 import vo.ActionForward;
 
-public class Shop_re_del extends use_data.Db_method_conn implements Action {
+public class Shop_re_delete_action extends use_data.Db_method_conn implements Action {
 
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;

@@ -168,32 +168,32 @@ public class Db_method_rent extends Db_method_conn {
 	
 	//예약/대여 시민구장 정보,최승혁 db
 	
-	public KreblechoiData field_list_check(String id) throws Exception {
-		KreblechoiData field_list=new KreblechoiData();
-		try{
-			conn();
-			if(con == null){
-				throw new Exception("데이터베이스에 연결할 수 없습니다.");
-			}
-			stm=con.createStatement();
-			ResultSet rs= stm.executeQuery("select * from field_info where field_id = '" + id + "';");
-			if(rs.next()){
-				field_list.setField_id(rs.getString("field_id"));
-				field_list.setFullname(rs.getString("field_fullname"));
-				field_list.setField_image(rs.getString("field_image"));
-				field_list.setField_price(rs.getInt("field_price"));
-				field_list.setField_name(rs.getString("field_name"));
-				field_list.setField_location(rs.getString("field_location"));
-				field_list.setField_map(rs.getString("field_map"));
-				field_list.setField_area(rs.getInt("field_area"));
-				field_list.setField_usetime(rs.getString("field_usetime"));
-				field_list.setField_facility(rs.getString("field_facility"));
-				field_list.setField_call(rs.getString("field_call"));
-			}
-		}finally {
-			diconn();
-		}
-		return field_list;
-	}
-	
+//	public KreblechoiData field_list_check(String id) throws Exception {
+//		KreblechoiData field_list=new KreblechoiData();
+//		try{
+//			conn();
+//			if(con == null){
+//				throw new Exception("데이터베이스에 연결할 수 없습니다.");
+//			}
+//			stm=con.createStatement();
+//			ResultSet rs= stm.executeQuery("select * from field_info where field_id = '" + id + "';");
+//			if(rs.next()){
+//				field_list.setField_id(rs.getString("field_id"));
+//				field_list.setFullname(rs.getString("field_fullname"));
+//				field_list.setField_image(rs.getString("field_image"));
+//				field_list.setField_price(rs.getInt("field_price"));
+//				field_list.setField_name(rs.getString("field_name"));
+//				field_list.setField_location(rs.getString("field_location"));
+//				field_list.setField_map(rs.getString("field_map"));
+//				field_list.setField_area(rs.getInt("field_area"));
+//				field_list.setField_usetime(rs.getString("field_usetime"));
+//				field_list.setField_facility(rs.getString("field_facility"));
+//				field_list.setField_call(rs.getString("field_call"));
+//			}
+//		}finally {
+//			diconn();
+//		}
+//		return field_list;
+//	}
+//	
 }

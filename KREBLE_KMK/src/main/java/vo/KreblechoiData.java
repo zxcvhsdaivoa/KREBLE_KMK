@@ -1,4 +1,4 @@
-package use_data;
+package vo;
 
 public class KreblechoiData {
 	String field_id;

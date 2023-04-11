@@ -1,8 +1,15 @@
 * {
 	margin:0; padding:0; box-sizing: border-box;
 }
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 body{
 	background-color:#fff;
+	font-family: 'TheJamsil5Bold';
 }
 .clear {
 	position:absolute;
@@ -154,8 +161,8 @@ select {
 }
 .at {
 	float:left;
-	font-size:30px;
-	line-height: 50px;
+	font-size:25px;
+	line-height: 55px;
 	margin:0 7px;
 }
 .email {

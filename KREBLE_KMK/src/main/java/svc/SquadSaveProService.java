@@ -27,5 +27,13 @@ public class SquadSaveProService {
 		return isWriteSuccess;
 		
 	}
+	public int squadLastNo() throws Exception{
+		Connection con = getConnection();
+		SquadDAO squadDAO = SquadDAO.getInstance();
+		squadDAO.setConnection(con);
+		int last_no=squadDAO.selectSquadLastNo();
+		
+		return last_no;
+	}
 
 }

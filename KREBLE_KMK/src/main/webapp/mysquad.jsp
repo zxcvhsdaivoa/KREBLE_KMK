@@ -26,25 +26,76 @@
 		<div class="section_inner">
 			<div class="mysquad">
 				<div class="squad_wrap"> 
+				<%
+				SquadInfo squad =null; 
+				squad = (SquadInfo) request.getAttribute("squad");
+				boolean nullck = false;
+				if(squad==null){
+					nullck = false;
+				}
+				else {
+					nullck = true;
+				}
+				%>
 					<form class="squad_form" name="squad_form" action="squadSavePro.sq" method="post" onsubmit="return memberjoin()">
 						<input type="hidden" id="user_id" name="user_id" value="<%= (String) session.getAttribute("ID")%> ">
 						<ul>
-							<li class="director"><input type="hidden" value="" name="director" id="director" class="squad_member"><span class="player_image"></span><p class="ko_name">감독</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player1" id="player1" class="squad_member"><span class="player_image"></span><p class="ko_name">선수1</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player2" id="player2" class="squad_member"><span class="player_image"></span><p class="ko_name">선수2</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player3" id="player3" class="squad_member"><span class="player_image"></span><p class="ko_name">선수3</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player4" id="player4" class="squad_member"><span class="player_image"></span><p class="ko_name">선수4</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player5" id="player5" class="squad_member"><span class="player_image"></span><p class="ko_name">선수5</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player6" id="player6" class="squad_member"><span class="player_image"></span><p class="ko_name">선수6</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player7" id="player7" class="squad_member"><span class="player_image"></span><p class="ko_name">선수7</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player8" id="player8" class="squad_member"><span class="player_image"></span><p class="ko_name">선수8</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player9" id="player9" class="squad_member"><span class="player_image"></span><p class="ko_name">선수9</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player10" id="player10" class="squad_member"><span class="player_image"></span><p class="ko_name">선수10</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
-							<li class="player"><input type="hidden" value="" name="player11" id="player11" class="squad_member"><span class="player_image"></span><p class="ko_name">선수11</p><p class="eng_name"></p><p class="posi"></p><span class="plus"></span></li>
+							<%
+							if(nullck==true){
+							Director_Info director = ud.squad_director(squad);
+							%>
+							<li class="director">
+								<input type="hidden" value="<%=director.getDirector_name()%>"name="director" id="director" class="squad_member">
+								<img src="image/player_img/<%= director.getDirector_name() %>.jpg" class="player_image">
+								<p class="ko_name"><%=director.getDirector_ko_name()%></p>
+								<p class="eng_name"><%=director.getDirector_name()%></p>
+								<span class="x_bu"></span>
+							</li>
+							<%
+							} else{
+							%>
+							<li class="director">
+								<input type="hidden" value="" name="director" id="director" class="squad_member">
+								<img src="image/player_img/null_image.png" class="player_image">
+								<p class="ko_name">감독</p>
+								<p class="eng_name"></p>
+								<span class="plus"></span>
+							</li>
+							<%
+							}
+							for(int i=1; i<=11; i++){
+								if(nullck==true) {
+								Player_Info player = ud.squad_player(squad, i);
+							%> 
+								<li class="player">
+									<input type="hidden" value="<%= player.getPlayer_name() %>" name="player<%=i %>" id="player<%=i %>" class="squad_member">
+									<img src="image/player_img/<%= player.getPlayer_name() %>.jpg" class="player_image">
+									<p class="ko_name"><%= player.getPlayer_ko_name() %></p>
+									<p class="eng_name"><%= player.getPlayer_name() %></p>
+									<p class="posi on"><%= player.getPlayer_position() %></p>
+									<span class="x_bu"></span>
+								</li>
+							<%
+								}
+								else {
+							%>
+								<li class="player">
+									<input type="hidden" value="" name="player<%=i %>" id="player<%=i %>" class="squad_member">
+									<img src="image/player_img/null_image.png" class="player_image">
+									<p class="ko_name">선수<%=i %></p>
+									<p class="eng_name"></p>
+									<p class="posi"></p>
+									<span class="plus"></span>
+								</li>
+							<%
+								}
+							}
+							%>
 						</ul>
-						<button type="button" class="open_squad">저장된 스쿼드 불러오기</button>
+						<button type="button" class="open_squad">나의 스쿼드 불러오기</button>
 						<label for="squad_name" class="blind">스쿼드의 이름을 입력하세요</label>
-						<input type="text" id="squad_name" name="squad_name">
+						<input type="text" id="squad_name" name="squad_name" <% if(nullck==true){%> value="<%= squad.getSquad_name()%>"<%} %>>
+						<%if(nullck==true){%><input type="hidden" id="squad_no" name="squad_no" value="<%= squad.getSquad_num() %>"><%} %>
 						<button type="submit" class="save_squad">스쿼드 저장</button>
 						<button type="reset" class="reset_squad">스쿼드 초기화</button>
 						<label for="formation" class="blind" >포메이션</label>
@@ -123,15 +174,15 @@
 			%>
 			<table>
 				<tr>
-					<th>스쿼드 번호</th>
-					<th>스쿼드 이름</th>
-					<th>포메이션</th>
-					<th>공개 여부</th>
+					<th class='width1'>스쿼드 번호</th>
+					<th class='width2'>스쿼드 이름</th>
+					<th class='width1'>포메이션</th>
+					<th class='width1'>공개 여부</th>
 				</tr>
 			<%
 				for(int i=0; i<squadlist.size(); i++){
 					out.println("<tr><td>"+squadlist.get(i).getSquad_num()+"</td>");
-					out.println("<td>"+squadlist.get(i).getSquad_name()+"</td>");
+					out.println("<td><a href='squad.sq?no="+squadlist.get(i).getSquad_num()+"'>"+squadlist.get(i).getSquad_name()+"</a></td>");
 					out.println("<td>"+squadlist.get(i).getFormation()+"</td>");
 					out.println("<td>"+squadlist.get(i).getDisclose()+"</td></tr>");
 				}

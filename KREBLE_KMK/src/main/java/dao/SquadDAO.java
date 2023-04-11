@@ -4,7 +4,6 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.sql.DataSource;
 
@@ -32,7 +31,6 @@ public class SquadDAO {
 
 	@SuppressWarnings("null")
 	public ArrayList<SquadInfo> selectUserSquad(String user_id){
-		System.out.println(user_id);
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		SquadInfo squad = null;
@@ -69,9 +67,70 @@ public class SquadDAO {
 		}
 
 		return squadList;
-
 	}
 
+	
+	@SuppressWarnings("null")
+	public SquadInfo selectSquad(int no, String user_id){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SquadInfo squad = new SquadInfo();
+		try{
+			pstmt = con.prepareStatement("select * from mysquad where user_id = ? and mysquad_no = ?;");
+			pstmt.setString(1, user_id);
+			pstmt.setInt(2, no);
+			rs= pstmt.executeQuery();
+			if(rs.next()){
+				squad.setUser_id(rs.getString("user_id"));
+				squad.setSquad_num(rs.getInt("mysquad_no"));
+				squad.setSquad_name(rs.getString("mysquad_name"));
+				squad.setFormation(rs.getString("fomation"));
+				squad.setDirector(rs.getString("director"));
+				squad.setPlayer1(rs.getString("player1"));
+				squad.setPlayer2(rs.getString("player2"));
+				squad.setPlayer3(rs.getString("player3"));
+				squad.setPlayer4(rs.getString("player4"));
+				squad.setPlayer5(rs.getString("player5"));
+				squad.setPlayer6(rs.getString("player6"));
+				squad.setPlayer7(rs.getString("player7"));
+				squad.setPlayer8(rs.getString("player8"));
+				squad.setPlayer9(rs.getString("player9"));
+				squad.setPlayer10(rs.getString("player10"));
+				squad.setPlayer11(rs.getString("player11"));
+				squad.setDisclose(rs.getString("disclose"));
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return squad;
+	}
+	
+	
+	@SuppressWarnings("null")
+	public int selectSquadLastNo(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int last_no=0;
+		try{
+			pstmt = con.prepareStatement("select mysquad_no from mysquad ORDER BY mysquad_no DESC LIMIT 1;");
+			rs= pstmt.executeQuery();
+			if(rs.next()){
+				last_no=rs.getInt("mysquad_no");
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return last_no;
+
+	}
+	
+	
 	@SuppressWarnings("resource")
 	public int saveSquad(SquadInfo squad){
 		PreparedStatement pstmt = null;
@@ -111,7 +170,39 @@ public class SquadDAO {
 	}
 
 	
+	public int updateArticle(SquadInfo article){
 
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		String sql="update mysquad set mysquad_name=?,fomation=?,director=?,player1=?,player2=?,player3=?,player4=?,player5=?,player6=?,player7=?,player8=?,player9=?,player10=?,player11=? where mysquad_no=? and user_id=?";
+
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getSquad_name());
+			pstmt.setString(2, article.getFormation());
+			pstmt.setString(3, article.getDirector());
+			pstmt.setString(4, article.getPlayer1());
+			pstmt.setString(5, article.getPlayer2());
+			pstmt.setString(6, article.getPlayer3());
+			pstmt.setString(7, article.getPlayer4());
+			pstmt.setString(8, article.getPlayer5());
+			pstmt.setString(9, article.getPlayer6());
+			pstmt.setString(10, article.getPlayer7());
+			pstmt.setString(11, article.getPlayer8());
+			pstmt.setString(12, article.getPlayer9());
+			pstmt.setString(13, article.getPlayer10());
+			pstmt.setString(14, article.getPlayer11());
+			pstmt.setInt(15, article.getSquad_num());
+			pstmt.setString(16, article.getUser_id());
+			updateCount = pstmt.executeUpdate();
+		}catch(Exception ex){
+		}finally{
+			close(pstmt);
+		}
+
+		return updateCount;
+
+	}
 	
 
 }

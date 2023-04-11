@@ -134,7 +134,7 @@ public class Shop_DAO {
 		return shop_prd;
 
 	}
-	
+	//
 	
 	//상품리스트 댓글삭제
 	public int deleteArticle(String prd_re_no){

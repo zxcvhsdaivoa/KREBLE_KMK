@@ -18,11 +18,13 @@
 	<script src="js/shop_prd_detail.js"></script>
 	<jsp:useBean id="sp_de" class="use_data.Db_method_shop"></jsp:useBean>
 	<% 
-	String p_no = (String) request.getParameter("prd_no");
-	String p_id = "";
-	Shop_prd aa = sp_de.shop_prd_detail(p_no);
-	p_id = aa.getPrd_id();
-	ArrayList<Shop_prd> spr = sp_de.shop_prde_reply(p_no);
+	
+	
+
+	Shop_prd aa = (Shop_prd)request.getAttribute("article");
+    String nowPage = (String)request.getAttribute("page");
+	
+	ArrayList<Shop_prd> spr = sp_de.shop_prde_reply(aa.getPrd_no());
 	
 	%>
 	
@@ -30,8 +32,6 @@
 </head>
 <body>
 			
-			
-			<%= p_no %>
     <!-- header -->
   
 	<jsp:include page="Header_baseform.jsp"/>
@@ -136,7 +136,7 @@
 		
 		<!-- 수정/삭제/리뷰 -->
 		<%
-		if(p_id.equals(id)){
+		if(aa.getPrd_id().equals(id)){
 		%>
 			
 			<article id="pd_detail_no3">
@@ -211,7 +211,7 @@
 			<div>
 				<p>내용 : </p>
 				<textarea name="re_content"></textarea>
-				<input type="hidden" name="prd_no" value="<%=p_no%>">
+				<input type="hidden" name="prd_no" value="<%=aa.getPrd_no()%>">
 				<input type="submit" value="등록">
 			</div>
 		</div>

@@ -10,14 +10,14 @@ import vo.ActionForward;
 	 
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{ 
 	   	
-		int board_num=Integer.parseInt(request.getParameter("board_num"));
+		String p_no=(String) request.getParameter("prd_no");
 		String page = request.getParameter("page");
-		Shop_detail_service boardDetailService = new Shop_detail_service();
-		Shop_prd article = boardDetailService.getArticle(board_num);
+		Shop_detail_service shopDetailService = new Shop_detail_service();
+		Shop_prd article = shopDetailService.getArticle(p_no);
 		ActionForward forward = new ActionForward();
 		request.setAttribute("page", page);
 	   	request.setAttribute("article", article);
-   		forward.setPath("/qna_board_view.jsp");
+   		forward.setPath("/shop_prd_detail.jsp");
    		return forward;
 
 	 }

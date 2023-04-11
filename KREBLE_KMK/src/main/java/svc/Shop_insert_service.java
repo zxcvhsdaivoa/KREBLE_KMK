@@ -1,32 +1,29 @@
 package svc;
 
 import java.sql.Connection;
-
 import dao.Shop_DAO;
 import use_data.Shop_prd;
-
 import static db.JdbcUtil.*;
+public class Shop_insert_service {
 
-public class Shop_detail_service {
-
-	public Shop_prd getArticle(String p_no) throws Exception{
-
-		Shop_prd article = null;
+	public boolean registArticle(Shop_prd shopprd) throws Exception{
+		
+		boolean isWriteSuccess = false;
 		Connection con = getConnection();
 		Shop_DAO shopDAO = Shop_DAO.getInstance();
 		shopDAO.setConnection(con);
-		int updateCount = shopDAO.updateReadCount(p_no);
+		int insertCount = shopDAO.insertArticle(shopprd);
 		
-		if(updateCount > 0){
+		if(insertCount > 0){
 			commit(con);
+			isWriteSuccess = true;
 		}
 		else{
 			rollback(con);
 		}
 		
-		article = shopDAO.selectArticle(p_no);
 		close(con);
-		return article;
+		return isWriteSuccess;
 		
 	}
 

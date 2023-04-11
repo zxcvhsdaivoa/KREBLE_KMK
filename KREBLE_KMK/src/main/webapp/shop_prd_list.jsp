@@ -43,7 +43,19 @@
 <!-- 			use_date.loadboard(); -->
 
 		<article id="pl_art_no1"><!-- 페이지타이틀/카테고리 예정 -->
-			<div>(가제)KREBLE SHOP</div>
+			<div>SHOPPING MALL
+			<%
+			if(id == null){
+			}
+			else
+			{
+			%>
+				<input type="button" value = "상품등록하기">
+			<%
+			}
+			%>
+				
+			</div>
 		</article>
 		<article id="pl_art_no2"><!-- 품목 버튼 -->
 			<div class="no2_center">
@@ -89,7 +101,7 @@
 			<tr>
 				<td class="td_hide"><%=articleList.get(i).getPrd_no()%></td>
 				<td class="w149"><%=articleList.get(i).getPrd_img() %></td>
-				<td class="w396"><%=articleList.get(i).getPrd_name() %></td>
+				<td class="w396"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><%=articleList.get(i).getPrd_name() %></a></td>
 				<td class="w99"><%=articleList.get(i).getPrd_price() %></td>
 				<td class="w99"><%=articleList.get(i).getPrd_color() %></td>
 				<td class="w149"><%=articleList.get(i).getPrd_id() %></td>

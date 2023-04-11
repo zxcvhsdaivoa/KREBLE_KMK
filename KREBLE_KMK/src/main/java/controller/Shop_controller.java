@@ -7,7 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.Shop_detail_action;
 import action.Shop_list_action;
+import action.Shop_prd_insert_action;
 import action.Shop_re_delete_action;
 import vo.ActionForward;
 
@@ -32,7 +34,7 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		
 		//상품상세
 		if(command.equals("/shop_prd_detail.sp")){
-			action = new Shop_list_action();
+			action = new Shop_detail_action();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
@@ -68,6 +70,15 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		else if(command.equals("/shop_prd_insert.sp")){
 			forward=new ActionForward();
 			forward.setPath("/shop_prd_insert.jsp");
+		}
+		//상품등록메소드
+		else if(command.equals("/prd_insert.sp")){
+			action = new Shop_prd_insert_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		//상품리스트
 		else if(command.equals("/shop_list_action.sp")){

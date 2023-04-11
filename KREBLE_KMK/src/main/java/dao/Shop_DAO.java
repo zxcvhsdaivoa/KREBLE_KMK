@@ -4,7 +4,6 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -60,10 +59,10 @@ public class Shop_DAO {
 	public ArrayList<Shop_prd> selectArticleList(int page,int limit){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String shop_list_sql="select * from product order by prd_no desc limit ?,15";
+		String shop_list_sql="select * from product order by prd_no desc limit ?,10";
 		ArrayList<Shop_prd> articleList = new ArrayList<Shop_prd>();
 		Shop_prd shop_prd = null;
-		int startrow=(page-1)*15; 
+		int startrow=(page-1)*10; 
 
 		try{
 			pstmt = con.prepareStatement(shop_list_sql);
@@ -94,7 +93,7 @@ public class Shop_DAO {
 
 	
 	//상품리스트 개별선택
-	public Shop_prd selectArticle(int prd_no){
+	public Shop_prd selectArticle(String prd_no){
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -103,7 +102,7 @@ public class Shop_DAO {
 		try{
 			pstmt = con.prepareStatement(
 					"select * from product where prd_no = ?");
-			pstmt.setInt(1, prd_no);
+			pstmt.setString(1, prd_no);
 			rs= pstmt.executeQuery();
 
 			if(rs.next()){
@@ -155,28 +154,75 @@ public class Shop_DAO {
 		return deleteCount;
 
 	}
-	
-
-	public int updateReadCount(int board_num){
-
+	//상품등록
+	@SuppressWarnings("resource")
+	public int insertArticle(Shop_prd article){
 		PreparedStatement pstmt = null;
-		int updateCount = 0;
-		String sql="update board set BOARD_READCOUNT = "+
-				"BOARD_READCOUNT+1 where BOARD_NUM = "+board_num;
+		ResultSet rs = null;
+		int num =0;
+		String sql="";
+		int insertCount=0;
 
 		try{
-			pstmt=con.prepareStatement(sql);
-			updateCount = pstmt.executeUpdate();
-		}catch(SQLException ex){
-		}
-		finally{
+			pstmt=con.prepareStatement("SELECT max(right(prd_no,4)) FROM product where prd_cata='"+article.getPrd_cata()+"';");
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				num =rs.getInt("max(right(prd_no,4)")+1;
+			}
+			else {
+				num=0001;
+			}
+			String g = article.getPrd_cata();
+			String p_no = "";
+			switch(g) {
+            case "축구화":
+            	p_no = "s"+num;
+             break;
+             case "축구공":
+            	p_no = "b"+num;
+             break;
+             case "유니폼":
+            	p_no = "u"+num;
+             break;
+             case "기타용품":
+            	p_no = "e"+num;
+             break;
+
+			}
+			
+			sql="insert into product (prd_no , prd_name, prd_cata, prd_id, prd_meter, prd_note, prd_price, prd_size, prd_color, prd_date, prd_create, prd_qaul, prd_as, prd_qant, prd_img, prd_content) values(?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?)";
+			System.out.println("dfsdf");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, p_no);
+			pstmt.setString(2, article.getPrd_name());
+			pstmt.setString(3, g);
+			pstmt.setString(4, article.getPrd_id());
+			pstmt.setString(5, article.getPrd_meter());
+			pstmt.setString(6, article.getPrd_note());
+			pstmt.setInt(7, article.getPrd_price());
+			pstmt.setString(8, article.getPrd_size());
+			pstmt.setString(9, article.getPrd_color());
+			//prd_date now()
+			pstmt.setString(10, article.getPrd_create());
+			pstmt.setString(11, article.getPrd_qaul());
+			pstmt.setString(12, article.getPrd_as());
+			pstmt.setInt(13, article.getPrd_qant());
+			pstmt.setString(14, p_no+".jpg");
+			pstmt.setString(15, article.getPrd_content());
+
+			insertCount=pstmt.executeUpdate();
+
+		}catch(Exception ex){
+		}finally{
+			close(rs);
 			close(pstmt);
-
 		}
 
-		return updateCount;
+		return insertCount;
 
 	}
+
 
 	
 }

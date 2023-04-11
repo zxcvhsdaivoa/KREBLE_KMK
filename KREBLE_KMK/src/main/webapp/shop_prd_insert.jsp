@@ -3,8 +3,16 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.ArrayList" %>
 
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <% String id = (String) session.getAttribute("ID"); %>
+<%
+  Date currentDate = new Date();
+  SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
+  String formattedDate = sdf.format(currentDate);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,83 +42,113 @@
 <!-- 		중앙정렬용 div -->
 		<div id = "center_div">
 			<!-- 제품정보 -->
-			<article id="pd_detail_no1">
-<!-- 				아티클 내 중앙정렬 -->
-				<div id="no_table_center">
-					<table style="border: 1px solid">
-					<colgroup>
-					<col style="width:200px">
-					<col style="width:295px">
-					<col style="width:200px">
-					<col style="width:295px">
-					</colgroup>
-					<tr>
-						<td colspan="2" rowspan="6">사진</td>
-						<td>등록자 : </td>
-						<td>아이디</td>
-					</tr>
-					<tr>
-						<td>제품카테고리</td>
-						<td>셀렉박스</td>
-					</tr>
-					<tr>
-						<td>가격</td>
-						<td>얼마임?</td>
-					</tr>
-					<tr>
-						<td>사이즈</td>
-						<td>알빠?</td>
-					</tr>
-					<tr>
-						<td>등록일</td>
-						<td>몇시?</td>
-					</tr>
-					<tr>
-						<td>수량</td>
-						<td>없다</td>
-					</tr>
-					<tr>
-						<td>재질</td>
-						<td>구려</td>
-						<td>색상</td>
-						<td>몰라</td>
-					</tr>
-					<tr>
-						<td>제조사</td>
-						<td>너</td>
-						<td>품질보증기준</td>
-						<td>몰라</td>
-					</tr>
-					<tr>
-						<td>AS담당자</td>
-						<td colspan="3">몰라</td>
-					</tr>
-					</table>
-				</div>
-			</article>
-			
-			<!-- 제품소개 및 사진 -->
-			<article id="pd_detail_no2">
-				<textarea placeholder="제품에 대한 상세정보를 입력해주세요" style="width:990px; height: 400px;"></textarea>
+				<form action="prd_insert.sp">
+					<!-- 제품정보 -->
+					<article id="pd_detail_no1">
+						<div class = "no1_img_info1"><!-- 상품사진 및 필수정보 -->
+							<div class="info1_img"><!-- 상품사진 width 400 x 300-->
+								<span><!-- 큰사진(호버에서 나오는 사진) -->
+									300x250 image
+								</span>
+								<span><!-- 작은사진(호버용) -->
+									<span>100x30 image</span>
+									<span>100x30 image</span>
+								</span>
+							</div>
+							<div class="info1_info1"><!-- 필수정보 -->
+								<table>
+								<colgroup>
+									<col style = "width: 150px;">
+									<col style = "width: 400px;">
+								</colgroup>
+									<tr>
+									<td>상품이름</td>
+									<td><input type="text" name="prd_name"/></td>
+									</tr>
+									
+									<tr>
+									<td>등록자</td>
+									<td><input type="text" name="prd_id" value=<%=id%> readonly/></td>
+									</tr>
+									
+									<tr>
+									<td>제품 종류</td>
+									<td><input type="text" name="prd_cata"/></td>
+									</tr>
+									
+									<tr>
+									<td>가격</td>
+									<td><input type="text" name="prd_price"/></td>
+									</tr>
+									
+									<tr>
+									<td>사이즈</td>
+									<td><input type="text" name="prd_size"/></td>
+									</tr>
+									
+									<tr>
+									<td>등록일</td>
+									<td><input type="text" name="prd_date" readonly value="<%= formattedDate %>"/></td>
+									</tr>
+									
+									<tr>
+									<td>남은 수량</td>
+									<td><input type="text" name="prd_qant"/></td>
+									</tr>
+									
+								</table>
+							</div>
+						</div>
+						<div class="no1_img_info2"><!-- 추가정보 -->
+							<table>
+								<colgroup>
+									<col style = "width: 150px;">
+									<col style = "width: 800px;">
+								</colgroup>
+								<tr>
+									<td>재질</td>
+									<td><input type="text" name="prd_meter"/></td>
+								</tr>
+								<tr>
+									<td>색상</td>
+									<td><input type="text" name="prd_color"/></td>
+								</tr>
+								<tr>
+									<td>제조사</td>
+									<td><input type="text" name="prd_create"/></td>
+								</tr>
+								<tr>
+									<td>품질검사</td>
+									<td><input type="text" name="prd_qaul"/></td>
+								</tr>
+								<tr>
+									<td>AS연락처</td>
+									<td><input type="text" name="prd_as"/></td>
+								</tr>
+							</table>
+						</div>
+					</article>
+					
+					<!-- 제품소개 및 사진 -->
+					<article id="pd_detail_no2">
+						<div>
+							<input type="text" name="prd_note">
+							<textarea name="prd_content"></textarea>
+						</div>
+					</article>
+					<article id="pd_detail_no3">
+						<div class="pd_bt">
+							<input type="submit" value="등록">
+							<input type="reset" value="리셋">
+							<input type="button" value="목록">				
+						</div>
+					</article>
 				
-				<div style="width: 990px; height:40px; background-color: skyblue;">사진등록</div>
-				<div style="width: 990px; height:40px; background-color: red">사진등록</div>
-				<div style="width: 990px; height:40px; background-color: skyblue;">사진등록</div>
-			</article>
-			
-			<!-- 구매/장바구니/상단버튼 -->
-			<article id="pd_detail_no3">
-				<div>
-					<input type="submit" value="제품등록" />
-					<input type="reset" value="다시입력" />
-					<input type="button" value="목록으로 이동" />
-				</div>
-			</article>
-			
-			<!-- 여분 -->
-			<article id="pd_detail_no4">
-			</article>
-	
+				
+				<!-- 여분 -->
+				<article id="pd_detail_no4">
+				</article>
+			</form>
 		</div>
 	</section>
 	

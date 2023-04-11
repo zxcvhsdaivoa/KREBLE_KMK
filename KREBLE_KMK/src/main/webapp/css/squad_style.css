@@ -24,6 +24,7 @@ section {
     padding-left: 10px;
     font-size: 17px;
     border:none;
+    outline:none;
     border-top:4px solid #161616;
     border-bottom:4px solid #161616;
     background-color: #555;
@@ -38,14 +39,28 @@ section {
     font-size:15px;
     color:#fff;
 }
+.mysquad .squad_form span.back{
+	float:left;
+	width:150px;
+    height:60px;
+    text-align: center;
+    border:4px solid #161616;
+    background-color: #555;
+}
+.mysquad .squad_form span.back a {
+	line-height:52px;
+    font-size:15px;
+    color:#fff;
+}
 .mysquad .squad_form .open_squad{
     width:185px;
     border-bottom-left-radius: 20px;
 }
 .mysquad .squad_form .save_squad{
     width:150px;
+    border-right:none;
 }
-.mysquad .squad_form .reset_squad{
+.mysquad .squad_form .all_squad{
     width:150px;
     border-bottom-right-radius: 20px;
     border-left:none
@@ -147,9 +162,6 @@ section {
     height:30px;
     background: url(../image/x_button.png) no-repeat center/cover;
 }
-.mysquad .squad_wrap ul li .plus {
-    
-}
 .mysquad .squad_wrap ul li span.x_bu {
     width:50px;
     height:50px;
@@ -160,7 +172,7 @@ section {
     opacity: 1;
 }
 
-.player_wrap {
+.sub_wrap {
     width:100%;
     height:100%;
     padding-top: 100px;
@@ -170,7 +182,7 @@ section {
     z-index: 300;
     background-color:rgba(0,0,0, 0.3);
 }
-.player_wrap .player_inner .exit {
+.sub_wrap .inner .exit {
     position: absolute;
     top:-50px;
     right:0;
@@ -181,7 +193,7 @@ section {
     text-align: center;
     line-height: 50px;;
 }
-.player_wrap .player_inner {
+.sub_wrap .inner {
 	box-sizing:content-box;
     position: relative;
     width:900px;
@@ -190,6 +202,8 @@ section {
     background-color: #fff;
     border:2px solid #333;
 }
+
+
 .player_wrap .player_inner #a_here {
     position:absolute;
     top:-120px;
@@ -262,7 +276,6 @@ font-size:14px;
 }
 
 
-
 .player_wrap .player_inner .director_box  {
     height:100%;
 }
@@ -316,37 +329,8 @@ font-size:14px;
 
 
 
-.mysquad_wrap {
-    width:100%;
-    height:100%;
-    padding-top: 100px;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index: 300;
-    background-color:rgba(0,0,0, 0.3);
-}
-.mysquad_wrap .mysquad_inner .exit {
-    position: absolute;
-    top:-50px;
-    right:0;
-    width:100px;
-    height:50px;
-    background-color: #fff;
-    border:2px solid #333;
-    text-align: center;
-    line-height: 50px;;
-}
-.mysquad_wrap .mysquad_inner {
-	box-sizing:content-box;
-    position: relative;
-    width:900px;
-    height:800px;
-    margin:0 auto;
-    background-color: #fff;
-    border:2px solid #333;
-}
-.mysquad_wrap .mysquad_inner table {
+.mysquad_wrap .mysquad_inner table,
+.allsquad_wrap .allsquad_inner table {
 	text-align:center;
 	border-spacing:0 0;
 }
@@ -356,12 +340,44 @@ font-size:14px;
 .width2 {
 	width:400px;
 }
-.mysquad_wrap .mysquad_inner table th {
+.mysquad_wrap .mysquad_inner table th,
+.allsquad_wrap .allsquad_inner table th {
 	border-bottom: 1px solid #e6e8e5;
     background-color: #e6e8e5;
     height:40px;
 }
-.mysquad_wrap .mysquad_inner table td {
+.mysquad_wrap .mysquad_inner table td,
+.allsquad_wrap .allsquad_inner table td {
 	border-bottom:1px solid #e6e8e5;
 	height:30px;
+}
+.mysquad_wrap .mysquad_inner table td .toggle_button {
+	width:40px;
+	height:20px;
+	margin:auto;
+	border-radius:10px;
+	border:1px solid #ccc;
+}
+.mysquad_wrap .mysquad_inner table td .toggle_button .toggle {
+	display:block;
+	width:14px;
+	height:14px;
+	margin:2px;
+	border-radius:50%;
+	background-color:#ccc;
+}.mysquad_wrap .mysquad_inner table td .toggle_button.yes {
+	background-color:#5EFF58;
+}
+.mysquad_wrap .mysquad_inner table td .toggle_button.yes .toggle {
+	float:right;
+	background-color:#fff;
+}
+.mysquad_wrap .mysquad_inner table td .toggle_button.no .toggle {
+	float:left;
+}
+
+
+.scroll_inner {
+	height:100%;
+	overflow-y:auto;
 }

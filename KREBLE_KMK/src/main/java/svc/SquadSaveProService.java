@@ -8,7 +8,6 @@ import static db.JdbcUtil.*;
 public class SquadSaveProService {
 
 	public boolean registArticle(SquadInfo squadinfo) throws Exception{
-		
 		boolean isWriteSuccess = false;
 		Connection con = getConnection();
 		SquadDAO squadDAO = SquadDAO.getInstance();

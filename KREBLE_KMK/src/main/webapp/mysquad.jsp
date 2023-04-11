@@ -19,6 +19,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="js/Header_Footer_Aside_baseform.js"></script>
 <script src="js/squad.js" ></script>
+
 <body>
 	
   <jsp:include page="Header_baseform.jsp"/>
@@ -27,15 +28,22 @@
 			<div class="mysquad">
 				<div class="squad_wrap"> 
 				<%
-				SquadInfo squad =null; 
-				squad = (SquadInfo) request.getAttribute("squad");
-				boolean nullck = false;
-				if(squad==null){
-					nullck = false;
-				}
-				else {
-					nullck = true;
-				}
+					String login_id="0";
+					if(session.getAttribute("ID")!=null&& session.getAttribute("ID")!=""&& session.getAttribute("ID")!="null"){
+						login_id=(String) session.getAttribute("ID");
+					}
+					SquadInfo squad =null;
+					squad = (SquadInfo) request.getAttribute("squad");
+					boolean nullck = false;
+					if(squad==null){
+						nullck = false;
+					}
+					else if(squad.getUser_id()==null){
+						nullck=false;
+					}
+					else {
+						nullck = true;
+					}
 				%>
 					<form class="squad_form" name="squad_form" action="squadSavePro.sq" method="post" onsubmit="return memberjoin()">
 						<input type="hidden" id="user_id" name="user_id" value="<%= (String) session.getAttribute("ID")%> ">
@@ -49,7 +57,7 @@
 								<img src="image/player_img/<%= director.getDirector_name() %>.jpg" class="player_image">
 								<p class="ko_name"><%=director.getDirector_ko_name()%></p>
 								<p class="eng_name"><%=director.getDirector_name()%></p>
-								<span class="x_bu"></span>
+								<%if(squad.getUser_id().equals(login_id)){%><span class="x_bu"></span><%} %>
 							</li>
 							<%
 							} else{
@@ -73,7 +81,7 @@
 									<p class="ko_name"><%= player.getPlayer_ko_name() %></p>
 									<p class="eng_name"><%= player.getPlayer_name() %></p>
 									<p class="posi on"><%= player.getPlayer_position() %></p>
-									<span class="x_bu"></span>
+									<%if(squad.getUser_id().equals(login_id)){%><span class="x_bu"></span><%} %>
 								</li>
 							<%
 								}
@@ -91,21 +99,29 @@
 								}
 							}
 							%>
+							
+						<%
+						if(nullck==true){
+						String forma = squad.getFormation();
+						%>
+						<script>forma_change("<%= forma %>");</script>
+						<%}else{%><script>forma433();</script><%} %>
 						</ul>
 						<button type="button" class="open_squad">나의 스쿼드 불러오기</button>
 						<label for="squad_name" class="blind">스쿼드의 이름을 입력하세요</label>
-						<input type="text" id="squad_name" name="squad_name" <% if(nullck==true){%> value="<%= squad.getSquad_name()%>"<%} %>>
-						<%if(nullck==true){%><input type="hidden" id="squad_no" name="squad_no" value="<%= squad.getSquad_num() %>"><%} %>
-						<button type="submit" class="save_squad">스쿼드 저장</button>
-						<button type="reset" class="reset_squad">스쿼드 초기화</button>
+						<input type="text" <%if(nullck==true&&squad.getUser_id().equals(login_id)||nullck==false&&login_id!="0"){%>style="width:565px"<%}%> id="squad_name" name="squad_name" <% if(nullck==true){%> value="<%= squad.getSquad_name()%>" <%if(!squad.getUser_id().equals(login_id)){%>readonly<%} } %>>
+						<%if(nullck==true&&squad.getUser_id().equals(login_id)||nullck==false&&login_id!="0"){ %><button type="submit" class="save_squad">스쿼드 저장</button><%} %>
+						<span class="back"><a href="squad.sq">새 스쿼드 만들기</a></span>
+						<button type="button" class="all_squad">전체 스쿼드 목록</button>
 						<label for="formation" class="blind" >포메이션</label>
-						<select id="formation" name="formation">
-							<option>4-3-3</option>
-							<option>4-2-3-1</option>
-							<option>4-2-2-2</option>
-							<option>4-1-2-3</option>
-							<option>5-2-3</option>
+						<select id="formation" name="formation" <%if(nullck==true){ if(!squad.getUser_id().equals(login_id)){ %> disabled <%}} %>>
+							<option <%if(nullck==true){ if(squad.getFormation().equals("4-3-3")){ %>selected="selected"<% } } %>>4-3-3</option>
+							<option <%if(nullck==true){ if(squad.getFormation().equals("4-2-3-1")){ %>selected="selected"<% } } %>>4-2-3-1</option>
+							<option <%if(nullck==true){ if(squad.getFormation().equals("4-2-2-2")){ %>selected="selected"<% } } %>>4-2-2-2</option>
+							<option <%if(nullck==true){ if(squad.getFormation().equals("4-1-2-3")){ %>selected="selected"<% } } %>>4-1-2-3</option>
+							<option <%if(nullck==true){ if(squad.getFormation().equals("5-2-3")){ %>selected="selected"<% } } %>>5-2-3</option>
 						</select>
+						<%if(nullck==true){%><input type="hidden" id="squad_no" name="squad_no" value="<%= squad.getSquad_num() %>"><%} %>
 					</form>
 				</div>
 			</div>
@@ -113,8 +129,8 @@
 	</section>
 	
 	<jsp:include page="Footer_baseform.jsp"/>
-	<div class="player_wrap">
-		<div class="player_inner">
+	<div class="player_wrap sub_wrap">
+		<div class="player_inner inner">
 			<span class="exit">나가기</span>
 			<div class="list_header">
 				<ul>
@@ -159,8 +175,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="mysquad_wrap">
-		<div class="mysquad_inner">
+	<div class="mysquad_wrap sub_wrap">
+		<div class="mysquad_inner inner">
 			<span class="exit">나가기</span>
 			
 			<%
@@ -172,23 +188,71 @@
 			}
 			else {
 			%>
-			<table>
-				<tr>
-					<th class='width1'>스쿼드 번호</th>
-					<th class='width2'>스쿼드 이름</th>
-					<th class='width1'>포메이션</th>
-					<th class='width1'>공개 여부</th>
-				</tr>
+			<div class="scroll_inner">
+			<table id="mysquad_table">
+				<thead>
+					<tr>
+						<th class='width1'>스쿼드 번호</th>
+						<th class='width2'>스쿼드 이름</th>
+						<th class='width1'>포메이션</th>
+						<th class='width1'>공개 여부</th>
+						<th class='width1'>공개 설정</th>
+						<th class='width1'>삭제</th>
+					</tr>
+				</thead>
 			<%
 				for(int i=0; i<squadlist.size(); i++){
 					out.println("<tr><td>"+squadlist.get(i).getSquad_num()+"</td>");
 					out.println("<td><a href='squad.sq?no="+squadlist.get(i).getSquad_num()+"'>"+squadlist.get(i).getSquad_name()+"</a></td>");
 					out.println("<td>"+squadlist.get(i).getFormation()+"</td>");
-					out.println("<td>"+squadlist.get(i).getDisclose()+"</td></tr>");
+					out.println("<td class='dc'>"+squadlist.get(i).getDisclose()+"</td>");
+					if(squadlist.get(i).getDisclose().equals("yes")){ 
+						out.println("<td><div class='toggle_button yes' data-squadNo="+squadlist.get(i).getSquad_num()+" data-disclose="+squadlist.get(i).getDisclose()+"><span class='toggle'></span></div></td>");
+					} else if(squadlist.get(i).getDisclose().equals("no")) {
+						out.println("<td><div class='toggle_button no' data-squadNo="+squadlist.get(i).getSquad_num()+" data-disclose="+squadlist.get(i).getDisclose()+"><span class='toggle'></span></div></td>");
+					}
+					out.println("<td><span class='delete_squad' data-squadNo="+squadlist.get(i).getSquad_num()+">삭제하기</span></td></tr>");
 				}
 			}
 			%>
 			</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="allsquad_wrap sub_wrap">
+		<div class="allsquad_inner inner">
+			<span class="exit">나가기</span>
+			
+			<%
+			ArrayList<SquadInfo> allList =null; 
+			allList = (ArrayList<SquadInfo>) request.getAttribute("allList");
+			
+			if(allList==null){
+				out.println("공개된 스쿼드가 없습니다");
+			}
+			else {
+			%>
+			<div class="scroll_inner">
+			<table>
+				<tr>
+					<th class='width1'>스쿼드 번호</th>
+					<th class='width1'>작성자</th>
+					<th class='width2'>스쿼드 이름</th>
+					<th class='width1'>포메이션</th>
+				</tr>
+			<%
+				for(int i=0; i<allList.size(); i++){
+					out.println("<tr><td>"+allList.get(i).getSquad_num()+"</td>");
+					out.println("<td>"+allList.get(i).getUser_id()+"</td>");
+					out.println("<td><a href='squad.sq?no="+allList.get(i).getSquad_num()+"'>"+allList.get(i).getSquad_name()+"</a></td>");
+					out.println("<td>"+allList.get(i).getFormation()+"</td></tr>");
+					
+				}
+			}
+			%>
+			</table>
+			</div>
 		</div>
 	</div>
 </body>

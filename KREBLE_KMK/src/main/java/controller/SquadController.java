@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.SquadDeleteProAction;
+import action.SquadDiscloseProAction;
 import action.SquadSaveProAction;
 import action.UserSquadListAction;
 import vo.ActionForward;
@@ -37,6 +39,20 @@ public class SquadController extends javax.servlet.http.HttpServlet
 			try {
 				forward=action.execute(request, response );
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/squadDisclose.sq")){
+			action = new SquadDiscloseProAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/squadDeletePro.sq")){
+			action = new SquadDeleteProAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}

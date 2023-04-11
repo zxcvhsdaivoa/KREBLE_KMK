@@ -43,15 +43,15 @@ public class SquadSaveProAction implements Action {
 		squadinfo.setPlayer9(request.getParameter("player9"));
 		squadinfo.setPlayer10(request.getParameter("player10"));
 		squadinfo.setPlayer11(request.getParameter("player11"));
-		
+
 		int squad_no=0;
 		if(request.getParameter("squad_no")!=null&&request.getParameter("squad_no")!=""&&request.getParameter("squad_no")!="null") {
 			squad_no = Integer.parseInt(request.getParameter("squad_no"));
 			squadinfo.setSquad_num(squad_no);
 		}
-		
+
 		boolean isSuccess=false;
-		if(squad_no>=0) {
+		if(squad_no>0) {
 			isSuccess = SquadModifyProService.modifyArticle(squadinfo);
 		}
 		else if(squad_no==0) {

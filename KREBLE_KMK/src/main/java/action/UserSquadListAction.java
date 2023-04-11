@@ -12,8 +12,9 @@ import vo.SquadInfo;
  public class UserSquadListAction implements Action {
 	 
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		 
-		ArrayList<SquadInfo> squadList=new ArrayList<SquadInfo>();
+
+		ArrayList<SquadInfo> allList=null;
+		ArrayList<SquadInfo> squadList=null;
 		SquadInfo selectSquad = new SquadInfo();
 		HttpSession session=request.getSession();
 		String user_id = (String)session.getAttribute("ID");
@@ -27,10 +28,11 @@ import vo.SquadInfo;
 			request.setAttribute("squadList", squadList);
 		}
 		if(squad_no!=0) {
-			selectSquad = userSquadListService.getArticle(squad_no, user_id);
+			selectSquad = userSquadListService.getArticle(squad_no);
 			request.setAttribute("squad", selectSquad);
 		}
-		
+		allList = userSquadListService.getAllList();
+		request.setAttribute("allList", allList);
 		ActionForward forward= new ActionForward();
    		forward.setPath("/mysquad.jsp");
    		return forward;

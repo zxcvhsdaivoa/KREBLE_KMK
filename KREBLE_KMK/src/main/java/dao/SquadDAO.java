@@ -36,7 +36,7 @@ public class SquadDAO {
 		SquadInfo squad = null;
 		ArrayList<SquadInfo> squadList=new ArrayList<SquadInfo>();
 		try{
-			pstmt = con.prepareStatement("select * from mysquad where user_id = ?;");
+			pstmt = con.prepareStatement("select * from mysquad where user_id = ? order by mysquad_no desc;");
 			pstmt.setString(1, user_id);
 			rs= pstmt.executeQuery();
 			while(rs.next()){
@@ -71,14 +71,53 @@ public class SquadDAO {
 
 	
 	@SuppressWarnings("null")
-	public SquadInfo selectSquad(int no, String user_id){
+	public ArrayList<SquadInfo> selectAllSquad(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SquadInfo squad = null;
+		ArrayList<SquadInfo> allList=new ArrayList<SquadInfo>();
+		try{
+			pstmt = con.prepareStatement("select * from mysquad where disclose='yes' order by mysquad_no desc;");
+			rs= pstmt.executeQuery();
+			while(rs.next()){
+				squad=new SquadInfo();
+				squad.setUser_id(rs.getString("user_id"));
+				squad.setSquad_num(rs.getInt("mysquad_no"));
+				squad.setSquad_name(rs.getString("mysquad_name"));
+				squad.setFormation(rs.getString("fomation"));
+				squad.setDirector(rs.getString("director"));
+				squad.setPlayer1(rs.getString("player1"));
+				squad.setPlayer2(rs.getString("player2"));
+				squad.setPlayer3(rs.getString("player3"));
+				squad.setPlayer4(rs.getString("player4"));
+				squad.setPlayer5(rs.getString("player5"));
+				squad.setPlayer6(rs.getString("player6"));
+				squad.setPlayer7(rs.getString("player7"));
+				squad.setPlayer8(rs.getString("player8"));
+				squad.setPlayer9(rs.getString("player9"));
+				squad.setPlayer10(rs.getString("player10"));
+				squad.setPlayer11(rs.getString("player11"));
+				squad.setDisclose(rs.getString("disclose"));
+				allList.add(squad);
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return allList;
+	}
+	
+	
+	@SuppressWarnings("null")
+	public SquadInfo selectSquad(int no){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		SquadInfo squad = new SquadInfo();
 		try{
-			pstmt = con.prepareStatement("select * from mysquad where user_id = ? and mysquad_no = ?;");
-			pstmt.setString(1, user_id);
-			pstmt.setInt(2, no);
+			pstmt = con.prepareStatement("select * from mysquad where mysquad_no = ?;");
+			pstmt.setInt(1, no);
 			rs= pstmt.executeQuery();
 			if(rs.next()){
 				squad.setUser_id(rs.getString("user_id"));
@@ -201,8 +240,46 @@ public class SquadDAO {
 		}
 
 		return updateCount;
-
 	}
 	
 
+	public int updateDisclose(SquadInfo article){
+
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		String sql="update mysquad set disclose=? where mysquad_no=? and user_id=?";
+
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getDisclose());
+			pstmt.setInt(2, article.getSquad_num());
+			pstmt.setString(3, article.getUser_id());
+			updateCount = pstmt.executeUpdate();
+		}catch(Exception ex){
+		}finally{
+			close(pstmt);
+		}
+
+		return updateCount;
+	}
+	
+	
+	public int deleteArticle(int squad_no, String user_id){
+
+		PreparedStatement pstmt = null;
+		String commu_delete_sql="delete from mysquad where mysquad_no=? and user_id=?";
+		int deleteCount=0;
+		try{
+			pstmt=con.prepareStatement(commu_delete_sql);
+			pstmt.setInt(1, squad_no);
+			pstmt.setString(2, user_id);
+			deleteCount=pstmt.executeUpdate();
+		}catch(Exception ex){
+		}	finally{
+			close(pstmt);
+		}
+
+		return deleteCount;
+
+	}
 }

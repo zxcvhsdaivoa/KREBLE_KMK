@@ -20,13 +20,25 @@ public class UserSquadListService {
 		
 	}
 	
-	public SquadInfo getArticle(int no ,String user_id) throws Exception{
+	public ArrayList<SquadInfo> getAllList() throws Exception{
+		
+		ArrayList<SquadInfo> squadList = null;
+		Connection con = getConnection();
+		SquadDAO commuDAO = SquadDAO.getInstance();
+		commuDAO.setConnection(con);
+		squadList = commuDAO.selectAllSquad();
+		close(con);
+		return squadList;
+		
+	}
+	
+	public SquadInfo getArticle(int no) throws Exception{
 		
 		SquadInfo selectSquad = null;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
-		selectSquad = commuDAO.selectSquad(no,user_id);
+		selectSquad = commuDAO.selectSquad(no);
 
 		close(con);
 		return selectSquad;

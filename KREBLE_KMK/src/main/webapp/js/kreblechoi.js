@@ -3,9 +3,7 @@ $(function(){
 	
 	const urlParams = new URLSearchParams(window.location.search);
 	const field_no = urlParams.get('field_id');
-	$(".local").removeClass("on");
 	$("#"+field_no).parents(".local").addClass("on");
-	$('.local ul li').removeClass('on');
 	$("#"+field_no).addClass("on");
 	
 	$(".local").click(function(){
@@ -26,10 +24,8 @@ $(function(){
 			console.log(default_no);
 		}
 		else {
-			$('ul.local_stadium > li > ul > li').click(function(){
-			   var field_num=$(this).attr('id');
-			    location.href="kreblechoi.jsp?field_id="+field_num;
-			});
+			var field_num=$(this).attr('id');
+			location.href="fieldInfo.choi?field_id="+field_num;
 		}
 	});
 	

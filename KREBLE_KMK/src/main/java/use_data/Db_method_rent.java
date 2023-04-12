@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
-
 public class Db_method_rent extends Db_method_conn {
 	
 	//대여/예약(최승혁) 리뷰 게시판 메소드들

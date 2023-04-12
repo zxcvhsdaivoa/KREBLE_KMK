@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.sql.*" %>
-<%@ page import="use_data.KreblechoiData" %>
+<%@ page import="vo.KreblechoiData" %>
 <!doctype html>
 <html>
 <head> <!-- 문서정보 -->
@@ -29,10 +29,7 @@
 <script src="js/kreblechoi.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script>
 <jsp:useBean id="info" class="use_data.Db_method_rent" />
-<%
-	String field_id= request.getParameter("field_id");
-	KreblechoiData field=info.field_list_check(field_id);
-%>
+
 
 <body >
 
@@ -65,10 +62,10 @@
 							</ul>
 						</div>
 						<ul class="local_stadium">
-							<li class="local on">
+							<li class="local">
 								<a href="#">서울</a>
 								<ul>
-									<li class="on" id="s_000"><a>잠실종합운동장</a></li>
+									<li id="s_000"><a>잠실종합운동장</a></li>
 									<li id="s_001"><a>노량진 축구장</a></li>
 									<li id="s_002"><a>월곡인조잔디<br>축구장</a></li>
 									<li id="s_003"><a>은평구립 축구장</a></li>
@@ -135,41 +132,44 @@
 						</ul>
 					</div>
 			</div>
+			<%
+				KreblechoiData field_list=(KreblechoiData) request.getAttribute("field_list");
+			%>
 			<form>
 				<div class="stadium_name">
-					<span><%= field.getFullname()%></span>
+					<span><%= field_list.getFullname()%></span>
 				</div>
 				<div class="stadium_info">
 					<div class="stadium_img">
-					<img style="width: 100%; height:100%; border-radius: 7px;" src="image/rent_stardium/<%=field.getField_image() %>.jpg">
+					<img style="width: 100%; height:100%; border-radius: 7px;" src="image/rent_stardium/<%=field_list.getField_image() %>.jpg">
 					</div>	
 					<div class="detail_info">
 						<table style="height: 507px">
 							<tr>
 								<th>위치</th>
-								<td><%= field.getField_location() %>
-									<a href="<%=field.getField_map() %>" target="black"><img class="mapbtn" src="image/rent_stardium/kakaobu.jpg"></a> 
+								<td><%= field_list.getField_location() %>
+									<a href="<%=field_list.getField_map() %>" target="black"><img class="mapbtn" src="image/rent_stardium/kakaobu.jpg"></a> 
 								</td>
 							</tr>
 							<tr>
 								<th>명칭</th>
-								<td><%= field.getField_name() %></td>
+								<td><%= field_list.getField_name() %></td>
 							</tr>
 							<tr>
 								<th>대지면적</th>
-								<td><%= field.getField_area() %> ㎡</td>
+								<td><%= field_list.getField_area() %> ㎡</td>
 							</tr>
 							<tr>
 								<th>이용시간</th>
-								<td><%= field.getField_usetime() %></td>
+								<td><%= field_list.getField_usetime() %></td>
 							</tr>
 							<tr>
 								<th>주요시설</th>
-								<td><%= field.getField_facility() %></td>
+								<td><%= field_list.getField_facility() %></td>
 							</tr>
 							<tr>
 							<th>전화</th>
-								<td><%= field.getField_call() %></td>
+								<td><%= field_list.getField_call() %></td>
 							</tr>
 						</table>
 						<input type="button" value="예약하기" class="rent_btn">

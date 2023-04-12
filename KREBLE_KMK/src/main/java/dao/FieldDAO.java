@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.sql.DataSource;
 import vo.KreblechoiData;
-import use_data.ReviewData;
 
 public class FieldDAO {
 	DataSource ds;
@@ -29,20 +28,18 @@ public class FieldDAO {
 	}
 	
 	//예약/대여 시민구장 정보,최승혁 db
-	
+
 	public KreblechoiData field_list_check(String id) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;		
-		KreblechoiData field_list=new KreblechoiData();
-		
+		KreblechoiData field_list=null;
+
 		try{
-			if(con == null){
-				throw new Exception("데이터베이스에 연결할 수 없습니다.");
-			}
 			pstmt = con.prepareStatement("select * from field_info where field_id = '" + id + "';");
 			rs= pstmt.executeQuery();
 
 			if(rs.next()){
+				field_list=new KreblechoiData();
 				field_list.setField_id(rs.getString("field_id"));
 				field_list.setFullname(rs.getString("field_fullname"));
 				field_list.setField_image(rs.getString("field_image"));
@@ -55,6 +52,7 @@ public class FieldDAO {
 				field_list.setField_facility(rs.getString("field_facility"));
 				field_list.setField_call(rs.getString("field_call"));
 			}
+		}catch(Exception ex){
 		}finally {
 			close(rs);
 			close(pstmt);

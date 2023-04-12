@@ -8,26 +8,14 @@ import vo.KreblechoiData;
 
 public class Field_list_Service {
 
-	public int getListCount() throws Exception{
-		int listCount = 0;
+	public KreblechoiData getfield_list_check(String id) throws Exception{
+		KreblechoiData field_list = null;
 		Connection con = getConnection();
 		FieldDAO fieldDAO = FieldDAO.getInstance();
 		fieldDAO.setConnection(con);
-		listCount = fieldDAO.selectListCount();
+		field_list = fieldDAO.field_list_check(id);
 		close(con);
-		return listCount;
-		
-	}
-
-	public ArrayList<KreblechoiData> getArticleList() throws Exception{
-		
-		ArrayList<KreblechoiData> articleList = null;
-		Connection con = getConnection();
-		FieldDAO fieldDAO = fieldDAO.getInstance();
-		fieldDAO.setConnection(con);
-		articleList = fieldDAO.selectArticleList();
-		close(con);
-		return articleList;
+		return field_list;
 		
 	}
 

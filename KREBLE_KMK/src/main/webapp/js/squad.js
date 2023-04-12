@@ -3,6 +3,7 @@ $(function(){
 	var pl_count= ($('.player_list ul li').length);
 	var sq_count= ($('.squad_wrap ul li').length);
 	$(".sub_wrap").hide();
+	$(".sub_wrap").addClass("z_in");
 	//$('.mysquad .squad_wrap ul li').draggable();
 
 	//기본 이미지 지정

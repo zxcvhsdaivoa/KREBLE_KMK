@@ -173,14 +173,19 @@ section {
 }
 
 .sub_wrap {
+	opacity:0;
     width:100%;
     height:100%;
     padding-top: 100px;
     position:fixed;
     top:0;
     left:0;
-    z-index: 300;
+    z-index: -10;
     background-color:rgba(0,0,0, 0.3);
+}
+.sub_wrap.z_in {
+	opacity:1;
+	z-index: 100;
 }
 .sub_wrap .inner .exit {
     position: absolute;

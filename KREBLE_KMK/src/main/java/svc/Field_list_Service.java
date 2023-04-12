@@ -2,7 +2,6 @@ package svc;
 
 import static db.JdbcUtil.*;
 import java.sql.Connection;
-import java.util.ArrayList;
 import dao.FieldDAO;
 import vo.KreblechoiData;
 

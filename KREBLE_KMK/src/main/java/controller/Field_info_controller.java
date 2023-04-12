@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +24,7 @@ public class Field_info_controller extends javax.servlet.http.HttpServlet  {
 		ActionForward forward=null;
 		Action action=null;
 
-		if(command.equals("/fieldInfo.choi")){
+		if(command.equals("/fieldInfo.choi")){ // url 변경할 주소 입력
 			action = new Field_list_action();
 			try{
 				forward=action.execute(request, response);

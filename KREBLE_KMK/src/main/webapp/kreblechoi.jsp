@@ -76,7 +76,7 @@
 							<li class="local">
 								<a href="#">인천</a>
 								<ul>
-									<li><a href="#">인천대공원<br>축구장</a></li>
+									<li id="i_000"><a>인천대공원<br>축구장</a></li>
 									<li><a href="#">인천축구전용<br>경기장</a></li>
 									<li><a href="#">강서개화 축구장</a></li>
 									<li><a href="#">드림파크문화재단 <br>축구장</a></li>

@@ -300,6 +300,7 @@ section .section_inner {
     text-align: center;
     float: right;
     margin-top: 25px;
+    cursor: pointer;
 }
 .stadium_map{
     font-family: 'Jua', sans-serif;

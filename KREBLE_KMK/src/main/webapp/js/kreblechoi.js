@@ -32,22 +32,34 @@ $(function(){
 		}
 	});
 	
-	$(".rentbutton > a > img").click(function(){
+	$(".rent_btn").click(function(){
 		var result= confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")
 		if (result==true) {
-			location.replace("login.html");
-		} else{}
+			location.replace("login.jsp");
+		} else{
+			
+		}
 	});
 
 	$('#plusbu').click(function(){
-		if (default_no==5){
-			console.log(default_no);
-			alert('더이상 추가할수 없습니다');
+		var result= confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")
+		if (result==true) {
+			location.replace("login.jsp");
 		}
-		else {
-			console.log(default_no);
-			$('.favorite_stadium > ul li:nth-child('+ default_no +')').addClass('select');
+		else if(result==false){
+			
 		}
+		else{
+			if (default_no==5){
+				console.log(default_no);
+				alert('더이상 추가할수 없습니다');
+			}
+			else {
+				console.log(default_no);
+				$('.favorite_stadium > ul li:nth-child('+ default_no +')').addClass('select');
+			}
+		}
+	
 	})
 	$('#minusbu').click(function(){
 		if (default_no==1){

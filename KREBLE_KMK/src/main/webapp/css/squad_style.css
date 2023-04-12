@@ -86,8 +86,8 @@ section {
     width:1200px;
     height:790px;
     margin:0 auto 30px;
-    background:url(../image/squad_bg2.png) no-repeat center top/contain;
-    background-size:1200px 850px;
+    background:url(../image/squad_bg.png) no-repeat center top/contain;
+    background-size:1200px 860px;
 }
 .mysquad .squad_wrap ul {
     width:100%;

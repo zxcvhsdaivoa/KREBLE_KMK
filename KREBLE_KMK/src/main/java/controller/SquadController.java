@@ -17,7 +17,6 @@ import vo.ActionForward;
 @WebServlet("*.sq")
 public class SquadController extends javax.servlet.http.HttpServlet 
 {
-	@SuppressWarnings("null")
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");

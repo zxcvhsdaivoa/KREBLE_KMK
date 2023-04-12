@@ -58,6 +58,8 @@ public class SquadDAO {
 				squad.setPlayer10(rs.getString("player10"));
 				squad.setPlayer11(rs.getString("player11"));
 				squad.setDisclose(rs.getString("disclose"));
+				squad.setMake_date(rs.getDate("make_date"));
+				squad.setView_count(rs.getInt("view_count"));
 				squadList.add(squad);
 			}
 		}catch(Exception ex){
@@ -98,6 +100,8 @@ public class SquadDAO {
 				squad.setPlayer10(rs.getString("player10"));
 				squad.setPlayer11(rs.getString("player11"));
 				squad.setDisclose(rs.getString("disclose"));
+				squad.setMake_date(rs.getDate("make_date"));
+				squad.setView_count(rs.getInt("view_count"));
 				allList.add(squad);
 			}
 		}catch(Exception ex){
@@ -178,7 +182,7 @@ public class SquadDAO {
 		int insertCount=0;
 
 		try{
-			sql="insert into mysquad (user_id,mysquad_no,mysquad_name,fomation,director,player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11) values(?,default,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+			sql="insert into mysquad (user_id,mysquad_no,mysquad_name,fomation,director,player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,make_date) values(?,default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now();";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, squad.getUser_id());
 			pstmt.setString(2, squad.getSquad_name());
@@ -254,6 +258,34 @@ public class SquadDAO {
 			pstmt.setString(1, article.getDisclose());
 			pstmt.setInt(2, article.getSquad_num());
 			pstmt.setString(3, article.getUser_id());
+			updateCount = pstmt.executeUpdate();
+		}catch(Exception ex){
+		}finally{
+			close(pstmt);
+		}
+
+		return updateCount;
+	}
+	
+	
+	@SuppressWarnings("resource")
+	public int updateViewCount(int squad_no){
+		
+		int view_count = 0;
+		int updateCount = 0;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		String sql="update mysquad set view_count=? where mysquad_no=?";
+		try{
+			pstmt=con.prepareStatement("select view_count from mysquad where mysquad_no ="+squad_no);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) view_count =rs.getInt("view_count")+1;
+			else view_count=1;
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, view_count);
+			pstmt.setInt(2, squad_no);
 			updateCount = pstmt.executeUpdate();
 		}catch(Exception ex){
 		}finally{

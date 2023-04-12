@@ -240,13 +240,17 @@
 					<th class='width1'>작성자</th>
 					<th class='width2'>스쿼드 이름</th>
 					<th class='width1'>포메이션</th>
+					<th class='width1'>조회수</th>
+					<th class='width1'>작성일</th>
 				</tr>
 			<%
 				for(int i=0; i<allList.size(); i++){
 					out.println("<tr><td>"+allList.get(i).getSquad_num()+"</td>");
 					out.println("<td>"+allList.get(i).getUser_id()+"</td>");
 					out.println("<td><a href='squad.sq?no="+allList.get(i).getSquad_num()+"'>"+allList.get(i).getSquad_name()+"</a></td>");
-					out.println("<td>"+allList.get(i).getFormation()+"</td></tr>");
+					out.println("<td>"+allList.get(i).getFormation()+"</td>");
+					out.println("<td>"+allList.get(i).getView_count()+"</td>");
+					out.println("<td>"+allList.get(i).getMake_date()+"</td></tr>");
 					
 				}
 			}

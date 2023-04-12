@@ -44,5 +44,19 @@ public class UserSquadListService {
 		return selectSquad;
 		
 	}
+	
+	public void updateViewCount(int no) throws Exception{
+		boolean isModifySuccess = false;
+		Connection con = getConnection();
+		SquadDAO commuDAO = SquadDAO.getInstance();
+		commuDAO.setConnection(con);
+		int updateCount = commuDAO.updateViewCount(no);
+		if(updateCount > 0){
+			commit(con);
+		}
+		else{
+			rollback(con);
+		}
+	}
 
 }

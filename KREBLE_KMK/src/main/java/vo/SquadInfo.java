@@ -1,5 +1,7 @@
 package vo;
 
+import java.util.Date;
+
 public class SquadInfo {
 	String user_id;
 	int squad_num;
@@ -18,6 +20,20 @@ public class SquadInfo {
 	String player10;
 	String player11;
 	String disclose;
+	Date make_date;
+	int view_count;
+	public Date getMake_date() {
+		return make_date;
+	}
+	public void setMake_date(Date make_date) {
+		this.make_date = make_date;
+	}
+	public int getView_count() {
+		return view_count;
+	}
+	public void setView_count(int view_count) {
+		this.view_count = view_count;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

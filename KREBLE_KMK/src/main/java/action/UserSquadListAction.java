@@ -28,6 +28,7 @@ import vo.SquadInfo;
 			request.setAttribute("squadList", squadList);
 		}
 		if(squad_no!=0) {
+			userSquadListService.updateViewCount(squad_no);
 			selectSquad = userSquadListService.getArticle(squad_no);
 			request.setAttribute("squad", selectSquad);
 		}

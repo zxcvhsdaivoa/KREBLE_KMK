@@ -26,6 +26,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
+	<script src="js/shop_prd_detail.js"></script>
 	
 	
 	
@@ -42,7 +43,7 @@
 <!-- 		중앙정렬용 div -->
 		<div id = "center_div">
 			<!-- 제품정보 -->
-				<form action="prd_insert.sp">
+				<form action="prd_insert.sp" method="post">
 					<!-- 제품정보 -->
 					<article id="pd_detail_no1">
 						<div class = "no1_img_info1"><!-- 상품사진 및 필수정보 -->
@@ -73,7 +74,14 @@
 									
 									<tr>
 									<td>제품 종류</td>
-									<td><input type="text" name="prd_cata"/></td>
+									<td>
+										<select name="prd_cata">
+											<option>축구화</option>	
+											<option>축구공</option>	
+											<option>유니폼</option>	
+											<option>기타용품</option>	
+										</select>
+									</td>
 									</tr>
 									
 									<tr>
@@ -93,7 +101,7 @@
 									
 									<tr>
 									<td>남은 수량</td>
-									<td><input type="text" name="prd_qant"/></td>
+									<td><input type="number" name="prd_qant"></td>
 									</tr>
 									
 								</table>
@@ -119,7 +127,13 @@
 								</tr>
 								<tr>
 									<td>품질검사</td>
-									<td><input type="text" name="prd_qaul"/></td>
+									<td>
+										<select name="prd_qaul">
+											<option>검사예정</option>	
+											<option>검사중</option>	
+											<option>검사완료</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<td>AS연락처</td>

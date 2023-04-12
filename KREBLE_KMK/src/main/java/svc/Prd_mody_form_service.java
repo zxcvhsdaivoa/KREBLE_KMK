@@ -7,7 +7,7 @@ import use_data.Shop_prd;
 
 import static db.JdbcUtil.*;
 
-public class Shop_detail_service {
+public class Prd_mody_form_service {
 
 	public Shop_prd getArticle(String p_no) throws Exception{
 

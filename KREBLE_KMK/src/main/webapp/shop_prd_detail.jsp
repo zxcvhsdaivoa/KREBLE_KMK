@@ -17,15 +17,10 @@
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
 	<script src="js/shop_prd_detail.js"></script>
 	<jsp:useBean id="sp_de" class="use_data.Db_method_shop"></jsp:useBean>
-	<% 
-	
-	
-
+	<%
 	Shop_prd aa = (Shop_prd)request.getAttribute("article");
     String nowPage = (String)request.getAttribute("page");
-	
 	ArrayList<Shop_prd> spr = sp_de.shop_prde_reply(aa.getPrd_no());
-	
 	%>
 	
 <title>제품상세페이지</title>
@@ -141,7 +136,7 @@
 			
 			<article id="pd_detail_no3">
 				<div class="pd_bt">
-					<input type="button" value="수정">
+					<a href = "shop_mody_form.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>"><input type="button" value="수정"></a>
 					<input type="button" value="삭제">
 					<input type="button" value="목록">				
 				</div>
@@ -204,7 +199,7 @@
 		<div>
 			<div>
 				<p>작성자 : </p>
-				<input type="text" readonly name="re_id">
+				<input type="text" value="<%= id %>" readonly name="re_id">
 				<p>평점 : </p>
 				<input type="number" name="re_sc" min="1" max ="10" step="0.5">
 			</div>

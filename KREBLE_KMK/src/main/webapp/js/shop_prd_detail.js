@@ -5,4 +5,10 @@ $(function(){
 			return false;
 		}
 	})
+	
+	
+	$(".pd_bt > input[type=button]").click(function(){
+		 location.href = "shop_list_action.sp";
+	})
+	
 })

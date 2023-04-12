@@ -7,13 +7,11 @@ import static db.JdbcUtil.*;
 public class Shop_insert_service {
 
 	public boolean registArticle(Shop_prd shopprd) throws Exception{
-		
 		boolean isWriteSuccess = false;
 		Connection con = getConnection();
 		Shop_DAO shopDAO = Shop_DAO.getInstance();
 		shopDAO.setConnection(con);
 		int insertCount = shopDAO.insertArticle(shopprd);
-		
 		if(insertCount > 0){
 			commit(con);
 			isWriteSuccess = true;

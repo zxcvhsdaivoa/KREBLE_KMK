@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.Prd_mody_form_action;
 import action.Shop_detail_action;
 import action.Shop_list_action;
 import action.Shop_prd_insert_action;
@@ -66,7 +67,7 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 			forward=new ActionForward();
 			forward.setPath("/shop_reform_board.jsp");
 		}
-		//상품등록
+		//상품등록페이지
 		else if(command.equals("/shop_prd_insert.sp")){
 			forward=new ActionForward();
 			forward.setPath("/shop_prd_insert.jsp");
@@ -74,6 +75,24 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		//상품등록메소드
 		else if(command.equals("/prd_insert.sp")){
 			action = new Shop_prd_insert_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//상품수정페이지
+		else if(command.equals("/shop_mody_form.sp")){
+			action = new Prd_mody_form_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//상품수정등록
+		else if(command.equals("/Shop_prd_mody_action.sp")){
+			action = new Prd_mody_form_action();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
@@ -97,7 +116,7 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 			forward.setPath("/shop_prd_.jsp");
 		}
 		//여분
-		else if(command.equals("/boardList.bo")){
+		else if(command.equals("/shop_prd_.bo")){
 			action = new Shop_re_delete_action();
 			try{
 				forward=action.execute(request, response);

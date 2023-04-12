@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
+import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import use_data.Shop_prd;
@@ -100,8 +100,7 @@ public class Shop_DAO {
 		Shop_prd shop_prd = null;
 
 		try{
-			pstmt = con.prepareStatement(
-					"select * from product where prd_no = ?");
+			pstmt = con.prepareStatement("select * from product where prd_no = ?");
 			pstmt.setString(1, prd_no);
 			rs= pstmt.executeQuery();
 
@@ -162,37 +161,37 @@ public class Shop_DAO {
 		int num =0;
 		String sql="";
 		int insertCount=0;
-
+		String g = article.getPrd_cata();
+		String formattedNum = "";
+		String se_sql = "SELECT max(right(prd_no,4)) FROM product where prd_cata='"+g+"';";
 		try{
-			pstmt=con.prepareStatement("SELECT max(right(prd_no,4)) FROM product where prd_cata='"+article.getPrd_cata()+"';");
+			pstmt=con.prepareStatement(se_sql);
 			rs = pstmt.executeQuery();
-
 			if(rs.next()) {
-				num =rs.getInt("max(right(prd_no,4)")+1;
+				num =rs.getInt("max(right(prd_no,4))");
+				formattedNum = String.format("%04d", num+1);
 			}
 			else {
 				num=0001;
 			}
-			String g = article.getPrd_cata();
 			String p_no = "";
 			switch(g) {
             case "축구화":
-            	p_no = "s"+num;
+            	p_no = "s"+formattedNum;
              break;
              case "축구공":
-            	p_no = "b"+num;
+            	p_no = "b"+formattedNum;
              break;
              case "유니폼":
-            	p_no = "u"+num;
+            	p_no = "u"+formattedNum;
              break;
              case "기타용품":
-            	p_no = "e"+num;
+            	p_no = "e"+formattedNum;
              break;
 
 			}
 			
 			sql="insert into product (prd_no , prd_name, prd_cata, prd_id, prd_meter, prd_note, prd_price, prd_size, prd_color, prd_date, prd_create, prd_qaul, prd_as, prd_qant, prd_img, prd_content) values(?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?)";
-			System.out.println("dfsdf");
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, p_no);
 			pstmt.setString(2, article.getPrd_name());
@@ -214,6 +213,7 @@ public class Shop_DAO {
 			insertCount=pstmt.executeUpdate();
 
 		}catch(Exception ex){
+			System.out.println(ex);
 		}finally{
 			close(rs);
 			close(pstmt);

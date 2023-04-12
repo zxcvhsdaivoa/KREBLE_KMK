@@ -21,6 +21,7 @@ public class Shop_prd_insert_action implements Action {
 		shopprd.setPrd_id(request.getParameter("prd_id"));
 		shopprd.setPrd_cata(request.getParameter("prd_cata"));
 		shopprd.setPrd_price(Integer.parseInt(request.getParameter("prd_price")));
+		shopprd.setPrd_note(request.getParameter("prd_note"));
 		shopprd.setPrd_size(request.getParameter("prd_size"));
 		shopprd.setPrd_qant(Integer.parseInt(request.getParameter("prd_qant")));
 		shopprd.setPrd_meter(request.getParameter("prd_meter"));
@@ -31,7 +32,6 @@ public class Shop_prd_insert_action implements Action {
 		shopprd.setPrd_content(request.getParameter("prd_content"));
 		Shop_insert_service shopinservice = new Shop_insert_service();
 		boolean isWriteSuccess = shopinservice.registArticle(shopprd);
-		System.out.println(isWriteSuccess);
 		if(!isWriteSuccess){
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -41,10 +41,6 @@ public class Shop_prd_insert_action implements Action {
 			out.println("</script>");
 		}
 		else{
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('등록되었습니다.')");
-			out.println("</script>");
 			forward = new ActionForward();
 			forward.setRedirect(true);
 			forward.setPath("shop_list_action.sp");

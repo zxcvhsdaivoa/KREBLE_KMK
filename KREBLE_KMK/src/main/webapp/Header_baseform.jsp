@@ -39,9 +39,9 @@
                 </li>
                 
 				<li>
-                  <a href="kreblechoi.jsp?field_id=s_000">#예약/대여</a>
+                  <a href="fieldInfo.choi?field_id=s_000">#예약/대여</a>
                   <ul class="sub">
-                    <li><a href="kreblechoi.jsp?field_id=s_000">시민구장 정보</a></li>
+                    <li><a href="fieldInfo.choi?field_id=s_000">시민구장 정보</a></li>
                     <li><a href="#">시민구장 예약</a></li>
                     <li><a href="rent_review.jsp">후기 게시판</a></li>
                   </ul>

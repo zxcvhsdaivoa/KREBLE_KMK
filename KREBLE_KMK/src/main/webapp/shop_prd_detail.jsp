@@ -34,7 +34,8 @@
 	<!-- section -->
   
 	<section>
-	<form action="#">
+	<form action="prd_re_insert.sp?page=<%=nowPage %>" method="post">
+	<input type="hidden" name="prd_no" value="<%=aa.getPrd_no()%>">
 		<!-- 제품정보 -->
 		<article id="pd_detail_no1">
 			<div class = "no1_img_info1"><!-- 상품사진 및 필수정보 -->
@@ -203,13 +204,13 @@
 		<div>
 			<div>
 				<p>작성자 : </p>
-				<input type="text" value="<%= id %>" readonly name="re_id">
+				<input type="text" value="<%= id %>" readonly name="prd_re_id">
 				<p>평점 : </p>
-				<input type="number" name="re_sc" min="1" max ="10" step="0.5">
+				<input type="number" name="prd_re_sc" min="1" max ="10">
 			</div>
 			<div>
 				<p>내용 : </p>
-				<textarea name="re_content"></textarea>
+				<textarea name="prd_re_text"></textarea>
 				<input type="hidden" name="prd_no" value="<%=aa.getPrd_no()%>">
 				<input type="submit" value="등록">
 			</div>

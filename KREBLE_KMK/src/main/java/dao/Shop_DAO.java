@@ -219,49 +219,6 @@ public class Shop_DAO {
 	}
 	//
 	
-	//상품리스트 댓글삭제
-	public int deleteArticle(String prd_re_no){
-
-		PreparedStatement pstmt = null;
-		String prdre_delete_sql="delete from prd_re where prd_re_no =?";
-		int deleteCount=0;
-
-		try{
-			pstmt=con.prepareStatement(prdre_delete_sql);
-			pstmt.setString(1, prd_re_no);
-			deleteCount=pstmt.executeUpdate();
-		}catch(Exception ex){
-		}	finally{
-			close(pstmt);
-		}
-
-		return deleteCount;
-
-	}
-	
-	
-	
-	//상품리스트 댓글삭제
-	public int prddeleteArticle(String prd_no){
-
-		PreparedStatement pstmt = null;
-		String prdre_delete_sql="delete from product where prd_no =?";
-		int deleteCount=0;
-
-		try{
-			pstmt=con.prepareStatement(prdre_delete_sql);
-			pstmt.setString(1, prd_no);
-			deleteCount=pstmt.executeUpdate();
-		}catch(Exception ex){
-		}	finally{
-			close(pstmt);
-		}
-
-		return deleteCount;
-
-	}
-	
-	
 	//상품등록
 	@SuppressWarnings("resource")
 	public int insertArticle(Shop_prd article){
@@ -331,7 +288,32 @@ public class Shop_DAO {
 		return insertCount;
 
 	}
+	//상품리플등록
+		@SuppressWarnings("resource")
+		public int reInsertArticle(Shop_prd article){
+			PreparedStatement pstmt = null;
+			int insertCount=0;
+			System.out.println(article.getPrd_re_sc());	
 
+			String sql = "insert into prd_re values(default,?,?,?,?)";
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getPrd_re_id());
+				pstmt.setString(2, article.getPrd_re_text());
+				pstmt.setInt(3, article.getPrd_re_sc());
+				pstmt.setString(4, article.getPrd_re_no());
+				insertCount=pstmt.executeUpdate();
+
+			}catch(Exception ex){
+				System.out.println(ex);
+			}finally{
+				close(pstmt);
+			}
+
+			return insertCount;
+
+		}
+		
 
 	//상품수정
 	@SuppressWarnings("resource")

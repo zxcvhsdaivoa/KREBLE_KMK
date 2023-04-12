@@ -65,16 +65,6 @@
 				<a href="shop_calist_action.sp?prd_cata=ball"><input type="button" value ="Ball" name = "ball_button" /></a>
 				<a href="shop_calist_action.sp?prd_cata=etc"><input type="button" value ="ETC" name = "etc_button" /></a>
 			</div>
-			<div>
-				<div class = "pr_label">금액대별 제품 보기</div>
-				<div class = "pr_radio">
-					<input type="radio" value="30000" name = "price" />~\30,000
-					<input type="radio" value="60000" name = "price" />~\60,000
-					<input type="radio" value="90000" name = "price" />~\90,000
-					<input type="radio" value="120000" name = "price" />~\120,000
-					<input type="radio" value="120001" name = "price" />\120,000~
-				</div>
-			</div>
 		</article>
 		<!-- 	사진 / 상품명 / 상품가격 / 색상 / 등록자	 -->
 		<!-- 제품리스트 -->

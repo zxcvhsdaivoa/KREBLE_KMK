@@ -15,6 +15,7 @@ import action.Shop_list_action;
 import action.Shop_prd_insert_action;
 import action.Shop_prd_mody_action;
 import action.Shop_re_delete_action;
+import action.Sp_re_insert_action;
 import vo.ActionForward;
 
 @SuppressWarnings("serial")
@@ -119,6 +120,15 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		//상품삭제
 		else if(command.equals("/Prd_delete_action.sp")){
 			action = new Shop_Prd_delete_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//상품리플등록메소드
+		else if(command.equals("/prd_re_insert.sp")){
+			action = new Sp_re_insert_action();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

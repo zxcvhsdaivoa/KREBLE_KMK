@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Prd_mody_form_action;
+import action.Shop_Prd_delete_action;
+import action.Shop_calist_action;
 import action.Shop_detail_action;
 import action.Shop_list_action;
 import action.Shop_prd_insert_action;
+import action.Shop_prd_mody_action;
 import action.Shop_re_delete_action;
 import vo.ActionForward;
 
@@ -92,7 +95,7 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		}
 		//상품수정등록
 		else if(command.equals("/Shop_prd_mody_action.sp")){
-			action = new Prd_mody_form_action();
+			action = new Shop_prd_mody_action();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
@@ -102,6 +105,24 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		//상품리스트
 		else if(command.equals("/shop_list_action.sp")){
 			action = new Shop_list_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//카타 상품리스트
+		else if(command.equals("/shop_calist_action.sp")){
+			action = new Shop_calist_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//상품삭제
+		else if(command.equals("/Prd_delete_action.sp")){
+			action = new Shop_Prd_delete_action();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

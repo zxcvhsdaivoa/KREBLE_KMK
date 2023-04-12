@@ -59,11 +59,11 @@
 		</article>
 		<article id="pl_art_no2"><!-- 품목 버튼 -->
 			<div class="no2_center">
-				<input type="button" value ="All" name = "all_button" />
-				<input type="button" value ="Uniform" name = "uni_button" />
-				<input type="button" value ="shoes" name = "shoes_button" />
-				<input type="button" value ="Ball" name = "ball_button" />
-				<input type="button" value ="ETC" name = "etc_button" />
+				<a href="shop_list_action.sp"><input type="button" value ="All" name = "all_button" /></a>
+				<a href="shop_calist_action.sp?prd_cata=uni"><input type="button" value ="Uniform" name = "uni_button" /></a>
+				<a href="shop_calist_action.sp?prd_cata=sho"><input type="button" value ="shoes" name = "shoes_button" /></a>
+				<a href="shop_calist_action.sp?prd_cata=ball"><input type="button" value ="Ball" name = "ball_button" /></a>
+				<a href="shop_calist_action.sp?prd_cata=etc"><input type="button" value ="ETC" name = "etc_button" /></a>
 			</div>
 			<div>
 				<div class = "pr_label">금액대별 제품 보기</div>
@@ -105,26 +105,36 @@
 				<td class="w99"><%=articleList.get(i).getPrd_price() %></td>
 				<td class="w99"><%=articleList.get(i).getPrd_color() %></td>
 				<td class="w149"><%=articleList.get(i).getPrd_id() %></td>
+					
 				<td class="w99"><%=articleList.get(i).getPrd_date() %></td>
 			</tr>
 			<%} %>
 		</table>
 			</div>
 		</article>
+		<%
+		String prd_cata="";
+		if(request.getParameter("prd_cata")==null||request.getParameter("prd_cata")==""){
+			prd_cata="shop_list_action.sp?page=";
+		}else{
+			prd_cata="shop_calist_action.sp?prd_cata="+request.getParameter("prd_cata")+"&page=";
+		}
+			
 		
+		%>
 		<!-- 페이지 이전/다음 넘김 -->
 		<article id="pl_art_no5">
 				<%if(nowPage<=1){ %>
 				[이전]&nbsp;
 				<%}else{ %>
-			<a href="shop_list_action.sp?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+			<a href="<%=prd_cata %><%=nowPage-1%>">[이전]</a>&nbsp;
 				<%} %>
 		
 				<%for(int a=startPage;a<=endPage;a++){
 						if(a==nowPage){%>
 				[<%=a %>]
 				<%}else{ %>
-			<a href="shop_list_action.sp?page=<%=a %>">[<%=a %>]
+			<a href="<%=prd_cata %><%=a %>">[<%=a %>]
 			</a>&nbsp;
 				<%} %>
 				<%} %>
@@ -132,7 +142,7 @@
 				<%if(nowPage>=maxPage){ %>
 				[다음]
 				<%}else{ %>
-			<a href="shop_list_action.sp?page=<%=nowPage+1 %>">[다음]</a>
+			<a href="<%=prd_cata %><%=nowPage+1 %>">[다음]</a>
 				<%} %>
 		</article>
 				<%

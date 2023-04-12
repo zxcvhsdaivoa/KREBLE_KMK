@@ -136,8 +136,12 @@
 			
 			<article id="pd_detail_no3">
 				<div class="pd_bt">
-					<a href = "shop_mody_form.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>"><input type="button" value="수정"></a>
-					<input type="button" value="삭제">
+					<a href = "shop_mody_form.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>">
+						<input type="button" value="수정">
+					</a>
+					<a href = "Prd_delete_action.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>">
+						<input type="button" value="삭제">
+					</a>
 					<input type="button" value="목록">				
 				</div>
 			</article>

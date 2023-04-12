@@ -32,7 +32,8 @@
 	<!-- section -->
   
 	<section>
-	<form action="#">
+	<form action="Shop_prd_mody_action.sp" method ="post">
+	<input type="hidden" value="<%=aa.getPrd_no() %>" name ="prd_no">
 		<!-- 제품정보 -->
 		<article id="pd_detail_no1">
 			<div class = "no1_img_info1"><!-- 상품사진 및 필수정보 -->
@@ -53,12 +54,12 @@
 					</colgroup>
 						<tr>
 						<td>상품이름</td>
-						<td><input type="text" value="<%=aa.getPrd_name() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_name() %>" name="prd_name"></td>
 						</tr>
 						
 						<tr>
 						<td>등록자</td>
-						<td><input type="text" readonly value="<%=aa.getPrd_id() %>"></td>
+						<td><input type="text" readonly value="<%=aa.getPrd_id() %>" name="prd_id"></td>
 						</tr>
 						
 						<tr>
@@ -75,12 +76,12 @@
 						
 						<tr>
 						<td>가격</td>
-						<td><input type="text" value="<%=aa.getPrd_price() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_price() %>" name="prd_price"></td>
 						</tr>
 						
 						<tr>
 						<td>사이즈</td>
-						<td><input type="text" value="<%=aa.getPrd_size() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_size() %>" name="prd_size"></td>
 						</tr>
 						
 						<tr>
@@ -90,7 +91,7 @@
 						
 						<tr>
 						<td>남은 수량</td>
-						<td><input type="text" value="<%=aa.getPrd_qant() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_qant() %>" name="prd_qant"></td>
 						</tr>
 						
 					</table>
@@ -104,15 +105,15 @@
 					</colgroup>
 					<tr>
 						<td>재질</td>
-						<td><input type="text" value="<%=aa.getPrd_meter() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_meter() %>" name="prd_meter"></td>
 					</tr>
 					<tr>
 						<td>색상</td>
-						<td><input type="text" value="<%=aa.getPrd_color() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_color() %>" name="prd_color"></td>
 					</tr>
 					<tr>
 						<td>제조사</td>
-						<td><input type="text" value="<%=aa.getPrd_create() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_create() %>" name="prd_create"></td>
 					</tr>
 					<tr>
 						<td>품질검사</td>
@@ -126,7 +127,7 @@
 					</tr>
 					<tr>
 						<td>AS연락처</td>
-						<td><input type="text" value="<%=aa.getPrd_as() %>"></td>
+						<td><input type="text" value="<%=aa.getPrd_as() %>" name="prd_as"></td>
 					</tr>
 				</table>
 			</div>
@@ -135,8 +136,8 @@
 		<!-- 제품소개 및 사진 -->
 		<article id="pd_detail_no2">
 			<div>
-				<input type="text" value="<%=aa.getPrd_note() %>">
-				<textarea><%=aa.getPrd_content() %></textarea>
+				<input type="text" value="<%=aa.getPrd_note() %>" name="prd_note">
+				<textarea name="prd_content"><%=aa.getPrd_content() %></textarea>
 			</div>
 		</article>
 				

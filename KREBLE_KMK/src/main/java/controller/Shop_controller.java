@@ -31,10 +31,6 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		ActionForward forward=null;
 		Action action=null;
 
-//		필요한게
-//		뭐있나하면?
-//		@@샵메인 인덱스 / @@샵 상품리스트/ @@상품상세페이지/ @@상품수정페이지/ @@상품등록페이지/ 장바구니/구매내역/제작의뢰
-//		리플관련도 필요
 		
 		//상품상세
 		if(command.equals("/shop_prd_detail.sp")){

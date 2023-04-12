@@ -33,7 +33,7 @@
 
     <!--section-->
   <div id="img_login">
-	  <div> 1</div>
+	  <div> '</div>
 	  <section>
 	    <div class="section_inner">
 	      <!--article 시작-->

@@ -6,17 +6,18 @@
 }
 
 section {
-	width : 600px;
-	height:calc(100vh - 270px);
+	width : 540px;
 	min-height: 710px;
 	float: left;
 	margin-top:60px;
-	margin-left:60px;
 }
 section .section_inner{
 	border: none;
 }
-
+#img_login{
+	width: 1400px;
+	margin: 0 auto;
+}
 
 #login_id {
 	text-align: center;
@@ -26,7 +27,7 @@ section .section_inner{
 }
 
 article > form {
-	width: 600px;
+	width: 480px;
 	height: 510px;
 	margin-left: 50px;
 	background-color: #fff;
@@ -100,7 +101,7 @@ input[type="button"] {
 .etc_login > span{
 	float: left;
 	display: block;
-	width :270px;
+	width :210px;
 	height : 40px;
 	margin:5px;
 	padding-left:10px;
@@ -125,6 +126,7 @@ input[type="button"] {
 
 .etc_login > span > span:first-child{
 	display: inline-block;
+	margin-top: 5px;
 	width: 30px;
 	height: 30px;
 	font-size: 23px;
@@ -132,10 +134,10 @@ input[type="button"] {
 }
 .etc_login > span > span:last-child{
 	display: inline-block;
-	width: 170px;
+	width: 105px;
 	height: 35px;
 	margin: 5px 10px;
-	font-size: 19px;
+	font-size: 16px;
 	text-align: center;
 }
 .etc_login > div{

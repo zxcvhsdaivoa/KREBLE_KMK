@@ -1,15 +1,18 @@
 package use_data;
 
 public class UserData {
-
 	String id;
 	String name;
+	String nick;
 	String pw;
 	String birth;
 	String gender;
 	String ph;
 	String email;
 	String address;
+	String join_date;
+	int cash;
+	
 	public String getId() {
 		return id;
 	}
@@ -21,6 +24,12 @@ public class UserData {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 	public String getPw() {
 		return pw;
@@ -57,5 +66,17 @@ public class UserData {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getJoin_date() {
+		return join_date;
+	}
+	public void setJoin_date(String join_date) {
+		this.join_date = join_date;
+	}
+	public int getCash() {
+		return cash;
+	}
+	public void setCash(int cash) {
+		this.cash = cash;
 	}
 }

@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 
 public class Db_method_commu extends Db_method_conn {
@@ -13,7 +16,7 @@ public class Db_method_commu extends Db_method_conn {
 	public ArrayList<CommunityData> commu_all(int page,int limit) throws Exception { //커뮤니티 호출 메소드
 		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
 		conn();
-		int startrow=(page-1)*10; 
+		int startrow=(page-1)*15; 
 		try{
 			ResultSet rs= stm.executeQuery("select * from community order by commu_no desc limit "+startrow+", "+limit+";");
 			while(rs.next()) {
@@ -36,7 +39,7 @@ public class Db_method_commu extends Db_method_conn {
 	public ArrayList<CommunityData> commu_cate(String cate,int page,int limit) throws Exception { //커뮤니티 카테고리별 호출 메소드
 		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
 		conn();
-		int startrow=(page-1)*10; 
+		int startrow=(page-1)*15; 
 		try{
 			ResultSet rs= stm.executeQuery("select * from community where category='"+cate+"' order by commu_no desc limit "+startrow+", "+limit+";");
 			while(rs.next()) {
@@ -59,7 +62,7 @@ public class Db_method_commu extends Db_method_conn {
 	public ArrayList<CommunityData> commu_search(String select, String text,String cate,int page,int limit) throws Exception { //커뮤니티 검색 메소드
 		conn();
 		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
-		int startrow=(page-1)*10; 
+		int startrow=(page-1)*15; 
 		try{
 			StringBuilder commandBuilder = new StringBuilder();
 			commandBuilder.append("select * from community where ");
@@ -272,4 +275,37 @@ public class Db_method_commu extends Db_method_conn {
 		}
 	}
 	
+	
+	public int comment_write(CommuCommentData ccd) throws Exception { //커뮤니티 댓글 작성
+		int rowNum=0;
+		try{
+			conn();
+			String command = String.format("insert into commu_comment values('"+ccd.getUser_id()+"','"+ccd.getCommu_no()+"','"+ccd.getCommuComment()+"',now());");
+			rowNum = stm.executeUpdate(command);
+			if(rowNum<1){
+				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
+			}
+		}finally {
+			diconn();
+		}
+		return rowNum;
+	}
+	
+	public CommuCommentData comment_list(int commu_no) {//커뮤니티 댓글 조회 가져오기
+		CommuCommentData ccd = new CommuCommentData();
+		try{
+			conn();
+			ResultSet rs= stm.executeQuery("select * from commu_comment where commu_no ="+commu_no);
+			while(rs.next()){
+				ccd.setUser_id(rs.getString("user_id"));
+				ccd.setCommu_no(rs.getInt("commu_no"));
+				ccd.setUser_id(rs.getString("comment"));
+				ccd.setComment_wrdate(rs.getDate("commu_date"));
+			}
+		}catch(Exception ex){
+		}finally{
+			diconn();
+		}
+		return ccd;
+	}
 }

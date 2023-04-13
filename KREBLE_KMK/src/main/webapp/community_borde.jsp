@@ -63,13 +63,24 @@
 					<table class="nextprev">
 					<tr>
 						<td>다음글</td>
-						<td><%if(next_board.getComu_title()!=null){ %><a href="community_borde.jsp?no=<%= next_board.getComu_num()%>" class="btn_next"><%= next_board.getComu_title() %></a><%}else{ %>다음글이 없습니다<%} %><td>
+						<td><%if(next_board.getComu_title()!=null){ %><a href="community_borde.jsp?no=<%= next_board.getComu_num()%>" class="btn_next"><%= next_board.getComu_title() %></a><%}else{ %>다음글이 없습니다<%} %></td>
 					</tr>
 					<tr>
 						<td>이전글</td>
 						<td><%if(prev_board.getComu_title()!=null){ %><a href="community_borde.jsp?no=<%= prev_board.getComu_num()%>" class="btn_prev"><%= prev_board.getComu_title() %></a><%}else{ %>이전글이 없습니다<%} %></td>
-					<td>
+					</tr>
 					</table>
+					
+					<div class="comment">
+						
+						<form name="comment_form">
+							<span class="login_id"><%=login_id %></span>
+							<input type="hidden" name="commu_no" id="commu_no" value="<%=comu_no%>">
+							<textarea id="comment" name="comment" class="comment_textarea"></textarea>
+							<input type="button" value="댓글입력" class="btn btn_comment" onclick="comment_write();">
+						</form>
+					
+					</div>
 				</div>
 			</div>
 			

@@ -38,7 +38,7 @@
   
 	<section>
 	<div id="section_inner"> <!-- 내용 중앙정렬용 -->
-	<form action = "shop_bak.sp" method="post">
+	<form>
 <!-- 		셀렉문을 여기에 호출? -->
 <!-- 			use_date.loadboard(); -->
 
@@ -90,14 +90,24 @@
 			for(int i=0;i<articleList.size();i++){
 			%>
 			<tr>
-				<td class="td_hide"><input type="text" value="<%=articleList.get(i).getPrd_no()%>" readonly name = "prd_no"></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_img() %>" class="w149" readonly name = "prd_img"></td>
 				<td><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_price() %>" class="w99" readonly name = "prd_price"></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_color() %>" class="w99" readonly name = "prd_color"></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>" class="w149" readonly name="prd_id"><input type="hidden" value="<%=id %>" name="prd_re_id"></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_date() %>" class="w99" readonly><input type="hidden" value="<%=nowPage %>" name="page"></td>
-				<td class="w99"><input type="submit" value="장바구니담기"></td>
+				
+				<%
+				if(id == null){
+				%>
+					<td></td>
+				<%	
+				}else{
+				%>
+				<td class="w99"><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니담기"></a></td>
+				<%
+				}
+				%>
 			</tr>
 			<%} %>
 		</table>

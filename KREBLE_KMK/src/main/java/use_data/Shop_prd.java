@@ -3,7 +3,7 @@ package use_data;
 public class Shop_prd {
 
 	String prd_no, prd_cata, prd_id, prd_meter, prd_note, prd_size, prd_color, prd_date, prd_create, prd_qaul, prd_as, prd_img, prd_content, prd_name, prd_re_ti, prd_re_id, prd_re_text, prd_re_no; 
-	int prd_price,  prd_qant, prd_re_num, prd_re_sc;
+	int prd_price,  prd_qant, prd_re_num, prd_re_sc, prd_total;
 	public String getPrd_no() {
 		return prd_no;
 	}
@@ -99,6 +99,12 @@ public class Shop_prd {
 	}
 	public void setPrd_qant(int prd_qant) {
 		this.prd_qant = prd_qant;
+	}
+	public int getPrd_total() {
+		return prd_total;
+	}
+	public void setPrd_total(int prd_total) {
+		this.prd_total = prd_total;
 	}
 	public String getPrd_re_id() {
 		return prd_re_id;

@@ -171,6 +171,9 @@
 					<col style="width:620px" />
 					<col style="width:160px" />
 					</colgroup>
+					<tr>
+					<td colspan="4">&#x203B;댓글은 최근 순으로 5개만 표기됩니다.</td>
+					</tr>
 					<tr class = "re_title">
 					<td>작성자</td>
 					<td>평점</td>
@@ -179,7 +182,8 @@
 					</tr>
 					<%
 					int i = spr.size();
-					for (i = i-1; i >= 0; i = i-1) {
+					int cnt = 0;
+					for (i = i-1; cnt < 5; i = i-1) {
 					    out.println("<tr>");
 					    out.println("<td>"+spr.get(i).getPrd_re_id()+"</td>");
 					    out.println("<td>"+spr.get(i).getPrd_re_sc()+"</td>");
@@ -192,6 +196,7 @@
 					    }
 					    
 					    out.println("</tr>");
+					    cnt++;
 					}
 					%>
 				</table>		

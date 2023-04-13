@@ -15,6 +15,7 @@ import action.Shop_list_action;
 import action.Shop_prd_insert_action;
 import action.Shop_prd_mody_action;
 import action.Shop_re_delete_action;
+import action.Sp_bak_form_action;
 import action.Sp_bak_insert_action;
 import action.Sp_re_insert_action;
 import svc.Prd_re_delete_service;
@@ -56,8 +57,12 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		}
 		//장바구니 페이지
 		else if(command.equals("/shop_back_page.sp")){
-			forward=new ActionForward();
-			forward.setPath("/shop_prd_bak.jsp");
+			action = new Sp_bak_form_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		//장바구니 등록
 		else if(command.equals("/shop_bak.sp")){

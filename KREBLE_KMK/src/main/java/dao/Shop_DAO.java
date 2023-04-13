@@ -217,7 +217,6 @@ public class Shop_DAO {
 		return shop_prd;
 
 	}
-	//
 	
 	//상품등록
 	@SuppressWarnings("resource")
@@ -400,15 +399,16 @@ public class Shop_DAO {
 		return insertCount;
 
 	}
-	//상품리플삭제
+	//상품삭제
 	@SuppressWarnings("resource")
-	public int deleteArticle(String p_no){
+	public int prddeleteArticle(String p_no){
 		PreparedStatement pstmt = null;
 		int insertCount=0;
 
-		String sql = "delete from prd_re where prd_re_num='"+p_no+"';";
+		String sql = "delete from product where prd_no=?;";
 		try{
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, p_no);
 			insertCount=pstmt.executeUpdate();
 
 		}catch(Exception ex){
@@ -421,9 +421,99 @@ public class Shop_DAO {
 
 	}
 
+	//상품리플삭제
+	@SuppressWarnings("resource")
+	public int deleteArticle(String p_no){
+		PreparedStatement pstmt = null;
+		int insertCount=0;
+
+		String sql = "delete from prd_re where prd_re_num=?";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, p_no);
+			insertCount=pstmt.executeUpdate();
+
+		}catch(Exception ex){
+			System.out.println(ex);
+		}finally{
+			close(pstmt);
+		}
+
+		return insertCount;
+
+	}
+	
+	
+	//장바구니 갯수
+	public int selectbackCount(String id) {
+
+		int listCount= 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try{
+			pstmt=con.prepareStatement("select count(*) from shop_back where sb_buy_id= ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				listCount=rs.getInt(1);
+			}
+		}catch(Exception ex){
+
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return listCount;
+
+	}
+	
+	//장바구니리스트
+	public ArrayList<Shop_prd> selectbackArticle(String id, int page,int limit){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String shop_list_sql="select * from shop_back where sb_buy_id = ? order by sb_prd desc limit ?,10";
+		ArrayList<Shop_prd> articleList = new ArrayList<Shop_prd>();
+		Shop_prd shop_prd = null;
+		int startrow=(page-1)*10; 
+
+		try{
+			pstmt = con.prepareStatement(shop_list_sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startrow);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				shop_prd = new Shop_prd();
+				shop_prd.setPrd_name(rs.getString("sb_name"));
+				shop_prd.setPrd_id(rs.getString("sb_prd_id"));
+				shop_prd.setPrd_no(rs.getString("sb_prd"));
+				shop_prd.setPrd_qant(Integer.parseInt(rs.getString("sb_qunt")));
+				shop_prd.setPrd_img(rs.getString("sb_img"));
+				shop_prd.setPrd_re_id(rs.getString("sb_buy_id"));
+				shop_prd.setPrd_color(rs.getString("sb_color"));
+				shop_prd.setPrd_price(Integer.parseInt(rs.getString("sb_price")));
+				shop_prd.setPrd_total(Integer.parseInt(rs.getString("sb_total")));
+				articleList.add(shop_prd);
+				
+			}
+
+		}catch(Exception ex){
+			System.out.println(ex);
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return articleList;
+
+	}
+	
+	
 	//장바구니등록
 		@SuppressWarnings("resource")
-		public int prdbackInsertArticle(Shop_prd article){
+		public int prdbackInsertArticle(Shop_prd article, String b_id){
 			PreparedStatement pstmt = null;
 			int insertCount=0;	
 
@@ -435,7 +525,7 @@ public class Shop_DAO {
 				pstmt.setString(3, article.getPrd_no());
 				pstmt.setInt(4, 1);
 				pstmt.setString(5, article.getPrd_img());
-				pstmt.setString(6, article.getPrd_re_id());
+				pstmt.setString(6, b_id);
 				pstmt.setString(7, article.getPrd_color());
 				pstmt.setInt(8, article.getPrd_price());
 				pstmt.setInt(9, article.getPrd_price());

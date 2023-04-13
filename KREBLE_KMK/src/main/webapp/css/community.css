@@ -40,9 +40,11 @@ section .section_inner {
 	
 }
 table {
+	border-spacing:0 0;
+}
+table.commu_list_table {
 	clear:both;
 	margin:20px auto 0;
-	border-spacing:0 0;
 }
 .style1{
 	font-size: 12px;
@@ -63,7 +65,10 @@ table {
 	border-bottom: 1px solid #e6e8e5;
     background-color: #e6e8e5;
 }
-
+.paging {
+	margin-top:20px;
+	text-align: center;
+}
 .serchtext{
 	width: 120px;
     height: 22px;
@@ -74,20 +79,21 @@ table {
 select {
 	padding-left:8px;
 }
-input[type="text"],
-textarae {
+input[type="text"]{
 	padding: 0 15px;	
-	
+	outline: none;
 }
 textarea {
 	resize:none;
+	padding: 0 15px;	
+	outline: none;
 }
 
 .btn {
 	display:block;
 	height:40px;
-	margin-left:15px;
-	margin-right:15px;
+	margin-left:5px;
+	margin-right:5px;
     text-align:center;
 	line-height:40px;
     width: 130px;
@@ -96,6 +102,9 @@ textarea {
 	border:none;
 }
 .btn > a {
+	display:block;
+	width:100%;
+	height:100%;
 	line-height:40px;
 }
 .btn > span {
@@ -164,6 +173,7 @@ textarea {
 	height:500px;
 	margin-top:15px;
 	margin-bottom:20px;
+	padding:15px;
 	vertical-align:top;
 }
 
@@ -220,6 +230,7 @@ textarea {
 	width:100%;
 	height:auto;
 	padding:30px;
+	margin-bottom:100px;
 }
 .content_box .title {
 	display:inline-block;
@@ -232,7 +243,8 @@ textarea {
 .content_box .write {
 	display:block;
 	width:100%;
-	min-height:300px;
+	min-height:150px;
+	padding:0;
 	border:none;
 	outline:none;
 	font-size:16px;
@@ -240,22 +252,19 @@ textarea {
 }
 
 
-.list_box {
-	width:480px;
+.btn_box {
+	float:right;
+	width:100%;
 	height:auto;
-	position:absolute;
-	bottom:-80px;
-	left:50%;
-	transform:translateX(-50%);
+	margin-bottom:60px;
 }
-.btn_list {
-	float:left;
+.btn_box .btn {
+	width:100px;
+	height:35px;
+	line-height:35px;
 }
-.btn_next {
-	float:left;
-}
-.btn_prev {
-	float:left;
+.btn_box .btn span {
+	line-height: 35px;
 }
 
 .writer_box {
@@ -265,11 +274,36 @@ textarea {
 	bottom:0;
 	left:15px;
 }
+.btn_list {
+	float:right;
+}
 .btn_change {
-	float:left;
+	float:right;
 }
 .btn_delete {
 	float:right;
+}
+table.nextprev {
+	width:100%;
+	border-top:2px solid gray;
+	border-bottom:2px solid gray;
+}
+table.nextprev tr {
+	width:100%;
+	height:35px;
+}
+table.nextprev tr:first-child td {
+	border-bottom:1px solid gray;
+}
+table.nextprev tr td {
+	width:calc(100% - 100px);
+	padding-left:15px;
+}
+table.nextprev tr td:first-child{
+	text-align:center;
+	width:100px;
+	background-color:buttonface;
+	padding:0;
 }
 
 

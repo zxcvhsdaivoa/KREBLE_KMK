@@ -22,41 +22,14 @@
 				<%
 				String login_id = (String) session.getAttribute("ID");
 				int comu_no = Integer.parseInt(request.getParameter("no"));
-				int last_no = ud.commu_last();
+				int read_count = ud.getReadCount(comu_no);
+				ud.updateReadCount(read_count, comu_no);
 				CommunityData comu = ud.commu_one(comu_no);
-				if(comu_no<1){
-					%>
-					<script>
-						alert("이전 페이지가 없습니다");
-						location.href = "community_borde.jsp?no=1&go=next";
-					</script>
-					<%
-				}
-				if(comu_no>last_no){
-					%>
-					<script>
-						alert("다음 페이지가 없습니다");
-						location.href = "community_borde.jsp?no="+<%= last_no%>+"&go=next";
-					</script>
-					<%
-				}
-				if(comu.getId() == null) {
-					String go = request.getParameter("go");
-					if(go.equals("next")){
-						%>
-						<script>
-							location.href = "community_borde.jsp?no="+<%=comu_no+1%>+"&go=next";
-						</script>
-						<%
-					}
-					else if(go.equals("prev")){
-						%>
-						<script>
-							location.href = "community_borde.jsp?no="+<%=comu_no-1%>+"&go=prev";
-						</script>
-						<%
-					}
-				}
+				CommunityData next_board=null;
+				next_board=ud.next_board(comu_no);
+				CommunityData prev_board=null;
+				prev_board=ud.prev_board(comu_no);
+				
 				%>
 				<div class="community_inner">
 					<div class="top_box">
@@ -70,6 +43,8 @@
 						<textarea class="write" readonly><%= comu.getComu_write()%></textarea>
 					</div>
 				
+					<div class="btn_box">
+						<a href="community.jsp?cate=all" class="btn btn_list"><span>목록</span></a>
 					<%
 					if(login_id == null) {
 						
@@ -78,16 +53,23 @@
 						
 					}
 					else if(comu.getId().equals(login_id)){
-						out.println("<div class='writer_box'><a href='community_change.jsp?no="+comu_no+"' class='btn_change'><span>수정하기</span></a>");
-						out.println("<a href='community_delete.jsp?no="+comu_no+"' class='btn_delete'><span>삭제하기</span></a></div>");
+						out.println("<a href='community_delete.jsp?no="+comu_no+"' class='btn btn_delete'><span>삭제하기</span></a>");
+						out.println("<a href='community_change.jsp?no="+comu_no+"' class=' btn btn_change'><span>수정하기</span></a>");
 					}
 					%>
-					<div class="list_box">
-						<a href="community_borde.jsp?no=<%= comu_no-1%>&go=prev" class="btn btn_prev"><span>이전글</span></a>
-						<a href="community.jsp?cate=all" class="btn btn_list"><span>목록</span></a>
-						<a href="community_borde.jsp?no=<%= comu_no+1%>&go=next" class="btn btn_next"><span>다음글</span></a>
 					</div>
 			
+			
+					<table class="nextprev">
+					<tr>
+						<td>다음글</td>
+						<td><%if(next_board.getComu_title()!=null){ %><a href="community_borde.jsp?no=<%= next_board.getComu_num()%>" class="btn_next"><%= next_board.getComu_title() %></a><%}else{ %>다음글이 없습니다<%} %><td>
+					</tr>
+					<tr>
+						<td>이전글</td>
+						<td><%if(prev_board.getComu_title()!=null){ %><a href="community_borde.jsp?no=<%= prev_board.getComu_num()%>" class="btn_prev"><%= prev_board.getComu_title() %></a><%}else{ %>이전글이 없습니다<%} %></td>
+					<td>
+					</table>
 				</div>
 			</div>
 			

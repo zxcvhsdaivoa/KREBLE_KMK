@@ -121,33 +121,26 @@ $(function(){
 
 	//스쿼드 저장
 	$(".save_squad").click(function(){
-		var login_Id = document.getElementById("user_id").value;
-		if(login_Id=="null"){
-			alert("로그인 후 이용해주세요");
-			return false;
-		}
-		else {
-			var sq_mem = document.querySelectorAll(".eng_name");
-			for(var i=0; i<sq_mem.length; i++){
-				var null_ch =sq_mem.item(i).innerText;
-				if(null_ch == ''){
-					alert('비어있는 칸이 없도록 선택해주세요');
-					return false;
-				}
-				else if(i==sq_mem.length-1) {
-					for(var j=1; j<sq_mem.length; j++){
-						var ckj=sq_mem.item(j).innerText;
-						for(var k=0; k<j; k++) {
-							var ckk=sq_mem.item(k).innerText;
-							if(ckj == ckk) { 
-								alert('선수가 중복되지 않게 선택해주세요')
-								i=sq_mem.length;
-								j=sq_mem.length;
-								return false;
-					        } else if(j==sq_mem.length-1 && k==j-1) {
-					            
-					        }
-						}
+		var sq_mem = document.querySelectorAll(".eng_name");
+		for(var i=0; i<sq_mem.length; i++){
+			var null_ch =sq_mem.item(i).innerText;
+			if(null_ch == ''){
+				alert('비어있는 칸이 없도록 선택해주세요');
+				return false;
+			}
+			else if(i==sq_mem.length-1) {
+				for(var j=1; j<sq_mem.length; j++){
+					var ckj=sq_mem.item(j).innerText;
+					for(var k=0; k<j; k++) {
+						var ckk=sq_mem.item(k).innerText;
+						if(ckj == ckk) { 
+							alert('선수가 중복되지 않게 선택해주세요')
+							i=sq_mem.length;
+							j=sq_mem.length;
+							return false;
+				        } else if(j==sq_mem.length-1 && k==j-1) {
+				            
+				        }
 					}
 				}
 			}

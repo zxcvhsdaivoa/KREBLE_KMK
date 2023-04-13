@@ -1,16 +1,21 @@
 package use_data;
 
+import static db.JdbcUtil.close;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
 
 public class Db_method_commu extends Db_method_conn {
-	public ArrayList<CommunityData> commu_all() throws Exception { //커뮤니티 호출 메소드
+	
+	public ArrayList<CommunityData> commu_all(int page,int limit) throws Exception { //커뮤니티 호출 메소드
 		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
 		conn();
+		int startrow=(page-1)*10; 
 		try{
-			ResultSet rs= stm.executeQuery("select * from community order by commu_no desc;");
+			ResultSet rs= stm.executeQuery("select * from community order by commu_no desc limit "+startrow+", "+limit+";");
 			while(rs.next()) {
 				CommunityData cdb= new CommunityData();
 				cdb.setComu_num(rs.getInt("commu_no"));
@@ -28,11 +33,12 @@ public class Db_method_commu extends Db_method_conn {
 		return si;
 	}
 	
-	public ArrayList<CommunityData> commu_cate(String cate) throws Exception { //커뮤니티 카테고리별 호출 메소드
+	public ArrayList<CommunityData> commu_cate(String cate,int page,int limit) throws Exception { //커뮤니티 카테고리별 호출 메소드
 		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
 		conn();
+		int startrow=(page-1)*10; 
 		try{
-			ResultSet rs= stm.executeQuery("select * from community where category='"+cate+"' order by commu_no desc;");
+			ResultSet rs= stm.executeQuery("select * from community where category='"+cate+"' order by commu_no desc limit "+startrow+", "+limit+";");
 			while(rs.next()) {
 				CommunityData cdb= new CommunityData();
 				cdb.setComu_num(rs.getInt("commu_no"));
@@ -48,6 +54,105 @@ public class Db_method_commu extends Db_method_conn {
 			diconn();
 		}
 		return si;
+	}
+
+	public ArrayList<CommunityData> commu_search(String select, String text,String cate,int page,int limit) throws Exception { //커뮤니티 검색 메소드
+		conn();
+		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
+		int startrow=(page-1)*10; 
+		try{
+			StringBuilder commandBuilder = new StringBuilder();
+			commandBuilder.append("select * from community where ");
+			if(!cate.equals("all")) {
+				commandBuilder.append("category ='"+cate+"' and ");
+			}
+			
+			if(select.equals("search_title")) {
+				commandBuilder.append("commu_title like '%"+text+"%'");
+			}
+			else if(select.equals("search_title_write")) {
+				commandBuilder.append("(commu_title like '%"+text+"%' or commu_write like '%"+text+"%')");
+			}
+			else if(select.equals("search_name")) {
+				commandBuilder.append("user_id='"+text+"'");
+			}
+			commandBuilder.append(" order by commu_no desc limit "+startrow+", "+limit+";");
+			String aa = commandBuilder.toString();
+			ResultSet rs = stm.executeQuery(aa);
+			while(rs.next()) {
+				CommunityData cdb= new CommunityData();
+				cdb.setComu_num(rs.getInt("commu_no"));
+				cdb.setId(rs.getString("user_id"));
+				cdb.setCategory(rs.getString("category"));
+				cdb.setComu_title(rs.getString("commu_title"));
+				cdb.setComu_write(rs.getString("commu_write"));
+				cdb.setComu_date(rs.getString("commu_wrday"));
+				cdb.setCount(rs.getInt("commu_readcount"));
+				si.add(cdb);
+			}
+		}finally {
+			diconn();
+		}
+		return si;
+	}
+	
+	public int commu_all_count() throws Exception { //커뮤니티 전체 갯수
+		int count=0;
+		conn();
+		try{
+			ResultSet rs= stm.executeQuery("select count(*) from community order by commu_no desc;");
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		}finally {
+			diconn();
+		}
+		return count;
+	}
+	
+	public int commu_cate_count(String cate) throws Exception { //커뮤니티 카테고리별 갯수
+		int count=0;
+		conn(); 
+		try{
+			ResultSet rs= stm.executeQuery("select count(*) from community where category='"+cate+"' order by commu_no desc;");
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		}finally {
+			diconn();
+		}
+		return count;
+	}
+
+	public int commu_search_count(String select, String text,String cate) throws Exception { //커뮤니티 검색 갯수
+		conn();
+		int count=0;
+		try{
+			StringBuilder commandBuilder = new StringBuilder();
+			commandBuilder.append("select count(*) from community where ");
+			if(!cate.equals("all")) {
+				commandBuilder.append("category ='"+cate+"' and ");
+			}
+			
+			if(select.equals("search_title")) {
+				commandBuilder.append("commu_title like '%"+text+"%'");
+			}
+			else if(select.equals("search_title_write")) {
+				commandBuilder.append("(commu_title like '%"+text+"%' or commu_write like '%"+text+"%')");
+			}
+			else if(select.equals("search_name")) {
+				commandBuilder.append("user_id='"+text+"'");
+			}
+			commandBuilder.append(" order by commu_no desc;");
+			String aa = commandBuilder.toString();
+			ResultSet rs = stm.executeQuery(aa);
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		}finally {
+			diconn();
+		}
+		return count;
 	}
 	
 	public CommunityData commu_one(int comu_no) throws Exception { //커뮤니티 페이지1개 호출 메소드
@@ -70,53 +175,34 @@ public class Db_method_commu extends Db_method_conn {
 		return cdb;
 	}
 	
-	public ArrayList<CommunityData> commu_search(String select, String text) throws Exception { //커뮤니티 검색 메소드
+	public CommunityData next_board(int comu_no) throws Exception { //커뮤니티 다음글 호출 메소드
 		conn();
-		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
+		CommunityData cdb= new CommunityData();
 		try{
-			StringBuilder commandBuilder = new StringBuilder();
-			commandBuilder.append("select * from community");
-			if(select.equals("search_title")) {
-				commandBuilder.append(" where commu_title like '%"+text+"%'");
-			}
-			else if(select.equals("search_title_write")) {
-				commandBuilder.append(" where commu_title like '%"+text+"%' or commu_write like '%"+text+"%'");
-			}
-			else if(select.equals("search_name")) {
-				commandBuilder.append(" where user_id='"+text+"'");
-			}
-			commandBuilder.append(" order by commu_no desc;");
-			String aa = commandBuilder.toString();
-			ResultSet rs = stm.executeQuery(aa);
-			while(rs.next()) {
-				CommunityData cdb= new CommunityData();
+			ResultSet rs= stm.executeQuery("select * from community where commu_no>"+comu_no+" order by commu_no ASC LIMIT 1;");
+			if(rs.next()) {
 				cdb.setComu_num(rs.getInt("commu_no"));
-				cdb.setId(rs.getString("user_id"));
-				cdb.setCategory(rs.getString("category"));
 				cdb.setComu_title(rs.getString("commu_title"));
-				cdb.setComu_write(rs.getString("commu_write"));
-				cdb.setComu_date(rs.getString("commu_wrday"));
-				cdb.setCount(rs.getInt("commu_readcount"));
-				si.add(cdb);
 			}
 		}finally {
 			diconn();
 		}
-		return si;
+		return cdb;
 	}
 	
-	public int commu_last() throws Exception { //커뮤니티 페이지1개 호출 메소드
+	public CommunityData prev_board(int comu_no) throws Exception { //커뮤니티 다음글 호출 메소드
 		conn();
-		int last_no =0;
+		CommunityData cdb= new CommunityData();
 		try{
-			ResultSet rs= stm.executeQuery("select max(commu_no) from community;");
+			ResultSet rs= stm.executeQuery("select * from community where commu_no<"+comu_no+" order by commu_no desc LIMIT 1;");
 			if(rs.next()) {
-				last_no=rs.getInt("max(commu_no)");
+				cdb.setComu_num(rs.getInt("commu_no"));
+				cdb.setComu_title(rs.getString("commu_title"));
 			}
 		}finally {
 			diconn();
 		}
-		return last_no;
+		return cdb;
 	}
 	
 	public void commu_write(CommunityData cmd) throws Exception { //커뮤니티 글 작성
@@ -141,6 +227,34 @@ public class Db_method_commu extends Db_method_conn {
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
 			}
 		}finally {
+			diconn();
+		}
+	}
+
+	public int getReadCount(int commu_no) {//커뮤니티 기존 조회수 가져오기
+		int readcount =0;
+		try{
+			conn();
+			ResultSet rs= stm.executeQuery("select commu_readcount from community where commu_no ="+commu_no);
+			if(rs.next()) readcount =rs.getInt("commu_readcount")+1;
+		}catch(Exception ex){
+		}finally{
+			diconn();
+		}
+		return readcount;
+	}
+	
+	public void updateReadCount(int count,int commu_no){//커뮤니티 조회수 증가
+		try{
+			conn();
+			
+			String command=String.format("update community set commu_readcount=%s where commu_no=%s",count,commu_no);
+			int rowNum = stm.executeUpdate(command);
+			if(rowNum<1){
+				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
+			}
+		}catch(Exception ex){
+		}finally{
 			diconn();
 		}
 	}

@@ -29,18 +29,71 @@
 			
 				    <%@ page import="use_data.CommunityData"%>
 				    <%@ page import="java.util.ArrayList"%>
-				    <%String cate = request.getParameter("cate"); %>
+				    <%
+					ArrayList<CommunityData> comu= null;
+					int listCount=0;
+				    //category
+				    String cate="all";
+				    if(request.getParameter("cate")!=null){
+					    cate = request.getParameter("cate");
+				    }
+					
+					//paging
+				    int page_no=1;
+					int limit=15;
+					if(request.getParameter("page")!=null){
+						page_no=Integer.parseInt(request.getParameter("page"));
+					}
+					
+			   		//search
+					String search="noSearch";
+					String search_text="";
+			   		if(request.getParameter("search_text")!=null&&request.getParameter("search_text")!=""){
+					    search = request.getParameter("search_select");
+						search_text = request.getParameter("search_text");
+					}
+			   		
+			   		Date now = new Date();
+					SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					
+					if(search.equals("noSearch")){
+						if(cate.equals("all")){
+							comu = ud.commu_all(page_no,limit);
+							listCount=ud.commu_all_count();
+						}
+						else {
+							comu = ud.commu_cate(cate,page_no,limit);
+							listCount=ud.commu_cate_count(cate);
+						}
+					}
+					else {
+						comu = ud.commu_search(search, search_text,cate,page_no,limit);
+						listCount=ud.commu_search_count(search, search_text, cate);
+						
+					}
+					
+					//paging2
+			   		int maxPage=(int)((double)listCount/limit+0.95); 
+			   		int startPage = (((int) ((double)page_no / 10 + 0.9)) - 1) * 10 + 1;
+			   	    int endPage = startPage+10-1;
+
+			   		if (endPage> maxPage) endPage= maxPage;
+			   		
+				    %>
 				    <div class="top_wrap">
 						<span class="btn btn_write"><a href="community_check.jsp?do=ck">글쓰기</a></span>
 						<ul class="cate">
-							<li><a href="community.jsp?cate=all">전체</a></li>
+							<li><a href="community.jsp">전체</a></li>
 							<li><a href="community.jsp?cate=free">자유</a></li>
 							<li><a href="community.jsp?cate=debate">토론</a></li>
 							<li><a href="community.jsp?cate=qna">질문</a></li>
 							<li><a href="community.jsp?cate=info">정보</a></li>
 						</ul>
 				    </div>
-				    <table>
+				    <table class="commu_list_table">
+					<%
+					if(comu != null && listCount > 0){
+					%>
 					    <tr class="bg1">
 					    	<th class="head1">글번호</th>
 					    	<th class="head2">작성자</th>
@@ -51,26 +104,7 @@
 					    </tr>
 					    <tbody class="style2">
 						<%
-						ArrayList<CommunityData> comu;
-						Date now = new Date();
-						SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					    String search = request.getParameter("search_select");
-						if(search==null){
-						    search ="";
-						}
-						String search_text = request.getParameter("search_text");
-						if(search==""){
-							if(cate.equals("all")){
-								comu = ud.commu_all();
-							}
-							else {
-								comu = ud.commu_cate(cate);
-							}
-						}
-						else {
-							comu = ud.commu_search(search, search_text);
-							
-						}
+						
 						for(int i=0; i<comu.size(); i++){					
 							out.println("<tr class='bt_border'><td>"+comu.get(i).getComu_num()+"</td>");
 							out.println("<td>"+comu.get(i).getId()+"</td>");
@@ -95,10 +129,36 @@
 						%>
 						</tbody>
 					</table>
+					<div class="paging">
+					
+						<%if(page_no<=1){ %>
+						[이전]&nbsp;
+						<%}else{ %>
+						<a href="community.jsp?page=<%=page_no-1%><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[이전]</a>&nbsp;
+						<%} %>
+					
+						<%for(int a=startPage;a<=endPage;a++){
+							if(a==page_no){%>
+							[<%=a %>]
+							<%}else{ %>
+								<a href="community.jsp?page=<%=a %><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[<%=a %>]</a>&nbsp;
+							<%} %>
+						<%} %>
+					
+						<%if(page_no>=maxPage){ %>
+						[다음]
+						<%}else{ %>
+						<a href="community.jsp?page=<%=page_no+1 %><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[다음]</a>
+						<%} %>
+						<%
+					    }
+						%>
+					
+					</div>
 					<div class="search_box">
-						<form name="search" action="community.jsp?cate=<%= cate%>">
-							<input type="hidden" name="cate" value="all">
-							<select name="search_select" id="search_select" class="search_select">
+						<form name="search" action="community.jsp">
+							<input type="hidden" name="cate" value="<%= cate %>">
+							<select name="search_select" id="search_select" name="search_select" class="search_select">
 								<option value="search_title" <% if(search.equals("search_title")){%>selected="selected"<%}%>>제목</option>
 								<option value="search_title_write" <% if(search.equals("search_title_write")){%>selected="selected"<%}%>>제목+내용</option>
 						    	<option value="search_name" <% if(search.equals("search_name")){%>selected="selected"<%}%>>작성자</option>

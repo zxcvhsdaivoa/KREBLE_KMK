@@ -16,6 +16,7 @@ import action.Shop_prd_insert_action;
 import action.Shop_prd_mody_action;
 import action.Shop_re_delete_action;
 import action.Sp_re_insert_action;
+import svc.Prd_re_delete_service;
 import vo.ActionForward;
 
 @SuppressWarnings("serial")
@@ -51,11 +52,6 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		else if(command.equals("/shop_prd_mod.sp")){
 			forward=new ActionForward();
 			forward.setPath("/shop_prd_mod.jsp");
-		}
-		//장바구니
-		else if(command.equals("/shop_bak.sp")){
-			forward=new ActionForward();
-			forward.setPath("/shop_prd_bak.jsp");
 		}
 		//구매내역
 		else if(command.equals("/shop_prd_buy_list.sp")){
@@ -134,6 +130,27 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}
+		//상품삭제등록메소드
+		else if(command.equals("/shop_re_del.sp")){
+			action = new Shop_re_delete_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//장바구니
+
+
+		else if(command.equals("/shop_bak.sp")){
+			action = new Shop_re_delete_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			//forward.setPath("/shop_prd_bak.jsp");
 		}
 		
 		

@@ -10,16 +10,17 @@ import use_data.Shop_prd;
 import vo.ActionForward;
 
 
-public class Sp_re_insert_action implements Action {
+public class Sp_bak_insert_action implements Action {
 
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		String nowPage = request.getParameter("page");
 		ActionForward forward=null;
 		Shop_prd shopprd = null;
-		shopprd = new Shop_prd();
-		shopprd.setPrd_re_id(request.getParameter("prd_re_id"));//리플작성자
-		shopprd.setPrd_re_text(request.getParameter("prd_re_text"));//리플내용
-		shopprd.setPrd_re_no(request.getParameter("prd_no"));//상품연결번호
+		String p_no = request.getParameter("prd_no");//상품번호
+		String p_img = request.getParameter("prd_img");//상품이미지
+		String p_name = request.getParameter("prd_name");//상품이름
+		String p_price = request.getParameter("prd_price");//상품가격
+		String p_color = request.getParameter("prd_color");//상품색상
+		String nowPage = request.getParameter("page");
 		//리플번호PKAI
 		shopprd.setPrd_re_sc(Integer.parseInt(request.getParameter("prd_re_sc")));//평점
 		Sp_re_inser_service shopinservice = new Sp_re_inser_service();
@@ -35,7 +36,7 @@ public class Sp_re_insert_action implements Action {
 		else{
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("shop_prd_detail.sp?prd_no="+request.getParameter("prd_no")+"&page="+nowPage);
+			forward.setPath("shop_prd_detail.sp?prd_no="+request.getParameter("prd_no"));
 		}
 
 		return forward;

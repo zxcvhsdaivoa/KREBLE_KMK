@@ -292,8 +292,7 @@ public class Shop_DAO {
 		@SuppressWarnings("resource")
 		public int reInsertArticle(Shop_prd article){
 			PreparedStatement pstmt = null;
-			int insertCount=0;
-			System.out.println(article.getPrd_re_sc());	
+			int insertCount=0;	
 
 			String sql = "insert into prd_re values(default,?,?,?,?)";
 			try{
@@ -395,6 +394,26 @@ public class Shop_DAO {
 			System.out.println(ex);
 		}finally{
 			close(rs);
+			close(pstmt);
+		}
+
+		return insertCount;
+
+	}
+	//상품리플삭제
+	@SuppressWarnings("resource")
+	public int deleteArticle(String p_no){
+		PreparedStatement pstmt = null;
+		int insertCount=0;
+
+		String sql = "delete from prd_re where prd_re_num='"+p_no+"';";
+		try{
+			pstmt = con.prepareStatement(sql);
+			insertCount=pstmt.executeUpdate();
+
+		}catch(Exception ex){
+			System.out.println(ex);
+		}finally{
 			close(pstmt);
 		}
 

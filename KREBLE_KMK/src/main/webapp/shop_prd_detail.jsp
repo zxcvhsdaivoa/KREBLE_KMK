@@ -186,7 +186,7 @@
 					    out.println("<td>"+spr.get(i).getPrd_re_text()+"</td>");
 					    
 					    if(spr.get(i).getPrd_re_id().equals(id)){
-					    	out.println("<td><a href='shop_re_del.sp?re_no='"+spr.get(i).getPrd_re_no()+"><input type='button' class='del_check' value='댓글삭제'></a></td>");
+					    	out.println("<td><a href='shop_re_del.sp?re_no="+spr.get(i).getPrd_re_num()+"&prd_no="+aa.getPrd_no()+"'><input type='button' class='del_check' value='댓글삭제'></a></td>");
 					    }else{
 					    	out.println("<td></td>");	
 					    }

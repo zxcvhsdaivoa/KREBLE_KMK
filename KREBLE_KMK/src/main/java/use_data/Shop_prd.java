@@ -88,6 +88,18 @@ public class Shop_prd {
 	public void setPrd_name(String prd_name) {
 		this.prd_name = prd_name;
 	}
+	public int getPrd_price() {
+		return prd_price;
+	}
+	public void setPrd_price(int prd_price) {
+		this.prd_price = prd_price;
+	}
+	public int getPrd_qant() {
+		return prd_qant;
+	}
+	public void setPrd_qant(int prd_qant) {
+		this.prd_qant = prd_qant;
+	}
 	public String getPrd_re_id() {
 		return prd_re_id;
 	}
@@ -105,18 +117,6 @@ public class Shop_prd {
 	}
 	public void setPrd_re_no(String prd_re_no) {
 		this.prd_re_no = prd_re_no;
-	}
-	public int getPrd_price() {
-		return prd_price;
-	}
-	public void setPrd_price(int prd_price) {
-		this.prd_price = prd_price;
-	}
-	public int getPrd_qant() {
-		return prd_qant;
-	}
-	public void setPrd_qant(int prd_qant) {
-		this.prd_qant = prd_qant;
 	}
 	public int getPrd_re_num() {
 		return prd_re_num;

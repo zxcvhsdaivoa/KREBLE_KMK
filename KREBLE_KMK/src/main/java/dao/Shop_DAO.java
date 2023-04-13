@@ -421,6 +421,35 @@ public class Shop_DAO {
 
 	}
 
+	//장바구니등록
+		@SuppressWarnings("resource")
+		public int prdbackInsertArticle(Shop_prd article){
+			PreparedStatement pstmt = null;
+			int insertCount=0;	
 
+			String sql = "insert into shop_back values(?,?,?,?,?,?,?,?,?)";
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getPrd_name());
+				pstmt.setString(2, article.getPrd_id());
+				pstmt.setString(3, article.getPrd_no());
+				pstmt.setInt(4, 1);
+				pstmt.setString(5, article.getPrd_img());
+				pstmt.setString(6, article.getPrd_re_id());
+				pstmt.setString(7, article.getPrd_color());
+				pstmt.setInt(8, article.getPrd_price());
+				pstmt.setInt(9, article.getPrd_price());
+				insertCount=pstmt.executeUpdate();
+
+			}catch(Exception ex){
+				System.out.println(ex);
+			}finally{
+				close(pstmt);
+			}
+
+			return insertCount;
+
+		}
+		
 	
 }

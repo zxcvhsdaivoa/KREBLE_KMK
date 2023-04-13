@@ -95,7 +95,7 @@
 				<td><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_price() %>" class="w99" readonly name = "prd_price"></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_color() %>" class="w99" readonly name = "prd_color"></td>
-				<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>" class="w149" readonly><input type="hidden" value="<%=id %>" name="prd_id"></td>
+				<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>" class="w149" readonly name="prd_id"><input type="hidden" value="<%=id %>" name="prd_re_id"></td>
 				<td><input type="text" value="<%=articleList.get(i).getPrd_date() %>" class="w99" readonly><input type="hidden" value="<%=nowPage %>" name="page"></td>
 				<td class="w99"><input type="submit" value="장바구니담기"></td>
 			</tr>

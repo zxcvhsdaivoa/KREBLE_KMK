@@ -1,5 +1,6 @@
 package use_data;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -8,6 +9,10 @@ import java.util.ArrayList;
 public class Db_method_shop extends Db_method_conn {
 
 //	<!--  카테 / 사진 / 상품명 / 상품가격 / 색상 / 등록자 / 등록일	 -->
+
+	
+	
+	
 //		상품리스트 로드
 	  public ArrayList<Shop_prd> shop_prd_list() throws Exception{
 		  ArrayList<Shop_prd> board = new ArrayList<Shop_prd>();
@@ -81,26 +86,27 @@ public class Db_method_shop extends Db_method_conn {
 	  public ArrayList<Shop_prd> shop_prde_reply(String p_no) throws Exception{
 		  ArrayList<Shop_prd> pr = new ArrayList<Shop_prd>();
 		  try{
-			  conn();
-			    if(con == null){
-			      throw new Exception("데이터베이스에 연결할 수 없습니다.");
-			    }
-			    stm = con.createStatement();
-			    ResultSet rs = stm.executeQuery("select * from prd_re where prd_re_no = '" + p_no + "';");
-			    while(rs.next()) {		
-					Shop_prd aa = new Shop_prd();
-			    	aa.setPrd_re_id(rs.getString("prd_re_id"));	
-			    	aa.setPrd_re_text(rs.getString("prd_re_text"));	
-			    	aa.setPrd_re_no(rs.getString("prd_re_no"));	
-			    	aa.setPrd_re_num(rs.getInt("prd_re_num"));	
-			    	aa.setPrd_re_sc(rs.getInt("prd_re_sc"));
-			    	pr.add(aa);
-			    }
-		  		}catch(Exception ignored){
+			conn();
+		    if(con == null){
+		      throw new Exception("데이터베이스에 연결할 수 없습니다.");
+		    }
+		    stm = con.createStatement();
+		    ResultSet rs = stm.executeQuery("select * from prd_re where prd_re_no = '" + p_no + "';");
+		    while(rs.next()) {		
+				Shop_prd aa = new Shop_prd();
+		    	aa.setPrd_re_id(rs.getString("prd_re_id"));	
+		    	aa.setPrd_re_text(rs.getString("prd_re_text"));
+		    	aa.setPrd_re_no(rs.getString("prd_re_no"));
+		    	aa.setPrd_re_num(rs.getInt("prd_re_num"));
+		    	aa.setPrd_re_sc(rs.getInt("prd_re_sc"));
+		    	pr.add(aa);
+		    }
+	  		}catch(Exception ignored){
+	  			System.out.println(ignored);
 
-			  }finally{
-				  diconn();
-			  }
+		  }finally{
+			  diconn();
+		  }
 		  return pr;
 	  }
 	  

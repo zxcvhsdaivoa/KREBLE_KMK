@@ -6,6 +6,10 @@
 
 <% request.setCharacterEncoding("utf-8"); %>
 <% String id = (String) session.getAttribute("ID"); %>
+	<jsp:useBean id="cash" class="use_data.Db_method_user"></jsp:useBean>
+	<%
+	int uc = cash.u_cash(id);
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +24,7 @@
 	<%
 	Shop_prd aa = (Shop_prd)request.getAttribute("article");
     String nowPage = (String)request.getAttribute("page");
+    out.println(aa.getPrd_no()+"디테일페이지");
 	ArrayList<Shop_prd> spr = sp_de.shop_prde_reply(aa.getPrd_no());
 	%>
 	
@@ -181,9 +186,9 @@
 					<td>삭제</td>
 					</tr>
 					<%
-					int i = spr.size();
-					int cnt = 0;
-					for (i = i-1; cnt < 5; i = i-1) {
+					int n = spr.size();
+					if(n>5) n=5;
+					for (int i=0; i<n;i++) {
 					    out.println("<tr>");
 					    out.println("<td>"+spr.get(i).getPrd_re_id()+"</td>");
 					    out.println("<td>"+spr.get(i).getPrd_re_sc()+"</td>");
@@ -196,7 +201,6 @@
 					    }
 					    
 					    out.println("</tr>");
-					    cnt++;
 					}
 					%>
 				</table>		

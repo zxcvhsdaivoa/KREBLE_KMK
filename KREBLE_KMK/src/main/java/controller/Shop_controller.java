@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.Prd_mody_form_action;
 import action.Shop_Prd_delete_action;
+import action.Shop_back_qa_updat_action;
 import action.Shop_calist_action;
 import action.Shop_detail_action;
 import action.Shop_list_action;
 import action.Shop_prd_insert_action;
 import action.Shop_prd_mody_action;
 import action.Shop_re_delete_action;
+import action.Sp_bak_clear_action;
+import action.Sp_bak_delete_action;
 import action.Sp_bak_form_action;
 import action.Sp_bak_insert_action;
 import action.Sp_re_insert_action;
@@ -64,6 +67,8 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
+		
+		
 		//장바구니 등록
 		else if(command.equals("/shop_bak.sp")){
 			action = new Sp_bak_insert_action();
@@ -73,6 +78,39 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
+
+		//장바구니 수량변경
+		else if(command.equals("/bak_qant_updat.sp")){
+			action = new Shop_back_qa_updat_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+
+		//장바구니 단일삭제
+		else if(command.equals("/shop_bak_one_delete.sp")){
+			action = new Sp_bak_delete_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+		//장바구니 전부 삭제
+		else if(command.equals("/sb_back_clear.sp")){
+			action = new Sp_bak_clear_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		
 		//구매내역
 		else if(command.equals("/shop_prd_buy_list.sp")){
 			forward=new ActionForward();

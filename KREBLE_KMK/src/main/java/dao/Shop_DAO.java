@@ -288,7 +288,6 @@ public class Shop_DAO {
 
 	}
 	//상품리플등록
-		@SuppressWarnings("resource")
 		public int reInsertArticle(Shop_prd article){
 			PreparedStatement pstmt = null;
 			int insertCount=0;	
@@ -400,7 +399,6 @@ public class Shop_DAO {
 
 	}
 	//상품삭제
-	@SuppressWarnings("resource")
 	public int prddeleteArticle(String p_no){
 		PreparedStatement pstmt = null;
 		int insertCount=0;
@@ -422,7 +420,6 @@ public class Shop_DAO {
 	}
 
 	//상품리플삭제
-	@SuppressWarnings("resource")
 	public int deleteArticle(String p_no){
 		PreparedStatement pstmt = null;
 		int insertCount=0;
@@ -473,14 +470,17 @@ public class Shop_DAO {
 	//장바구니리스트
 	public ArrayList<Shop_prd> selectbackArticle(String id, int page,int limit){
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
-		String shop_list_sql="select * from shop_back where sb_buy_id = ? order by sb_prd desc limit ?,10";
+		ResultSet rs2 = null;
+		String prd_qant="select prd_qant from product where prd_no=?";
 		ArrayList<Shop_prd> articleList = new ArrayList<Shop_prd>();
+		
 		Shop_prd shop_prd = null;
 		int startrow=(page-1)*10; 
 
 		try{
-			pstmt = con.prepareStatement(shop_list_sql);
+			pstmt=con.prepareStatement("select * from shop_back where sb_buy_id = ? order by sb_prd desc limit ?,10");
 			pstmt.setString(1, id);
 			pstmt.setInt(2, startrow);
 			rs = pstmt.executeQuery();
@@ -494,7 +494,12 @@ public class Shop_DAO {
 				shop_prd.setPrd_re_id(rs.getString("sb_buy_id"));
 				shop_prd.setPrd_color(rs.getString("sb_color"));
 				shop_prd.setPrd_price(Integer.parseInt(rs.getString("sb_price")));
-				shop_prd.setPrd_total(Integer.parseInt(rs.getString("sb_total")));
+				pstmt2 = con.prepareStatement(prd_qant);
+				pstmt2.setString(1, rs.getString("sb_prd"));
+				rs2 = pstmt2.executeQuery();
+				if(rs2.next()) {
+				shop_prd.setPrd_total(rs2.getInt("prd_qant"));
+				}
 				articleList.add(shop_prd);
 				
 			}
@@ -512,7 +517,6 @@ public class Shop_DAO {
 	
 	
 	//장바구니등록
-		@SuppressWarnings("resource")
 		public int prdbackInsertArticle(Shop_prd article, String b_id){
 			PreparedStatement pstmt = null;
 			int insertCount=0;	
@@ -534,6 +538,130 @@ public class Shop_DAO {
 			}catch(Exception ex){
 				System.out.println(ex);
 			}finally{
+				close(pstmt);
+			}
+
+			return insertCount;
+
+		}
+		//장바구니용 상품 최대개수 제한
+		public int prdqantCheck(String q_ck){
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int i = 0;
+			String sql = "select * from product where prd_no = ?";
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, q_ck);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					i = Integer.parseInt(rs.getString("prd_qant"));
+				}
+
+			}catch(Exception ex){
+				System.out.println(ex);
+			}finally{
+				close(rs);
+				close(pstmt);
+			}
+
+			return i;
+
+		}
+
+		
+
+		//장바구니 단일삭제
+		public int deleteBackArticle(String p_no, String b_id){
+			PreparedStatement pstmt = null;
+			int insertCount=0;
+
+			String sql = "delete from shop_back where sb_prd=? and sb_buy_id=?";
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, p_no);
+				pstmt.setString(2, b_id);
+				insertCount=pstmt.executeUpdate();
+
+			}catch(Exception ex){
+				System.out.println(ex);
+			}finally{
+				close(pstmt);
+			}
+
+			return insertCount;
+
+		}
+		
+
+		//장바구니 전체삭제
+		public int clearBackArticle(String b_id){
+			PreparedStatement pstmt = null;
+			int insertCount=0;
+
+			String sql = "delete from shop_back where sb_buy_id=?";
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, b_id);
+				insertCount=pstmt.executeUpdate();
+
+			}catch(Exception ex){
+				System.out.println(ex);
+			}finally{
+				close(pstmt);
+			}
+			return insertCount;
+		}
+		
+		
+		//장바구니 수량변경 체크
+		public int qantCheck(String q_ck, String p_no){
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int insertCount=0;
+			String sql = "select * from product where prd_no = ?";
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, p_no);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					int nc = Integer.parseInt(rs.getString("prd_qant"));
+					int ck = Integer.parseInt(q_ck);
+					if(ck>nc) {
+						insertCount = 0;
+					}else {
+						insertCount = 1;
+					}
+				}
+
+			}catch(Exception ex){
+				System.out.println(ex);
+			}finally{
+				close(rs);
+				close(pstmt);
+			}
+
+			return insertCount;
+
+		}
+
+		//장바구니 수량 변경
+		public int updateBackArticle(String p_no, String b_id, String prd_qant){
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int insertCount= 0;
+			String sql = "update shop_back set sb_qunt=? where sb_prd=? and sb_buy_id=?";
+			try{
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, prd_qant);
+				pstmt.setString(2, p_no);
+				pstmt.setString(3, b_id);
+				insertCount=pstmt.executeUpdate();
+
+			}catch(Exception ex){
+				System.out.println(ex);
+			}finally{
+				close(rs);
 				close(pstmt);
 			}
 

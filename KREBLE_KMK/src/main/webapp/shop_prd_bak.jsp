@@ -15,6 +15,10 @@
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();
 %>
+	<jsp:useBean id="cash" class="use_data.Db_method_user"></jsp:useBean>
+	<%
+		int uc = cash.u_cash(id);
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +32,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
-	
-	
-	
+	<script src="js/shop_prd_number.js"></script>
+
 <title>장바구니</title>
 </head>
 <body>
@@ -55,7 +58,7 @@
 		<article id="sb_art_no1"><!--아이디 / 보유캐시 타이틀 -->
 			<div id="sb_subtitle">
 				<div class="sb_subt1">장바구니 </div>
-				<div class="sb_subt2"> <%=id %> 님의 보유 캐시는 xxxxx입니다.</div>
+				<div class="sb_subt2"> <%=id %> 님의 보유 캐시는 <%= uc %>입니다.</div>
 			</div>
 		</article>
 		<article id="sb_art_no2"><!-- 장바구니 리스트 -->
@@ -76,25 +79,33 @@
 					<%
 					int q_p = 0;
 					int total = 0;
+					int aa =0;
 					if(articleList != null && listCount > 0){
 					for(int i=0;i<articleList.size();i++){
 					%>
+					
 					<tr>
-						<td><%=articleList.get(i).getPrd_img()%></td>
-						<td><%=articleList.get(i).getPrd_name()%></td>
-						<td><%=articleList.get(i).getPrd_color()%></td>
-						<td><%=articleList.get(i).getPrd_qant()%></td>
-						<td><%=articleList.get(i).getPrd_price()%></td>
+						<td><input type="text" name="sb_img" value="<%=articleList.get(i).getPrd_img()%>"readonly></td>
+						<td><input type="text" name="sb_name" value="<%=articleList.get(i).getPrd_name()%>"readonly></td>
+						<td><input type="text" name="sb_color" value="<%=articleList.get(i).getPrd_color()%>"readonly></td>
+						<td>
+						<input type="number" class="prd_qant" name="sb_qant<%=i %>" value="<%=articleList.get(i).getPrd_qant()%>" min="1" max="<%=articleList.get(i).getPrd_total()%>">
+						<input type="hidden" value="<%=articleList.get(i).getPrd_no()%>" name="prd_no<%=i%>">
+						<input type="button" value ="수량변경" name="<%=i%>" class="prd_button">
+						<input type="hidden" value="<%=id%>" name="id">
+						<input type="hidden" value="<%=articleList.get(i).getPrd_total()%>" name="max_qant">
+						</td>
+						<td><input type="number" name="sb_price" value="<%=articleList.get(i).getPrd_price()%>" readonly></td>
 						<% q_p = articleList.get(i).getPrd_price()*articleList.get(i).getPrd_qant();%>
-						<td><%= q_p %></td>
-						<td><input type="button" value="삭제"></td>
-						<% total = total + q_p; %>
+						<td><input type="number" name="q_p" value="<%= q_p %>"readonly></td>
+						<td><a href="shop_bak_one_delete.sp?b_id=<%=id%>&prd_no=<%=articleList.get(i).getPrd_no()%>"><input type="button" value="삭제"></a></td>
+						<% total = total + q_p;%>
 					</tr>
 					<%} %>
 					<tr>
-						<td rowspan="2">장바구니 총합 금액 : </td>
-						<td rowspan="2"><%=total %>원</td>
-						<td><input type="button" value="전부삭제"></td>
+						<td colspan="2">장바구니 총합 금액 : </td>
+						<td colspan="2"><%=total %>원</td>
+						<td><a href ="sb_back_clear.sp?b_id=<%=id%>"><input type="button" value="전부삭제"></a></td>
 						<td><input type="submit" value="구매"></td>
 						<td><a href="kreble.sp"><input type="button" value="쇼핑홈"></a></td>
 					</tr>
@@ -103,11 +114,7 @@
 		</article>
 			
 		
-		<%
-		String prd_cata="shop_back_page.sp?page=";
-			
-		
-		%>
+		<%String prd_cata="shop_back_page.sp?page=";%>
 		<!-- 페이지 이전/다음 넘김 -->
 		<article id="pl_art_no5">
 				<%if(nowPage<=1){ %>

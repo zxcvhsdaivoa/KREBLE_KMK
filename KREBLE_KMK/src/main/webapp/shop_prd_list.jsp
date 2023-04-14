@@ -5,7 +5,7 @@
 <%@ page import="use_data.Shop_prd" %>
 <%@ page import="java.util.ArrayList" %>
 
-<% request.setCharacterEncoding("utf-8"); %>
+<%	request.setCharacterEncoding("utf-8"); %>
 <%	String id = (String) session.getAttribute("ID");
 	ArrayList<Shop_prd> articleList =(ArrayList<Shop_prd>) request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
@@ -14,6 +14,10 @@
 	int maxPage=pageInfo.getMaxPage();
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();%>
+	<jsp:useBean id="cash" class="use_data.Db_method_user"></jsp:useBean>
+	<%
+	int uc = cash.u_cash(id);
+	%>
 <!DOCTYPE html>
 <html>
 <head>

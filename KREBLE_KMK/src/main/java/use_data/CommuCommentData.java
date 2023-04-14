@@ -6,7 +6,7 @@ public class CommuCommentData {
 	String user_id;
 	int commu_no;
 	String commuComment;
-	Date comment_wrdate;
+	String comment_wrdate;
 	public String getUser_id() {
 		return user_id;
 	}
@@ -25,10 +25,10 @@ public class CommuCommentData {
 	public void setCommuComment(String commuComment) {
 		this.commuComment = commuComment;
 	}
-	public Date getComment_wrdate() {
+	public String getComment_wrdate() {
 		return comment_wrdate;
 	}
-	public void setComment_wrdate(Date comment_wrdate) {
+	public void setComment_wrdate(String comment_wrdate) {
 		this.comment_wrdate = comment_wrdate;
 	}
 }

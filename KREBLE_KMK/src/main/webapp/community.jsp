@@ -32,12 +32,25 @@
 				    <%
 					ArrayList<CommunityData> comu= null;
 					int listCount=0;
+					
+					//login_id
+					String login_id="0";
+					if(session.getAttribute("ID")!=null&& session.getAttribute("ID")!=""&& session.getAttribute("ID")!="null"){
+						login_id=(String) session.getAttribute("ID");
+					}
+					
 				    //category
 				    String cate="all";
 				    if(request.getParameter("cate")!=null){
 					    cate = request.getParameter("cate");
 				    }
 					
+				    //mycommu
+				    String mycommu="none";
+				    if(request.getParameter("mycommu")!=null){
+				    	mycommu = request.getParameter("mycommu");
+				    }
+				    
 					//paging
 				    int page_no=1;
 					int limit=15;
@@ -56,19 +69,26 @@
 			   		Date now = new Date();
 					SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					
+					
 					if(search.equals("noSearch")){
-						if(cate.equals("all")){
-							comu = ud.commu_all(page_no,limit);
-							listCount=ud.commu_all_count();
+						if(mycommu.equals("none")){
+							if(cate.equals("all")){
+								comu = ud.commu_all(page_no,limit);
+								listCount=ud.commu_all_count();
+							}
+							else {
+								comu = ud.commu_cate(cate,page_no,limit);
+								listCount=ud.commu_cate_count(cate);
+							}
 						}
 						else {
-							comu = ud.commu_cate(cate,page_no,limit);
-							listCount=ud.commu_cate_count(cate);
+							comu = ud.commu_mycommu(mycommu,login_id,cate,page_no,limit);
+							listCount=ud.commu_mycommu_count(mycommu, login_id, cate);
 						}
 					}
 					else {
-						comu = ud.commu_search(search, search_text,cate,page_no,limit);
-						listCount=ud.commu_search_count(search, search_text, cate);
+						comu = ud.commu_search(mycommu,login_id,search, search_text,cate,page_no,limit);
+						listCount=ud.commu_search_count(mycommu,login_id,search, search_text, cate);
 						
 					}
 					
@@ -89,11 +109,17 @@
 							<li><a href="community.jsp?cate=qna">질문</a></li>
 							<li><a href="community.jsp?cate=info">정보</a></li>
 						</ul>
+						<%if(!login_id.equals("0")){ %>
+						<ul class="mycommu">
+							<li><a href="community.jsp?mycommu=board<%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%>">내글보기</a></li>
+							<li><a href="community.jsp?mycommu=comment<%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%>">내댓글보기</a></li>
+						</ul>
+						<%} %>
 				    </div>
-				    <table class="commu_list_table">
 					<%
 					if(comu != null && listCount > 0){
 					%>
+				    <table class="commu_list_table">
 					    <tr class="bg1">
 					    	<th class="head1">글번호</th>
 					    	<th class="head2">작성자</th>
@@ -134,21 +160,21 @@
 						<%if(page_no<=1){ %>
 						[이전]&nbsp;
 						<%}else{ %>
-						<a href="community.jsp?page=<%=page_no-1%><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[이전]</a>&nbsp;
+						<a href="community.jsp?page=<%=page_no-1%><%if(!mycommu.equals("none")){%>&mycommu=<%= mycommu %> <%}%><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[이전]</a>&nbsp;
 						<%} %>
 					
 						<%for(int a=startPage;a<=endPage;a++){
 							if(a==page_no){%>
 							[<%=a %>]
 							<%}else{ %>
-								<a href="community.jsp?page=<%=a %><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[<%=a %>]</a>&nbsp;
+								<a href="community.jsp?page=<%=a %><%if(!mycommu.equals("none")){%>&mycommu=<%= mycommu %> <%}%><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[<%=a %>]</a>&nbsp;
 							<%} %>
 						<%} %>
 					
 						<%if(page_no>=maxPage){ %>
 						[다음]
 						<%}else{ %>
-						<a href="community.jsp?page=<%=page_no+1 %><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[다음]</a>
+						<a href="community.jsp?page=<%=page_no+1 %><%if(!mycommu.equals("none")){%>&mycommu=<%= mycommu %> <%}%><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[다음]</a>
 						<%} %>
 						<%
 					    }
@@ -158,6 +184,7 @@
 					<div class="search_box">
 						<form name="search" action="community.jsp">
 							<input type="hidden" name="cate" value="<%= cate %>">
+							<input type="hidden" name="mycommu" value="<%= mycommu %>">
 							<select name="search_select" id="search_select" name="search_select" class="search_select">
 								<option value="search_title" <% if(search.equals("search_title")){%>selected="selected"<%}%>>제목</option>
 								<option value="search_title_write" <% if(search.equals("search_title_write")){%>selected="selected"<%}%>>제목+내용</option>

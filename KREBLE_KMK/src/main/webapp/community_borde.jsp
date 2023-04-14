@@ -18,6 +18,7 @@
 			<div class="community">
 				<jsp:useBean id="ud" class="use_data.Db_method_commu"/>
 				<%@ page import="use_data.CommunityData"%>
+				<%@ page import="use_data.CommuCommentData"%>
 				<%@ page import="java.util.ArrayList"%>
 				<%
 				String login_id = (String) session.getAttribute("ID");
@@ -71,7 +72,30 @@
 					</tr>
 					</table>
 					
-					<div class="comment">
+					
+					<div class="comment_list">
+						
+						<ul>
+						<%
+						ArrayList<CommuCommentData> ccd = ud.comment_list(comu_no);
+						for(int i=0; i<ccd.size(); i++) {
+							%>
+							<li>
+								<div>
+									<%if(comu.getId().equals(ccd.get(i).getUser_id())) {%><span class="writer">작성자</span><%}%>
+									<span class="comment_id "><%= ccd.get(i).getUser_id() %>님의 댓글</span>
+									<span class="comment_time">(<%= ccd.get(i).getComment_wrdate() %>)</span>
+								</div>
+								<span class="comment_text"><%= ccd.get(i).getCommuComment() %></span>
+							</li>
+							<%
+						}
+						%>
+						</ul>
+					</div>
+					
+					
+					<div class="comment_write">
 						
 						<form name="comment_form">
 							<span class="login_id"><%=login_id %></span>
@@ -83,7 +107,6 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</section>
 <jsp:include page="Footer_baseform.jsp"/>

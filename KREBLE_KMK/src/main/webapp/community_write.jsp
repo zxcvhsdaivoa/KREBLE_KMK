@@ -33,6 +33,9 @@ function back(){
 						<input type="text" id="title" name="title">
 						<textarea id="write" name="write"></textarea>
 						<span class="btn btn_back"><a href="#" onclick="back()">취소</a></span>
+						<div class="fileUpload">
+							<input type="file" name="fileUp" id="fileUp">
+						</div>
 						<input type="submit" class="btn btn_write" value="작성하기">
 					</form>
 

@@ -58,8 +58,45 @@ public class Db_method_commu extends Db_method_conn {
 		}
 		return si;
 	}
+	
+	public ArrayList<CommunityData> commu_mycommu(String mycommu, String id,String cate,int page,int limit) throws Exception { //커뮤니티 나의커뮤 호출 메소드
+		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
+		conn();
+		int startrow=(page-1)*15; 
+		try{
+			StringBuilder commandBuilder = new StringBuilder();
+			commandBuilder.append("select * from community where ");
+			if(!cate.equals("all")) {
+				commandBuilder.append("category ='"+cate+"' and ");
+			}
+			
+			if(mycommu.equals("board")) {
+				commandBuilder.append("user_id='"+id+"'");
+			}
+			else if(mycommu.equals("comment")) {
+				commandBuilder.append("commu_no in (select commu_no from commu_comment where user_id='"+id+"')");
+			}
+			commandBuilder.append(" order by commu_no desc limit "+startrow+", "+limit+";");
+			String aa = commandBuilder.toString();
+			ResultSet rs = stm.executeQuery(aa);
+			while(rs.next()) {
+				CommunityData cdb= new CommunityData();
+				cdb.setComu_num(rs.getInt("commu_no"));
+				cdb.setId(rs.getString("user_id"));
+				cdb.setCategory(rs.getString("category"));
+				cdb.setComu_title(rs.getString("commu_title"));
+				cdb.setComu_write(rs.getString("commu_write"));
+				cdb.setComu_date(rs.getString("commu_wrday"));
+				cdb.setCount(rs.getInt("commu_readcount"));
+				si.add(cdb);
+			}
+		}finally {
+			diconn();
+		}
+		return si;
+	}
 
-	public ArrayList<CommunityData> commu_search(String select, String text,String cate,int page,int limit) throws Exception { //커뮤니티 검색 메소드
+	public ArrayList<CommunityData> commu_search(String mycommu, String id,String select, String text,String cate,int page,int limit) throws Exception { //커뮤니티 검색 메소드
 		conn();
 		ArrayList<CommunityData> si = new ArrayList<CommunityData>();
 		int startrow=(page-1)*15; 
@@ -68,6 +105,13 @@ public class Db_method_commu extends Db_method_conn {
 			commandBuilder.append("select * from community where ");
 			if(!cate.equals("all")) {
 				commandBuilder.append("category ='"+cate+"' and ");
+			}
+			
+			if(mycommu.equals("board")) {
+				commandBuilder.append("user_id='"+id+"' and ");
+			}
+			else if(mycommu.equals("comment")) {
+				commandBuilder.append("commu_no in (select commu_no from commu_comment where user_id='"+id+"') and ");
 			}
 			
 			if(select.equals("search_title")) {
@@ -126,8 +170,36 @@ public class Db_method_commu extends Db_method_conn {
 		}
 		return count;
 	}
+	
+	public int commu_mycommu_count(String mycommu, String id, String cate) throws Exception { //커뮤니티 나의커뮤 갯수
+		conn();
+		int count=0;
+		try{
+			StringBuilder commandBuilder = new StringBuilder();
+			commandBuilder.append("select count(*) from community where ");
+			if(!cate.equals("all")) {
+				commandBuilder.append("category ='"+cate+"' and ");
+			}
+			
+			if(mycommu.equals("board")) {
+				commandBuilder.append("user_id='"+id+"'");
+			}
+			else if(mycommu.equals("comment")) {
+				commandBuilder.append("commu_no in (select commu_no from commu_comment where user_id='"+id+"')");
+			}
+			commandBuilder.append(" order by commu_no desc;");
+			String aa = commandBuilder.toString();
+			ResultSet rs = stm.executeQuery(aa);
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		}finally {
+			diconn();
+		}
+		return count;
+	}
 
-	public int commu_search_count(String select, String text,String cate) throws Exception { //커뮤니티 검색 갯수
+	public int commu_search_count(String mycommu, String id,String select, String text,String cate) throws Exception { //커뮤니티 검색 갯수
 		conn();
 		int count=0;
 		try{
@@ -280,7 +352,7 @@ public class Db_method_commu extends Db_method_conn {
 		int rowNum=0;
 		try{
 			conn();
-			String command = String.format("insert into commu_comment values('"+ccd.getUser_id()+"','"+ccd.getCommu_no()+"','"+ccd.getCommuComment()+"',now());");
+			String command = String.format("insert into commu_comment values('"+ccd.getUser_id()+"','"+ccd.getCommu_no()+"','"+ccd.getCommuComment()+"',now(),default);");
 			rowNum = stm.executeUpdate(command);
 			if(rowNum<1){
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
@@ -291,21 +363,23 @@ public class Db_method_commu extends Db_method_conn {
 		return rowNum;
 	}
 	
-	public CommuCommentData comment_list(int commu_no) {//커뮤니티 댓글 조회 가져오기
-		CommuCommentData ccd = new CommuCommentData();
+	
+	public ArrayList<CommuCommentData> comment_list(int commu_no) throws Exception { //커뮤니티 댓글 조회 가져오기
+		ArrayList<CommuCommentData> ccd_list = new ArrayList<CommuCommentData>();
+		conn();
 		try{
-			conn();
-			ResultSet rs= stm.executeQuery("select * from commu_comment where commu_no ="+commu_no);
-			while(rs.next()){
+			ResultSet rs= stm.executeQuery("select * from commu_comment where commu_no ="+commu_no+";");
+			while(rs.next()) {
+				CommuCommentData ccd = new CommuCommentData();
 				ccd.setUser_id(rs.getString("user_id"));
 				ccd.setCommu_no(rs.getInt("commu_no"));
-				ccd.setUser_id(rs.getString("comment"));
-				ccd.setComment_wrdate(rs.getDate("commu_date"));
+				ccd.setCommuComment(rs.getString("comment"));
+				ccd.setComment_wrdate(rs.getString("comment_date"));
+				ccd_list.add(ccd);
 			}
-		}catch(Exception ex){
-		}finally{
+		}finally {
 			diconn();
 		}
-		return ccd;
+		return ccd_list;
 	}
 }

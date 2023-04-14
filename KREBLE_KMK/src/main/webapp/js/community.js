@@ -22,6 +22,8 @@ function comment_write(){
         }
 	});
 	if(result=="success"){
+		location.reload();
+		//document.getElementById("comment").value='';
 		alert("댓글이 작성되었습니다");
 	}
 	else if(result=="fail") {

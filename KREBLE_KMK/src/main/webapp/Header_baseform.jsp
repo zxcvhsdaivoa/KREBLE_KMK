@@ -60,10 +60,10 @@
                 <li>
                   <a href="#">고객센터</a>
                   <ul class="sub">
-                    <li><a href="#">자주하는질문</a></li>
-                    <li><a href="#">공지사항</a></li>
-                    <li><a href="#">이벤트안내</a></li>
-                    <li><a href="#">1:1문의</a></li>
+                    <li><a href="FAQ.csc">자주하는질문</a></li>
+                    <li><a href="FAQ_Announce.sp">공지사항</a></li>
+                    <li><a href="FAQ_Event.sp">이벤트안내</a></li>
+                    <li><a href="FAQ_one.sp">1:1문의</a></li>
                   </ul>
                 </li>
             </ul>

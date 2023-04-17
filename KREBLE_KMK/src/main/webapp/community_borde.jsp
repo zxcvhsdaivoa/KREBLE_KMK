@@ -20,16 +20,22 @@
 				<%@ page import="use_data.CommunityData"%>
 				<%@ page import="use_data.CommuCommentData"%>
 				<%@ page import="java.util.ArrayList"%>
+				<%@ page import="java.awt.image.renderable.ParameterBlock" %>
 				<%
 				String login_id = (String) session.getAttribute("ID");
 				int comu_no = Integer.parseInt(request.getParameter("no"));
 				int read_count = ud.getReadCount(comu_no);
 				ud.updateReadCount(read_count, comu_no);
 				CommunityData comu = ud.commu_one(comu_no);
-				CommunityData next_board=null;
-				next_board=ud.next_board(comu_no);
-				CommunityData prev_board=null;
-				prev_board=ud.prev_board(comu_no);
+				CommunityData next_board=ud.next_board(comu_no);
+				CommunityData prev_board=ud.prev_board(comu_no);
+				
+				ServletContext context = request.getServletContext();
+				String imagePath=context.getRealPath("commuFile");
+				
+				int size = 1*1024*1024 ;
+				String filename=comu.getComu_file();
+				ParameterBlock pb=new ParameterBlock();
 				
 				%>
 				<div class="community_inner">
@@ -41,6 +47,13 @@
 					</div>
 					<div class="content_box">
 						<span class="title"><%= comu.getComu_title()%></span>
+						<%
+						if(filename!= null){
+							%>
+						<img src="commuFile/<%= filename%>">
+							<%
+						}
+						%>
 						<textarea class="write" readonly><%= comu.getComu_write()%></textarea>
 					</div>
 				

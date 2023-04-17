@@ -8,14 +8,9 @@ public class CommunityData {
 	String category;
 	String comu_title;
 	String comu_write;
+	String comu_file;
 	String comu_date;
 	int count;
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
 	public int getComu_num() {
 		return comu_num;
 	}
@@ -46,10 +41,22 @@ public class CommunityData {
 	public void setComu_write(String comu_write) {
 		this.comu_write = comu_write;
 	}
+	public String getComu_file() {
+		return comu_file;
+	}
+	public void setComu_file(String comu_file) {
+		this.comu_file = comu_file;
+	}
 	public String getComu_date() {
 		return comu_date;
 	}
 	public void setComu_date(String comu_date) {
 		this.comu_date = comu_date;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

@@ -26,9 +26,17 @@
 				</div>
 				<div class="community_inner">
 					<jsp:useBean id="ud" class="use_data.Db_method_commu"/>
+					<%@ page import="java.awt.image.renderable.ParameterBlock" %>
 			
 				    <%@ page import="use_data.CommunityData"%>
 				    <%@ page import="java.util.ArrayList"%>
+					<%@ page import="javax.media.jai.RenderedOp" %>
+					<%@ page import="javax.imageio.ImageIO" %>
+					<%@ page import="java.awt.Graphics2D" %>
+					<%@ page import="java.awt.image.renderable.ParameterBlock" %>
+					<%@ page import="java.awt.image.BufferedImage" %>
+					<%@ page import="java.io.*" %>
+					<%@ page import="javax.media.jai.JAI" %>
 				    <%
 					ArrayList<CommunityData> comu= null;
 					int listCount=0;
@@ -99,6 +107,12 @@
 
 			   		if (endPage> maxPage) endPage= maxPage;
 			   		
+			   		//thumbnail
+			   		ServletContext context = request.getServletContext();
+					String imagePath=context.getRealPath("commuFile");
+					
+					int size = 1*1024*1024 ;
+					ParameterBlock pb=new ParameterBlock();
 				    %>
 				    <div class="top_wrap">
 						<span class="btn btn_write"><a href="community_check.jsp?do=ck">글쓰기</a></span>
@@ -131,7 +145,9 @@
 					    <tbody class="style2">
 						<%
 						
-						for(int i=0; i<comu.size(); i++){					
+						for(int i=0; i<comu.size(); i++){
+							String filename=comu.get(i).getComu_file();
+							
 							out.println("<tr class='bt_border'><td>"+comu.get(i).getComu_num()+"</td>");
 							out.println("<td>"+comu.get(i).getId()+"</td>");
 							out.println("<td class='replace_cate'>"+comu.get(i).getCategory()+"</td>");

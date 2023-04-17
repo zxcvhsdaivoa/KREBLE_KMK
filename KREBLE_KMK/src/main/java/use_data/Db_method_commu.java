@@ -26,6 +26,7 @@ public class Db_method_commu extends Db_method_conn {
 				cdb.setCategory(rs.getString("category"));
 				cdb.setComu_title(rs.getString("commu_title"));
 				cdb.setComu_write(rs.getString("commu_write"));
+				cdb.setComu_file(rs.getString("commu_file"));
 				cdb.setComu_date(rs.getString("commu_wrday"));
 				cdb.setCount(rs.getInt("commu_readcount"));
 				si.add(cdb);
@@ -49,6 +50,7 @@ public class Db_method_commu extends Db_method_conn {
 				cdb.setCategory(rs.getString("category"));
 				cdb.setComu_title(rs.getString("commu_title"));
 				cdb.setComu_write(rs.getString("commu_write"));
+				cdb.setComu_file(rs.getString("commu_file"));
 				cdb.setComu_date(rs.getString("commu_wrday"));
 				cdb.setCount(rs.getInt("commu_readcount"));
 				si.add(cdb);
@@ -86,6 +88,7 @@ public class Db_method_commu extends Db_method_conn {
 				cdb.setCategory(rs.getString("category"));
 				cdb.setComu_title(rs.getString("commu_title"));
 				cdb.setComu_write(rs.getString("commu_write"));
+				cdb.setComu_file(rs.getString("commu_file"));
 				cdb.setComu_date(rs.getString("commu_wrday"));
 				cdb.setCount(rs.getInt("commu_readcount"));
 				si.add(cdb);
@@ -133,6 +136,7 @@ public class Db_method_commu extends Db_method_conn {
 				cdb.setCategory(rs.getString("category"));
 				cdb.setComu_title(rs.getString("commu_title"));
 				cdb.setComu_write(rs.getString("commu_write"));
+				cdb.setComu_file(rs.getString("commu_file"));
 				cdb.setComu_date(rs.getString("commu_wrday"));
 				cdb.setCount(rs.getInt("commu_readcount"));
 				si.add(cdb);
@@ -241,6 +245,7 @@ public class Db_method_commu extends Db_method_conn {
 				cdb.setCategory(rs.getString("category"));
 				cdb.setComu_title(rs.getString("commu_title"));
 				cdb.setComu_write(rs.getString("commu_write"));
+				cdb.setComu_file(rs.getString("commu_file"));
 				cdb.setComu_date(rs.getString("commu_wrday"));
 				cdb.setCount(rs.getInt("commu_readcount"));
 			}
@@ -283,7 +288,7 @@ public class Db_method_commu extends Db_method_conn {
 	public void commu_write(CommunityData cmd) throws Exception { //커뮤니티 글 작성
 		try{
 			conn();
-			String command = String.format("insert into community values('"+cmd.getId()+"',default,'"+cmd.getCategory()+"','"+cmd.getComu_title()+"','"+cmd.getComu_write()+"','a',0,now());");
+			String command = String.format("insert into community values('"+cmd.getId()+"',default,'"+cmd.getCategory()+"','"+cmd.getComu_title()+"','"+cmd.getComu_write()+"','"+cmd.getComu_file()+"',0,now());");
 			int rowNum = stm.executeUpdate(command);
 			if(rowNum<1){
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");

@@ -174,11 +174,36 @@ textarea {
 }
 #write {
 	width:100%;
-	height:500px;
+	height:350px;
 	margin-top:15px;
 	margin-bottom:20px;
 	padding:15px;
 	vertical-align:top;
+}
+.fileUpload {
+	width:100%;
+	height:150px;
+	
+}
+.fileUpload .thumbnail {
+	
+}
+.fileUpload .thumbnail span {
+	position:relative;
+	float:left;
+}
+.fileUpload .thumbnail span img {
+	height:150px;
+}
+.fileUpload .thumbnail span span {
+	position:absolute;
+	top:0;
+	right:0;
+	width:10px;
+	height:10px;
+}
+.fileUpload #fileUp {
+	float:right;
 }
 
 .top_box {
@@ -275,7 +300,9 @@ textarea {
 	border:none;
 	outline:none;
 	font-size:16px;
-	
+}
+.content_box img {
+	width:100%;
 }
 
 

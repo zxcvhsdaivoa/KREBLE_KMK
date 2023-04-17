@@ -10,6 +10,7 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="js/Header_Footer_Aside_baseform.js"></script>
+<script src="js/community.js"></script>
 <script>
 function back(){
 	window.history.back();
@@ -22,7 +23,7 @@ function back(){
 			
 			<div class="community">
 				<div class="community_inner">
-					<form name="new_write" action="community_writing.jsp">
+					<form name="new_write" action="community_writing.jsp" enctype="multipart/form-data" method="post">
 						<select name="cate" id="cate">
 							<option value="free" selected>자유</option>
 							<option value="debate">토론</option>
@@ -32,10 +33,11 @@ function back(){
 						<label for="title" id="title_label">제목 : </label>
 						<input type="text" id="title" name="title">
 						<textarea id="write" name="write"></textarea>
-						<span class="btn btn_back"><a href="#" onclick="back()">취소</a></span>
 						<div class="fileUpload">
-							<input type="file" name="fileUp" id="fileUp">
+							<div class="thumbnail"></div>
+							<input type="file" name="fileUp" id="fileUp" onchange="setThumbnail(event);">
 						</div>
+						<span class="btn btn_back"><a href="#" onclick="back()">취소</a></span>
 						<input type="submit" class="btn btn_write" value="작성하기">
 					</form>
 

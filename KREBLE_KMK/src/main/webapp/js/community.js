@@ -31,3 +31,17 @@ function comment_write(){
 		
 	}
 }
+
+function setThumbnail(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var thumbnail = document.createElement("span");
+      var thumbnail_img = document.createElement("img");
+      thumbnail_img.setAttribute("src", event.target.result);
+      document.querySelector("div.thumbnail").appendChild(thumbnail);
+      document.querySelector("div.thumbnail span").appendChild(thumbnail_img);
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }

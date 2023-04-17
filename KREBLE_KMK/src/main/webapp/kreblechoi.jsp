@@ -59,6 +59,7 @@
 								<li class="default"><a href="#">구장2</a></li>
 								<li class="default"><a href="#">구장3</a></li>
 								<li class="default"><a href="#">구장4</a></li>
+								<li id="savebtn">등록</li>
 							</ul>
 						</div>
 						<ul class="local_stadium">

@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Hahmlet-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+section{
+	height: 1080px;
+}
+#topbg{
+	background: url("../image/background/field_rent_topbg.jpg") no-repeat center top;
+	background-size: cover;
+	position: relative;
+    z-index: 10;
+    height: 350px;
+}
+.topinner{
+	font-family: 'TheJamsil5Bold';
+	position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.toptext{
+	padding: 130px 0 25px;
+    font-size: 22px;
+    color: #fff;
+    line-height: 1;
+    text-align: left;
+    text-shadow: 0 0 2px rgba(0,0,0,.6), 0 0 2px rgba(0,0,0,.6);
+}
+.toptext2{
+	display: block;
+    margin-top: 17px;
+    font-size: 60px;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 2px rgba(0,0,0,.6), 0 0 2px rgba(0,0,0,.6);
+    color: #fff;
+}
+#content{
+	font-family: 'TheJamsil5Bold';
+	position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.top_text{
+	padding: 60px 0 50px;
+    font-size: 44px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1;
+    text-align: center;
+}
+.rent_step{
+	width: 720px;
+    margin: 0 auto 40px;
+}

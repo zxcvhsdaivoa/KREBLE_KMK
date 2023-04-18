@@ -147,12 +147,22 @@
 						
 						for(int i=0; i<comu.size(); i++){
 							String filename=comu.get(i).getComu_file();
-							
-							out.println("<tr class='bt_border'><td>"+comu.get(i).getComu_num()+"</td>");
-							out.println("<td>"+comu.get(i).getId()+"</td>");
-							out.println("<td class='replace_cate'>"+comu.get(i).getCategory()+"</td>");
-							out.println("<td><a href='community_borde.jsp?no="+comu.get(i).getComu_num()+"'>"+comu.get(i).getComu_title()+"</a></td>");
-							out.println("<td>"+comu.get(i).getCount()+"</td>");
+							%>
+							<tr class='bt_border'>
+							<td><%=comu.get(i).getComu_num() %></td>
+							<td><%=comu.get(i).getId()%></td>
+							<td class='replace_cate'><%=comu.get(i).getCategory()%></td>
+							<td><a href='community_borde.jsp?no=<%=comu.get(i).getComu_num()%>'><%=comu.get(i).getComu_title()%></a>
+							<%
+							if(comu.get(i).getComu_file()!=null){
+								%>
+								<img src="image/img_logo.png" class="img_logo">
+								<%
+							}
+							%>
+							</td>
+							<td><%=comu.get(i).getCount()%></td>
+							<%
 							String wdt;
 							String writedate = comu.get(i).getComu_date();
 							Date wd = fm.parse(writedate);
@@ -165,8 +175,11 @@
 							else {
 								simpleDateFormat = new SimpleDateFormat("MM-dd"); 
 							}
-							String strNowDate = simpleDateFormat.format(wd); 
-							out.println("<td>"+strNowDate +"</td>");
+							String strNowDate = simpleDateFormat.format(wd);
+							 %>
+							<td><%=strNowDate%></td>
+							</tr>
+						<%
 						}
 						%>
 						</tbody>

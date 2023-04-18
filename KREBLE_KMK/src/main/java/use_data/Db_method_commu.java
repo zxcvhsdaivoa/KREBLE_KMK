@@ -301,7 +301,7 @@ public class Db_method_commu extends Db_method_conn {
 	public void commu_change(CommunityData cmd) throws Exception { //커뮤니티 글 수정
 		try{
 			conn();
-			String command = String.format("update community set category:='%s',commu_title:='%s',commu_write:='%s' where commu_no=%s AND user_id='%s'",cmd.getCategory(),cmd.getComu_title(),cmd.getComu_write(),cmd.getComu_num(),cmd.getId());
+			String command = String.format("update community set category:='%s',commu_title:='%s',commu_write:='%s',commu_file:='%s' where commu_no=%s AND user_id='%s'",cmd.getCategory(),cmd.getComu_title(),cmd.getComu_write(),cmd.getComu_file(),cmd.getComu_num(),cmd.getId());
 			int rowNum = stm.executeUpdate(command);
 			if(rowNum<1){
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");

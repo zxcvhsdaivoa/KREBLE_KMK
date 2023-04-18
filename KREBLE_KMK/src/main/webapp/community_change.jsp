@@ -10,6 +10,7 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="js/Header_Footer_Aside_baseform.js"></script>
+<script src="js/community.js"></script>
 <script>
 function back(){
 	window.history.back();
@@ -28,7 +29,7 @@ function back(){
 		        %>
 			<div class="community">
 				<div class="community_inner">
-					<form name="change_change" action="community_changing.jsp">
+					<form name="change_change" action="community_changing.jsp" enctype="multipart/form-data" method="post">
 						<input type="hidden" name=comu_no value=<%= comu_no %>>
 						<select name="cate" id="cate">
 							<option value="free" selected>자유</option>
@@ -39,6 +40,19 @@ function back(){
 						<label for="title" id="title_label">제목 : </label>
 						<input type="text" id="title" name="title" value="<%= cmd.getComu_title()%>">
 						<textarea id="write" name="write"><%= cmd.getComu_write()%></textarea>
+						<div class="fileUpload">
+							<div class="thumbnail">
+							<%
+							if(cmd.getComu_file()!=null){
+								%>
+								<span class="thumb"><img src="commuFile/<%=cmd.getComu_file()%>"></span>
+								<%
+							}
+							%>
+							</div>
+							<label for="fileUp">이미지 업로드</label>
+							<input type="file" name="fileUp" id="fileUp" onchange="setThumbnail(event);">
+						</div>
 						<span class="btn btn_back"><a href="#" onclick="back()">취소</a></span>
 						<input type="submit" class="btn btn_change" value="수정하기">
 					</form>

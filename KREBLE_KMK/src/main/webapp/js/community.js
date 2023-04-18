@@ -23,7 +23,6 @@ function comment_write(){
 	});
 	if(result=="success"){
 		location.reload();
-		//document.getElementById("comment").value='';
 		alert("댓글이 작성되었습니다");
 	}
 	else if(result=="fail") {
@@ -36,11 +35,10 @@ function setThumbnail(event) {
     var reader = new FileReader();
 
     reader.onload = function(event) {
-      var thumbnail = document.createElement("span");
-      var thumbnail_img = document.createElement("img");
-      thumbnail_img.setAttribute("src", event.target.result);
-      document.querySelector("div.thumbnail").appendChild(thumbnail);
-      document.querySelector("div.thumbnail span").appendChild(thumbnail_img);
+      var thumbnail = document.querySelector("div.thumbnail")
+      thumbnail.innerHTML="<span class='thumb'><img></span>";
+      var thumb_img = document.querySelector("div.thumbnail .thumb img")
+      thumb_img.setAttribute("src", event.target.result);
     };
 
     reader.readAsDataURL(event.target.files[0]);

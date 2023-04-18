@@ -35,6 +35,7 @@ function back(){
 						<textarea id="write" name="write"></textarea>
 						<div class="fileUpload">
 							<div class="thumbnail"></div>
+							<label for="fileUp">이미지 업로드</label>
 							<input type="file" name="fileUp" id="fileUp" onchange="setThumbnail(event);">
 						</div>
 						<span class="btn btn_back"><a href="#" onclick="back()">취소</a></span>

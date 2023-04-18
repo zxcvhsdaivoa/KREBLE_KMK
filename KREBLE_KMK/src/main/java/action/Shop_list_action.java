@@ -14,7 +14,7 @@ import vo.PageInfo;
 		 
 		ArrayList<Shop_prd> articleList=new ArrayList<Shop_prd>();
 	  	int page=1;
-		int limit=10;
+		int limit=5;
 		
 		if(request.getParameter("page")!=null){
 			page=Integer.parseInt(request.getParameter("page"));

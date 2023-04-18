@@ -24,7 +24,6 @@
 	<%
 	Shop_prd aa = (Shop_prd)request.getAttribute("article");
     String nowPage = (String)request.getAttribute("page");
-    out.println(aa.getPrd_no()+"디테일페이지");
 	ArrayList<Shop_prd> spr = sp_de.shop_prde_reply(aa.getPrd_no());
 	%>
 	

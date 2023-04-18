@@ -74,47 +74,56 @@
 		<!-- 제품리스트 -->
 		<article id="pl_art_no3">
 			<div class="pl_no3_center">
-		<table>
-			<%
-			if(articleList != null && listCount > 0){
-			%>
-
-			<tr id="tr_top">
-				<td class ="td_hide">번호</td>
-				<td>사진</td>
-				<td>상품명</td>
-				<td>가격</td>
-				<td>색상</td>
-				<td>등록자</td>
-				<td>등록일</td>
-				<td>비고 </td>
-			</tr>
-
-			<%
-			for(int i=0;i<articleList.size();i++){
-			%>
-			<tr>
-				<td><input type="text" value="<%=articleList.get(i).getPrd_img() %>" class="w149" readonly name = "prd_img"></td>
-				<td><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
-				<td><input type="text" value="<%=articleList.get(i).getPrd_price() %>" class="w99" readonly name = "prd_price"></td>
-				<td><input type="text" value="<%=articleList.get(i).getPrd_color() %>" class="w99" readonly name = "prd_color"></td>
-				<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>" class="w149" readonly name="prd_id"><input type="hidden" value="<%=id %>" name="prd_re_id"></td>
-				<td><input type="text" value="<%=articleList.get(i).getPrd_date() %>" class="w99" readonly><input type="hidden" value="<%=nowPage %>" name="page"></td>
-				
-				<%
-				if(id == null){
-				%>
-					<td></td>
-				<%	
-				}else{
-				%>
-				<td class="w99"><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니담기"></a></td>
-				<%
-				}
-				%>
-			</tr>
-			<%} %>
-		</table>
+				<table>
+					<%
+					if(articleList != null && listCount > 0){
+					for(int i=0;i<articleList.size();i++){
+					%>
+		
+		
+					<tr>
+						<!--사진 -->
+						<%
+						String a_img = cash.select_img(articleList.get(i).getPrd_no());
+						%>
+						
+						
+						
+						<td rowspan="4"><input type="text" value="<%=a_img%>"  readonly name = "prd_img"></td>
+						
+						<!-- 판매자아이디/(히든)구매자아이디-->
+						<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>"  readonly name="prd_id"><input type="hidden" value="<%=id %>" name="prd_re_id"></td>
+						<!-- 상품명 -->
+						<td colspan="2"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
+						<!-- 판매자아이디 -->
+						<td rowspan="3"><input type="text" value="<%=articleList.get(i).getPrd_id() %>" readonly></td>
+					</tr>
+					<tr>
+						<!-- 등록일/(히든)현재페이지 -->
+						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_date() %>"  readonly><input type="hidden" value="<%=nowPage %>" name="page"></a></td>
+					</tr>
+					<tr>
+						<!-- 색상 -->
+						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_color() %>"  readonly name = "prd_color"></a></td>
+					</tr>
+					<tr>
+						<!-- 가격 -->
+						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_price() %>"  readonly name = "prd_price"></a></td>
+						<!-- 장바구니 로그인시 보임 -->
+						<%
+						if(id == null){
+						%>
+							<td></td>
+						<%	
+						}else{
+						%>
+						<td  rowspan=""><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니"></a></td>
+						<%
+						}
+						%>
+					</tr>
+					<%} %><!-- for 문 종료 -->
+				</table>
 			</div>
 		</article>
 		<%
@@ -168,8 +177,5 @@
 	</form>
 	</div>
 	</section>
-	
-    <!-- footer -->
-    <jsp:include page="Footer_baseform.jsp"/>
 </body>
 </html>

@@ -31,3 +31,12 @@ $(document).ready(function(){
 		}
 	})
 })
+
+function moneycheck(){
+	var id_cash = parseInt(document.getElementsByName("iid")[0].value);
+	var buy_cash = parseInt(document.getElementsByName("total")[0].value);
+	if(id_cash < buy_cash){
+		alert("보유한 금액이 부족합니다");
+		return false;
+	}
+}

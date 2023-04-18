@@ -54,11 +54,13 @@
   
 	<section>
 		<div>
-		<form action="#" method = "post">
+		<form action="shop_buy_list.sp" method = "post" onsubmit="return moneycheck()">
 		<article id="sb_art_no1"><!--아이디 / 보유캐시 타이틀 -->
 			<div id="sb_subtitle">
-				<div class="sb_subt1">장바구니 </div>
-				<div class="sb_subt2"> <%=id %> 님의 보유 캐시는 <%= uc %>입니다.</div>
+				<div class="sb_subt1"> 장바구니 </div>
+				<div class="sb_subt2"> <%=id %> 님의 보유 캐시는 <%= uc %>입니다.
+				<input type="hidden" name="iid" value="<%=uc %>">
+				</div>
 			</div>
 		</article>
 		<article id="sb_art_no2"><!-- 장바구니 리스트 -->
@@ -68,6 +70,7 @@
 			<div class="no2_center"><!-- 장바구니 TH-->
 				<table>
 					<tr>
+						<th>  </th>
 						<th>사진</th>
 						<th>상품명</th>
 						<th>색상</th>
@@ -85,17 +88,18 @@
 					%>
 					
 					<tr>
-						<td><input type="text" name="sb_img" value="<%=articleList.get(i).getPrd_img()%>"readonly></td>
-						<td><input type="text" name="sb_name" value="<%=articleList.get(i).getPrd_name()%>"readonly></td>
+						<td><input type="hidden" name="sb_id<%=i %>" value=<%=articleList.get(i).getPrd_id() %>></td>
+						<td><input type="text" name="sb_img<%=i%>" value="<%=articleList.get(i).getPrd_img()%>"readonly></td>
+						<td><input type="text" name="sb_name<%=i%>" value="<%=articleList.get(i).getPrd_name()%>"readonly></td>
 						<td><input type="text" name="sb_color" value="<%=articleList.get(i).getPrd_color()%>"readonly></td>
 						<td>
 						<input type="number" class="prd_qant" name="sb_qant<%=i %>" value="<%=articleList.get(i).getPrd_qant()%>" min="1" max="<%=articleList.get(i).getPrd_total()%>">
 						<input type="hidden" value="<%=articleList.get(i).getPrd_no()%>" name="prd_no<%=i%>">
 						<input type="button" value ="수량변경" name="<%=i%>" class="prd_button">
 						<input type="hidden" value="<%=id%>" name="id">
-						<input type="hidden" value="<%=articleList.get(i).getPrd_total()%>" name="max_qant">
+						<input type="hidden" value="<%=articleList.get(i).getPrd_total()%>" name="max_qant"><!--  total => 최대수량 -->
 						</td>
-						<td><input type="number" name="sb_price" value="<%=articleList.get(i).getPrd_price()%>" readonly></td>
+						<td><input type="number" name="sb_price<%=i%>" value="<%=articleList.get(i).getPrd_price()%>" readonly></td>
 						<% q_p = articleList.get(i).getPrd_price()*articleList.get(i).getPrd_qant();%>
 						<td><input type="number" name="q_p" value="<%= q_p %>"readonly></td>
 						<td><a href="shop_bak_one_delete.sp?b_id=<%=id%>&prd_no=<%=articleList.get(i).getPrd_no()%>"><input type="button" value="삭제"></a></td>
@@ -104,7 +108,7 @@
 					<%} %>
 					<tr>
 						<td colspan="2">장바구니 총합 금액 : </td>
-						<td colspan="2"><%=total %>원</td>
+						<td colspan="2"><input type="text" name="total" value="<%=total%>" readonly></td>
 						<td><a href ="sb_back_clear.sp?b_id=<%=id%>"><input type="button" value="전부삭제"></a></td>
 						<td><input type="submit" value="구매"></td>
 						<td><a href="kreble.sp"><input type="button" value="쇼핑홈"></a></td>

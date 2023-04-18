@@ -10,6 +10,7 @@ import action.Action;
 import action.Prd_mody_form_action;
 import action.Shop_Prd_delete_action;
 import action.Shop_back_qa_updat_action;
+import action.Shop_buy_action;
 import action.Shop_calist_action;
 import action.Shop_detail_action;
 import action.Shop_list_action;
@@ -112,9 +113,13 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 		
 		
 		//구매내역
-		else if(command.equals("/shop_prd_buy_list.sp")){
-			forward=new ActionForward();
-			forward.setPath("/shop_buy_list.jsp");
+		else if(command.equals("/shop_buy_list.sp")){
+			action = new Shop_buy_action();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		//주문제작
 		else if(command.equals("/shop_re_board.sp")){

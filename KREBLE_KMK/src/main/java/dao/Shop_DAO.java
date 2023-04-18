@@ -95,10 +95,10 @@ public class Shop_DAO {
 	public ArrayList<Shop_prd> caSelectArticleList(String cata, int page,int limit){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String shop_list_sql="select * from product where prd_cata=? order by prd_no desc limit ?,10";
+		String shop_list_sql="select * from product where prd_cata=? order by prd_no desc limit ?,5";
 		ArrayList<Shop_prd> articleList = new ArrayList<Shop_prd>();
 		Shop_prd shop_prd = null;
-		int startrow=(page-1)*10; 
+		int startrow=(page-1)*5; 
 		String prd_cata = "";
 		switch(cata) {
         case "uni": prd_cata = "유니폼";
@@ -144,10 +144,10 @@ public class Shop_DAO {
 	public ArrayList<Shop_prd> selectArticleList(int page,int limit){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String shop_list_sql="select * from product order by prd_no desc limit ?,10";
+		String shop_list_sql="select * from product order by prd_no desc limit ?,5";
 		ArrayList<Shop_prd> articleList = new ArrayList<Shop_prd>();
 		Shop_prd shop_prd = null;
-		int startrow=(page-1)*10; 
+		int startrow=(page-1)*5; 
 
 		try{
 			pstmt = con.prepareStatement(shop_list_sql);

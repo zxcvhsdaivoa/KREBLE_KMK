@@ -120,7 +120,7 @@ input[type=radio] {
 }
 #pwck_text {
 	position: absolute;
-	bottom:125px;
+	bottom:265px;
 	left:175px;
 }
 .content .type1 > input[type=text]{

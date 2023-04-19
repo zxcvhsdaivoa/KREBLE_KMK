@@ -61,10 +61,10 @@ public class FieldDAO {
 	}
 	
 	// 자주가는 구장 저장
-	public field_save_Data save_insert(field_save_Data save) {
+	@SuppressWarnings({ "resource", "null" })
+	public int save_insert(field_save_Data save) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int num =0;
 		String sql="";
 		int insertCount=0;
 		

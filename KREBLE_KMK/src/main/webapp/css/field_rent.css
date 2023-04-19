@@ -20,7 +20,7 @@
 }
 
 section{
- height: 1300px;
+ height: 1550px;
 }
 div{
 	display: block;
@@ -115,7 +115,8 @@ div{
 	text-align: center;
 }
 .month_selc{
-	width: 300px;
+	font-family: 'NanumSquareNeo-Variable';
+	width: 220px;
     height: 46px;
     padding: 5px 34px 5px 5px;
     font-size: 18px;
@@ -126,6 +127,7 @@ div{
     background-color: #f5f5f5;
     display: inline-block;
     margin: 0 15px;
+    text-align: center;
 }
 .calendar{
 	margin: 40px 0 25px;
@@ -147,6 +149,9 @@ div{
 	border-left: none;
 	color: #ee200a;
 }
+.day td:last-child {
+	color: #009ce1;;
+}
 .day2 td{
 	height: 115px;
     padding: 16px 14px;
@@ -159,6 +164,9 @@ div{
 	border-left: none;
 	color: #ee200a;
 }
+.day2 td:last-child {
+	color: #009ce1;;
+}
 .possible{
 	display: block;
     height: 29px;
@@ -168,6 +176,19 @@ div{
     line-height: 1;
     text-align: center;
     border: 1px solid #009ce1;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.impossible{
+	display: block;
+    height: 29px;
+    padding: 6px 0;
+    font-size: 15px;
+    color: #FF4848;
+    line-height: 1;
+    text-align: center;
+    border: 1px solid #FF4848;
     background-color: #fff;
     border-radius: 4px;
     margin-top: 10px;

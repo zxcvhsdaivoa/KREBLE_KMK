@@ -11,6 +11,7 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="js/Header_Footer_Aside_baseform.js"></script>
+<script src="js/field_rent.js"></script>
 <script type="text/javascript" ></script>
 <body>
 	<jsp:include page="Header_baseform.jsp"/>
@@ -54,12 +55,6 @@
 							<option>2023년 06월</option>
 							<option>2023년 07월</option>
 						</select>
-						<select class="month_selc">
-							<option>04월 01일 ~ 04월 30일</option>
-							<option>05월 01일 ~ 05월 30일</option>
-							<option>06월 01일 ~ 06월 30일</option>
-							<option>07월 01일 ~ 07월 30일</option>
-						</select>
 					</div>
 					
 					<div class="calendar">
@@ -74,25 +69,49 @@
 								<td>토</td>
 							</tr>
 							<tr class="day2">
+								<td>26일<span class="impossible">마감</span></td>
+								<td>27일<span class="impossible">마감</span></td>
+								<td>28일<span class="impossible">마감</span></td>
+								<td>29일<span class="impossible">마감</span></td>
+								<td>30일<span class="impossible">마감</span></td>
+								<td>31일<span class="impossible">마감</span></td>
+								<td>01일<span class="impossible">마감</span></td>
+							</tr>
+							<tr class="day2">
+								<td>02일<span class="possible">가능</span></td>
+								<td>03일<span class="possible">가능</span></td>
+								<td>04일<span class="possible">가능</span></td>
+								<td>05일<span class="possible">가능</span></td>
+								<td>06일<span class="possible">가능</span></td>
+								<td>07일<span class="possible">가능</span></td>
+								<td>08일<span class="possible">가능</span></td>
+							</tr>
+							<tr class="day2">
+								<td>09일</td>
+								<td>10일</td>
+								<td>11일</td>
+								<td>12일</td>
+								<td>13일</td>
+								<td>14일</td>
+								<td>15일</td>
+							</tr>
+							<tr class="day2">
+								<td>16일</td>
+								<td>17일</td>
+								<td>18일</td>
+								<td>19일</td>
+								<td>20일</td>
+								<td>21일</td>
+								<td>22일</td>
+							</tr>
+							<tr class="day2">
+								<td>23일</td>
+								<td>24일</td>
+								<td>25일</td>
 								<td>26일</td>
 								<td>27일</td>
 								<td>28일</td>
 								<td>29일</td>
-								<td>30일</td>
-								<td>31일</td>
-								<td>01일</td>
-							</tr>
-							<tr class="day2">
-								<td>02일</td>
-								<td>03일</td>
-								<td>04일</td>
-								<td>05일</td>
-								<td>06일</td>
-								<td>07일</td>
-								<td>08일
-								<span class="possible">가능</span>
-								</td>
-								
 							</tr>
 						</table>
 					</div>

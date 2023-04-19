@@ -501,7 +501,7 @@ public class Shop_DAO {
 				shop_prd.setPrd_total(rs2.getInt("prd_qant"));
 				}
 				articleList.add(shop_prd);
-				
+
 			}
 
 		}catch(Exception ex){

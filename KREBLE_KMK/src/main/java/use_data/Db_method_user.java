@@ -91,44 +91,6 @@ public class Db_method_user extends Db_method_conn {
 			diconn();
 		}
 	}	
-	public String select_img(String aa) throws IOException{
 
-	ParameterBlock pb=new ParameterBlock();
-	String filename = aa;
-	String imagePath = null;
-	char a1 = aa.charAt(0);
-	String bb = "";
-	switch(a1) {
-		case 'u':
-	        bb = "uni";
-	        break;
-		case 'b':
-			bb = "ball";
-			break;
-		case 's':
-			bb = "sue";
-			break;
-		case 'e':
-			bb = "etc";
-			break;
-	}
-	imagePath = "image/shopimg/"+bb+"/";
-	
-	pb.add(imagePath+aa);
-	RenderedOp rOp=JAI.create("fileload",pb);
-	
-	BufferedImage bi= rOp.getAsBufferedImage();
-	BufferedImage thumb=new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
-	
-	Graphics2D g=thumb.createGraphics();
-	g.drawImage(bi,0,0,100,100,null);
-	
-	File file=new File(imagePath+"/sm_"+filename);
-	ImageIO.write(thumb,"jpg",file);
-	return imagePath;
-	
-	
-	
-	}
 	  
 }

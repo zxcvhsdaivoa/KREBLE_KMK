@@ -83,13 +83,10 @@
 		
 					<tr>
 						<!--사진 -->
-						<%
-						String a_img = cash.select_img(articleList.get(i).getPrd_no());
-						%>
 						
 						
 						
-						<td rowspan="4"><input type="text" value="<%=a_img%>"  readonly name = "prd_img"></td>
+						<td rowspan="4"><img alt="prd_img" src=""> </td>
 						
 						<!-- 판매자아이디/(히든)구매자아이디-->
 						<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>"  readonly name="prd_id"><input type="hidden" value="<%=id %>" name="prd_re_id"></td>

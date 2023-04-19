@@ -22,5 +22,11 @@
 	cmd.setComu_write(multi.getParameter("write"));
 	cmd.setComu_file(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
 	data.commu_write(cmd);
-	response.sendRedirect("community_after.jsp?after=write"); 
 %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+	$(function(){
+		alert("게시글 작성이 완료되었습니다");
+		location.href="community.jsp";
+	})
+</script>

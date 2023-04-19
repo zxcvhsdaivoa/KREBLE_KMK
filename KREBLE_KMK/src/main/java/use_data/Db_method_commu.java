@@ -301,7 +301,12 @@ public class Db_method_commu extends Db_method_conn {
 	public void commu_change(CommunityData cmd) throws Exception { //커뮤니티 글 수정
 		try{
 			conn();
-			String command = String.format("update community set category:='%s',commu_title:='%s',commu_write:='%s',commu_file:='%s' where commu_no=%s AND user_id='%s'",cmd.getCategory(),cmd.getComu_title(),cmd.getComu_write(),cmd.getComu_file(),cmd.getComu_num(),cmd.getId());
+			String command=null;
+			if(cmd.getComu_file()==null||cmd.getComu_file().equals("null")||cmd.getComu_file()=="null") {
+				command = String.format("update community set category:='%s',commu_title:='%s',commu_write:='%s' where commu_no=%s AND user_id='%s'",cmd.getCategory(),cmd.getComu_title(),cmd.getComu_write(),cmd.getComu_num(),cmd.getId());
+			}else {
+				command = String.format("update community set category:='%s',commu_title:='%s',commu_write:='%s',commu_file:='%s' where commu_no=%s AND user_id='%s'",cmd.getCategory(),cmd.getComu_title(),cmd.getComu_write(),cmd.getComu_file(),cmd.getComu_num(),cmd.getId());
+			}
 			int rowNum = stm.executeUpdate(command);
 			if(rowNum<1){
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
@@ -342,9 +347,18 @@ public class Db_method_commu extends Db_method_conn {
 	public void commu_delete(String no, String id) throws Exception { //커뮤니티 글 삭제
 		try{
 			conn();
-			String command = String.format("delete from community where commu_no=%s and user_id='%s';",no,id);
+			System.out.println(no);
+			System.out.println(id);
+			String command = String.format("delete from commu_comment where commu_no='%s';",no);
 			int rowNum = stm.executeUpdate(command);
 			if(rowNum<1){
+				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
+			}
+			
+			
+			String command2 = String.format("delete from community where commu_no='%s' and user_id='%s';",no,id);
+			int rowNum2 = stm.executeUpdate(command2);
+			if(rowNum2<1){
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
 			}
 		}finally {

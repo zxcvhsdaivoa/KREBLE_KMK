@@ -16,7 +16,7 @@
 		%>
 		<script>
 		$(function(){
-			$(".community_inner > span").text("게시글 작성이 완료되었습니다");
+			$(".after_textbox > span.after_text").text("게시글 작성이 완료되었습니다");
 		})
 		</script>
 		<%
@@ -25,7 +25,7 @@
 		%>
 		<script>
 		$(function(){
-			$("span").text("게시글 수정이 완료되었습니다");
+			$(".after_textbox > span.after_text").text("게시글 수정이 완료되었습니다");
 		})
 		</script>
 		<%
@@ -34,7 +34,7 @@
 		%>
 		<script>
 		$(function(){
-			$("span").text("게시글 삭제가 완료되었습니다");
+			$(".after_textbox > span.after_text").text("게시글 삭제가 완료되었습니다");
 		})
 		</script>
 		<%
@@ -47,8 +47,10 @@
 		<div class="section_inner">
 			<div class="community2">
 				<div class="community_inner">
-					<span class="after_text"></span><br>
-					<a href="community.jsp?cate=all">바로가기</a>
+					<div class="after_textbox">
+						<span class="after_text"></span><br>
+						<span class="btn"><a href="community.jsp?cate=all">바로가기</a></span>
+					</div>
 				</div>
 			</div>
 		</div>

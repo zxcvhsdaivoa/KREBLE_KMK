@@ -48,7 +48,7 @@
 					<div class="content_box">
 						<span class="title"><%= comu.getComu_title()%></span>
 						<%
-						if(filename!= null){
+						if(filename!= null&&!filename.equals("null")&&filename!="null"){
 							%>
 						<img src="commuFile/<%= filename%>">
 							<%
@@ -67,8 +67,8 @@
 						
 					}
 					else if(comu.getId().equals(login_id)){
-						out.println("<a href='community_delete.jsp?no="+comu_no+"' class='btn btn_delete'><span>삭제하기</span></a>");
-						out.println("<a href='community_change.jsp?no="+comu_no+"' class=' btn btn_change'><span>수정하기</span></a>");
+						out.println("<span class='btn btn_delete' data-communo="+comu.getComu_num()+">삭제하기</span>");
+						out.println("<span class='btn btn_change'><a href='community_change.jsp?no="+comu_no+"'>수정하기</a></span>");
 					}
 					%>
 					</div>

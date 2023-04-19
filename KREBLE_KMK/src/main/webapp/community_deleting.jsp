@@ -6,5 +6,11 @@
 	String comu_no = request.getParameter("no");
 	String id = (String) session.getAttribute("ID");
 	data.commu_delete(comu_no, id);
-	response.sendRedirect("community_after.jsp?after=delete"); 
 %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+	$(function(){
+		alert("게시글 삭제가 완료되었습니다");
+		location.href="community.jsp";
+	})
+</script>

@@ -43,7 +43,7 @@ function back(){
 						<div class="fileUpload">
 							<div class="thumbnail">
 							<%
-							if(cmd.getComu_file()!=null){
+							if(cmd.getComu_file()!=null&&cmd.getComu_file()!="null"&&!cmd.getComu_file().equals("null")){
 								%>
 								<span class="thumb"><img src="commuFile/<%=cmd.getComu_file()%>"></span>
 								<%

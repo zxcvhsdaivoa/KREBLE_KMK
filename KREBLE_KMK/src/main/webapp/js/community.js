@@ -42,4 +42,17 @@ function setThumbnail(event) {
     };
 
     reader.readAsDataURL(event.target.files[0]);
-  }
+}
+
+$(document).ready(function(){
+	$(".btn_delete").click(function(){
+		var no = $(this).attr("data-communo");
+		var deleteConfirm = confirm('게시글을 삭제하시겠습니까?');
+		if(deleteConfirm){
+			location.href="community_deleting.jsp?no="+no;
+		}
+		else {
+			
+		}
+	})
+})

@@ -154,7 +154,7 @@
 							<td class='replace_cate'><%=comu.get(i).getCategory()%></td>
 							<td><a href='community_borde.jsp?no=<%=comu.get(i).getComu_num()%>'><%=comu.get(i).getComu_title()%></a>
 							<%
-							if(comu.get(i).getComu_file()!=null){
+							if(comu.get(i).getComu_file()!=null&&comu.get(i).getComu_file()!="null"&&!comu.get(i).getComu_file().equals("null")){
 								%>
 								<img src="image/img_logo.png" class="img_logo">
 								<%

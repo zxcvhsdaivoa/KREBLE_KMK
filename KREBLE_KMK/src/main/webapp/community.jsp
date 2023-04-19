@@ -117,11 +117,11 @@
 				    <div class="top_wrap">
 						<span class="btn btn_write"><a href="community_check.jsp?do=ck">글쓰기</a></span>
 						<ul class="cate">
-							<li><a href="community.jsp">전체</a></li>
-							<li><a href="community.jsp?cate=free">자유</a></li>
-							<li><a href="community.jsp?cate=debate">토론</a></li>
-							<li><a href="community.jsp?cate=qna">질문</a></li>
-							<li><a href="community.jsp?cate=info">정보</a></li>
+							<li><a href="community.jsp" <%if(cate.equals("all")){ %>class="select"<%} %>>전체</a></li>
+							<li><a href="community.jsp?cate=free" <%if(cate.equals("free")){ %>class="select"<%} %>>자유</a></li>
+							<li><a href="community.jsp?cate=debate" <%if(cate.equals("debate")){ %>class="select"<%} %>>토론</a></li>
+							<li><a href="community.jsp?cate=qna" <%if(cate.equals("qna")){ %>class="select"<%} %>>질문</a></li>
+							<li><a href="community.jsp?cate=info" <%if(cate.equals("info")){ %>class="select"<%} %>>정보</a></li>
 						</ul>
 						<%if(!login_id.equals("0")){ %>
 						<ul class="mycommu">
@@ -194,7 +194,7 @@
 					
 						<%for(int a=startPage;a<=endPage;a++){
 							if(a==page_no){%>
-							[<%=a %>]
+							<span class="select">[<%=a %>]</span>&nbsp;
 							<%}else{ %>
 								<a href="community.jsp?page=<%=a %><%if(!mycommu.equals("none")){%>&mycommu=<%= mycommu %> <%}%><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[<%=a %>]</a>&nbsp;
 							<%} %>
@@ -204,8 +204,8 @@
 						[다음]
 						<%}else{ %>
 						<a href="community.jsp?page=<%=page_no+1 %><%if(!mycommu.equals("none")){%>&mycommu=<%= mycommu %> <%}%><%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%><%if(search_text!=""){%>&search_select=<%= search %>&search_text=<%=search_text %> <%}%>">[다음]</a>
-						<%} %>
 						<%
+						}
 					    }
 						%>
 					

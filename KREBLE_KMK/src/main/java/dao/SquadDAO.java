@@ -182,7 +182,7 @@ public class SquadDAO {
 		int insertCount=0;
 
 		try{
-			sql="insert into mysquad (user_id,mysquad_no,mysquad_name,fomation,director,player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,make_date) values(?,default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now();";
+			sql="insert into mysquad (user_id,mysquad_no,mysquad_name,fomation,director,player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,make_date) values(?,default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now());";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, squad.getUser_id());
 			pstmt.setString(2, squad.getSquad_name());
@@ -199,7 +199,6 @@ public class SquadDAO {
 			pstmt.setString(13, squad.getPlayer9());
 			pstmt.setString(14, squad.getPlayer10());
 			pstmt.setString(15, squad.getPlayer11());
-
 			insertCount=pstmt.executeUpdate();
 
 		}catch(Exception ex){

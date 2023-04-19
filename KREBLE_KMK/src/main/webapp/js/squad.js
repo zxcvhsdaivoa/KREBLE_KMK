@@ -4,6 +4,7 @@ $(function(){
 	var sq_count= ($('.squad_wrap ul li').length);
 	$(".sub_wrap").hide();
 	$(".sub_wrap").addClass("z_in");
+	$(".squad_wrap ul li:last").addClass("onlyGK");
 	//$('.mysquad .squad_wrap ul li').draggable();
 
 	//기본 이미지 지정
@@ -58,6 +59,20 @@ $(function(){
 		var pl_name_ko=$(this).find(".name_ko").text();
 		var pl_name_eng=$(this).find(".name_eng").text();
 		var pl_position=$(this).find(".p_position").text();
+		
+		if($(".squad_wrap ul li.on").hasClass("onlyGK")==true){
+			if(pl_position!="GK"){
+				alert("해당 자리에는 골키퍼만 등록할 수 있습니다");
+				return false;
+			}
+		}
+		else {
+			if(pl_position=="GK"){
+				alert("골기퍼는 해당 자리에 등록할 수 없습니다");
+				return false;
+			}
+		}
+		
 		$(".squad_wrap ul li.on .player_image").attr("src",pl_img);
 		$(".squad_wrap ul li.on p.ko_name").text(pl_name_ko);
 		$(".squad_wrap ul li.on p.eng_name").text(pl_name_eng);
@@ -71,9 +86,11 @@ $(function(){
 	})
 	//창 닫기
 	$(".exit").click(function(){
-		$(".squad_wrap ul li.on").removeClass("on")
+		$(".squad_wrap ul li.on").removeClass("on");
 		$(".sub_wrap").hide();
-
+		if($(this).parent().hasClass("player_inner")==true){
+			$(".player_list ul li").show();
+		}
 	})
 
 
@@ -121,22 +138,21 @@ $(function(){
 
 	//스쿼드 저장
 	$(".save_squad").click(function(){
-		var sq_mem = document.querySelectorAll(".eng_name");
-		for(var i=0; i<sq_mem.length; i++){
-			var null_ch =sq_mem.item(i).innerText;
+		var sq_mem_ko = document.querySelectorAll(".ko_name");
+		var sq_mem_eng = document.querySelectorAll(".eng_name");
+		for(var i=0; i<sq_mem_eng.length; i++){
+			var null_ch =sq_mem_eng.item(i).innerText;
 			if(null_ch == ''){
 				alert('비어있는 칸이 없도록 선택해주세요');
 				return false;
 			}
-			else if(i==sq_mem.length-1) {
-				for(var j=1; j<sq_mem.length; j++){
-					var ckj=sq_mem.item(j).innerText;
+			else if(i==sq_mem_ko.length-1) {
+				for(var j=1; j<sq_mem_ko.length; j++){
+					var ckj=sq_mem_ko.item(j).innerText;
 					for(var k=0; k<j; k++) {
-						var ckk=sq_mem.item(k).innerText;
+						var ckk=sq_mem_ko.item(k).innerText;
 						if(ckj == ckk) { 
-							alert('선수가 중복되지 않게 선택해주세요')
-							i=sq_mem.length;
-							j=sq_mem.length;
+							alert('선수가 중복되지 않게 선택해주세요\n현재 중복된 선수 : '+ckj)
 							return false;
 				        } else if(j==sq_mem.length-1 && k==j-1) {
 				            

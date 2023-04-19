@@ -134,11 +134,11 @@
 			<span class="exit">나가기</span>
 			<div class="list_header">
 				<ul>
-					<li><a href="#">All Players</a></li>
-					<li><a href="#">FW</a></li>
-					<li><a href="#">MF</a></li>
-					<li><a href="#">DF</a></li>
-					<li><a href="#">GK</a></li>
+					<li>All Players</li>
+					<li>FW</li>
+					<li>MF</li>
+					<li>DF</li>
+					<li>GK</li>
 				</ul>	
 			</div>
 			<div class="player_list select_list">

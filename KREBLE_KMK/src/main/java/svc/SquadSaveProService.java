@@ -21,7 +21,6 @@ public class SquadSaveProService {
 		else{
 			rollback(con);
 		}
-		
 		close(con);
 		return isWriteSuccess;
 		

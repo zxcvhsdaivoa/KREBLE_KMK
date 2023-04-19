@@ -230,9 +230,8 @@ section {
     height:100%;
     text-align: center;
     line-height: 60px;
-}
-.player_wrap .player_inner .list_header ul li a {
     font-size:20px;
+    cursor: pointer;
 }
 .player_wrap .player_inner .player_list {
     clear:both;

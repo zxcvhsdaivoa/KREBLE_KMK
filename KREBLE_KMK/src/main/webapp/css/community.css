@@ -4,6 +4,9 @@
     clear:both;
     display:block;
 }
+.select{
+	color:blue;
+}
 section {
 	height:auto;
  	min-height:calc(100vh - 270px);

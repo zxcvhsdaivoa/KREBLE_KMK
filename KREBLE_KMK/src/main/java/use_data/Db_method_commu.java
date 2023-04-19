@@ -347,14 +347,8 @@ public class Db_method_commu extends Db_method_conn {
 	public void commu_delete(String no, String id) throws Exception { //커뮤니티 글 삭제
 		try{
 			conn();
-			System.out.println(no);
-			System.out.println(id);
 			String command = String.format("delete from commu_comment where commu_no='%s';",no);
-			int rowNum = stm.executeUpdate(command);
-			if(rowNum<1){
-				throw new Exception("데이터를 DB에 입력할 수 없습니다.");
-			}
-			
+			stm.executeUpdate(command);
 			
 			String command2 = String.format("delete from community where commu_no='%s' and user_id='%s';",no,id);
 			int rowNum2 = stm.executeUpdate(command2);

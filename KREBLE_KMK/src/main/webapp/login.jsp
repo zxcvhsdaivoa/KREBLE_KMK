@@ -26,25 +26,19 @@
 </script>
  <body>
 
-
     <!-- header -->
-  
   <jsp:include page="Header_baseform.jsp"/>
+
+  
 
     <!--section-->
   <div id="img_login">
-	  <div> '</div>
 	  <section>
 	    <div class="section_inner">
 	      <!--article 시작-->
 	      <article>
-	        <div id="login_id">
-	          <div class = "mem_title">
-	          </div>
-	        </div>
-	        
-	        
 	        <form name="user_login" action="login_data.jsp" method="post">
+	        <div>
 	          <div class = "loginlabel">로그인</div>
 	          <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요"><br><br>
 	          <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요"><br><br>
@@ -57,14 +51,15 @@
 	          </div>
 			  <div class = "etc_login">
 			  	<div>SNS계정으로 로그인</div> 
-			  	<span>
-			  		<span class="KakaoL">K</span>
-			  		<span>KAKAO LOGIN</span>
-			  	</span>
-			  	<span>
-			  		<span class="NaverL">N</span>
-			  		<span>NAVER LOGIN</span>
-			  	</span>
+				  	<span>
+				  		<span class="KakaoL">K</span>
+				  		<span>KAKAO LOGIN</span>
+				  	</span>
+				  	<span>
+				  		<span class="NaverL">N</span>
+				  		<span>NAVER LOGIN</span>
+				  	</span>
+				  </div>
 			  </div>
 	        </form>
 	      </article>

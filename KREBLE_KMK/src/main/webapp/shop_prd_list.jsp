@@ -76,24 +76,38 @@
 			<div class="pl_no3_center">
 				<table>
 					<%
+					/////////////////////사진경로///////////////////
 					if(articleList != null && listCount > 0){
 					for(int i=0;i<articleList.size();i++){
+						String impath = "";
+						String aa = articleList.get(i).getPrd_no();
+						char p_no = aa.charAt(0);
+						switch(p_no){
+						case 's':
+							impath = "image/shopimg/sue/";
+							break;
+						case 'u':
+							impath = "image/shopimg/uni/";
+							break;
+						case 'b':
+							impath = "image/shopimg/ball/";
+							break;
+						case 'e':
+							impath = "image/shopimg/etc/";
+							break;
+						}
 					%>
-		
-		
 					<tr>
 						<!--사진 -->
-						
-						
-						
-						<td rowspan="4"><img alt="prd_img" src=""> </td>
+						<td rowspan="4">
+						<div class = "aa"><img class = "aa" alt="Image not uploaded" src="<%=impath+articleList.get(i).getPrd_no()%>.jpg"> </div></td>
 						
 						<!-- 판매자아이디/(히든)구매자아이디-->
 						<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>"  readonly name="prd_id"><input type="hidden" value="<%=id %>" name="prd_re_id"></td>
 						<!-- 상품명 -->
 						<td colspan="2"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
 						<!-- 판매자아이디 -->
-						<td rowspan="3"><input type="text" value="<%=articleList.get(i).getPrd_id() %>" readonly></td>
+						<td rowspan="3" class = "bb"><input type="text" value="<%=articleList.get(i).getPrd_id() %>" readonly></td>
 					</tr>
 					<tr>
 						<!-- 등록일/(히든)현재페이지 -->

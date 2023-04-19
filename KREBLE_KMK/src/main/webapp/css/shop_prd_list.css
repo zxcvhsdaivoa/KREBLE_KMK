@@ -124,6 +124,22 @@ article{
 	height: auto;
 }
 
+#pl_art_no3 .aa{
+	width : 100px;
+	margin: 0 auto;
+}
+
+#pl_art_no3 .bb{
+	vertical-align: top;
+	text-align: center;
+}
+
+#pl_art_no3 img{
+	width: 100px;
+	height: 100px;
+	
+}
+
 .pl_no3_center{
 	width: 1280px;
 	float: left;

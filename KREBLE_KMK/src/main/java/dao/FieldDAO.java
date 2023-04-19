@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.sql.DataSource;
 import vo.KreblechoiData;
+import vo.field_save_Data;
 
 public class FieldDAO {
 	DataSource ds;
@@ -58,4 +59,35 @@ public class FieldDAO {
 		}
 		return field_list;
 	}
+	
+	// 자주가는 구장 저장
+	public field_save_Data save_insert(field_save_Data save) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int num =0;
+		String sql="";
+		int insertCount=0;
+		
+		try{
+			rs = pstmt.executeQuery();
+			sql="insert into favorite_field_save(save_num,user_id,save1,save2,save3,save4";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, save.getSave_num());
+			pstmt.setString(2, save.getUser_id());
+			pstmt.setString(3, save.getSave1());
+			pstmt.setString(4, save.getSave2());
+			pstmt.setString(5, save.getSave3());
+			pstmt.setString(6, save.getSave4());
+			insertCount=pstmt.executeUpdate();
+
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return insertCount;
+
+	}
+		
 }

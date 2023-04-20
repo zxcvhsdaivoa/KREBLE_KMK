@@ -157,6 +157,11 @@
 				<% }%>
 				</ul>
 			</div>
+		</div>
+	</div>
+	<div class="director_wrap sub_wrap">
+		<div class="director_inner inner">
+			<span class="exit">나가기</span>
 			<div class="director_box select_list">
 				<ul>
 				<%
@@ -166,9 +171,7 @@
 					<li>
 						<span class="p_img"><img src="image/player_img/<%= dl.get(i).getDirector_name() %>.jpg"></span>
 						<p class="p_name">이름 : <span class="name_ko"><%= dl.get(i).getDirector_ko_name() %></span>(<span class="name_eng"><%= dl.get(i).getDirector_name() %></span>)<br></p>
-						<p class="p_profile">생일 : <%= dl.get(i).getDirecotr_birth() %><br><br>성별 : <%= dl.get(i).getDirector_gender() %><br><br>국적 : <%= dl.get(i).getDirector_nation() %></p>
-						<p class="nation"></p>
-						<p class="period">부임기간<br><br><%= dl.get(i).getDirector_date_in() %> <br>~<br> <%= dl.get(i).getDirector_date_end() %></p>
+						<p class="p_profile">생일 : <%= dl.get(i).getDirecotr_birth() %><br>성별 : <%= dl.get(i).getDirector_gender() %><br>국적 : <%= dl.get(i).getDirector_nation() %></p>
 					</li>
 				<% }%>
 				</ul>

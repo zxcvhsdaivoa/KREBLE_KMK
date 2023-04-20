@@ -197,6 +197,7 @@ section {
     border:2px solid #333;
     text-align: center;
     line-height: 50px;;
+    cursor:pointer;
 }
 .sub_wrap .inner {
 	box-sizing:content-box;
@@ -209,12 +210,6 @@ section {
 }
 
 
-.player_wrap .player_inner #a_here {
-    position:absolute;
-    top:-120px;
-    left:0;
-    opacity: 0;
-}
 .player_wrap .player_inner .list_header {
     width:100%;
     height:60px;
@@ -280,21 +275,28 @@ font-size:14px;
 }
 
 
-.player_wrap .player_inner .director_box  {
+.director_wrap {
+	padding-top:150px;
+}
+.director_wrap .director_inner {
+	width:800px;
+	height:700px;
+}
+.director_wrap .director_inner .director_box  {
     height:100%;
 }
-.player_wrap .player_inner .director_box ul {
+.director_wrap .director_inner .director_box ul {
     height:100%;
     overflow:auto;
 }
-.player_wrap .player_inner .director_box ul li {
+.director_wrap .director_inner .director_box ul li {
     position:relative;
     width:100%;
-    height:200px;
+    height:150px;
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
 }
-.player_wrap .player_inner .director_box ul li > span {
+.director_wrap .director_inner .director_box ul li > span {
 	float:left;
     width:200px;
     height:100%;
@@ -302,33 +304,22 @@ font-size:14px;
     border-right:1px solid #333;
     overflow: hidden;
 }
-.player_wrap .player_inner .director_box ul li span img {
+.director_wrap .director_inner .director_box ul li span img {
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position:center 40%;
 }
 
-.player_wrap .player_inner .director_box ul li p {
+.director_wrap .director_inner .director_box ul li p {
 	display:block;
 }
-.player_wrap .player_inner .director_box ul li .p_name {
+.director_wrap .director_inner .director_box ul li .p_name {
 	font-size:20px;
-	margin:20px 0 15px;
+	margin:20px 0 5px;
 }
-.player_wrap .player_inner .director_box ul li .p_profile {
+.director_wrap .director_inner .director_box ul li .p_profile {
 	font-size:17px;
-}
-.player_wrap .player_inner .director_box ul li .period {
-	position:absolute;
-	top:0;
-	right:0;
-	display:block;
-	width:200px;
-	height:100%;
-	padding-top:20px;
-	text-align:center;
-	border-left:1px solid #333;
-    font-size:20px;
 }
 
 

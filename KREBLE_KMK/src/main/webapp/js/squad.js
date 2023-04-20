@@ -20,16 +20,11 @@ $(function(){
 			$(".squad_wrap ul > li").removeClass("on")
 			$(this).addClass("on")
 			if($(this).hasClass("director")==true) {
-				$(".player_list").hide();
-				$(".list_header").hide();
-				$(".director_box").show();
+				$(".director_wrap").show()
 			}
 			else {
-				$(".player_list").show();
-				$(".list_header").show();
-				$(".director_box").hide();
+				$(".player_wrap").show()
 			}
-			$(".player_wrap").show()
 		}
 		//등록된 선수 제거
 		else if($(this).find("span").hasClass("x_bu")==true){

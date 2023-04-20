@@ -69,22 +69,22 @@
 								<td>토</td>
 							</tr>
 							<tr class="day2">
-								<td>26일<span class="impossible">마감</span></td>
-								<td>27일<span class="impossible">마감</span></td>
-								<td>28일<span class="impossible">마감</span></td>
-								<td>29일<span class="impossible">마감</span></td>
-								<td>30일<span class="impossible">마감</span></td>
-								<td>31일<span class="impossible">마감</span></td>
-								<td>01일<span class="impossible">마감</span></td>
+								<td>26일</td>
+								<td>27일</td>
+								<td>28일</td>
+								<td>29일</td>
+								<td>30일</td>
+								<td>31일</td>
+								<td>01일</td>
 							</tr>
 							<tr class="day2">
-								<td>02일<span class="possible">가능</span></td>
-								<td>03일<span class="possible">가능</span></td>
-								<td>04일<span class="possible">가능</span></td>
-								<td>05일<span class="possible">가능</span></td>
-								<td>06일<span class="possible">가능</span></td>
-								<td>07일<span class="possible">가능</span></td>
-								<td>08일<span class="possible">가능</span></td>
+								<td>02일</td>
+								<td>03일</td>
+								<td>04일</td>
+								<td>05일</td>
+								<td>06일</td>
+								<td>07일</td>
+								<td>08일</td>
 							</tr>
 							<tr class="day2">
 								<td>09일</td>

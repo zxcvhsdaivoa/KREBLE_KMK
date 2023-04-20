@@ -4,8 +4,9 @@
     clear:both;
     display:block;
 }
-.select{
-	color:blue;
+section .section_inner .select{
+	color:#000;
+	font-weight: bold;
 }
 section {
 	height:auto;
@@ -77,6 +78,9 @@ table.commu_list_table {
 	border-bottom:1px solid #e6e8e5;
 	height:30px;
 }
+.bt_border > td > a {
+	color:#777;
+}
 .bg1{
 	border-bottom: 1px solid #e6e8e5;
     background-color: #e6e8e5;
@@ -132,7 +136,7 @@ textarea {
 }
 .btn.btn_write {
 	float:right;
-	margin-right:0;
+	margin:0;
 	font-size:16px;
 }
 .btn.btn_back {
@@ -260,16 +264,20 @@ textarea {
 	width:100%;
 	height:43px;
 	margin:70px auto 30px;
-	padding-left:20px;
 	border:none;
 	border-top: 2px gray solid;
 	border-bottom: 1px gray solid;
 	background-color:#fbfbfb;
 }
+.top_wrap ul li a {
+	color:#777;
+}
 .cate {
 	float:left;
-	width:300px;
+	width:301px;
 	height:40px;
+	padding:0 10px;
+	border-right:1px solid #777;
 }
 .cate li {
 	float:left;
@@ -280,6 +288,7 @@ textarea {
 	margin:10px;
 	font-size:20px;
 	line-height:40px;
+	color:#777;
 }
 .cate li:last-child:after {
 	content:none;
@@ -291,8 +300,11 @@ textarea {
 
 .mycommu {
 	float:right;
-	width:180px;
+	width:190px;
 	height:40px;
+	padding:0 10px;
+	border-right:1px solid #777;
+	border-left:1px solid #777;
 }
 .mycommu li {
 	float:left;
@@ -303,6 +315,7 @@ textarea {
 	margin:10px;
 	font-size:16px;
 	line-height:40px;
+	color:#777;
 }
 .mycommu li:last-child:after {
 	content:none;

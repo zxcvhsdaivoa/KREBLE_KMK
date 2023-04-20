@@ -13,7 +13,6 @@ import vo.SquadInfo;
 	 
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 
-		ArrayList<SquadInfo> allList=null;
 		ArrayList<SquadInfo> squadList=null;
 		SquadInfo selectSquad = new SquadInfo();
 		HttpSession session=request.getSession();
@@ -32,8 +31,6 @@ import vo.SquadInfo;
 			selectSquad = userSquadListService.getArticle(squad_no);
 			request.setAttribute("squad", selectSquad);
 		}
-		allList = userSquadListService.getAllList();
-		request.setAttribute("allList", allList);
 		ActionForward forward= new ActionForward();
    		forward.setPath("/mysquad.jsp");
    		return forward;

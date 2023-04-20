@@ -163,10 +163,6 @@ $(function(){
 		$(".mysquad_wrap").show();
 	})
 	
-	//전체 목록 오픈
-	$(".all_squad").click(function(){
-		$(".allsquad_wrap").show();
-	})
 	
 	//공개여부 버튼 동작
 	$(".toggle_button").click(function(){

@@ -2,8 +2,8 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="ud" class="use_data.Db_method_player"/>
 <%@ page import="use_data.Player_Info"%>
-<%@ page import="vo.SquadInfo"%>
 <%@ page import="use_data.Director_Info"%>
+<%@ page import="vo.SquadInfo"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -112,7 +112,7 @@
 						<input type="text" <%if(nullck==true&&squad.getUser_id().equals(login_id)||nullck==false&&login_id!="0"){%>style="width:565px"<%}%> id="squad_name" name="squad_name" <% if(nullck==true){%> value="<%= squad.getSquad_name()%>" <%if(!squad.getUser_id().equals(login_id)){%>readonly<%} } %>>
 						<%if(nullck==true&&squad.getUser_id().equals(login_id)||nullck==false&&login_id!="0"){ %><button type="submit" class="save_squad">스쿼드 저장</button><%} %>
 						<span class="back"><a href="squad.sq">새 스쿼드 만들기</a></span>
-						<button type="button" class="all_squad">전체 스쿼드 목록</button>
+						<span class="all_squad"><a href="squad_list.sq">전체 스쿼드 목록</a></span>
 						<label for="formation" class="blind" >포메이션</label>
 						<select id="formation" name="formation" <%if(nullck==true){ if(!squad.getUser_id().equals(login_id)){ %> disabled <%}} %>>
 							<option <%if(nullck==true){ if(squad.getFormation().equals("4-3-3")){ %>selected="selected"<% } } %>>4-3-3</option>
@@ -215,46 +215,6 @@
 						out.println("<td><div class='toggle_button no' data-squadNo="+squadlist.get(i).getSquad_num()+" data-disclose="+squadlist.get(i).getDisclose()+"><span class='toggle'></span></div></td>");
 					}
 					out.println("<td><span class='delete_squad' data-squadNo="+squadlist.get(i).getSquad_num()+">삭제하기</span></td></tr>");
-				}
-			}
-			%>
-			</table>
-			</div>
-		</div>
-	</div>
-	
-	<div class="allsquad_wrap sub_wrap">
-		<div class="allsquad_inner inner">
-			<span class="exit">나가기</span>
-			
-			<%
-			ArrayList<SquadInfo> allList =null; 
-			allList = (ArrayList<SquadInfo>) request.getAttribute("allList");
-			
-			if(allList==null){
-				out.println("공개된 스쿼드가 없습니다");
-			}
-			else {
-			%>
-			<div class="scroll_inner">
-			<table>
-				<tr>
-					<th class='width1'>스쿼드 번호</th>
-					<th class='width1'>작성자</th>
-					<th class='width2'>스쿼드 이름</th>
-					<th class='width1'>포메이션</th>
-					<th class='width1'>조회수</th>
-					<th class='width1'>작성일</th>
-				</tr>
-			<%
-				for(int i=0; i<allList.size(); i++){
-					out.println("<tr><td>"+allList.get(i).getSquad_num()+"</td>");
-					out.println("<td>"+allList.get(i).getUser_id()+"</td>");
-					out.println("<td><a href='squad.sq?no="+allList.get(i).getSquad_num()+"'>"+allList.get(i).getSquad_name()+"</a></td>");
-					out.println("<td>"+allList.get(i).getFormation()+"</td>");
-					out.println("<td>"+allList.get(i).getView_count()+"</td>");
-					out.println("<td>"+allList.get(i).getMake_date()+"</td></tr>");
-					
 				}
 			}
 			%>

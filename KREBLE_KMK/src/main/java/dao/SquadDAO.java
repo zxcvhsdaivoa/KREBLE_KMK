@@ -73,13 +73,14 @@ public class SquadDAO {
 
 	
 	@SuppressWarnings("null")
-	public ArrayList<SquadInfo> selectAllSquad(){
+	public ArrayList<SquadInfo> selectAllSquad(int page, int limit){
+		int startrow=(page-1)*limit; 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		SquadInfo squad = null;
 		ArrayList<SquadInfo> allList=new ArrayList<SquadInfo>();
 		try{
-			pstmt = con.prepareStatement("select * from mysquad where disclose='yes' order by mysquad_no desc;");
+			pstmt = con.prepareStatement("select * from mysquad where disclose='yes' order by mysquad_no desc limit "+startrow+", "+limit+";");
 			rs= pstmt.executeQuery();
 			while(rs.next()){
 				squad=new SquadInfo();
@@ -87,18 +88,6 @@ public class SquadDAO {
 				squad.setSquad_num(rs.getInt("mysquad_no"));
 				squad.setSquad_name(rs.getString("mysquad_name"));
 				squad.setFormation(rs.getString("fomation"));
-				squad.setDirector(rs.getString("director"));
-				squad.setPlayer1(rs.getString("player1"));
-				squad.setPlayer2(rs.getString("player2"));
-				squad.setPlayer3(rs.getString("player3"));
-				squad.setPlayer4(rs.getString("player4"));
-				squad.setPlayer5(rs.getString("player5"));
-				squad.setPlayer6(rs.getString("player6"));
-				squad.setPlayer7(rs.getString("player7"));
-				squad.setPlayer8(rs.getString("player8"));
-				squad.setPlayer9(rs.getString("player9"));
-				squad.setPlayer10(rs.getString("player10"));
-				squad.setPlayer11(rs.getString("player11"));
 				squad.setDisclose(rs.getString("disclose"));
 				squad.setMake_date(rs.getDate("make_date"));
 				squad.setView_count(rs.getInt("view_count"));
@@ -111,6 +100,26 @@ public class SquadDAO {
 		}
 
 		return allList;
+	}
+	
+	
+	public int selectAllSquadCount(){
+		int count=0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			pstmt = con.prepareStatement("select count(*) from mysquad where disclose='yes';");
+			rs= pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt("count(*)");
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return count;
 	}
 	
 	

@@ -125,8 +125,8 @@
 						</ul>
 						<%if(!login_id.equals("0")){ %>
 						<ul class="mycommu">
-							<li><a href="community.jsp?mycommu=board<%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%>">내글보기</a></li>
-							<li><a href="community.jsp?mycommu=comment<%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%>">내댓글보기</a></li>
+							<li><a href="community.jsp?mycommu=board<%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%>" <%if(mycommu.equals("board")) {%>class="select"<%} %>>내글보기</a></li>
+							<li><a href="community.jsp?mycommu=comment<%if(!cate.equals("all")){%>&cate=<%= cate %> <%}%>" <%if(mycommu.equals("comment")) {%>class="select"<%} %>>내댓글보기</a></li>
 						</ul>
 						<%} %>
 				    </div>

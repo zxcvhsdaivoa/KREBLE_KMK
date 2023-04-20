@@ -10,6 +10,7 @@ import action.Action;
 import action.SquadDeleteProAction;
 import action.SquadDiscloseProAction;
 import action.SquadSaveProAction;
+import action.UserSquadAllListAction;
 import action.UserSquadListAction;
 import vo.ActionForward;
 
@@ -49,6 +50,13 @@ public class SquadController extends javax.servlet.http.HttpServlet
 			}
 		}else if(command.equals("/squadDeletePro.sq")){
 			action = new SquadDeleteProAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/squad_list.sq")){
+			action = new UserSquadAllListAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

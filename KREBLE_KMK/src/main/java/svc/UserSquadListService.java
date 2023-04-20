@@ -20,17 +20,6 @@ public class UserSquadListService {
 		
 	}
 	
-	public ArrayList<SquadInfo> getAllList() throws Exception{
-		
-		ArrayList<SquadInfo> squadList = null;
-		Connection con = getConnection();
-		SquadDAO commuDAO = SquadDAO.getInstance();
-		commuDAO.setConnection(con);
-		squadList = commuDAO.selectAllSquad();
-		close(con);
-		return squadList;
-		
-	}
 	
 	public SquadInfo getArticle(int no) throws Exception{
 		
@@ -46,7 +35,6 @@ public class UserSquadListService {
 	}
 	
 	public void updateViewCount(int no) throws Exception{
-		boolean isModifySuccess = false;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
@@ -58,5 +46,4 @@ public class UserSquadListService {
 			rollback(con);
 		}
 	}
-
 }

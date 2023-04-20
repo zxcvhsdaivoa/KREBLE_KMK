@@ -1,13 +1,8 @@
 package use_data;
 
-import static db.JdbcUtil.close;
-
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 
 

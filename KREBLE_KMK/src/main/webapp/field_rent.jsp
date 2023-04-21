@@ -42,9 +42,9 @@
 				<li class="step2"><span class="step_txt">약관동의</span></li>
 				<li class="step3"><span class="step_txt">신청완료</span></li>
 			</ul>
-			
+			<form>
 			<div id="content2">
-				<div id="content2_box">
+				<div class="content2_box">
 					<h3 class="box_text">날짜/시간선택</h3>
 				</div>
 				
@@ -57,7 +57,7 @@
 							<option>2023년 07월</option>
 						</select>
 					</div>
-					
+			
 					<div class="calendar">
 						<table class="tb_calendar">
 							<tr class="day">
@@ -98,8 +98,22 @@
 							</tr>
 						</table>
 					</div>
-				</div>		
+				</div>
+				
+				<div id="info_box">
+					<h3 class="box_text">신청정보</h3>
+				</div>
+				<div class="box_inner2">
+					<input type="radio"><span>09시(09:00~11:00) 대여료 165,000</span>
+				</div>
+				<div class="content2_box">
+					<h3 class="box_text">합계:<span style="color: #f24400;"> 0 원</span></h3>
+				</div>
+				<div class="btn_area">
+					<a class="payment_btn" href="#">결제하기</a>
+				</div>
 			</div>
+			</form>
 		</div>
 
 	</section>

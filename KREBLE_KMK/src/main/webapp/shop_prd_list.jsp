@@ -1,3 +1,5 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -13,10 +15,21 @@
 	int nowPage=pageInfo.getPage();
 	int maxPage=pageInfo.getMaxPage();
 	int startPage=pageInfo.getStartPage();
-	int endPage=pageInfo.getEndPage();%>
+	int endPage=pageInfo.getEndPage();
+	
+	String asdf ="all";
+	if(request.getParameter("prd_cata")!=null&&request.getParameter("prd_cata")!="null"&&!request.getParameter("prd_cata").equals("null")){
+	asdf= (String) request.getParameter("prd_cata");
+	}
+	%>
 	<jsp:useBean id="cash" class="use_data.Db_method_user"></jsp:useBean>
+	<jsp:useBean id="shop_m1" class="use_data.Db_method_shop" />
 	<%
 	int uc = cash.u_cash(id);
+	String [] crs = shop_m1.rank_seller();
+	String rankid1 = crs[0];
+	String rankid2 = crs[1];
+	String rankid3 = crs[2];
 	%>
 <!DOCTYPE html>
 <html>
@@ -43,9 +56,7 @@
 	<section>
 	<div id="section_inner"> <!-- 내용 중앙정렬용 -->
 	<form>
-<!-- 		셀렉문을 여기에 호출? -->
-<!-- 			use_date.loadboard(); -->
-
+	<%= rankid1 + "+" + rankid2 + "+" + rankid3 %>
 		<article id="pl_art_no1"><!-- 페이지타이틀/카테고리 예정 -->
 			<div>SHOPPING MALL
 			<%
@@ -54,7 +65,7 @@
 			else
 			{
 			%>
-				<input type="button" value = "상품등록하기">
+				<input type="button" value = "상품등록하기" class="td_hide">
 			<%
 			}
 			%>
@@ -64,10 +75,10 @@
 		<article id="pl_art_no2"><!-- 품목 버튼 -->
 			<div class="no2_center">
 				<a href="shop_list_action.sp"><input type="button" value ="All" name = "all_button" /></a>
-				<a href="shop_calist_action.sp?prd_cata=uni"><input type="button" value ="Uniform" name = "uni_button" /></a>
-				<a href="shop_calist_action.sp?prd_cata=sho"><input type="button" value ="shoes" name = "shoes_button" /></a>
-				<a href="shop_calist_action.sp?prd_cata=ball"><input type="button" value ="Ball" name = "ball_button" /></a>
-				<a href="shop_calist_action.sp?prd_cata=etc"><input type="button" value ="ETC" name = "etc_button" /></a>
+				<a href="shop_calist_action.sp?prd_cata=uni"><input type="button" value ="Uniform" name = "uni_button" <%if(asdf.equals("uni")){ %>class="select"<%} %>/></a>
+				<a href="shop_calist_action.sp?prd_cata=sho"><input type="button" value ="shoes" name = "shoes_button" <%if(asdf.equals("sho")){ %>class="select"<%} %> /></a>
+				<a href="shop_calist_action.sp?prd_cata=ball"><input type="button" value ="Ball" name = "ball_button" <%if(asdf.equals("ball")){ %>class="select"<%} %>/></a>
+				<a href="shop_calist_action.sp?prd_cata=etc"><input type="button" value ="ETC" name = "etc_button" <%if(asdf.equals("etc")){ %>class="select"<%} %>/></a>
 			</div>
 		</article>
 		<!-- 	사진 / 상품명 / 상품가격 / 색상 / 등록자	 -->
@@ -97,38 +108,76 @@
 							break;
 						}
 					%>
-					<tr>
+					<tr><!-- 1행 -->
 						<!--사진 -->
-						<td rowspan="4">
-						<div class = "aa"><img class = "aa" alt="Image not uploaded" src="<%=impath+articleList.get(i).getPrd_no()%>.jpg"> </div></td>
+						<td rowspan="4" class="td_bo_b"><img class = "aa" alt="Image not uploaded" src="<%=impath+articleList.get(i).getPrd_no()%>.jpg"></td>
 						
-						<!-- 판매자아이디/(히든)구매자아이디-->
-						<td><input type="text" value="<%=articleList.get(i).getPrd_id() %>"  readonly name="prd_id"><input type="hidden" value="<%=id %>" name="prd_re_id"></td>
-						<!-- 상품명 -->
-						<td colspan="2"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
-						<!-- 판매자아이디 -->
-						<td rowspan="3" class = "bb"><input type="text" value="<%=articleList.get(i).getPrd_id() %>" readonly></td>
+						<!-- 판매자아이디(히든)/상품명 -->
+						<td colspan="5"><input type="hidden" value="<%=id %>" name="prd_re_id"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
 					</tr>
-					<tr>
+					
+					<tr><!-- 2행 -->
 						<!-- 등록일/(히든)현재페이지 -->
-						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_date() %>"  readonly><input type="hidden" value="<%=nowPage %>" name="page"></a></td>
+						<td colspan="4" class="td_le_b td_ri_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_date() %>"  readonly><input type="hidden" value="<%=nowPage %>" name="page"></a></td>
+						<!-- 판매자아이디 -->
+						<td rowspan="2" class = "bb">
+						<!-- 우수판매자 -->
+						<% String aid = articleList.get(i).getPrd_id(); %>
+						<%
+						if(aid.equals(rankid1)||aid.equals(rankid2)){
+							%>
+							<div class ="power_D"><img src="image/shopimg/bestseller.png">파워딜러</div>
+							
+						<%
+						} else if(aid.equals(rankid3)){
+						%>
+							<div class= "cs_D"><img  src="image/shopimg/bestcs.png">고객만족우수 </div>
+							
+						<%} else {
+						}
+						%>
+						<%= aid %>
+						
+						
+						<!-- 오늘날자로부터 최대 2일 내 도착예정 -->
+								<%
+								LocalDate now = LocalDate.now();
+								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d");
+								String formattedDate = now.format(formatter);
+								LocalDate date;
+								   int num = i%3;
+								   if (num == 0) {
+								     date = now;
+								   } else if (num == 1) {
+								     date = now.plusDays(1);
+								   } else {
+								     date = now.minusDays(1);
+								   }
+								   String dateString = date.format(formatter);
+								%>
+						<div>~ <%=dateString%> 내 도착예정</div>
+						</td>
 					</tr>
-					<tr>
+					
+					<tr><!-- 3행 -->
 						<!-- 색상 -->
-						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_color() %>"  readonly name = "prd_color"></a></td>
+						<td colspan="4" class="td_le_b td_ri_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_color() %>"  readonly name = "prd_color"></a></td>
 					</tr>
-					<tr>
+					
+					<tr><!-- 4행 -->
 						<!-- 가격 -->
-						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_price() %>"  readonly name = "prd_price"></a></td>
+						<td colspan="3" class="td_bo_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="&#x20a9;<%=articleList.get(i).getPrd_price() %>"  readonly name = "prd_price"></a></td>
+						<!-- 관심상품 -->
+						<td class="td_bo_b"><input type="button" value="관심상품" onclick="likethis()"></td>
 						<!-- 장바구니 로그인시 보임 -->
 						<%
 						if(id == null){
 						%>
-							<td></td>
+							<td class="td_bo_b"></td>
 						<%	
 						}else{
 						%>
-						<td  rowspan=""><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니"></a></td>
+						<td class="td_bo_b"><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니"></a></td>
 						<%
 						}
 						%>
@@ -157,10 +206,9 @@
 		
 				<%for(int a=startPage;a<=endPage;a++){
 						if(a==nowPage){%>
-				[<%=a %>]
+				<span>[<%=a%>]</span>&nbsp;
 				<%}else{ %>
-			<a href="<%=prd_cata %><%=a %>">[<%=a %>]
-			</a>&nbsp;
+				<a href="<%=prd_cata %><%=a %>">[<%=a %>]</a>&nbsp;
 				<%} %>
 				<%} %>
 		

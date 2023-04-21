@@ -110,7 +110,6 @@ public class Shop_DAO {
         default : prd_cata = "기타용품";
         break;
 		}
-
 		try{
 			pstmt = con.prepareStatement(shop_list_sql);
 			pstmt.setString(1, prd_cata);

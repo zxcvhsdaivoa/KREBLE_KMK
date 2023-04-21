@@ -91,6 +91,5 @@ public class Db_method_user extends Db_method_conn {
 			diconn();
 		}
 	}	
-
 	  
 }

@@ -84,7 +84,7 @@ article{
 	justify-content: space-between;
 }
 #pl_art_no2 > div:first-child > a > input[type=button]{
-	width: 200px;
+	width: 198px;
 	height: 40px;
 	background: none;
 	border-bottom : 1px solid gray;
@@ -92,9 +92,15 @@ article{
 	border-left: none;
 	border-right: none;
 	font-size: 20px;
-    font-family: 'TheJamsil5Bold';
-    font-weight: 700;
-    font-style: normal;
+  font-family: 'TheJamsil5Bold';
+  font-weight: 700;
+  font-style: normal;
+}
+
+#pl_art_no2 > div:first-child > a > input[type=button]:hover,
+#pl_art_no2 > div:first-child > a > input[type=button].select{
+	background-color: black;
+	color: white;
 }
 #pl_art_no2 > div:last-child{
 	width: 990px;
@@ -125,20 +131,19 @@ article{
 }
 
 #pl_art_no3 .aa{
-	width : 100px;
+	width : 145px;
+	height: 145px;
 	margin: 0 auto;
 }
 
 #pl_art_no3 .bb{
 	vertical-align: top;
+}
+
+.bb > input{
 	text-align: center;
 }
 
-#pl_art_no3 img{
-	width: 100px;
-	height: 100px;
-	
-}
 
 .pl_no3_center{
 	width: 1280px;
@@ -161,7 +166,18 @@ article{
 .td_hide{
 	display: none;
 }
-
+.td_le_b{
+	border-left:1px solid #EEE;
+}
+.td_ri_b{
+	border-right:1px solid #EEE;
+}
+.td_to_b{	
+	border-top:1px solid #EEE;
+}
+.td_bo_b{
+	border-bottom:1px solid #EEE;
+}
 
 
 .pl_no3_center > table{
@@ -172,17 +188,14 @@ article{
 }
 .pl_no3_center > table td{
 	width: 180px;
-	height: 35px;
+	height: 40px;
+	padding : 0 15px;
 }
 
 .pl_no3_center > table td input{
 	background: none;
 	outline: none;
 	border: none;
-}
-
-table td {
-	border: 1px solid black;
 }
 
 

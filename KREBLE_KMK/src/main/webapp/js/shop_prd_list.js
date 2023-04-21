@@ -3,3 +3,7 @@ $(function(){
 			 location.href = "shop_prd_insert.sp";
 	})
 })
+
+function likethis() {
+	alert("관심주셔서 감사합니다");
+}

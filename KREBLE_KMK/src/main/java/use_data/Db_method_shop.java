@@ -1,6 +1,5 @@
 package use_data;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -11,7 +10,33 @@ public class Db_method_shop extends Db_method_conn {
 //	<!--  카테 / 사진 / 상품명 / 상품가격 / 색상 / 등록자 / 등록일	 -->
 
 	
-	
+//	상품판매량 순위
+	public String[] rank_seller() throws Exception {
+		String[] aa = new String[3];
+		try {
+			conn();
+			String command = String.format("SELECT prd_id as id, COUNT(prd_no) AS cnt FROM product GROUP BY prd_id ORDER BY cnt DESC");
+			ResultSet rs= stm.executeQuery(command);
+			int index = 0;
+			if(rs.next()) {
+			    while (index < 3) {
+			        aa[index] = rs.getString("id");
+			        index++;
+			        if(!rs.next()) break;
+			    }
+			} else {
+			    while (index < 3) {
+			        aa[index] = "";
+			        index++;
+			    }
+			}
+		}catch(Exception e){
+			
+		}finally {
+			diconn();
+		}
+		return aa;
+	}
 	
 //		상품리스트 로드
 	  public ArrayList<Shop_prd> shop_prd_list() throws Exception{

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,49 +70,31 @@
 								<td>토</td>
 							</tr>
 							<tr class="day2">
-								<td>26일</td>
-								<td>27일</td>
-								<td>28일</td>
-								<td>29일</td>
-								<td>30일</td>
-								<td>31일</td>
-								<td>01일</td>
+								<c:forEach begin="26" end="31" var="day">
+							            <td>${day}일</td>
+							    </c:forEach>
+							    <td>1일</td>
 							</tr>
 							<tr class="day2">
-								<td>02일</td>
-								<td>03일</td>
-								<td>04일</td>
-								<td>05일</td>
-								<td>06일</td>
-								<td>07일</td>
-								<td>08일</td>
+								<c:forEach begin="2" end="8" var="day">
+							            <td>${day}일</td>
+							    </c:forEach>
+							    <!-- forEach를 사용하기위해 JSTL(Core) 라이브러리를 추가 해야함. 위에 코드 있음 -->
 							</tr>
 							<tr class="day2">
-								<td>09일</td>
-								<td>10일</td>
-								<td>11일</td>
-								<td>12일</td>
-								<td>13일</td>
-								<td>14일</td>
-								<td>15일</td>
+								<c:forEach begin="9" end="15" var="day">
+									<td>${day}일</td> 
+								</c:forEach>
 							</tr>
 							<tr class="day2">
-								<td>16일</td>
-								<td>17일</td>
-								<td>18일</td>
-								<td>19일</td>
-								<td>20일</td>
-								<td>21일</td>
-								<td>22일</td>
+								<c:forEach begin="16" end="22" var="day">
+							            <td>${day}일</td>
+							    </c:forEach>
 							</tr>
 							<tr class="day2">
-								<td>23일</td>
-								<td>24일</td>
-								<td>25일</td>
-								<td>26일</td>
-								<td>27일</td>
-								<td>28일</td>
-								<td>29일</td>
+								<c:forEach begin="23" end="29" var="day">
+							            <td>${day}일</td>
+							    </c:forEach>
 							</tr>
 						</table>
 					</div>

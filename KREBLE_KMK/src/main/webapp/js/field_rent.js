@@ -65,6 +65,7 @@ $(function(){
 		  html += "</table>";
 		
 		  calendar.innerHTML = html;
+		  
 	}
 		
 	

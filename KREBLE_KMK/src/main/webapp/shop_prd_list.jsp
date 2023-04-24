@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
@@ -37,6 +38,7 @@
 	<!-- 평점호출 -->
 	<%
 	HashMap<String, Integer> hssc = shop_m1.re_score();
+	HashMap<String, String> prlk = shop_m1.prd_like(id);
 	%>
 <!DOCTYPE html>
 <html>
@@ -116,12 +118,12 @@
 					%>
 					<tr><!-- 1행 -->
 						<!--사진 -->
-						<td rowspan="4"><img class = "aa" alt="Image not uploaded" src="<%=impath+articleList.get(i).getPrd_no()%>.jpg"></td>
+						<td rowspan="4"><img class = "aa" alt="Image not uploaded" src="<%=impath+aa%>.jpg"></td>
 						<!-- 가격 -->
-						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="&#x20a9;<%=articleList.get(i).getPrd_price() %>" class="prd_priceC"  readonly name = "prd_price"></a></td>
+						<td colspan="3"><p>가격 : </p><a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=<%=nowPage%>"><input type="text" value="&#x20a9;<%=articleList.get(i).getPrd_price() %>" class="prd_priceC"  readonly name = "prd_price"></a></td>
 						
 						<!-- 등록일/(히든)현재페이지 -->
-						<td><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_date() %>" class="s_id" readonly><input type="hidden" value="<%=nowPage %>" name="page"></a></td>
+						<td><p>등록일 : </p><a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_date() %>" class="s_id" readonly><input type="hidden" value="<%=nowPage %>" name="page"></a></td>
 						<!-- 판매자아이디 -->
 						<td rowspan="3" class = "bb">
 						<!-- 우수판매자 -->
@@ -167,29 +169,107 @@
 						</td>
 					</tr>
 					
+					
+					
+					
+					
 					<tr><!-- 2행 -->
 						<!-- 색상 -->
-						<td colspan="4" class="td_le_b td_ri_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_color() %>"  readonly name = "prd_color"></a></td>
+						<td colspan="4" class="td_le_b td_ri_b"><a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_color() %>"  readonly name = "prd_color"></a></td>
 					</tr>
+
+					
+					
 					
 					<tr><!-- 3행 -->
 						<td colspan="4" class="td_le_b td_ri_b"></td>
 					</tr>
 					
+					
+					
+					
 					<tr><!-- 4행 -->
+						<td><%= articleList.get(i).getPrd_note() %></td>
 					</tr>
-					<tr>
+					
+					
+					
+					
+					
+					<tr><!-- 5행 -->
 					<!-- 상품명 -->
-					<td class="td_bo_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>">
+					<td class="td_bo_b"><a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=<%=nowPage%>">
 					<input type="text" class="prd_title" value="<%=articleList.get(i).getPrd_name() %>" readonly name = "prd_name">
 					</a></td>
 					<!-- 별점 -->
 					<td colspan="3" class="td_bo_b">
-					
+					<%
+					int score=0;
+					String starP = null;
+					if(hssc.get(aa)!=null){
+    					score = hssc.get(aa);
+					}
+					%>
+    				<%
+    				switch(score){
+    				case 10 :
+    					starP = "&#11088;&#11088;&#11088;&#11088;&#11088;&#x1F440;";
+    					break;
+    				case 9 :
+    					starP = "&#11088;&#11088;&#11088;&#11088;&#11088;";
+    					break;
+    				case 8 :
+    					starP = "&#11088;&#11088;&#11088;&#11088;";
+    					break;
+    				case 7 :
+    					starP = "&#11088;&#11088;&#11088;&#11088;";
+    					break;
+    				case 6 :
+    					starP = "&#11088;&#11088;&#11088;";
+    					break;
+    				case 5 :
+    					starP = "&#11088;&#11088;&#11088;";
+    					break;
+    				case 4 :
+    					starP = "&#11088;&#11088;";
+    					break;
+    				case 3 :
+    					starP = "&#11088;&#11088;";
+    					break;
+    				case 2 :
+    					starP = "&#11088;";
+    					break;
+    				case 1 :
+    					starP = "&#11088;";
+    					break;
+    				default : 
+    					starP = "&#128172; 등록된 리뷰가 없습니다.";
+    					break;
+    				}
+    				
+    				%>
+    				<%=starP %>
 					</td>
 					<!-- 관심상품 -->
-					<td class="td_bo_b"><input type="button" value="관심상품" onclick="likethis()">
-					<input type="hidden" value="<%= id %>" name="prd_re_id">
+					<td class="td_bo_b like_bt_td">
+					<%=prlk.get(aa) %>
+					<%
+					boolean li_bt=false;
+
+					if(prlk.get(aa) != null){
+					%>
+						<input type="hidden" value="<%=aa%>" name="prd_re_no">
+						<input type="button" value="관심상품등록" class = "like_bt_click">
+						<input type="hidden" value="<%=id%>" name="prd_re_id">
+					<%
+					}else{
+					%>
+						<input type="hidden" value="<%=aa%>" name="prd_re_no">
+						<input type="button" value="관심상품등록" class = "like_bt">
+						<input type="hidden" value="<%=id%>" name="prd_re_id">
+					<%
+					}					
+					%>
 					</td>
 					
 						<!-- 장바구니 로그인시 보임 -->
@@ -200,7 +280,7 @@
 						<%	
 						}else{
 						%>
-						<td><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니"></a></td>
+						<td><a href="shop_bak.sp?prd_no=<%=aa%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니" class="cart-btn"></a></td>
 						<%
 						}
 						%>

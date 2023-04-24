@@ -237,6 +237,42 @@ article{
 	border: none;
 }
 
+.like_bt{
+	background-color: orange;
+	font-weight: bold;
+	text-decoration: underline;
+	font-style: italic;
+	width: 110px;
+	height: 40px;
+	text-align: center;
+}
+.like_bt_click {
+	color: white;
+	background-color: orange;
+	border: 2px solid orange;
+}
+.like_bt_td{
+	text-align: right;
+}
+
+.cart-btn {
+  background-color: #f2f2f2;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  width: 150px;
+}
+.cart-btn:hover {
+  background-color: #ddd;
+}
+
+
 
 /* 스크롤 버튼 스타일 설정 */
 #scrollBtn {

@@ -138,13 +138,52 @@ article{
 
 #pl_art_no3 .bb{
 	vertical-align: top;
+	position: relative;
+}
+
+.power_D img , .cs_D img{
+	width: 13px;
+}
+
+.power_D{
+	font-size: 20px;
+	color: blue;
+	
+}
+.cs_D{
+	font-size: 20px;
+	color: green;
+}
+.se_D{
+	text-align: center;
+	font-size: 20px;
+}
+.s_id{
+	vertical-align: top;
+	text-align: right;
+}
+.date_A{
+	position: absolute;
+	bottom : 0;
 }
 
 .bb > input{
 	text-align: center;
 }
-
-
+.prd_title{
+	width:140px;
+	font-size: 21px;
+    font-family: 'NanumSquareNeo-Variable';
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+}
+.prd_priceC{
+	font-size: 23px;
+    font-family: 'NanumSquareNeo-Variable';
+    font-weight: bold;
+    font-style: normal;
+}
 .pl_no3_center{
 	width: 1280px;
 	float: left;
@@ -167,16 +206,16 @@ article{
 	display: none;
 }
 .td_le_b{
-	border-left:1px solid #EEE;
+	border-left:1px solid #CCC;
 }
 .td_ri_b{
-	border-right:1px solid #EEE;
+	border-right:1px solid #CCC;
 }
 .td_to_b{	
-	border-top:1px solid #EEE;
+	border-top:1px solid #CCC;
 }
 .td_bo_b{
-	border-bottom:1px solid #EEE;
+	border-bottom:1px solid #CCC;
 }
 
 

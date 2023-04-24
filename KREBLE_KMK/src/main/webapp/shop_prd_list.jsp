@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="vo.PageInfo"%>
@@ -24,12 +25,18 @@
 	%>
 	<jsp:useBean id="cash" class="use_data.Db_method_user"></jsp:useBean>
 	<jsp:useBean id="shop_m1" class="use_data.Db_method_shop" />
+	<!-- 캐시호출/파워딜러/고객만족우수아이디 선별 -->
 	<%
 	int uc = cash.u_cash(id);
 	String [] crs = shop_m1.rank_seller();
 	String rankid1 = crs[0];
 	String rankid2 = crs[1];
 	String rankid3 = crs[2];
+	%>
+	
+	<!-- 평점호출 -->
+	<%
+	HashMap<String, Integer> hssc = shop_m1.re_score();
 	%>
 <!DOCTYPE html>
 <html>
@@ -56,7 +63,6 @@
 	<section>
 	<div id="section_inner"> <!-- 내용 중앙정렬용 -->
 	<form>
-	<%= rankid1 + "+" + rankid2 + "+" + rankid3 %>
 		<article id="pl_art_no1"><!-- 페이지타이틀/카테고리 예정 -->
 			<div>SHOPPING MALL
 			<%
@@ -110,74 +116,91 @@
 					%>
 					<tr><!-- 1행 -->
 						<!--사진 -->
-						<td rowspan="4" class="td_bo_b"><img class = "aa" alt="Image not uploaded" src="<%=impath+articleList.get(i).getPrd_no()%>.jpg"></td>
+						<td rowspan="4"><img class = "aa" alt="Image not uploaded" src="<%=impath+articleList.get(i).getPrd_no()%>.jpg"></td>
+						<!-- 가격 -->
+						<td colspan="3"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="&#x20a9;<%=articleList.get(i).getPrd_price() %>" class="prd_priceC"  readonly name = "prd_price"></a></td>
 						
-						<!-- 판매자아이디(히든)/상품명 -->
-						<td colspan="5"><input type="hidden" value="<%=id %>" name="prd_re_id"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_name() %>" class="w396" readonly name = "prd_name"></a></td>
-					</tr>
-					
-					<tr><!-- 2행 -->
 						<!-- 등록일/(히든)현재페이지 -->
-						<td colspan="4" class="td_le_b td_ri_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_date() %>"  readonly><input type="hidden" value="<%=nowPage %>" name="page"></a></td>
+						<td><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_date() %>" class="s_id" readonly><input type="hidden" value="<%=nowPage %>" name="page"></a></td>
 						<!-- 판매자아이디 -->
-						<td rowspan="2" class = "bb">
+						<td rowspan="3" class = "bb">
 						<!-- 우수판매자 -->
 						<% String aid = articleList.get(i).getPrd_id(); %>
 						<%
-						if(aid.equals(rankid1)||aid.equals(rankid2)){
+						if(aid.equals(rankid1)/*||aid.equals(rankid2)*/){
 							%>
 							<div class ="power_D"><img src="image/shopimg/bestseller.png">파워딜러</div>
+							<div class="s_id">
+							<%= aid %>
+							</div>
 							
 						<%
 						} else if(aid.equals(rankid3)){
 						%>
 							<div class= "cs_D"><img  src="image/shopimg/bestcs.png">고객만족우수 </div>
-							
-						<%} else {
-						}
-						%>
+							<div class="s_id">
+							<%= aid %>
+							</div>
+						<%} else {%>
+						<div class= "se_D">판매자 </div>
+						<div class="s_id">
 						<%= aid %>
-						
-						
+						</div>
+						<%}%>
 						<!-- 오늘날자로부터 최대 2일 내 도착예정 -->
-								<%
-								LocalDate now = LocalDate.now();
-								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d");
-								String formattedDate = now.format(formatter);
-								LocalDate date;
-								   int num = i%3;
-								   if (num == 0) {
-								     date = now;
-								   } else if (num == 1) {
-								     date = now.plusDays(1);
-								   } else {
-								     date = now.minusDays(1);
-								   }
-								   String dateString = date.format(formatter);
-								%>
-						<div>~ <%=dateString%> 내 도착예정</div>
+						<%
+						LocalDate now = LocalDate.now();
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d");
+						String formattedDate = now.format(formatter);
+						LocalDate date;
+						   int num = i%3;
+						   if (num == 0) {
+						     date = now;
+						   } else if (num == 1) {
+						     date = now.plusDays(1);
+						   } else {
+						     date = now.minusDays(1);
+						   }
+						   String dateString = date.format(formatter);
+						%>
+						<div class= "date_A">~ <%=dateString%> 내 도착예정</div>
 						</td>
 					</tr>
 					
-					<tr><!-- 3행 -->
+					<tr><!-- 2행 -->
 						<!-- 색상 -->
 						<td colspan="4" class="td_le_b td_ri_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="<%=articleList.get(i).getPrd_color() %>"  readonly name = "prd_color"></a></td>
 					</tr>
 					
+					<tr><!-- 3행 -->
+						<td colspan="4" class="td_le_b td_ri_b"></td>
+					</tr>
+					
 					<tr><!-- 4행 -->
-						<!-- 가격 -->
-						<td colspan="3" class="td_bo_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>"><input type="text" value="&#x20a9;<%=articleList.get(i).getPrd_price() %>"  readonly name = "prd_price"></a></td>
-						<!-- 관심상품 -->
-						<td class="td_bo_b"><input type="button" value="관심상품" onclick="likethis()"></td>
+					</tr>
+					<tr>
+					<!-- 상품명 -->
+					<td class="td_bo_b"><a href = "shop_prd_detail.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&page=<%=nowPage%>">
+					<input type="text" class="prd_title" value="<%=articleList.get(i).getPrd_name() %>" readonly name = "prd_name">
+					</a></td>
+					<!-- 별점 -->
+					<td colspan="3" class="td_bo_b">
+					
+					</td>
+					<!-- 관심상품 -->
+					<td class="td_bo_b"><input type="button" value="관심상품" onclick="likethis()">
+					<input type="hidden" value="<%= id %>" name="prd_re_id">
+					</td>
+					
 						<!-- 장바구니 로그인시 보임 -->
 						<%
 						if(id == null){
 						%>
-							<td class="td_bo_b"></td>
+						<td></td>
 						<%	
 						}else{
 						%>
-						<td class="td_bo_b"><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니"></a></td>
+						<td><a href="shop_bak.sp?prd_no=<%=articleList.get(i).getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>"><input type="button" value="장바구니"></a></td>
 						<%
 						}
 						%>

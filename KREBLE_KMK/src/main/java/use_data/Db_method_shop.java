@@ -2,6 +2,7 @@ package use_data;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 
@@ -9,6 +10,32 @@ public class Db_method_shop extends Db_method_conn {
 
 //	<!--  카테 / 사진 / 상품명 / 상품가격 / 색상 / 등록자 / 등록일	 -->
 
+	
+	
+//	상품평점 호출
+	public HashMap<String, Integer> re_score() {
+		HashMap<String, Integer> resc = new HashMap<>();
+
+		try {
+			conn();
+		String command = String.format("SELECT prd_re_no as p_no, round(avg(prd_re_sc)) AS avg FROM prd_re GROUP BY prd_re_no");
+
+		ResultSet rs= stm.executeQuery(command);
+		 while (rs.next()) {
+	            String p_no = rs.getString("p_no");
+	            int avg_score = rs.getInt("avg");
+	            resc.put(p_no, avg_score);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        diconn();
+	    }
+
+	    return resc;
+	}
+	
+	
 	
 //	상품판매량 순위
 	public String[] rank_seller() throws Exception {

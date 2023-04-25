@@ -124,6 +124,39 @@ public class SquadDAO {
 	
 	
 	@SuppressWarnings("null")
+	public ArrayList<SquadInfo> selectSearchSquad(int page, int limit){
+		int startrow=(page-1)*limit; 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SquadInfo squad = null;
+		ArrayList<SquadInfo> allList=new ArrayList<SquadInfo>();
+		try{
+			pstmt = con.prepareStatement("select * from mysquad where disclose='yes' order by mysquad_no desc limit "+startrow+", "+limit+";");
+			rs= pstmt.executeQuery();
+			while(rs.next()){
+				squad=new SquadInfo();
+				squad.setUser_id(rs.getString("user_id"));
+				squad.setSquad_num(rs.getInt("mysquad_no"));
+				squad.setSquad_name(rs.getString("mysquad_name"));
+				squad.setFormation(rs.getString("fomation"));
+				squad.setDisclose(rs.getString("disclose"));
+				squad.setMake_date(rs.getDate("make_date"));
+				squad.setView_count(rs.getInt("view_count"));
+				allList.add(squad);
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return allList;
+	}
+	
+	
+	
+	
+	@SuppressWarnings("null")
 	public SquadInfo selectSquad(int no){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

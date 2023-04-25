@@ -22,7 +22,6 @@
 			<div class="community">
 				<div class="community_header">
 					<h3>유저커뮤니티</h3><br>
-					<span>전체게시판</span>
 				</div>
 				<div class="community_inner">
 					<jsp:useBean id="ud" class="use_data.Db_method_commu"/>

@@ -8,12 +8,13 @@
 <meta charset="UTF-8">
 <title>나만의 스쿼드 목록</title>
 	<link rel="stylesheet" type="text/css" href="css/Header_Footer_Aside_baseform.css">
-	<link href="css/squad_style.css" rel="stylesheet">
+	<link href="css/squad_list_style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="js/Header_Footer_Aside_baseform.js"></script>
+<script src="js/squad_list.js"></script>
 <body>
   <jsp:include page="Header_baseform.jsp"/>
 	<section>
@@ -93,6 +94,26 @@
 				    }
 					%>
 				
+				</div>
+				<div class="search_box">
+					<form name="search" action="community.jsp">
+						<input type="hidden" name="cate" value="">
+						<input type="hidden" name="mycommu" value="">
+						<select name="search_select" id="search_select" class="search_select">
+							<option value="search_title" >제목</option>
+					    	<option value="search_name">작성자</option>
+							<option value="search_formation">포메이션</option>
+						</select>
+						<input type="text" name="search_text" class="search_text">
+						<select name="formation" id="formation" class="search_formation ">
+							<option value="4-3-3">4-3-3</option>
+							<option value="4-2-3-1">4-2-3-1</option>
+							<option value="4-2-2-2">4-2-2-2</option>
+							<option value="4-1-2-3">4-1-2-3</option>
+							<option value="5-2-3">5-2-3</option>
+						</select>
+						<input type="submit" value="검색" class="btn_search" >
+					</form>
 				</div>
 			</div>
 		</div>

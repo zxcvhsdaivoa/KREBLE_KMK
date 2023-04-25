@@ -334,8 +334,7 @@ font-size:14px;
 
 
 
-.mysquad_wrap .mysquad_inner table,
-.squad_list table {
+.mysquad_wrap .mysquad_inner table {
 	text-align:center;
 	border-spacing:0 0;
 }
@@ -345,14 +344,12 @@ font-size:14px;
 .width2 {
 	width:400px;
 }
-.mysquad_wrap .mysquad_inner table th,
-.squad_list table th {
+.mysquad_wrap .mysquad_inner table th {
 	border-bottom: 1px solid #e6e8e5;
     background-color: #e6e8e5;
     height:40px;
 }
-.mysquad_wrap .mysquad_inner table td,
-.squad_list table td {
+.mysquad_wrap .mysquad_inner table td{
 	border-bottom:1px solid #e6e8e5;
 	height:30px;
 }

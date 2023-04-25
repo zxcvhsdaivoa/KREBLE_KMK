@@ -2,59 +2,13 @@ package use_data;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 
 public class Db_method_shop extends Db_method_conn {
 
-//	관심상품 true/false 저장된값 호출
-//
-	public HashMap<String, String> prd_like(String pid) {
-		HashMap<String, String> prlk = new HashMap<>();
-		try {
-			conn();
-		String command = String.format("select * from shop_prd_like where u_id="+pid);
+//	<!--  카테 / 사진 / 상품명 / 상품가격 / 색상 / 등록자 / 등록일	 -->
 
-		ResultSet rs= stm.executeQuery(command);
-		 while (rs.next()) {
-			 String p_no = rs.getString("p_no");
-			 prlk.put(p_no, pid);
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        diconn();
-	    }
-		System.out.println(prlk.get("u0020"));
-	    return prlk;
-	}
-	
-	
-	
-//	상품평점 호출
-	public HashMap<String, Integer> re_score() {
-		HashMap<String, Integer> resc = new HashMap<>();
-		try {
-			conn();
-		String command = String.format("SELECT prd_re_no as p_no, round(avg(prd_re_sc)) AS avg FROM prd_re GROUP BY prd_re_no");
-
-		ResultSet rs= stm.executeQuery(command);
-		 while (rs.next()) {
-	            String p_no = rs.getString("p_no");
-	            int avg_score = rs.getInt("avg");
-	            resc.put(p_no, avg_score);
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        diconn();
-	    }
-
-	    return resc;
-	}
-	
-	
 	
 //	상품판매량 순위
 	public String[] rank_seller() throws Exception {
@@ -106,7 +60,6 @@ public class Db_method_shop extends Db_method_conn {
 			    	aa.setPrd_price(rs.getInt("prd_price"));		    	
 			    	aa.setPrd_color(rs.getString("prd_color"));		    	
 			    	aa.setPrd_id(rs.getString("prd_id"));		    	
-			    	aa.setPrd_note(rs.getString("prd_note"));		    	
 			    	aa.setPrd_date(rs.getString("prd_date"));
 			    	board.add(aa);
 			    }

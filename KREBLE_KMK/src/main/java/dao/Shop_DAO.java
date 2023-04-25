@@ -162,7 +162,6 @@ public class Shop_DAO {
 				shop_prd.setPrd_img(rs.getString("prd_img"));
 				shop_prd.setPrd_price(rs.getInt("prd_price"));
 				shop_prd.setPrd_name(rs.getString("prd_name"));
-				shop_prd.setPrd_note(rs.getString("prd_note"));
 				articleList.add(shop_prd);
 			}
 

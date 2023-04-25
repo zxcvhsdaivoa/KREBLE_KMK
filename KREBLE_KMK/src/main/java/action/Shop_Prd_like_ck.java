@@ -1,5 +1,7 @@
 package action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,13 +17,9 @@ public class Shop_Prd_like_ck implements Action {
 		String pid = request.getParameter("p_id");
 		ActionForward forward=null;		
 		Shop_prd_lck_service aa = new Shop_prd_lck_service();
-		aa.likeArticle(pno, pid);
-		
-		forward = new ActionForward();
-		forward.setRedirect(true);
-		forward.setPath("shop_list_action.sp");
-			
-			
+		String dd = aa.likeArticle(pno, pid);
+		PrintWriter out = response.getWriter();
+		out.println(dd);
 		return forward;
 		
 	}  	

@@ -1,17 +1,8 @@
 package use_data;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.renderable.ParameterBlock;
-import java.io.File;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
-
 
 public class Db_method_user extends Db_method_conn {
 	//	캐시 호출 코드

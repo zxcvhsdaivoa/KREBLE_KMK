@@ -259,13 +259,13 @@
 					if(prlk.get(aa) != null){
 					%>
 						<input type="hidden" value="<%=aa%>" name="prd_re_no">
-						<input type="button" value="관심상품등록" class = "like_bt_click">
+						<input type="button" value="관심상품등록" class = "like_bt like_on" name = "prd_like_btt">
 						<input type="hidden" value="<%=id%>" name="prd_re_id">
 					<%
 					}else{
 					%>
 						<input type="hidden" value="<%=aa%>" name="prd_re_no">
-						<input type="button" value="관심상품등록" class = "like_bt">
+						<input type="button" value="관심상품등록" class = "like_bt like_on" name = "prd_like_btt">
 						<input type="hidden" value="<%=id%>" name="prd_re_id">
 					<% 
 					}					

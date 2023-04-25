@@ -26,7 +26,6 @@ public class Db_method_shop extends Db_method_conn {
 	    } finally {
 	        diconn();
 	    }
-		System.out.println(prlk.get("u0020"));
 	    return prlk;
 	}
 	

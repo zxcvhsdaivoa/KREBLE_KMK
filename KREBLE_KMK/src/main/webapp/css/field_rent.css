@@ -77,7 +77,6 @@ div{
 	float: left;
     position: relative;
     width: 240px;
-    cursor: pointer;
 }
 .step_txt{
 	display: block;
@@ -85,10 +84,23 @@ div{
     padding-top: 50px;
     font-size: 24px;
     font-weight: 500;
-    color: #999;
+	color: #999; 
     line-height: 1;
     text-align: center;
     padding-bottom: 30px;
+    background: url(../image/riding-line-3.png)no-repeat top;
+}
+.step_txt1{
+	display: block;
+    position: relative;
+    padding-top: 50px;
+    font-size: 24px;
+    font-weight: 500;
+	color: #999; 
+    line-height: 1;
+    text-align: center;
+    padding-bottom: 30px;
+    background: url(../image/riding-line.png)no-repeat top;
 }
 #content2{
 	max-width: 960px;

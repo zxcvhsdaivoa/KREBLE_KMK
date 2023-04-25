@@ -38,7 +38,7 @@
 			</div>
 			
 			<ul class="rent_step">
-				<li class="step1"><span class="step_txt">예약선택</span></li>
+				<li class="step1"><span class="step_txt1" style="color:#009ce1;">예약선택</span></li>
 				<li class="step2"><span class="step_txt">약관동의</span></li>
 				<li class="step3"><span class="step_txt">신청완료</span></li>
 			</ul>
@@ -119,7 +119,7 @@
 					<h3 class="box_text">합계:<span style="color: #f24400;"> 0 원</span></h3>
 				</div>
 				<div class="btn_area">
-					<a class="payment_btn" href="field_rent_agree">결제하기</a>
+					<a class="payment_btn" href="field_rent_agree.jsp">결제하기</a>
 				</div>
 			</div>
 			</form>

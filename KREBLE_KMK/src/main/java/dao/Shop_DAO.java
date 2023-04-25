@@ -419,6 +419,79 @@ public class Shop_DAO {
 
 	}
 
+	//관심상품 체크
+	public boolean prd_like_ck(String p_no, String p_id){
+		PreparedStatement pstmt = null;
+		boolean lc = false;
+
+		String sql = "select * from shop_prd_like uid=? and p_no=?";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, p_id);
+			pstmt.setString(2, p_no);
+			pstmt.executeUpdate();
+			lc = true;
+
+		}catch(Exception ex){
+			System.out.println(ex);
+		}finally{
+			close(pstmt);
+		}
+
+		return lc;
+
+	}
+	
+
+
+	//관심상품 등록
+	public String prd_like_in(String p_no, String p_id){
+		PreparedStatement pstmt = null;
+		String lc = "";
+
+		String sql = "delete from prd_re where prd_re_num=?";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, p_no);
+			pstmt.executeUpdate();
+			lc = "in";
+
+		}catch(Exception ex){
+			System.out.println(ex);
+		}finally{
+			close(pstmt);
+		}
+
+		return lc;
+
+	}
+	
+
+
+	//관심상품 삭제
+	public String prd_like_del(String p_no, String p_id){
+		PreparedStatement pstmt = null;
+		String lc = "";
+
+		String sql = "delete from prd_re where prd_re_num=?";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, p_no);
+			pstmt.executeUpdate();
+			lc = "del";
+
+		}catch(Exception ex){
+			System.out.println(ex);
+		}finally{
+			close(pstmt);
+		}
+
+		return lc;
+
+	}
+	
+
+
 	//상품리플삭제
 	public int deleteArticle(String p_no){
 		PreparedStatement pstmt = null;

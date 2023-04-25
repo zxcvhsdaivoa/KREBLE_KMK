@@ -6,9 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.tree.ExpandVetoException;
+
 import action.Action;
 import action.Prd_mody_form_action;
 import action.Shop_Prd_delete_action;
+import action.Shop_Prd_like_ck;
 import action.Shop_back_qa_updat_action;
 import action.Shop_buy_action;
 import action.Shop_calist_action;
@@ -185,6 +188,16 @@ public class Shop_controller extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
+		//관심상품토글
+		else if(command.equals("/prd_like_ck.sp")) {
+			action = new Shop_Prd_like_ck();
+			try {
+				forward=action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		//상품리플등록메소드
 		else if(command.equals("/prd_re_insert.sp")){
 			action = new Sp_re_insert_action();

@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.media.jai.JAI;
-import javax.media.jai.RenderedOp;
 
 
 

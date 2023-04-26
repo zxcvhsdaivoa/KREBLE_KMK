@@ -28,7 +28,7 @@
 <script src="js/Header_Footer_Aside_baseform.js"></script>
 <script src="js/kreblechoi.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script>
-<jsp:useBean id="info" class="use_data.Db_method_rent" />
+<!--<jsp:useBean id="info" class="use_data.Db_method_rent" />-->
 
 
 <body >

@@ -112,7 +112,7 @@
 						<input type="text" <%if(nullck==true&&squad.getUser_id().equals(login_id)||nullck==false&&login_id!="0"){%>style="width:565px"<%}%> id="squad_name" name="squad_name" <% if(nullck==true){%> value="<%= squad.getSquad_name()%>" <%if(!squad.getUser_id().equals(login_id)){%>readonly<%} } %>>
 						<%if(nullck==true&&squad.getUser_id().equals(login_id)||nullck==false&&login_id!="0"){ %><button type="submit" class="save_squad">스쿼드 저장</button><%} %>
 						<span class="back"><a href="squad.sq">새 스쿼드 만들기</a></span>
-						<span class="all_squad"><a href="squad_list.sq">전체 스쿼드 목록</a></span>
+						<span class="all_squad"><a href="squadList.sq">전체 스쿼드 목록</a></span>
 						<label for="formation" class="blind" >포메이션</label>
 						<select id="formation" name="formation" <%if(nullck==true){ if(!squad.getUser_id().equals(login_id)){ %> disabled <%}} %>>
 							<option <%if(nullck==true){ if(squad.getFormation().equals("4-3-3")){ %>selected="selected"<% } } %>>4-3-3</option>

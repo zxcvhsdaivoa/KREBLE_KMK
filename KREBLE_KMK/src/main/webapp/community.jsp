@@ -29,13 +29,11 @@
 			
 				    <%@ page import="use_data.CommunityData"%>
 				    <%@ page import="java.util.ArrayList"%>
-					<%@ page import="javax.media.jai.RenderedOp" %>
 					<%@ page import="javax.imageio.ImageIO" %>
 					<%@ page import="java.awt.Graphics2D" %>
 					<%@ page import="java.awt.image.renderable.ParameterBlock" %>
 					<%@ page import="java.awt.image.BufferedImage" %>
 					<%@ page import="java.io.*" %>
-					<%@ page import="javax.media.jai.JAI" %>
 				    <%
 					ArrayList<CommunityData> comu= null;
 					int listCount=0;

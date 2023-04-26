@@ -10,7 +10,6 @@ import javax.sql.DataSource;
 import vo.SquadInfo;
 
 public class SquadDAO {
-
 	DataSource ds;
 	Connection con;
 	private static SquadDAO commuDAO;
@@ -44,7 +43,7 @@ public class SquadDAO {
 				squad.setUser_id(rs.getString("user_id"));
 				squad.setSquad_num(rs.getInt("mysquad_no"));
 				squad.setSquad_name(rs.getString("mysquad_name"));
-				squad.setFormation(rs.getString("fomation"));
+				squad.setFormation(rs.getString("formation"));
 				squad.setDirector(rs.getString("director"));
 				squad.setPlayer1(rs.getString("player1"));
 				squad.setPlayer2(rs.getString("player2"));
@@ -73,7 +72,7 @@ public class SquadDAO {
 
 	
 	@SuppressWarnings("null")
-	public ArrayList<SquadInfo> selectAllSquad(int page, int limit){
+	public ArrayList<SquadInfo> selectSquadList(int page, int limit){
 		int startrow=(page-1)*limit; 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -87,7 +86,97 @@ public class SquadDAO {
 				squad.setUser_id(rs.getString("user_id"));
 				squad.setSquad_num(rs.getInt("mysquad_no"));
 				squad.setSquad_name(rs.getString("mysquad_name"));
-				squad.setFormation(rs.getString("fomation"));
+				squad.setFormation(rs.getString("formation"));
+				squad.setDisclose(rs.getString("disclose"));
+				squad.setMake_date(rs.getDate("make_date"));
+				squad.setView_count(rs.getInt("view_count"));
+				allList.add(squad);
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return allList;
+	}
+	
+	@SuppressWarnings("null")
+	public ArrayList<SquadInfo> selectOrderSquadList(String[] order,int page, int limit){
+		int startrow=(page-1)*limit; 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SquadInfo squad = null;
+		ArrayList<SquadInfo> allList=new ArrayList<SquadInfo>();
+		try{
+			pstmt = con.prepareStatement("select * from mysquad where disclose='yes' order by "+order[0]+" "+order[1]+" limit "+startrow+", "+limit+";");
+			rs= pstmt.executeQuery();
+			while(rs.next()){
+				squad=new SquadInfo();
+				squad.setUser_id(rs.getString("user_id"));
+				squad.setSquad_num(rs.getInt("mysquad_no"));
+				squad.setSquad_name(rs.getString("mysquad_name"));
+				squad.setFormation(rs.getString("formation"));
+				squad.setDisclose(rs.getString("disclose"));
+				squad.setMake_date(rs.getDate("make_date"));
+				squad.setView_count(rs.getInt("view_count"));
+				allList.add(squad);
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return allList;
+	}
+	
+	@SuppressWarnings("null")
+	public ArrayList<SquadInfo> selectSerachSquadList(String search,String search_text,int page, int limit){
+		int startrow=(page-1)*limit; 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SquadInfo squad = null;
+		ArrayList<SquadInfo> allList=new ArrayList<SquadInfo>();
+		try{
+			pstmt = con.prepareStatement("select * from mysquad where disclose='yes' and "+search+" like '%"+search_text+"%' order by mysquad_no desc limit "+startrow+", "+limit+";");
+			rs= pstmt.executeQuery();
+			while(rs.next()){
+				squad=new SquadInfo();
+				squad.setUser_id(rs.getString("user_id"));
+				squad.setSquad_num(rs.getInt("mysquad_no"));
+				squad.setSquad_name(rs.getString("mysquad_name"));
+				squad.setFormation(rs.getString("formation"));
+				squad.setDisclose(rs.getString("disclose"));
+				squad.setMake_date(rs.getDate("make_date"));
+				squad.setView_count(rs.getInt("view_count"));
+				allList.add(squad);
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return allList;
+	}
+	
+	@SuppressWarnings("null")
+	public ArrayList<SquadInfo> selectSearchOrderSquadList(String search,String search_text,String[] order,int page, int limit){
+		int startrow=(page-1)*limit; 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SquadInfo squad = null;
+		ArrayList<SquadInfo> allList=new ArrayList<SquadInfo>();
+		try{
+			pstmt = con.prepareStatement("select * from mysquad where disclose='yes' and "+search+" like '%"+search_text+"%' order by "+order[0]+" "+order[1]+" limit "+startrow+", "+limit+";");
+			rs= pstmt.executeQuery();
+			while(rs.next()){
+				squad=new SquadInfo();
+				squad.setUser_id(rs.getString("user_id"));
+				squad.setSquad_num(rs.getInt("mysquad_no"));
+				squad.setSquad_name(rs.getString("mysquad_name"));
+				squad.setFormation(rs.getString("formation"));
 				squad.setDisclose(rs.getString("disclose"));
 				squad.setMake_date(rs.getDate("make_date"));
 				squad.setView_count(rs.getInt("view_count"));
@@ -122,6 +211,25 @@ public class SquadDAO {
 		return count;
 	}
 	
+	public int selectSearchSquadCount(String search, String search_text){
+		int count=0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			pstmt = con.prepareStatement("select count(*) from mysquad where disclose='yes' and "+search+" like '%"+search_text+"%';");
+			rs= pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt("count(*)");
+			}
+		}catch(Exception ex){
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return count;
+	}
+	
 	
 	@SuppressWarnings("null")
 	public ArrayList<SquadInfo> selectSearchSquad(int page, int limit){
@@ -138,7 +246,7 @@ public class SquadDAO {
 				squad.setUser_id(rs.getString("user_id"));
 				squad.setSquad_num(rs.getInt("mysquad_no"));
 				squad.setSquad_name(rs.getString("mysquad_name"));
-				squad.setFormation(rs.getString("fomation"));
+				squad.setFormation(rs.getString("formation"));
 				squad.setDisclose(rs.getString("disclose"));
 				squad.setMake_date(rs.getDate("make_date"));
 				squad.setView_count(rs.getInt("view_count"));
@@ -169,7 +277,7 @@ public class SquadDAO {
 				squad.setUser_id(rs.getString("user_id"));
 				squad.setSquad_num(rs.getInt("mysquad_no"));
 				squad.setSquad_name(rs.getString("mysquad_name"));
-				squad.setFormation(rs.getString("fomation"));
+				squad.setFormation(rs.getString("formation"));
 				squad.setDirector(rs.getString("director"));
 				squad.setPlayer1(rs.getString("player1"));
 				squad.setPlayer2(rs.getString("player2"));
@@ -224,7 +332,7 @@ public class SquadDAO {
 		int insertCount=0;
 
 		try{
-			sql="insert into mysquad (user_id,mysquad_no,mysquad_name,fomation,director,player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,make_date) values(?,default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now());";
+			sql="insert into mysquad (user_id,mysquad_no,mysquad_name,formation,director,player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,make_date) values(?,default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now());";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, squad.getUser_id());
 			pstmt.setString(2, squad.getSquad_name());
@@ -258,7 +366,7 @@ public class SquadDAO {
 
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		String sql="update mysquad set mysquad_name=?,fomation=?,director=?,player1=?,player2=?,player3=?,player4=?,player5=?,player6=?,player7=?,player8=?,player9=?,player10=?,player11=? where mysquad_no=? and user_id=?";
+		String sql="update mysquad set mysquad_name=?,formation=?,director=?,player1=?,player2=?,player3=?,player4=?,player5=?,player6=?,player7=?,player8=?,player9=?,player10=?,player11=? where mysquad_no=? and user_id=?";
 
 		try{
 			pstmt = con.prepareStatement(sql);

@@ -55,7 +55,7 @@ public class SquadController extends javax.servlet.http.HttpServlet
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/squad_list.sq")){
+		}else if(command.equals("/squadList.sq")){
 			action = new UserSquadAllListAction();
 			try{
 				forward=action.execute(request, response);

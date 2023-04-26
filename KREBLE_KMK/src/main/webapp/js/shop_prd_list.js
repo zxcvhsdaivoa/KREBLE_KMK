@@ -3,7 +3,7 @@ $(function(){
 			 location.href = "shop_prd_insert.sp";
 	});
 	
-	$('.like_bt').click(function(){
+	$('.like_bt, .like_on').click(function(){
 		var pno = $(this).prev().val();
 		var pid = $(this).next().val();
 //		jquery안에 적어야됨

@@ -232,7 +232,6 @@ article{
 }
 
 .pl_no3_center > table td input{
-	background: none;
 	outline: none;
 	border: none;
 }
@@ -244,6 +243,7 @@ article{
 	width: 110px;
 	height: 40px;
 	text-align: center;
+	background-color: white;
 }
 .like_on {
 	font-weight: bold;

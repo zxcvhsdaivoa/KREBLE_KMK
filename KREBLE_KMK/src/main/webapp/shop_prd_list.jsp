@@ -18,6 +18,7 @@
 	int maxPage=pageInfo.getMaxPage();
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();
+	boolean li_bt=false;
 	
 	String p_cata ="all";
 	if(request.getParameter("prd_cata")!=null&&request.getParameter("prd_cata")!="null"&&!request.getParameter("prd_cata").equals("null")){
@@ -189,7 +190,7 @@
 					
 					
 					<tr><!-- 4행 -->
-						<td><%= articleList.get(i).getPrd_note() %></td>
+						<td colspan="4" class="td_le_b td_ri_b"><%= articleList.get(i).getPrd_note() %></td>
 					</tr>
 					
 					
@@ -252,24 +253,24 @@
 					</td>
 					<!-- 관심상품 -->
 					<td class="td_bo_b like_bt_td">
-					<%=prlk.get(aa) %>
-					<%
-					boolean li_bt=false;
-
-					if(prlk.get(aa) != null){
-					%>
 						<input type="hidden" value="<%=aa%>" name="prd_re_no">
-						<input type="button" value="관심상품등록" class = "like_bt like_on" name = "prd_like_btt">
-						<input type="hidden" value="<%=id%>" name="prd_re_id">
+					<%
+					if(prlk.get(aa)!=null){
+						li_bt = true;
+					}else{
+						li_bt = false;
+					}
+					if(li_bt == true){
+					%>
+						<input type="button" value="관심상품등록" class = "like_on" name = "prd_like_btt">
 					<%
 					}else{
 					%>
-						<input type="hidden" value="<%=aa%>" name="prd_re_no">
-						<input type="button" value="관심상품등록" class = "like_bt like_on" name = "prd_like_btt">
-						<input type="hidden" value="<%=id%>" name="prd_re_id">
+						<input type="button" value="관심상품등록" class = "like_bt" name = "prd_like_btt">
 					<% 
 					}					
 					%>
+						<input type="hidden" value="<%=id%>" name="prd_re_id">
 					</td>
 					
 						<!-- 장바구니 로그인시 보임 -->

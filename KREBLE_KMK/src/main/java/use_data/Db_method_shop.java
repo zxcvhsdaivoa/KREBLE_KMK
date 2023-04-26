@@ -3,32 +3,35 @@ package use_data;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 
 
 public class Db_method_shop extends Db_method_conn {
 
 //	관심상품 true/false 저장된값 호출
-//
 	public HashMap<String, String> prd_like(String pid) {
-		HashMap<String, String> prlk = new HashMap<>();
-		try {
-			conn();
-		String command = String.format("select * from shop_prd_like where u_id="+pid);
-
-		ResultSet rs= stm.executeQuery(command);
-		 while (rs.next()) {
-			 String p_no = rs.getString("p_no");
-			 prlk.put(p_no, pid);
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        diconn();
-	    }
-	    return prlk;
-	}
-	
+    HashMap<String, String> prlk = new HashMap<>();
+    try {
+        conn();
+        String command = String.format("select * from shop_prd_like where u_id='"+pid+"';");
+        ResultSet rs = stm.executeQuery(command);
+        boolean hasResult = false;
+        while (rs.next()) {
+            hasResult = true;
+            String p_no = rs.getString("p_no");
+            prlk.put(p_no, pid);
+        }
+        if (!hasResult) {
+            prlk = null; // 결과가 없으면 null로 설정
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        diconn();
+    }
+    return prlk;
+}
 	
 	
 //	상품평점 호출

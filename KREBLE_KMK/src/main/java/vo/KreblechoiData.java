@@ -6,6 +6,7 @@ public class KreblechoiData {
 	String field_image;
 	int field_price;
 	String field_name;
+	String field_fst_location;
 	String field_location;
 	String field_map;
 	int field_area;
@@ -42,6 +43,12 @@ public class KreblechoiData {
 	}
 	public void setField_name(String field_name) {
 		this.field_name = field_name;
+	}
+	public String getField_fst_location() {
+		return field_fst_location;
+	}
+	public void setField_fst_location(String field_fst_location) {
+		this.field_fst_location = field_fst_location;
 	}
 	public String getField_location() {
 		return field_location;
@@ -80,5 +87,4 @@ public class KreblechoiData {
 		this.field_call = field_call;
 	}
 	
-
 }

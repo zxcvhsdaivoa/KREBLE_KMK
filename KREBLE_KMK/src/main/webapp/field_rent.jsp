@@ -11,7 +11,7 @@
 	Rent_info rent_info=(Rent_info)request.getAttribute("rent_info");
 %>
 <%
-	KreblechoiData field_list=(KreblechoiData) request.getAttribute("field_list");
+	KreblechoiData cate_list=(KreblechoiData) request.getAttribute("cate_list");
 %>
 <title>구장 예약</title>
 <link rel="stylesheet" type="text/css" href="css/Header_Footer_Aside_baseform.css">
@@ -37,10 +37,17 @@
 					<h1>예약신청</h1>
 					<select>
 						<option>지역 목록</option>
+						<option value="서울">서울</option>
+						<option value="인천">인천</option>
+						<option value="경기">경기</option>
+						<option value="대구">대구</option>
+						<option value="대전">대전</option>
+						<option value="부산">부산</option>
+						<option value="제주">제주</option>
 					</select>
 					<select>
 						<option>경기장 목록</option>
-						<option></option>
+						<option><%=cate_list.getField_name() %></option>
 					</select>
 				</div>
 			</div>

@@ -46,6 +46,7 @@ public class FieldDAO {
 				field_list.setField_image(rs.getString("field_image"));
 				field_list.setField_price(rs.getInt("field_price"));
 				field_list.setField_name(rs.getString("field_name"));
+				field_list.setField_fst_location(rs.getString("field_fst_location"));
 				field_list.setField_location(rs.getString("field_location"));
 				field_list.setField_map(rs.getString("field_map"));
 				field_list.setField_area(rs.getInt("field_area"));
@@ -121,6 +122,38 @@ public class FieldDAO {
 			close(pstmt);
 		}
 		return rent_selc;
+	}
+	
+	public KreblechoiData field_cate_list() throws Exception {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		KreblechoiData cate_list=null;
+
+		try{
+			pstmt = con.prepareStatement("select field_fst_location, field_name from field_info;");
+			rs= pstmt.executeQuery();
+
+			if(rs.next()){
+				cate_list=new KreblechoiData();
+				cate_list.setField_id(rs.getString("field_id"));
+				cate_list.setFullname(rs.getString("field_fullname"));
+				cate_list.setField_image(rs.getString("field_image"));
+				cate_list.setField_price(rs.getInt("field_price"));
+				cate_list.setField_name(rs.getString("field_name"));
+				cate_list.setField_fst_location(rs.getString("field_fst_location"));
+				cate_list.setField_location(rs.getString("field_location"));
+				cate_list.setField_map(rs.getString("field_map"));
+				cate_list.setField_area(rs.getInt("field_area"));
+				cate_list.setField_usetime(rs.getString("field_usetime"));
+				cate_list.setField_facility(rs.getString("field_facility"));
+				cate_list.setField_call(rs.getString("field_call"));
+			}
+		}catch(Exception ex){
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return cate_list;
 	}
 	
 		

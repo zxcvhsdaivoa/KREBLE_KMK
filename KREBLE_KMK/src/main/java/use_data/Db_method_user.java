@@ -71,7 +71,7 @@ public class Db_method_user extends Db_method_conn {
 	public void join_member_succass(UserData ud) throws Exception {
 		try{
 			conn();
-			String command = String.format("insert into user values('"+ud.getId()+"','임시닉네임1234' ,'"+ud.getName()+"','"+ud.getPw()+"','"+ud.getPh()+"','"+ud.getEmail()+"','"+ud.getAddress()+"','"+ud.getGender()+"',now(), now(), default);");
+			String command = String.format("insert into user values('"+ud.getId()+"','"+ud.getNick()+"' ,'"+ud.getName()+"','"+ud.getPw()+"','"+ud.getPh()+"','"+ud.getEmail()+"','"+ud.getAddress()+"','"+ud.getGender()+"',now(), now(), default, 'p.jpg');");
 			int rowNum = stm.executeUpdate(command);
 			if(rowNum<1){
 				throw new Exception("데이터를 DB에 입력할 수 없습니다.");

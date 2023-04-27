@@ -9,6 +9,7 @@
 	ud.setId(request.getParameter("uid"));
 	ud.setName(request.getParameter("uname"));
 	ud.setPw(request.getParameter("pw"));
+	ud.setNick(request.getParameter("nick"));
 	ud.setBirth(request.getParameter("birth"));
 	ud.setGender((String) request.getParameter("gender"));
 	String phsec=request.getParameter("ph_select");

@@ -39,8 +39,13 @@
 	
 	<!-- 평점호출 -->
 	<%
+	HashMap<String, String> prlk = new HashMap<String, String>();
 	HashMap<String, Integer> hssc = shop_m1.re_score();
-	HashMap<String, String> prlk = shop_m1.prd_like(id);
+	prlk = shop_m1.prd_like(id);
+	if(prlk == null){
+	    prlk = new HashMap<String, String>();
+		prlk.put("a0000", "admin");
+	}
 	%>
 <!DOCTYPE html>
 <html>

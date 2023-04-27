@@ -1,5 +1,8 @@
 package use_data;
 
+import static db.JdbcUtil.close;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -89,7 +92,7 @@ public class Db_method_player extends Db_method_conn {
 		return director_list;
 	}
 	
-	public Director_Info squad_director(SquadInfo squad) throws Exception { //선수 호출 메소드
+	public Director_Info squad_director(SquadInfo squad) throws Exception { //감독 호출 메소드
 		Director_Info director = new Director_Info();
 		String director_name=squad.getDirector();
 		
@@ -104,5 +107,97 @@ public class Db_method_player extends Db_method_conn {
 			diconn();
 		}
 		return director;
+	}
+	
+	
+	
+	public ArrayList<Player_Info> hot_squad_player(SquadInfo squad) throws Exception { //선수 호출 메소드
+		ArrayList<Player_Info> player_list = new ArrayList<Player_Info>();
+		String player_name=null;
+		conn();
+		try{
+			for(int i=1; i<12; i++) {
+				if(i==1) {
+					player_name=squad.getPlayer1();
+				} else if(i==2) {
+					player_name=squad.getPlayer2();
+				} else if(i==3) {
+					player_name=squad.getPlayer3();
+				} else if(i==4) {
+					player_name=squad.getPlayer4();
+				} else if(i==5) {
+					player_name=squad.getPlayer5();
+				} else if(i==6) {
+					player_name=squad.getPlayer6();
+				} else if(i==7) {
+					player_name=squad.getPlayer7();
+				} else if(i==8) {
+					player_name=squad.getPlayer8();
+				} else if(i==9) {
+					player_name=squad.getPlayer9();
+				} else if(i==10) {
+					player_name=squad.getPlayer10();
+				} else if(i==11) {
+					player_name=squad.getPlayer11();
+				}
+				ResultSet rs= stm.executeQuery("select * from player where player_name = '"+player_name+"';");
+				if(rs.next()) {
+					Player_Info player = new Player_Info();
+					player.setPlayer_name(rs.getString("player_name"));
+					player.setPlayer_ko_name(rs.getString("player_ko_name"));
+					player_list.add(player);
+				}
+			}
+		}finally {
+			diconn();
+		}
+		return player_list;
+	}
+	
+	
+	public Director_Info hot_squad_director(String director_name) throws Exception { //감독 호출 메소드
+		Director_Info director = new Director_Info();
+		conn();
+		try{
+			ResultSet rs= stm.executeQuery("select * from director where director_name='"+director_name+"';");
+			while(rs.next()) {
+				director.setDirector_name(rs.getString("director_name"));
+				director.setDirector_ko_name(rs.getString("director_ko_name"));
+			}
+		}finally {
+			diconn();
+		}
+		return director;
+	}
+	
+	
+	public SquadInfo hotSquad() throws Exception{
+		SquadInfo squad = new SquadInfo();
+		conn();
+		try{
+			ResultSet rs= stm.executeQuery("select * from mysquad where view_count = (select max(view_count) from mysquad);");
+			if(rs.next()){
+				squad.setUser_id(rs.getString("user_id"));
+				squad.setSquad_num(rs.getInt("mysquad_no"));
+				squad.setSquad_name(rs.getString("mysquad_name"));
+				squad.setDirector(rs.getString("director"));
+				squad.setPlayer1(rs.getString("player1"));
+				squad.setPlayer2(rs.getString("player2"));
+				squad.setPlayer3(rs.getString("player3"));
+				squad.setPlayer4(rs.getString("player4"));
+				squad.setPlayer5(rs.getString("player5"));
+				squad.setPlayer6(rs.getString("player6"));
+				squad.setPlayer7(rs.getString("player7"));
+				squad.setPlayer8(rs.getString("player8"));
+				squad.setPlayer9(rs.getString("player9"));
+				squad.setPlayer10(rs.getString("player10"));
+				squad.setPlayer11(rs.getString("player11"));
+			}
+		}catch(Exception ex){
+		}finally{
+			diconn();
+		}
+
+		return squad;
 	}
 }

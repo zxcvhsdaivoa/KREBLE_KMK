@@ -28,6 +28,13 @@
     
 </script>
  <body>
+<%@ page import="java.util.ArrayList"%>
+<jsp:useBean id="comu" class="use_data.Db_method_commu" />
+<jsp:useBean id="player" class="use_data.Db_method_player" />
+<%@ page import="use_data.CommunityData"%>
+<%@ page import="use_data.Player_Info"%>
+<%@ page import="use_data.Director_Info"%>
+<%@ page import="vo.SquadInfo"%>
   <jsp:include page="Header_baseform.jsp"/>
   <!--section-->
   <section>
@@ -66,72 +73,64 @@
     			<a href="#" class="link_button">커뮤니티 바로가기</a>
     		</div>
     		<div class="commu_wrap wrap1">
+    		<%SquadInfo hot_squad= player.hotSquad(); %>
     			<h4>베스트 스쿼드</h4>
     			<div class="squad_wrap">
-    				<p class="squad_name">스쿼드 이름 : 국가대표</p>
+    				<p class="squad_name">스쿼드 이름 : <%=hot_squad.getSquad_name() %></p>
+    				<p class="squad_make">작성자 : <%=hot_squad.getUser_id() %></p>
 					<ul>
-						<li class="director"><span class="player_img"><img src="image/player_img/Paulo Bento.jpg"></span><p class="name">파울루 벤투</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Son Heung-Min.jpg"></span><p class="name">손흥민</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Hwang In-Beom.jpg"></span><p class="name">황인범</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Hwang Hee-Chan.jpg"></span><p class="name">황희찬</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Kim Jin-Su.jpg"></span><p class="name">김진수</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Jung Woo-Young.jpg"></span><p class="name">정우영</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Lee Jae-Sung.jpg"></span><p class="name">이재성</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Kim Young-Gwon.jpg"></span><p class="name">김영권</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Kwon Kyung-Won.jpg"></span><p class="name">권경원</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Kim Moon-Hwan.jpg"></span><p class="name">김문환</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Kim Min-Jae.jpg"></span><p class="name">김민재</p></li>
-						<li class="player"><span class="player_img"><img src="image/player_img/Jo Hyeon-Woo.jpg"></span><p class="name">조현우</p></li>
+					<%
+					Director_Info hotsquad_director = player.hot_squad_director(hot_squad.getDirector());
+					%>
+						<li class="director"><span class="player_img"><img src="image/player_img/<%=hotsquad_director.getDirector_name() %>.jpg"></span><p class="name"><%=hotsquad_director.getDirector_ko_name() %></p></li>
+					<%
+					ArrayList<Player_Info> hotsquad_player = player.hot_squad_player(hot_squad);
+					for(int i=0; i<11; i++){
+					%>
+						<li class="player"><span class="player_img"><img src="image/player_img/<%=hotsquad_player.get(i).getPlayer_name() %>.jpg"></span><p class="name"><%=hotsquad_player.get(i).getPlayer_ko_name() %></p></li>
+					<%} %>
 					</ul>
 				</div>
     		</div>
     		<div class="commu_wrap wrap2">
     			<h4>화제의 게시글</h4>
     			<div class="hot_commu free_hot">
+    			<%
+    			CommunityData hot_free = comu.hot_commu("free");
+    			%>
     				<span>자유게시판 화제글</span>
     				<div class="board">
     					<div class="board_top">
-    						<p class="title">내가 김민재 이적설에 기름 붙는다.</p>
-    						<span class="writer">작성자1</span>
+    						<p class="title"><%=hot_free.getComu_title() %></p>
+    						<span class="writer"><%=hot_free.getId() %></span>
     					</div>
-<textarea readonly>
-"맨유에서 뛰는 김민재 보고 싶다"
-김민재는 한동안 맨유와 연결됐고, 맨유가 김민재를 관찰하기 위해 스카우터를 파견했다는 소식이 전해지며 이적설에 불 붙음.
-최근까지도 영국 현지에서는 맨유와 리버풀, 토트넘 훗스퍼가 김민재를 두고 경쟁할 예정이라는 보도가 나왔음.
-김민재의 이적설을 접한 나폴리는 바이아웃 조항 삭제를 노리고 있는 거 같던데?
-</textarea>
+						<textarea readonly><%=hot_free.getComu_write() %></textarea>
     				</div>
     			</div>
     			<div class="hot_commu debate_hot">
+    			<%
+    			CommunityData hot_debate = comu.hot_commu("debate");
+    			%>
     				<span>토론게시판 화제글</span>
     				<div class="board">
     					<div class="board_top">
-    						<p class="title">이강인 이적하면 어디가 좋을거같음?</p>
-    						<span class="writer">해축신봉자</span>
+    						<p class="title"><%=hot_debate.getComu_title() %></p>
+    						<span class="writer"><%=hot_debate.getId() %></span>
     					</div>
-<textarea readonly>
-난 솔직히 뉴캐슬로 가는게 좋아보이는데
-주전경쟁 괜찮고 UCL나갈 가능성 높아서 나쁘진 않아보이는데
-님들 생각은 어떰
-반박시 날강두
-</textarea>
+						<textarea readonly><%=hot_debate.getComu_write() %></textarea>
     				</div>
     			</div>
     			<div class="hot_commu info_hot">
+    			<%
+    			CommunityData hot_info = comu.hot_commu("info");
+    			%>
     				<span>정보게시판 화제글</span>
     				<div class="board">
     					<div class="board_top">
-    						<p class="title">이강인 이적설 떡밥 정리</p>
-    						<span class="writer">스피드 왜건</span>
+    						<p class="title"><%=hot_info.getComu_title() %></p>
+    						<span class="writer"><%=hot_info.getId() %></span>
     					</div>
-<textarea readonly>
-최근에 로마노 트위터에서
-이강인이 올 여름에 마요르카 떠날거 같다,
-PL구단들이 이강인 모니터링중이다
-말 많던데 떡밥 시원하게 정리할수 있지만
-여백이 없어 이 이상 적지 않겠다.
-최승혁 커밋
-</textarea>
+						<textarea readonly><%=hot_info.getComu_write() %></textarea>
     				</div>
     			</div>
     		</div>

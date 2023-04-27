@@ -155,13 +155,25 @@ section {
 	padding:20px 25px;
 }
 .commu_wrap.wrap1 .squad_wrap .squad_name {
-	display:block;
+	float:left;
 	height:35px;
 	margin-bottom:10px;
-	font-size:22px;
+	font-size:19px;
 	line-height:35px;
 	padding-left:20px;
     font-family: 'NanumSquareNeo-Variable';
+}
+.commu_wrap.wrap1 .squad_wrap .squad_make {
+	float:right;
+	height:35px;
+	margin-bottom:10px;
+	font-size:19px;
+	line-height:35px;
+	padding-right:20px;
+    font-family: 'NanumSquareNeo-Variable';
+}
+.commu_wrap.wrap1 .squad_wrap ul {
+	clear:both;
 }
 .commu_wrap.wrap1 .squad_wrap ul li {
 	float:left;

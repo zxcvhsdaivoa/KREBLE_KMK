@@ -390,4 +390,21 @@ public class Db_method_commu extends Db_method_conn {
 		}
 		return ccd_list;
 	}
+	
+	
+	public CommunityData hot_commu(String cate) throws Exception {
+		CommunityData hot_commu =  new CommunityData();
+		conn();
+		try{
+			ResultSet rs= stm.executeQuery("select * from community where category='"+cate+"' and commu_readcount=(select max(commu_readcount) from community where category='"+cate+"') order by commu_wrday desc, commu_no desc limit 0,1;;");
+			if(rs.next()) {
+				hot_commu.setId(rs.getString("user_id"));
+				hot_commu.setComu_title(rs.getString("commu_title"));
+				hot_commu.setComu_write(rs.getString("commu_write"));
+			}
+		}finally {
+			diconn();
+		}
+		return hot_commu;
+	}
 }

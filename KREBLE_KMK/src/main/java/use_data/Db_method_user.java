@@ -11,6 +11,10 @@ public class Db_method_user extends Db_method_conn {
 	//		int uc = cash.u_cash(id);
 	//	%>
 	
+	
+	
+	
+	
 	//캐쉬호출
 	  public int u_cash(String id) throws Exception{
 		  int h_cash = 0;

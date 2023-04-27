@@ -13,7 +13,6 @@ public class Sp_bak_form_action implements Action {
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		ActionForward forward= new ActionForward();
 		String id = (String) request.getSession().getAttribute("ID");
-		//추가ㅖ정 -> id를 통해서 유저 캐시 가져오는거
 		ArrayList<Shop_prd> articleList=new ArrayList<Shop_prd>();
 	  	int page=1;
 		int limit=10;

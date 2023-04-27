@@ -3,6 +3,9 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="use_data.Shop_prd"%>
+<%@ page import="use_data.UserData"%>
+<%@ page import="vo.field_save_Data"%>
+<%@ page import="vo.SquadInfo"%>
 
 <% request.setCharacterEncoding("utf-8"); %>
 <% 
@@ -23,7 +26,11 @@ String id = (String) session.getAttribute("ID");
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
 	<script src="js/user_mypage.js"></script>
 	<%
-	Shop_prd aa = (Shop_prd)request.getAttribute("article");//유저로 바꿔야됨
+	UserData user_al = (UserData)request.getAttribute("user_al");//유저로 바꿔야됨
+	field_save_Data field_al = (field_save_Data)request.getAttribute("field_al");//유저로 바꿔야됨
+	Shop_prd plike_al = (Shop_prd)request.getAttribute("plike_al");//유저로 바꿔야됨
+	Shop_prd pcart_al = (Shop_prd)request.getAttribute("pcart_al");//유저로 바꿔야됨
+	SquadInfo squad_al = (SquadInfo)request.getAttribute("squad_al");//유저로 바꿔야됨
     String nowPage = (String)request.getAttribute("page");
 	%>
 	
@@ -38,7 +45,15 @@ String id = (String) session.getAttribute("ID");
 	<section>
 		<!-- 활동현황/보유캐쉬 -->
 		<article>
-			MY KREBLE / My Squad 갯수 / 경기장 대여 현황 / 관심목록,장바구니 현황 / 보유캐쉬
+			<ul>
+				<li>My<br>Kreble</li>
+				<li>작성한 MySquad 게시글 @@개</li>
+				<li>대여한 경기장 @@개</li>
+				<li>관심품목 @@개</li>
+				<li>장바구니에 담아둔 물건 @@개</li>
+				<li><div>보유 캐쉬 : \<%=uc%></div>
+				<div>캐쉬충전하기</div></li>
+			</ul>
 		</article>
 		
 		<!-- 프로필사진 / 닉네임 / 마이스쿼드 -->

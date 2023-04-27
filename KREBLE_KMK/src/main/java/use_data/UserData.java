@@ -12,7 +12,14 @@ public class UserData {
 	String address;
 	String join_date;
 	int cash;
+	String user_prof;
 	
+	public String getUser_prof() {
+		return user_prof;
+	}
+	public void setUser_prof(String user_prof) {
+		this.user_prof = user_prof;
+	}
 	public String getId() {
 		return id;
 	}

@@ -15,6 +15,14 @@ $(function(){
 	  focusOnSelect: true
 	});
 
+	//shop 랜덤한 배너 넣기
+	var rand = Math.floor(Math.random() * 2)
+	if(rand==1){
+		$("#content4 .content_inner .wrap4").css({"background-image":"url(image/shopimg/shop_bot_benner0.jpg)"});
+	}
+	else {
+		$("#content4 .content_inner .wrap4").css({"background-image":"url(image/shopimg/shop_bot_benner1.jpg)"});
+	}
 
 
 	$('.matchup > span').hide();

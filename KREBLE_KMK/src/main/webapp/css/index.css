@@ -387,27 +387,53 @@ section {
 .shop_wrap.wrap1 {
 	float:right;
 	width:950px;
-	height:450px;
+	height:270px;
 }
 .shop_wrap.wrap2 {
-	position:absolute;
-	bottom:75px;
-	left:0;
+	background-color:#fff;
+	float:left;
 	width:calc(100% - 750px);
 	height:450px;
 }
+.shop_wrap.wrap2 h4 {
+	text-align:center;
+	font-size:24px;
+	height:40px;
+	line-height:37px;
+	border-bottom:1px solid #ccc;
+	border-top:2px solid #ccc;
+}
+.shop_wrap.wrap2 ul {
+	height:calc(100% - 40px);
+}
+.shop_wrap.wrap2 ul li {
+	float:left;
+	width:50%;
+	height:50%;
+	border:1px solid #eee;
+}
+.shop_wrap.wrap2 ul li a img{
+	width:150px;
+	margin:0 auto;
+	display:block;
+}
+.shop_wrap.wrap2 ul li a span{
+	text-align: center;
+	display:block;
+}
+
 .shop_wrap.wrap3 {
-	position:absolute;
-	top:325px;
-	right:0;
-	width:400px;
+	float:left;
+	width:500px;
 	height:200px;
-	background-color:#f8f8f8;
 }
 .shop_wrap.wrap4 {
 	float:right;
 	width:750px;
 	height:250px;	
+	background-size:auto 250px;
+	background-repeat: no-repeat;
+	background-position: left center;
 }
 .shop_wrap {
 	background-color:rgba(0,0,0,.6);
@@ -415,35 +441,35 @@ section {
 .shop_wrap:nth-child(2n) {
 	background-color:rgba(0,0,0,.3);
 }
-.shop_wrap.wrap1 {
-	float:right;
-	width:950px;
-	height:450px;
-	background: url(../image/shopimg/benner/bargain_sale_6.png) no-repeat center;
-	background-size: cover;
-}
-.shop_wrap.wrap2 {
-	position:absolute;
-	bottom:75px;
-	left:0;
-	width:calc(100% - 750px);
-	height:450px;
-	background: url(../image/shopimg/benner/bargain_sale_6.jpg) no-repeat center;
-	background-size: cover;
-}
-.shop_wrap.wrap3 {
-	position:absolute;
-	top:345px;
-	right:0;
-	width:400px;
-	height:180px;
-	background: url(../image/shopimg/index_shop_benner.jpg) no-repeat center;
-	background-size: cover;
-}
-.shop_wrap.wrap4 {
-	background: url(../image/shopimg/benner/bargain_sale_4.jpg) no-repeat right;
-	background-size: cover;
-	float:right;
-	width:750px;
-	height:250px;	
-}
+/* .shop_wrap.wrap1 { */
+/* 	float:right; */
+/* 	width:950px; */
+/* 	height:450px; */
+/* 	background: url(../image/shopimg/benner/bargain_sale_6.png) no-repeat center; */
+/* 	background-size: cover; */
+/* } */
+/* .shop_wrap.wrap2 { */
+/* 	position:absolute; */
+/* 	bottom:75px; */
+/* 	left:0; */
+/* 	width:calc(100% - 750px); */
+/* 	height:450px; */
+/* 	background: url(../image/shopimg/benner/bargain_sale_6.jpg) no-repeat center; */
+/* 	background-size: cover; */
+/* } */
+/* .shop_wrap.wrap3 { */
+/* 	position:absolute; */
+/* 	top:345px; */
+/* 	right:0; */
+/* 	width:400px; */
+/* 	height:180px; */
+/* 	background: url(../image/shopimg/index_shop_benner.jpg) no-repeat center; */
+/* 	background-size: cover; */
+/* } */
+/* .shop_wrap.wrap4 { */
+/* 	background: url(../image/shopimg/benner/bargain_sale_4.jpg) no-repeat right; */
+/* 	background-size: cover; */
+/* 	float:right; */
+/* 	width:750px; */
+/* 	height:250px;	 */
+/* } */

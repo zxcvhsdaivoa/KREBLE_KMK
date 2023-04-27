@@ -31,9 +31,11 @@
 <%@ page import="java.util.ArrayList"%>
 <jsp:useBean id="comu" class="use_data.Db_method_commu" />
 <jsp:useBean id="player" class="use_data.Db_method_player" />
+<jsp:useBean id="shop" class="use_data.Db_method_shop" />
 <%@ page import="use_data.CommunityData"%>
 <%@ page import="use_data.Player_Info"%>
 <%@ page import="use_data.Director_Info"%>
+<%@ page import="use_data.Shop_prd"%>
 <%@ page import="vo.SquadInfo"%>
   <jsp:include page="Header_baseform.jsp"/>
   <!--section-->
@@ -168,10 +170,45 @@
     			<a href="#" class="link_button">쇼핑 바로가기</a>
     		</div>
     		<div class="shop_wrap wrap1">
-    		
+    		<%
+    		Shop_prd best_prd = shop.prd_re_best();
+    		ArrayList<Shop_prd> re_list = shop.shop_prde_reply(best_prd.getPrd_no());
+    		%>
     		</div>
     		<div class="shop_wrap wrap2">
-    		
+	    		<h4>BEST 관심상품</h4>
+	    		<ul class="best_like">
+	    		<% 
+	    		ArrayList<Shop_prd> top4 = shop.prd_like_top4();
+	    		for(int i=0; i<top4.size(); i++){
+	    			String impath = "";
+					String aa = top4.get(i).getPrd_no();
+					char p_no = aa.charAt(0);
+					switch(p_no){
+					case 's':
+						impath = "image/shopimg/sue/";
+						break;
+					case 'u':
+						impath = "image/shopimg/uni/";
+						break;
+					case 'b':
+						impath = "image/shopimg/ball/";
+						break;
+					case 'e':
+						impath = "image/shopimg/etc/";
+						break;
+					}%>
+	    			<li>
+	    			<a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=1">
+	    				<img src="<%=impath+aa%>.jpg">
+	    				<span class="best_like_name">제품명 : <%=top4.get(i).getPrd_name() %></span>
+	    				<span class="best_list_price">가격 : &#x20a9;<%=top4.get(i).getPrd_price() %></span>
+	    			</a>
+	    			</li>
+	    		<%	
+	    		}
+	    		%>
+	    		</ul>
     		</div>
     		<div class="shop_wrap wrap3">
     		

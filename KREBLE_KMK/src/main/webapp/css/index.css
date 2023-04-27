@@ -193,6 +193,10 @@ section {
 }
 .commu_wrap.wrap1 .squad_wrap ul li .player_img img{
 	width:80px;
+}
+.commu_wrap.wrap1 .squad_wrap ul li:first-child .player_img img{
+	width:100%;
+	height:100%;
 	object-fit:cover;
 }
 .commu_wrap.wrap1 .squad_wrap ul li .name {

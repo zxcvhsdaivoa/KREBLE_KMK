@@ -1,3 +1,5 @@
+<%@page import="vo.KreblechoiData"%>
+<%@page import="vo.Rent_info"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,7 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<%
+	Rent_info rent_info=(Rent_info)request.getAttribute("rent_info");
+%>
+<%
+	KreblechoiData field_list=(KreblechoiData) request.getAttribute("field_list");
+%>
 <title>구장 예약</title>
 <link rel="stylesheet" type="text/css" href="css/Header_Footer_Aside_baseform.css">
 <link rel="stylesheet" type="text/css" href="css/field_rent.css">
@@ -29,10 +36,11 @@
 				<div class="top_text">
 					<h1>예약신청</h1>
 					<select>
-						<option>지역 목록111</option>
+						<option>지역 목록</option>
 					</select>
 					<select>
 						<option>경기장 목록</option>
+						<option></option>
 					</select>
 				</div>
 			</div>
@@ -109,14 +117,14 @@
 					<h3 class="box_text">신청정보</h3>
 				</div>
 				<div class="box_inner2">
-					<input type="radio"><span>09시(09:00~11:00) 대여료 165,000</span>
-					<input type="radio"><span>11시(11:00~13:00) 대여료 165,000</span>
-					<input type="radio"><span>14시(14:00~16:00) 대여료 165,000</span>
-					<input type="radio"><span>16시(16:00~18:00) 대여료 165,000</span>
-					<input type="radio"><span>18시(18:00~20:00) 대여료 165,000</span>
+					<input type="radio"><span><%= rent_info.getRent_time1() %></span>
+					<input type="radio"><span><%= rent_info.getRent_time2() %></span>
+					<input type="radio"><span><%= rent_info.getRent_time3() %></span>
+					<input type="radio"><span><%= rent_info.getRent_time4() %></span>
+					<input type="radio"><span><%= rent_info.getRent_time5() %></span>
 				</div>
 				<div class="content2_box">
-					<h3 class="box_text">합계:<span style="color: #f24400;"> 0 원</span></h3>
+					<h3 class="box_text">합계:<span style="color: #f24400;"> <%= rent_info.getRent_price()%> 원</span></h3>
 				</div>
 				<div class="btn_area">
 					<a class="payment_btn" href="field_rent_agree.jsp">결제하기</a>

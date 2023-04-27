@@ -33,11 +33,27 @@ $(function(){
 	});
 	
 	$(".rent_btn").click(function(){
-		var result= confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")
-		if (result==true) {
-			location.replace("login.jsp");
-		} else{
-			
+		$.ajax({
+		    type : "POST",
+		    url : "login_check.jsp",
+		    success :function(re){
+		        login_id=re.trim();
+		    },
+		    error:function(e){   
+		        alert(e.responseText); 
+		    }
+		});
+		
+		if(login_id=="null"){
+			var result= confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")
+			if (result==true) {
+				location.replace("login.jsp");
+			}
+			else if(result==false){
+				
+			}
+		}else{
+			location.replace("fieldrent.choi");
 		}
 	});
 

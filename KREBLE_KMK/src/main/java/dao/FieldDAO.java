@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.sql.DataSource;
 import vo.KreblechoiData;
+import vo.Rent_info;
 import vo.field_save_Data;
 
 public class FieldDAO {
@@ -89,5 +90,38 @@ public class FieldDAO {
 		return insertCount;
 
 	}
+	// 구장 예약페이지 셀렉트
+	public Rent_info rent_info_select() throws Exception {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		Rent_info rent_selc=null;
+
+		try{
+			pstmt = con.prepareStatement("select * from rent_info;");
+			rs= pstmt.executeQuery();
+
+			if(rs.next()){
+				rent_selc=new Rent_info();
+				rent_selc.setRent_num(rs.getInt("rent_num"));
+				rent_selc.setUser_id(rs.getString("user_id"));
+				rent_selc.setField_name(rs.getString("field_name"));
+				rent_selc.setRent_location(rs.getString("rent_location"));
+				rent_selc.setRent_date(rs.getInt("rent_date"));
+				rent_selc.setRent_time1(rs.getString("rent_time1"));
+				rent_selc.setRent_time2(rs.getString("rent_time2"));
+				rent_selc.setRent_time3(rs.getString("rent_time3"));
+				rent_selc.setRent_time4(rs.getString("rent_time4"));
+				rent_selc.setRent_time5(rs.getString("rent_time5"));
+				rent_selc.setRent_price(rs.getInt("rent_price"));
+
+			}
+		}catch(Exception ex){
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return rent_selc;
+	}
+	
 		
 }

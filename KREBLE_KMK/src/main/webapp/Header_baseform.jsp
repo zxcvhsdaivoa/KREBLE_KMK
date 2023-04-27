@@ -15,7 +15,7 @@
             <li class="login_false"><a href="login.jsp">로그인</a></li>
             <li class="login_false"><a href="join_member.jsp">회원가입</a></li>
             <li class="login_true"><a href="logout.jsp">로그아웃</a></li>
-            <li class="login_true"><a href="#">마이페이지</a></li>
+            <li class="login_true"><a href="mypage.kb">마이페이지</a></li>
         </ul>
        
        <div class="top_nav">

@@ -110,6 +110,7 @@ input[type=radio] {
 	position: absolute;
 	bottom:265px;
 	left:175px;
+	margin-bottom:10px;
 }
 .content .type1 > input[type=text]{
 	width:55%;

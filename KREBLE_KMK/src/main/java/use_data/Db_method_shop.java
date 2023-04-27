@@ -34,6 +34,46 @@ public class Db_method_shop extends Db_method_conn {
 }
 	
 	
+// 관심상품 등록수 많은 상위 4개 데이터 가져오기
+	public ArrayList<Shop_prd> prd_like_top4() {
+		ArrayList<Shop_prd> board = new ArrayList<Shop_prd>();
+		String get_no="a";
+		try {
+	        conn();
+	        String command = String.format("select p_no from shop_prd_like group by p_no order by count(p_no) desc limit 0,4;");
+	        ResultSet rs = stm.executeQuery(command);
+		    while(rs.next()) {
+		    	get_no = rs.getString("p_no");
+		    	try {
+			    	conn();
+		        	String command2 = String.format("select * from product where prd_no='"+get_no+"';");
+		 	        ResultSet rs2 = stm.executeQuery(command2);
+		 	        if (rs2.next()) {
+		 	        	Shop_prd aa = new Shop_prd();
+				    	aa.setPrd_no(rs2.getString("prd_no"));
+				    	aa.setPrd_cata(rs2.getString("prd_cata"));
+				    	aa.setPrd_img(rs2.getString("prd_img"));
+				    	aa.setPrd_name(rs2.getString("prd_name"));
+				    	aa.setPrd_price(rs2.getInt("prd_price"));
+				    	aa.setPrd_color(rs2.getString("prd_color"));
+				    	aa.setPrd_id(rs2.getString("prd_id"));
+				    	aa.setPrd_note(rs2.getString("prd_note"));
+				    	aa.setPrd_date(rs2.getString("prd_date"));
+				    	board.add(aa);
+			        }
+		    	} finally {
+			        diconn();
+			    }
+		    }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        diconn();
+	    }
+		return board;
+	}
+	
+	
 //	상품평점 호출
 	public HashMap<String, Integer> re_score() {
 		HashMap<String, Integer> resc = new HashMap<>();

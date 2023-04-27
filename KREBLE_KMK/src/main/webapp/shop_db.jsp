@@ -7,6 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- CREATE TABLE `shop_prd_like` ( -->
+<!--   `u_id` varchar(20) NOT NULL, -->
+<!--   `p_no` varchar(10) NOT NULL, -->
+<!--   KEY `uu_id_idx` (`u_id`), -->
+<!--   KEY `pp_no_idx` (`p_no`), -->
+<!--   CONSTRAINT `pp_no` FOREIGN KEY (`p_no`) REFERENCES `product` (`prd_no`) ON DELETE CASCADE ON UPDATE CASCADE, -->
+<!--   CONSTRAINT `uu_id` FOREIGN KEY (`u_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE -->
+<!-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci -->
+
+
+
 <!-- insert into product values('b0001', '축구공1', '축구공', 'testid', 'PU', '축구공 중에서도 최상의 품질', '50000', '중', '은색', '2023-04-05', 'Nike', '검사완료', 'John', '100', 'b0001.jpg', '축구공 중에서도 최상의 품질'),( -->
 <!-- 'b0002', '축구공2', '축구공', 'testid', 'TPU', '최상의 품질과 디자인을 자랑하는 축구공', '30000', '소', '주황', '2023-04-05', 'Adidas', '검사중', 'Mike', '50', 'b0002.jpg', '최상의 품질과 디자인을 자랑하는 축구공'),( -->
 <!-- 'b0003', '축구공3', '축구공', 'testid', 'PU', '고품질 소재로 제작된 축구공', '20000', '소', '검정', '2023-04-05', '미즈노', '검사예정', '김미영', '80', 'b0003.jpg', '고품질 소재로 제작된 축구공'),( -->

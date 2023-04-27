@@ -193,6 +193,7 @@ section {
 }
 .commu_wrap.wrap1 .squad_wrap ul li .player_img img{
 	width:80px;
+	object-fit:cover;
 }
 .commu_wrap.wrap1 .squad_wrap ul li .name {
     font-family: 'Hahmlet-Regular';

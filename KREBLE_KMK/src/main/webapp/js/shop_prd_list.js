@@ -23,11 +23,14 @@ $(function(){
 		if(result === "del") {
 				$(this).removeClass('like_on');
 				$(this).addClass('like_bt');
+				alert("관심상품에서 해제되었습니다.")
 			} else if(result === "in") {
 				$(this).removeClass('like_bt');
 				$(this).addClass('like_on');
+				alert("관심상품으로 등록되었습니다.")
 			}else{
-			alert("오류입니다.관리자에게 문의하십시요");
-		}
+			alert("로그인이 필요합니다.");
+			location.href="login.jsp";
+			}
 	});
 })

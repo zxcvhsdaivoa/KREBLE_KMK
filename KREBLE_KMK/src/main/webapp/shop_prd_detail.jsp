@@ -5,7 +5,9 @@
 <%@ page import="use_data.Shop_prd"%>
 
 <% request.setCharacterEncoding("utf-8"); %>
-<% String id = (String) session.getAttribute("ID"); %>
+<% 
+String id = (String) session.getAttribute("ID"); 
+%>
 	<jsp:useBean id="cash" class="use_data.Db_method_user"></jsp:useBean>
 	<%
 	int uc = cash.u_cash(id);
@@ -38,99 +40,103 @@
 	<!-- section -->
   
 	<section>
-	<form action="prd_re_insert.sp?page=<%=nowPage %>" method="post">
+	<form action="prd_re_insert.sp?page=<%=nowPage %>" method="post" onsubmit="return log_ck();">
 	<input type="hidden" name="prd_no" value="<%=aa.getPrd_no()%>">
 		<!-- 제품정보 -->
+	<%
+	String pp_no = aa.getPrd_no();
+	char p_no = pp_no.charAt(0);
+	String impath="";
+	switch(p_no){
+	case 's':
+		impath = "image/shopimg/sue/"+pp_no+".jpg";
+		break;
+	case 'u':
+		impath = "image/shopimg/uni/"+pp_no+".jpg";
+		break;
+	case 'b':
+		impath = "image/shopimg/ball/"+pp_no+".jpg";
+		break;
+	case 'e':
+		impath = "image/shopimg/etc/"+pp_no+".jpg";
+		break;
+	}
+	%>
 		<article id="pd_detail_no1">
 			<div class = "no1_img_info1"><!-- 상품사진 및 필수정보 -->
-				<div class="info1_img"><!-- 상품사진 width 400 x 300-->
-					<span><!-- 큰사진(호버에서 나오는 사진) -->
-						<%=aa.getPrd_img()%>300x250 image
-					</span>
-					<span><!-- 작은사진(호버용) -->
-						<span><%=aa.getPrd_img() %> 100x30 image</span>
-						<span><%=aa.getPrd_img() %> 100x30 image</span>
-					</span>
-				</div>
-				<div class="info1_info1"><!-- 필수정보 -->
-					<table>
-					<colgroup>
-						<col style = "width: 150px;">
-						<col style = "width: 400px;">
-					</colgroup>
-						<tr>
-						<td>상품이름</td>
-						<td><%=aa.getPrd_name() %></td>
-						</tr>
-						
-						<tr>
-						<td>등록자</td>
-						<td><%=aa.getPrd_id() %></td>
-						</tr>
-						
-						<tr>
-						<td>제품 종류</td>
-						<td><%=aa.getPrd_cata() %></td>
-						</tr>
-						
-						<tr>
-						<td>가격</td>
-						<td><%=aa.getPrd_price() %></td>
-						</tr>
-						
-						<tr>
-						<td>사이즈</td>
-						<td><%=aa.getPrd_size() %></td>
-						</tr>
-						
-						<tr>
-						<td>등록일</td>
-						<td><%=aa.getPrd_date() %></td>
-						</tr>
-						
-						<tr>
-						<td>남은 수량</td>
-						<td><%=aa.getPrd_qant() %></td>
-						</tr>
-						
-					</table>
-				</div>
-			</div>
-			<div class="no1_img_info2"><!-- 추가정보 -->
 				<table>
-					<colgroup>
-						<col style = "width: 150px;">
-						<col style = "width: 800px;">
-					</colgroup>
-					<tr>
-						<td>재질</td>
-						<td><%=aa.getPrd_meter() %></td>
-					</tr>
-					<tr>
-						<td>색상</td>
-						<td><%=aa.getPrd_color() %></td>
-					</tr>
-					<tr>
-						<td>제조사</td>
-						<td><%=aa.getPrd_create() %></td>
-					</tr>
-					<tr>
-						<td>품질검사</td>
-						<td><%=aa.getPrd_qaul() %></td>
-					</tr>
-					<tr>
-						<td>AS연락처</td>
-						<td><%=aa.getPrd_as() %></td>
-					</tr>
+				<colgroup>
+					<col style = "width: 100px;">
+					<col style = "width: 300px;">
+					<col style = "width: 100px;">
+					<col style = "width: 300px;">
+				</colgroup>
+						<tr>
+							<td colspan="2" rowspan="7" class = "f_table_field">
+							<img src="<%=impath%>" class = "b_img">
+							</td>
+							<td class = "f_table_label">상품이름</td>
+							<td class = "f_table_field"><%=aa.getPrd_name() %></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">등록자</td>
+							<td class = "f_table_field"><%=aa.getPrd_id() %></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">제품 종류</td>
+							<td class = "f_table_field"><%=aa.getPrd_cata() %></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">가격</td>
+							<td class = "f_table_field"><%=aa.getPrd_price() %></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">사이즈</td>
+							<td class = "f_table_field"><%=aa.getPrd_size() %></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">등록일</td>
+							<td class = "f_table_field"><%=aa.getPrd_date() %></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">남은 수량</td>
+							<td class = "f_table_field"><%=aa.getPrd_qant() %></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">재질</td>
+							<td colspan="3" class = "f_table_field"><%=aa.getPrd_meter() %></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">색상</td>
+							<td colspan="3" class = "f_table_field"><%=aa.getPrd_color() %></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">제조사</td>
+							<td colspan="3" class = "f_table_field"><%=aa.getPrd_create() %></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">품질검사</td>
+							<td colspan="3" class = "f_table_field"><%=aa.getPrd_qaul() %></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">AS연락처</td>
+							<td colspan="3" class = "f_table_field"><%=aa.getPrd_as() %></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">비고</td>
+							<td colspan="3" class = "f_table_field"><%=aa.getPrd_note() %></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">상세정보</td>
+							<td colspan="4" rowspan="4" class = "f_table_field"><%=aa.getPrd_content() %></td>
+						</tr>
 				</table>
-			</div>
-		</article>
-		
-		<!-- 제품소개 및 사진 -->
-		<article id="pd_detail_no2">
-			<div>
-				<input type="text" value="<%=aa.getPrd_note() %>" readonly>
-				<textarea readonly><%=aa.getPrd_content() %></textarea>
 			</div>
 		</article>
 		
@@ -142,12 +148,14 @@
 			<article id="pd_detail_no3">
 				<div class="pd_bt">
 					<a href = "shop_mody_form.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>">
-						<input type="button" value="수정">
+						<input type="button" value="수정" class = "r_d_b_b">
 					</a>
 					<a href = "Prd_delete_action.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>">
-						<input type="button" value="삭제">
+						<input type="button" value="삭제" class = "r_d_b_b">
 					</a>
-					<input type="button" value="목록">				
+					<a href ="shop_list_action.sp">
+						<input type="button" value="목록" class = "list_b">
+					</a>				
 				</div>
 			</article>
 		<%
@@ -155,9 +163,15 @@
 		%>
 			<article id="pd_detail_no3">
 				<div class="pd_review_ti">
-					<input type="button" value="구매">
-					<input type="button" value="장바구니">
-					<input type="button" value="목록">	
+					<a href ="#">
+						<input type="button" value="구매" class = "r_d_b_b">
+					</a>
+					<a href = "shop_bak.sp?prd_no=<%=aa.getPrd_no()%>&b_id=<%=id%>&page=<%=nowPage%>">
+						<input type="button" value="장바구니" class = "r_d_b_b">
+					</a>
+					<a href ="shop_list_action.sp">
+						<input type="button" value="목록" class = "list_b">
+					</a>	
 				</div>
 			</article>
 		<%
@@ -176,7 +190,7 @@
 					<col style="width:160px" />
 					</colgroup>
 					<tr>
-					<td colspan="4">&#x203B;댓글은 최근 순으로 5개만 표기됩니다.</td>
+					<td colspan="4" class = "h40">&#x203B;댓글은 최근 순으로 5개만 표기됩니다.</td>
 					</tr>
 					<tr class = "re_title">
 					<td>작성자</td>
@@ -185,13 +199,14 @@
 					<td>삭제</td>
 					</tr>
 					<%
+					if(spr!=null){
 					int n = spr.size();
 					if(n>5) n=5;
 					for (int i=0; i<n;i++) {
 					    out.println("<tr>");
-					    out.println("<td>"+spr.get(i).getPrd_re_id()+"</td>");
-					    out.println("<td>"+spr.get(i).getPrd_re_sc()+"</td>");
-					    out.println("<td>"+spr.get(i).getPrd_re_text()+"</td>");
+					    out.println("<td class ='re_conten'>"+spr.get(i).getPrd_re_id()+"</td>");
+					    out.println("<td class ='re_conten'>"+spr.get(i).getPrd_re_sc()+"</td>");
+					    out.println("<td class ='re_conten'>"+spr.get(i).getPrd_re_text()+"</td>");
 					    
 					    if(spr.get(i).getPrd_re_id().equals(id)){
 					    	out.println("<td><a href='shop_re_del.sp?re_no="+spr.get(i).getPrd_re_num()+"&prd_no="+aa.getPrd_no()+"'><input type='button' class='del_check' value='댓글삭제'></a></td>");
@@ -199,6 +214,11 @@
 					    	out.println("<td></td>");	
 					    }
 					    
+					    out.println("</tr>");
+					}
+					}else{
+					    out.println("<tr>");
+					    out.println("<td colspan='4' class ='re_conten'>"+"입력된 평점이 없습니다."+"</td>");
 					    out.println("</tr>");
 					}
 					%>
@@ -214,7 +234,7 @@
 				<p>작성자 : </p>
 				<input type="text" value="<%= id %>" readonly name="prd_re_id">
 				<p>평점 : </p>
-				<input type="number" name="prd_re_sc" min="1" max ="10">
+				<input type="number" name="prd_re_sc" min="1" max ="10" placeholder="평점을 남겨주세요">
 			</div>
 			<div>
 				<p>내용 : </p>

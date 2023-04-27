@@ -11,6 +11,7 @@
 
 <%	request.setCharacterEncoding("utf-8"); %>
 <%	String id = (String) session.getAttribute("ID");
+
 	ArrayList<Shop_prd> articleList =(ArrayList<Shop_prd>) request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 	int listCount=pageInfo.getListCount();
@@ -190,7 +191,7 @@
 					
 					
 					<tr><!-- 4행 -->
-						<td colspan="4" class="td_le_b td_ri_b"><%= articleList.get(i).getPrd_note() %></td>
+						<td colspan="4" class="td_le_b td_ri_b"><a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=<%=nowPage%>"><%= articleList.get(i).getPrd_note() %></a></td>
 					</tr>
 					
 					
@@ -248,17 +249,21 @@
     					break;
     				}
     				
-    				%>
+    				%><a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=<%=nowPage%>">
     				<%=starP %>
+    				</a>
 					</td>
 					<!-- 관심상품 -->
 					<td class="td_bo_b like_bt_td">
 						<input type="hidden" value="<%=aa%>" name="prd_re_no">
-					<%
+					<%if(id==null){
+						li_bt = false;
+					}else{
 					if(prlk.get(aa)!=null){
 						li_bt = true;
 					}else{
 						li_bt = false;
+					}
 					}
 					if(li_bt == true){
 					%>

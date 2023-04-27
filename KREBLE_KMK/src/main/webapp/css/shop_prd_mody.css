@@ -70,11 +70,25 @@ table{
     text-align: center;
 }
 .f_table_field{
-	padding-left: 15px;
 	border: 1px solid #87cefa;
 }
 
-/*수정/삭제/장바구니/구매*/
+
+.in_f_s{
+	padding-left: 15px;
+	width: 95%;
+	height: 90%;
+	margin: 0 auto;
+    font-family: 'Hahmlet-Regular';
+    font-weight: normal;
+    font-style: normal;
+    outline: none;
+    border: none;
+    resize: none;
+	
+}
+
+/* 수정/목록 */
 
 #pd_detail_no3{
 	width: 890px;

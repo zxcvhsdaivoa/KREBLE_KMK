@@ -10,5 +10,13 @@ $(function(){
 	$(".pd_bt > input[type=button]").click(function(){
 		 location.href = "shop_list_action.sp";
 	})
-	
 })
+  function log_ck() {
+    var id = session.getAttribute("ID");
+    if (id == null) {
+      alert("로그인이 필요합니다");
+      location.href = "login.jsp";
+      return false;
+    }
+    return true;
+  }

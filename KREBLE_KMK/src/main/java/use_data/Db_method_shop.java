@@ -159,14 +159,16 @@ public class Db_method_shop extends Db_method_conn {
 
 	  public ArrayList<Shop_prd> shop_prde_reply(String p_no) throws Exception{
 		  ArrayList<Shop_prd> pr = new ArrayList<Shop_prd>();
+		  boolean hasResult = false;
 		  try{
 			conn();
 		    if(con == null){
 		      throw new Exception("데이터베이스에 연결할 수 없습니다.");
 		    }
 		    stm = con.createStatement();
-		    ResultSet rs = stm.executeQuery("select * from prd_re where prd_re_no = '" + p_no + "';");
+		    ResultSet rs = stm.executeQuery("select * from prd_re where prd_re_no = '" + p_no + "'order by prd_re_num desc limit 5;");
 		    while(rs.next()) {		
+	            hasResult = true;
 				Shop_prd aa = new Shop_prd();
 		    	aa.setPrd_re_id(rs.getString("prd_re_id"));	
 		    	aa.setPrd_re_text(rs.getString("prd_re_text"));
@@ -175,6 +177,9 @@ public class Db_method_shop extends Db_method_conn {
 		    	aa.setPrd_re_sc(rs.getInt("prd_re_sc"));
 		    	pr.add(aa);
 		    }
+	        if (!hasResult) {
+	        	pr = null; // 결과가 없으면 null로 설정
+	        }
 	  		}catch(Exception ignored){
 	  			System.out.println(ignored);
 

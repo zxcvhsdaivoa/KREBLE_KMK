@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/Header_Footer_Aside_baseform.css">
-	<link rel="stylesheet" type="text/css" href="css/shop_prd_detail.css">
+	<link rel="stylesheet" type="text/css" href="css/shop_prd_mody.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="slick/slick.min.js"></script>
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
@@ -31,122 +31,123 @@
 	
 	<!-- section -->
   
+	<!-- section -->
+  
 	<section>
-	<form action="Shop_prd_mody_action.sp" method ="post">
-	<input type="hidden" value="<%=aa.getPrd_no() %>" name ="prd_no">
+	<form action="prd_re_insert.sp?page=<%=nowPage %>" method="post" onsubmit="return log_ck();">
+	<input type="hidden" name="prd_no" value="<%=aa.getPrd_no()%>">
 		<!-- 제품정보 -->
+	<%
+	String pp_no = aa.getPrd_no();
+	char p_no = pp_no.charAt(0);
+	String impath="";
+	switch(p_no){
+	case 's':
+		impath = "image/shopimg/sue/"+pp_no+".jpg";
+		break;
+	case 'u':
+		impath = "image/shopimg/uni/"+pp_no+".jpg";
+		break;
+	case 'b':
+		impath = "image/shopimg/ball/"+pp_no+".jpg";
+		break;
+	case 'e':
+		impath = "image/shopimg/etc/"+pp_no+".jpg";
+		break;
+	}
+	%>
 		<article id="pd_detail_no1">
 			<div class = "no1_img_info1"><!-- 상품사진 및 필수정보 -->
-				<div class="info1_img"><!-- 상품사진 width 400 x 300-->
-					<span><!-- 큰사진(호버에서 나오는 사진) -->
-						<%=aa.getPrd_img()%>300x250 image
-					</span>
-					<span><!-- 작은사진(호버용) -->
-						<span><%=aa.getPrd_img() %> 100x30 image</span>
-						<span><%=aa.getPrd_img() %> 100x30 image</span>
-					</span>
-				</div>
-				<div class="info1_info1"><!-- 필수정보 -->
-					<table>
-					<colgroup>
-						<col style = "width: 150px;">
-						<col style = "width: 400px;">
-					</colgroup>
-						<tr>
-						<td>상품이름</td>
-						<td><input type="text" value="<%=aa.getPrd_name() %>" name="prd_name"></td>
-						</tr>
-						
-						<tr>
-						<td>등록자</td>
-						<td><input type="text" readonly value="<%=aa.getPrd_id() %>" name="prd_id"></td>
-						</tr>
-						
-						<tr>
-						<td>제품 종류</td>
-						<td>
-							<select name="prd_cata">
-								<option>축구화</option>	
-								<option>축구공</option>	
-								<option>유니폼</option>	
-								<option>기타용품</option>	
-							</select>
-						</td>
-						</tr>
-						
-						<tr>
-						<td>가격</td>
-						<td><input type="text" value="<%=aa.getPrd_price() %>" name="prd_price"></td>
-						</tr>
-						
-						<tr>
-						<td>사이즈</td>
-						<td><input type="text" value="<%=aa.getPrd_size() %>" name="prd_size"></td>
-						</tr>
-						
-						<tr>
-						<td>등록일</td>
-						<td><input type="text" value="<%=aa.getPrd_date() %>" readonly></td>
-						</tr>
-						
-						<tr>
-						<td>남은 수량</td>
-						<td><input type="text" value="<%=aa.getPrd_qant() %>" name="prd_qant"></td>
-						</tr>
-						
-					</table>
-				</div>
-			</div>
-			<div class="no1_img_info2"><!-- 추가정보 -->
 				<table>
-					<colgroup>
-						<col style = "width: 150px;">
-						<col style = "width: 800px;">
-					</colgroup>
-					<tr>
-						<td>재질</td>
-						<td><input type="text" value="<%=aa.getPrd_meter() %>" name="prd_meter"></td>
-					</tr>
-					<tr>
-						<td>색상</td>
-						<td><input type="text" value="<%=aa.getPrd_color() %>" name="prd_color"></td>
-					</tr>
-					<tr>
-						<td>제조사</td>
-						<td><input type="text" value="<%=aa.getPrd_create() %>" name="prd_create"></td>
-					</tr>
-					<tr>
-						<td>품질검사</td>
-						<td>
-							<select name="prd_qaul">
-								<option>검사예정</option>	
-								<option>검사중</option>	
-								<option>검사완료</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>AS연락처</td>
-						<td><input type="text" value="<%=aa.getPrd_as() %>" name="prd_as"></td>
-					</tr>
+				<colgroup>
+					<col style = "width: 100px;">
+					<col style = "width: 300px;">
+					<col style = "width: 100px;">
+					<col style = "width: 300px;">
+				</colgroup>
+						<tr>
+							<td colspan="2" rowspan="7" class = "f_table_field">
+							<img src="<%=impath%>" class = "b_img">
+							</td>
+							<td class = "f_table_label">상품이름</td>
+							<td class = "f_table_field"><input type="text" name = "prd_name" value="<%=aa.getPrd_name()%>"class="in_f_s"></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">등록자</td>
+							<td class = "f_table_field"><input type="text" name = "prd_id" value="<%=aa.getPrd_id() %>"class="in_f_s"></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">제품 종류</td>
+							<td class = "f_table_field">
+								<select name="prd_cata"class="in_f_s">
+									<option <%if(p_no=='s'){%>selected<%}%>>축구화</option>	
+									<option <%if(p_no=='b'){%>selected<%}%>>축구공</option>	
+									<option <%if(p_no=='u'){%>selected<%}%>>유니폼</option>	
+									<option <%if(p_no=='e'){%>selected<%}%>>기타용품</option>	
+								</select>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">가격</td>
+							<td class = "f_table_field"><input type="text" name = "prd_price" value="<%=aa.getPrd_price() %>"class="in_f_s"></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">사이즈</td>
+							<td class = "f_table_field"><input type="text" name = "prd_size" value="<%=aa.getPrd_size() %>"class="in_f_s"></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">등록일</td>
+							<td class = "f_table_field"><input type="text" name = "prd_date" value="<%=aa.getPrd_date() %>"class="in_f_s"></td>
+						</tr>
+						
+						<tr>
+							<td class = "f_table_label">남은 수량</td>
+							<td class = "f_table_field"><input type="text" name = "prd_qant" value="<%=aa.getPrd_qant() %>"class="in_f_s"></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">재질</td>
+							<td colspan="3" class = "f_table_field"><input type="text" name = "prd_meter" value="<%=aa.getPrd_meter() %>"class="in_f_s"></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">색상</td>
+							<td colspan="3" class = "f_table_field"><input type="text" name = "prd_color" value="<%=aa.getPrd_color() %>"class="in_f_s"></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">제조사</td>
+							<td colspan="3" class = "f_table_field"><input type="text" name = "prd_create" value="<%=aa.getPrd_create() %>"class="in_f_s"></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">품질검사</td>
+							<td colspan="3" class = "f_table_field"><input type="text" name = "prd_qaul" value="<%=aa.getPrd_qaul() %>"class="in_f_s"></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">AS연락처</td>
+							<td colspan="3" class = "f_table_field"><input type="text" name = "prd_as" value="<%=aa.getPrd_as() %>"class="in_f_s"></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">비고</td>
+							<td colspan="3" class = "f_table_field"><input type="text" name = "prd_note" value="<%=aa.getPrd_note() %>"class="in_f_s"></td>
+						</tr>
+						<tr>
+							<td class = "f_table_label">상세정보</td>
+							<td colspan="4" rowspan="4" class = "f_table_field"><textarea name = "prd_content" class="in_f_s"><%=aa.getPrd_content()%></textarea></td>
+						</tr>
 				</table>
 			</div>
 		</article>
-		
-		<!-- 제품소개 및 사진 -->
-		<article id="pd_detail_no2">
-			<div>
-				<input type="text" value="<%=aa.getPrd_note() %>" name="prd_note">
-				<textarea name="prd_content"><%=aa.getPrd_content() %></textarea>
-			</div>
-		</article>
-				
-				
-		
 		<article id="pd_detail_no3">
 			<div class="pd_bt">
-				<input type="submit" value="수정">
-				<a href="shop_list_action.sp"><input type="button" value="목록"></a>
+				<a href = "shop_mody_form.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>">
+					<input type="button" value="수정" class = "r_d_b_b">
+				</a>
+				<a href ="shop_list_action.sp">
+					<input type="button" value="목록" class = "list_b">
+				</a>				
 			</div>
 		</article>
 		

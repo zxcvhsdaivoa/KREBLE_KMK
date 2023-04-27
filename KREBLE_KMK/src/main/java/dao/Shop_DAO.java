@@ -123,6 +123,7 @@ public class Shop_DAO {
 				shop_prd.setPrd_img(rs.getString("prd_img"));
 				shop_prd.setPrd_price(rs.getInt("prd_price"));
 				shop_prd.setPrd_name(rs.getString("prd_name"));
+				shop_prd.setPrd_note(rs.getString("prd_note"));
 				articleList.add(shop_prd);
 			}
 
@@ -289,7 +290,7 @@ public class Shop_DAO {
 	//상품리플등록
 		public int reInsertArticle(Shop_prd article){
 			PreparedStatement pstmt = null;
-			int insertCount=0;	
+			int insertCount= 0;
 
 			String sql = "insert into prd_re values(default,?,?,?,?)";
 			try{
@@ -299,6 +300,10 @@ public class Shop_DAO {
 				pstmt.setInt(3, article.getPrd_re_sc());
 				pstmt.setString(4, article.getPrd_re_no());
 				insertCount=pstmt.executeUpdate();
+				
+				if(insertCount>0) {
+					System.out.println(insertCount);
+				}
 
 			}catch(Exception ex){
 				System.out.println(ex);

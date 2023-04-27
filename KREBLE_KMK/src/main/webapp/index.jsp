@@ -170,10 +170,46 @@
     			<a href="#" class="link_button">쇼핑 바로가기</a>
     		</div>
     		<div class="shop_wrap wrap1">
-    		<%
-    		Shop_prd best_prd = shop.prd_re_best();
-    		ArrayList<Shop_prd> re_list = shop.shop_prde_reply(best_prd.getPrd_no());
-    		%>
+	    		<%
+	    		Shop_prd best_prd = shop.prd_re_best();
+	    		ArrayList<Shop_prd> re_list = shop.shop_prde_reply(best_prd.getPrd_no());
+	    		String imglink=shop.img_link(best_prd.getPrd_no());
+	    		%>
+	    		<h4>BEST평점 제품</h4>
+	    		
+	    		<a href = "shop_prd_detail.sp?prd_no=<%=best_prd.getPrd_no()%>&page=1">
+	    			<span class="prd_wrap">
+	    				<img src="<%=imglink+best_prd.getPrd_no()%>.jpg">
+	    				<span class="best_like_name">제품명 : <%=best_prd.getPrd_name() %></span>
+	    				<span class="best_list_price">가격 : &#x20a9;<%=best_prd.getPrd_price() %></span>
+	    			</span>
+	    		</a>
+    			<table>
+					<tr class="re_title">
+						<td colspan="3" class = "h40">&#x203B;댓글은 최근 순으로 5개만 표기됩니다.</td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td>평점</td>
+						<td>내용</td>
+					</tr>
+					<%
+					if(re_list!=null){
+						for (int i=0; i<re_list.size();i++) {
+						    out.println("<tr>");
+						    out.println("<td class ='re_conten'>"+re_list.get(i).getPrd_re_id()+"</td>");
+						    out.println("<td class ='re_conten'>"+re_list.get(i).getPrd_re_sc()+"</td>");
+						    out.println("<td class ='re_conten'>"+re_list.get(i).getPrd_re_text()+"</td>");
+						    out.println("</tr>");
+						}
+					}else{
+					    out.println("<tr>");
+					    out.println("<td colspan='4' class ='re_conten'>"+"입력된 평점이 없습니다."+"</td>");
+					    out.println("</tr>");
+					}
+					%>
+				</table>
+    				
     		</div>
     		<div class="shop_wrap wrap2">
 	    		<h4>BEST 관심상품</h4>
@@ -181,23 +217,9 @@
 	    		<% 
 	    		ArrayList<Shop_prd> top4 = shop.prd_like_top4();
 	    		for(int i=0; i<top4.size(); i++){
-	    			String impath = "";
-					String aa = top4.get(i).getPrd_no();
-					char p_no = aa.charAt(0);
-					switch(p_no){
-					case 's':
-						impath = "image/shopimg/sue/";
-						break;
-					case 'u':
-						impath = "image/shopimg/uni/";
-						break;
-					case 'b':
-						impath = "image/shopimg/ball/";
-						break;
-					case 'e':
-						impath = "image/shopimg/etc/";
-						break;
-					}%>
+	    			String aa=top4.get(i).getPrd_no();
+	    			String impath = shop.img_link(aa);
+					%>
 	    			<li>
 	    			<a href = "shop_prd_detail.sp?prd_no=<%=aa%>&page=1">
 	    				<img src="<%=impath+aa%>.jpg">

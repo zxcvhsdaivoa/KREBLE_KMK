@@ -158,7 +158,7 @@ String id = (String) session.getAttribute("ID");
 					</a>				
 				</div>
 			</article>
-		<%
+		<% 
 		}else{
 		%>
 			<article id="pd_detail_no3">

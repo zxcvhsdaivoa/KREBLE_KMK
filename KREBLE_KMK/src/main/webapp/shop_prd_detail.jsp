@@ -134,7 +134,8 @@ String id = (String) session.getAttribute("ID");
 						</tr>
 						<tr>
 							<td class = "f_table_label">상세정보</td>
-							<td colspan="4" rowspan="4" class = "f_table_field"><%=aa.getPrd_content() %></td>
+							<td colspan="4" rowspan="4" class = "f_table_field">
+							<textarea class = "textA_table_field" readonly><%=aa.getPrd_content() %></textarea></td>
 						</tr>
 				</table>
 			</div>

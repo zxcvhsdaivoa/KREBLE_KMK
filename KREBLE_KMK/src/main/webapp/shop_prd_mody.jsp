@@ -34,7 +34,7 @@
 	<!-- section -->
   
 	<section>
-	<form action="prd_re_insert.sp?page=<%=nowPage %>" method="post" onsubmit="return log_ck();">
+	<form action="Shop_prd_mody_action.sp?page=<%=nowPage %>" method ="post">
 	<input type="hidden" name="prd_no" value="<%=aa.getPrd_no()%>">
 		<!-- 제품정보 -->
 	<%
@@ -135,7 +135,7 @@
 						</tr>
 						<tr>
 							<td class = "f_table_label">상세정보</td>
-							<td colspan="4" rowspan="4" class = "f_table_field"><textarea name = "prd_content" class="in_f_s"><%=aa.getPrd_content()%></textarea></td>
+							<td colspan="4" rowspan="4" class = "f_table_field"><textarea name = "prd_content" class="in_f_s in_t_f"><%=aa.getPrd_content()%></textarea></td>
 						</tr>
 				</table>
 			</div>
@@ -143,7 +143,7 @@
 		<article id="pd_detail_no3">
 			<div class="pd_bt">
 				<a href = "shop_mody_form.sp?prd_no=<%=aa.getPrd_no()%>&page=<%=nowPage%>">
-					<input type="button" value="수정" class = "r_d_b_b">
+					<input type="submit" value="수정"class = "r_d_b_b">
 				</a>
 				<a href ="shop_list_action.sp">
 					<input type="button" value="목록" class = "list_b">

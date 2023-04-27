@@ -70,22 +70,40 @@ table{
     text-align: center;
 }
 .f_table_field{
+	padding-left: 15px;
 	border: 1px solid #87cefa;
+    font-family: 'NanumSquareNeo-Variable';
+    font-weight: normal;
+    font-style: normal;
 }
+
 
 
 .in_f_s{
 	padding-left: 15px;
-	width: 95%;
+	width: 100%;
 	height: 90%;
 	margin: 0 auto;
-    font-family: 'Hahmlet-Regular';
+    font-family: 'NanumSquareNeo-Variable';
     font-weight: normal;
     font-style: normal;
     outline: none;
     border: none;
     resize: none;
 	
+}
+
+.in_t_f{
+	font-size: 16px;
+	padding-top: 5px;
+	width: 100%;
+	min-height: 90px;
+	outline: none;
+    border: none;
+    resize: none;
+    font-family: 'NanumSquareNeo-Variable';
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* 수정/목록 */

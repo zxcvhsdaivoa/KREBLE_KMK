@@ -37,7 +37,7 @@
 	String rankid3 = crs[2];
 	%>
 	
-	<!-- 평점호출 -->
+	<!-- 평점호출 관심상품 체크 -->
 	<%
 	HashMap<String, String> prlk = new HashMap<String, String>();
 	HashMap<String, Integer> hssc = shop_m1.re_score();

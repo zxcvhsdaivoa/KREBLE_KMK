@@ -32,10 +32,7 @@ String id = (String) session.getAttribute("ID");
 	Shop_prd pcart_al = (Shop_prd)request.getAttribute("pcart_al");//장바구니가져오기
 	SquadInfo squad_al = (SquadInfo)request.getAttribute("squad_al");//마이스쿼드 가져오기
     String nowPage = (String)request.getAttribute("page");
-	%>
-    <jsp:useBean id="sqsize" class="dao.SquadDAO"></jsp:useBean>
-	<%
-	int sqs = sqsize.Squad_cnt(id);
+	int sqs = (int) request.getAttribute("sqsize");
 	%>
 	
 <title>MyPage</title>
@@ -51,7 +48,7 @@ String id = (String) session.getAttribute("ID");
 		<article>
 			<ul>
 				<li>My<br>Kreble</li>
-				<li>작성한 MySquad 게시글 <%=sqs%>개</li>
+				<li>작성한 MySquad 게시글 <%=sqs %>개</li>
 				<li>대여한 경기장 @@개</li>
 				<li>관심품목 @@개</li>
 				<li>장바구니에 담아둔 물건 @@개</li>

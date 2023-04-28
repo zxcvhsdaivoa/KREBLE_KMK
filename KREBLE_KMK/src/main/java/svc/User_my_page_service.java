@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import dao.Mypage;
 import dao.Shop_DAO;
+import dao.SquadDAO;
 import use_data.Shop_prd;
 import use_data.UserData;
 import vo.SquadInfo;
@@ -36,6 +37,17 @@ public class User_my_page_service {
         
         return si;
     }
+    
+    public int sqsize(String id) throws Exception{
+    	int asd=0;
+        SquadDAO aa = SquadDAO.getInstance();
+        aa.setConnection(con);
+        
+        asd = aa.Squad_cnt(id);
+        
+        return asd;
+    }
+    
     public ArrayList<field_save_Data> getFieldInfo(String id) throws Exception{
     	ArrayList<field_save_Data> fs = new ArrayList<field_save_Data>();
         Mypage mpage = Mypage.getInstance();

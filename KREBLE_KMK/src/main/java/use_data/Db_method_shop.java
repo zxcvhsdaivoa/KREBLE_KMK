@@ -460,6 +460,37 @@ public class Db_method_shop extends Db_method_conn {
 	}
 	
 	
+	public ArrayList<Shop_reform_db> no_trade_latest5() throws Exception{
+		  ArrayList<Shop_reform_db> board = new ArrayList<Shop_reform_db>();
+		  try{
+			  conn();
+			    if(con == null){
+			      throw new Exception("데이터베이스에 연결할 수 없습니다.");
+			    }
+			    stm = con.createStatement();
+			    ResultSet rs = stm.executeQuery("select * from shop_reform where shop_retrade='미체결' order by shop_renum desc limit 5;");
+			    while(rs.next()) {
+			    	Shop_reform_db ob = new Shop_reform_db();
+			    	ob.setRenum(rs.getInt("shop_renum"));
+			    	ob.setRecata(rs.getString("shop_recata"));
+			    	ob.setRetitle(rs.getString("shop_retitle"));
+			    	ob.setReid(rs.getString("shop_reid"));
+			    	ob.setRetrade(rs.getString("shop_retrade"));
+			    	ob.setRequnt(rs.getInt("shop_requnt"));
+			    	ob.setRedate(rs.getString("shop_redate"));
+			    	ob.setRetext(rs.getString("shop_retext"));
+			    	board.add(ob);
+			    }
+		  		}catch(Exception ignored){
+
+			  }finally{
+				  diconn();
+			  }
+		  
+		  return board;
+	  }
+	
+	
 	//이미지 경로
 	public String img_link(String no) {
 		String impath = "";

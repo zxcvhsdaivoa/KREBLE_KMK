@@ -14,7 +14,16 @@ $(function(){
 	  centerMode: true,
 	  focusOnSelect: true
 	});
-
+	$(".slickbox").slick({
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  autoplay:true,
+	  autoplaySpeed:7000,
+	  speed:1000,
+	  dots:false,
+	  draggable:true,
+	  array:false
+	})
 	//shop 랜덤한 배너 넣기
 	var rand = Math.floor(Math.random() * 2)
 	if(rand==1){

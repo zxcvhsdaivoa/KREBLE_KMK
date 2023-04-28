@@ -36,6 +36,7 @@
 <%@ page import="use_data.Player_Info"%>
 <%@ page import="use_data.Director_Info"%>
 <%@ page import="use_data.Shop_prd"%>
+<%@ page import="use_data.Shop_reform_db"%>
 <%@ page import="vo.SquadInfo"%>
   <jsp:include page="Header_baseform.jsp"/>
   <!--section-->
@@ -233,7 +234,18 @@
 	    		</ul>
     		</div>
     		<div class="shop_wrap wrap3">
-    		
+    		<%
+    		ArrayList<Shop_reform_db> board = shop.no_trade_latest5();
+    		%>
+	    		<div class="slickbox">
+		    		<%for(int i=0; i<board.size();i++){ %>
+		    		<div class="board_box">
+		    			<a href="shop_board_detail_view.jsp?renum=<%=board.get(i).getRenum()%>"><%=board.get(i).getReid()%>님의 제작의뢰<span><%=board.get(i).getRedate() %></span></a>
+		    			<p><%=board.get(i).getRetitle() %></p>
+		    			<textarea readonly><%=board.get(i).getRetext() %></textarea>
+		    		</div>
+		    		<%} %>
+	    		</div>
     		</div>
     		<div class="shop_wrap wrap4">
     		

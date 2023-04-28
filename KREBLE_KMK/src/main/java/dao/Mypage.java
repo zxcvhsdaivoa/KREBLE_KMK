@@ -31,27 +31,24 @@ public class Mypage {
 		this.con = con;
 	}
 	//마이페이지 유저정보 불러오기(userinfo)
-	public ArrayList<UserData> userinfo(String id) {
-		ArrayList<UserData> alud = new ArrayList<UserData>();
-		UserData ud = new UserData();
+	public String userinfo(String id,String select) {
+		String alud = "null";
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "";
 		try {
-			sql = "select * from user where user_id =?;";
+			String sql = "select * from user where user_id =?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				ud.setNick(rs.getString("user_nick"));
-				ud.setUser_prof(rs.getString("user_prof"));
-				alud.add(ud);
-			}else {
-				ud.setNick("No Data");
-				ud.setUser_prof("No Data");
+				if(select.equals("nick")) {
+					alud= rs.getString("user_nick");
+				}else if(select.equals("prof")) {
+					alud=rs.getString("user_prof");
+				}
 			}
-			
 		}catch(Exception e){
 			System.out.println(e);
 		}finally {

@@ -26,11 +26,11 @@ String id = (String) session.getAttribute("ID");
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
 	<script src="js/user_mypage.js"></script>
 	<%
-	UserData user_al = (UserData)request.getAttribute("user_al");//유저로 바꿔야됨
-	field_save_Data field_al = (field_save_Data)request.getAttribute("field_al");//유저로 바꿔야됨
-	Shop_prd plike_al = (Shop_prd)request.getAttribute("plike_al");//유저로 바꿔야됨
-	Shop_prd pcart_al = (Shop_prd)request.getAttribute("pcart_al");//유저로 바꿔야됨
-	SquadInfo squad_al = (SquadInfo)request.getAttribute("squad_al");//유저로 바꿔야됨
+	UserData user_al = (UserData)request.getAttribute("user_al");//유저정보가져오기
+// 	field_save_Data field_al = (field_save_Data)request.getAttribute("field_al");//필드 정리되면 수정해야됨
+	Shop_prd plike_al = (Shop_prd)request.getAttribute("plike_al");//관심상품 가져오기
+	Shop_prd pcart_al = (Shop_prd)request.getAttribute("pcart_al");//장바구니가져오기
+	SquadInfo squad_al = (SquadInfo)request.getAttribute("squad_al");//마이스쿼드 가져오기
     String nowPage = (String)request.getAttribute("page");
 	%>
 	
@@ -39,6 +39,7 @@ String id = (String) session.getAttribute("ID");
 <body>
 		
     <!-- header -->
+    <jsp:useBean id="sqsize" class=""></jsp:useBean>
 	<jsp:include page="Header_baseform.jsp"/>
 
 	<!-- section -->
@@ -74,10 +75,16 @@ String id = (String) session.getAttribute("ID");
 			경기장 대여 리스트
 		</article>
 		
-		<!-- 관심상품 -->
+		<!-- 관심상품리스트 -->
 		<article>
 			관심품목 라벨
 			관심품목 리스트
+		</article>
+		
+		<!-- 장바구니리스트 -->
+		<article>
+			장바구니 라벨
+			장바구니 리스트
 		</article>
 		
 		<article>

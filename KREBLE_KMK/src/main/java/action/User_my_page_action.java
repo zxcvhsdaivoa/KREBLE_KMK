@@ -27,19 +27,19 @@ public class User_my_page_action implements Action {
 		user_al = mp.getUserInfo(id);
 		squad_al = mp.getSquadInfo(id);
 		pcart_al = mp.getCartInfo(id);
-		field_al = mp.getFieldInfo(id);
+//		field_al = mp.getFieldInfo(id);
 		plike_al = mp.getLikeInfo(id);
+//		request.setAttribute("field_al", field_al);
+		request.setAttribute("user_al", user_al);
+		request.setAttribute("plike_al", plike_al);
+		request.setAttribute("pcart_al", pcart_al);
+		request.setAttribute("squad_al", squad_al);
 		
 		
 		ActionForward forward=null;
-			forward = new ActionForward();
-			forward.setRedirect(true);
-			forward.setPath("mypage.jsp");
-			request.setAttribute("field_al", field_al);
-			request.setAttribute("user_al", user_al);
-			request.setAttribute("plike_al", plike_al);
-			request.setAttribute("pcart_al", pcart_al);
-			request.setAttribute("squad_al", squad_al);
+		forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("mypage.jsp");
 		return forward;
 		
 	}  	

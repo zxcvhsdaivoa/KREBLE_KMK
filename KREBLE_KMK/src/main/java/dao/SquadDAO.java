@@ -27,7 +27,28 @@ public class SquadDAO {
 	public void setConnection(Connection con){
 		this.con = con;
 	}
-
+	
+	//마이스쿼드 등록개수
+	public int Squad_cnt(String user_id){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int sc=0;
+		try{
+			pstmt = con.prepareStatement("select count(user_id) from mysquad where user_id = ?;");
+			pstmt.setString(1, user_id);
+			rs= pstmt.executeQuery();
+			if(rs.next()){
+				sc = rs.getInt("count(user_id)");
+			}
+		}catch(Exception ex){
+			System.out.println(ex);
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		return sc;
+	}
+	
 	@SuppressWarnings("null")
 	public ArrayList<SquadInfo> selectUserSquad(String user_id){
 		PreparedStatement pstmt = null;

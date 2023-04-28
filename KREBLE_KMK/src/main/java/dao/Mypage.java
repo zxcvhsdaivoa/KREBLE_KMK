@@ -1,4 +1,4 @@
-package action;
+package dao;
 
 import static db.JdbcUtil.close;
 
@@ -44,7 +44,7 @@ public class Mypage {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				ud.setNick(rs.getString("nick"));
+				ud.setNick(rs.getString("user_nick"));
 				ud.setUser_prof(rs.getString("user_prof"));
 				alud.add(ud);
 			}else {
@@ -104,9 +104,9 @@ public class Mypage {
 				si.setPlayer6("No Data");
 				si.setPlayer7("No Data");
 				si.setPlayer8("No Data");
-				si.setPlayer9(rs.getString("No Data"));
-				si.setPlayer10(rs.getString("No Data"));
-				si.setPlayer11(rs.getString("No Data"));
+				si.setPlayer9("No Data");
+				si.setPlayer10("No Data");
+				si.setPlayer11("No Data");
 				alsi.add(si);
 			}
 			
@@ -120,66 +120,130 @@ public class Mypage {
 	}
 
 	//마이페이지 장바구니 불러오기(cart)
-	public ArrayList<Shop_prd> cartinfo(String id) {
-		ArrayList<Shop_prd> alsp = new ArrayList<Shop_prd>();
-		Shop_prd sp = new Shop_prd();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
-		try {
-			sql = "select * from shop_prd_like where u_id = ?;";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-
-			while(rs.next()) {
-				sp.setPrd_no(rs.getString("p_no"));
-				sp.setPrd_id(rs.getString("u_id"));
-				alsp.add(sp);
-			}
-			if(alsp.size() == 0) {
-				sp.setPrd_no("No Data");
-				sp.setPrd_id("No Data");
-			}
-			
-		}catch(Exception e){
-			System.out.println(e);
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return alsp;
+	public String[] cartinfo(String id) {
+	    String[] aa = new String[3];
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = "";
+	    try {
+	        sql = "select p_no from shop_prd_like where u_id = ? limit 3;";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        rs = pstmt.executeQuery();
+	        int i = 0;
+	        while(rs.next()) {
+	            aa[i] = rs.getString("p_no");
+	            i++;
+	        }
+	        if(i < 3) {
+	            for(int j=i; j<3; j++) {
+	                aa[j] = "No Data";
+	            }
+	        }
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    } finally {
+	        close(rs);
+	        close(pstmt);
+	    }
+	    return aa;
 	}
 
 	//마이페이지 관심상품 불러오기(likeinfo)
-	public ArrayList<Shop_prd> likeinfo(String id) {
+	public String[] likeinfo(String id) {
+	    String[] aa = new String[3];
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = "";
+	    try {
+	        sql = "select sb_prd from shop_back where sb_buy_id = ? limit 3;";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, id);
+	        rs = pstmt.executeQuery();
+
+	        int i = 0;
+	        while(rs.next()) {
+	            aa[i] = rs.getString("sb_prd");
+	            i++;
+	        }
+	        if(i < 3) {
+	            for(int j=i; j<3; j++) {
+	                aa[j] = "No Data";
+	            }
+	        }
+
+	    }catch(Exception e){
+	        System.out.println(e);
+	    }finally {
+	        close(rs);
+	        close(pstmt);
+	    }
+	    return aa;
+	}
+
+	//관심상품/장바구니에 대한 상품정보 불러오기
+	public ArrayList<Shop_prd> prd_info(String [] aa) {
 		ArrayList<Shop_prd> alsp = new ArrayList<Shop_prd>();
 		Shop_prd sp = new Shop_prd();
-		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		String sql = "";
-		try {
-			sql = "select * from shop_back where sb_buy_id = ?;";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-
-			while(rs.next()) {
-				sp.setPrd_no(rs.getString("p_no"));
-				sp.setPrd_id(rs.getString("u_id"));
-				alsp.add(sp);
+		int cnt = 0;
+		for(int ii = 0; ii < 3 ; ii++) {
+			if(aa[ii].equals("No Data")){
+				cnt ++;
 			}
-			if(alsp.size() == 0) {
-				sp.setPrd_no("No Data");
-				sp.setPrd_id("No Data");
+		}
+		
+		switch(cnt) {
+		case 0:
+			sql = "select * from product where prd_no= '"+aa[0]+"' or prd_no='"+aa[1]+"' or prd_no='"+aa[2]+"';";
+			break;
+		case 1:
+			sql = "select * from product where prd_no= '"+aa[0]+"' or prd_no='"+aa[1]+"';";
+			break;
+		case 2:
+			sql = "select * from product where prd_no= '"+aa[0]+"';";
+			break;
+		case 3:
+			sql = "No Data";
+			break;
+		}
+		
+		
+		if(cnt < 3) {
+			try {
+				pstmt = con.prepareStatement(sql);
+			    rs = pstmt.executeQuery();
+				while(rs.next()) {
+					sp.setPrd_no(rs.getString("prd_no"));
+					sp.setPrd_name(rs.getString("prd_name"));
+					sp.setPrd_cata(rs.getString("prd_cata"));
+					sp.setPrd_price(Integer.parseInt(rs.getString("prd_price")));
+					sp.setPrd_color(rs.getString("prd_color"));
+					sp.setPrd_qant(Integer.parseInt(rs.getString("prd_qant")));
+					sp.setPrd_img(rs.getString("prd_img"));
+					sp.setPrd_note(rs.getString("prd_note"));
+					alsp.add(sp);
+				}
+				
+			}catch(Exception e){
+				System.out.println(e);
+			}finally {
+				close(rs);
+				close(pstmt);
 			}
-			
-		}catch(Exception e){
-			System.out.println(e);
-		}finally {
-			close(rs);
-			close(pstmt);
+		}else {
+			sp.setPrd_no("No Data");
+			sp.setPrd_name("No Data");
+			sp.setPrd_cata("No Data");
+			sp.setPrd_price(0);
+			sp.setPrd_color("No Data");
+			sp.setPrd_qant(0);
+			sp.setPrd_img("No Data");
+			sp.setPrd_note("No Data");
+			alsp.add(sp);
 		}
 		return alsp;
-	}
+}
 }

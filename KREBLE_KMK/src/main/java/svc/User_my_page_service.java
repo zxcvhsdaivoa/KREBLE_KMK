@@ -4,7 +4,7 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import action.Mypage;
+import dao.Mypage;
 import dao.Shop_DAO;
 import use_data.Shop_prd;
 import use_data.UserData;
@@ -49,8 +49,10 @@ public class User_my_page_service {
     	ArrayList<Shop_prd> sp = new ArrayList<Shop_prd>();
         Mypage mpage = Mypage.getInstance();
         mpage.setConnection(con);
+        String [] aa = new String[3];
         
-        sp = mpage.cartinfo(id);
+        aa = mpage.cartinfo(id);
+        sp = mpage.prd_info(aa);
         
         return sp;
     }
@@ -58,8 +60,10 @@ public class User_my_page_service {
     	ArrayList<Shop_prd> sp = new ArrayList<Shop_prd>();
         Mypage mpage = Mypage.getInstance();
         mpage.setConnection(con);
+        String [] aa = new String[3];
         
-        sp = mpage.likeinfo(id);
+        aa = mpage.likeinfo(id);
+        sp = mpage.prd_info(aa);
         
         close(con);
         return sp;

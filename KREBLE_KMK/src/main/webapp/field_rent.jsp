@@ -62,6 +62,7 @@ if(request.getAttribute("cate_list")!=null){
 							}
 						}
 						%>
+						
 					</select>
 				</div>
 			</div>

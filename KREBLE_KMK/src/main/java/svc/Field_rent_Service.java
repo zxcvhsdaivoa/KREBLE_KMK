@@ -2,6 +2,8 @@ package svc;
 
 import static db.JdbcUtil.*;
 import java.sql.Connection;
+import java.util.ArrayList;
+
 import dao.FieldDAO;
 import vo.KreblechoiData;
 import vo.Rent_info;
@@ -18,12 +20,12 @@ public class Field_rent_Service {
 		return rent_info;
 		
 	}
-	public KreblechoiData getfield_cate_list() throws Exception{
-		KreblechoiData cate_list = null;
+	public ArrayList<KreblechoiData>  getfield_cate_list(String loca) throws Exception{
+		ArrayList<KreblechoiData> cate_list = new ArrayList<KreblechoiData>();
 		Connection con = getConnection();
 		FieldDAO fieldDAO = FieldDAO.getInstance();
 		fieldDAO.setConnection(con);
-		cate_list = fieldDAO.field_cate_list();
+		cate_list = fieldDAO.field_cate_list(loca);
 		close(con);
 		return cate_list;
 		

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.KreblechoiData"%>
 <%@page import="vo.Rent_info"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,7 +12,12 @@
 	Rent_info rent_info=(Rent_info)request.getAttribute("rent_info");
 %>
 <%
-	KreblechoiData cate_list=(KreblechoiData) request.getAttribute("cate_list");
+String nn="false";
+ArrayList<KreblechoiData> cate_list= new ArrayList<KreblechoiData>();
+if(request.getAttribute("cate_list")!=null){
+	cate_list = (ArrayList<KreblechoiData>)request.getAttribute("cate_list");
+	nn="true";
+}
 %>
 <title>구장 예약</title>
 <link rel="stylesheet" type="text/css" href="css/Header_Footer_Aside_baseform.css">
@@ -35,19 +41,27 @@
 			<div class="content_top">
 				<div class="top_text">
 					<h1>예약신청</h1>
-					<select>
+					<select class="loca">
 						<option>지역 목록</option>
-						<option value="서울">서울</option>
-						<option value="인천">인천</option>
-						<option value="경기">경기</option>
-						<option value="대구">대구</option>
-						<option value="대전">대전</option>
-						<option value="부산">부산</option>
-						<option value="제주">제주</option>
+						<option value="s" <%if(request.getParameter("location").equals("s")){ %>selected="selected"<%} %>>서울</option>
+						<option value="i" <%if(request.getParameter("location").equals("i")){ %>selected="selected"<%} %>>인천</option>
+						<option value="g" <%if(request.getParameter("location").equals("g")){ %>selected="selected"<%} %>>경기</option>
+						<option value="d" <%if(request.getParameter("location").equals("d")){ %>selected="selected"<%} %>>대구</option>
+						<option value="dd" <%if(request.getParameter("location").equals("dd")){ %>selected="selected"<%} %>>대전</option>
+						<option value="b" <%if(request.getParameter("location").equals("b")){ %>selected="selected"<%} %>>부산</option>
+						<option value="j" <%if(request.getParameter("location").equals("j")){ %>selected="selected"<%} %>>제주</option>
 					</select>
 					<select>
 						<option>경기장 목록</option>
-						<option><%=cate_list.getField_name() %></option>
+						<%
+						if(nn.equals("true")){
+							for(int i=0; i<cate_list.size();i++){
+								%>
+								<option value="<%=cate_list.get(i).getField_name() %>"><%=cate_list.get(i).getField_name() %></option>
+								<% 
+							}
+						}
+						%>
 					</select>
 				</div>
 			</div>

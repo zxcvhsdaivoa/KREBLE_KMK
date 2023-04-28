@@ -4,7 +4,11 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import javax.sql.DataSource;
+
+import use_data.Shop_prd;
 import vo.KreblechoiData;
 import vo.Rent_info;
 import vo.field_save_Data;
@@ -124,29 +128,18 @@ public class FieldDAO {
 		return rent_selc;
 	}
 	
-	public KreblechoiData field_cate_list() throws Exception {
+	public ArrayList<KreblechoiData> field_cate_list(String loca) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;		
-		KreblechoiData cate_list=null;
-
+		ArrayList<KreblechoiData> cate_list=new ArrayList<KreblechoiData>();
 		try{
-			pstmt = con.prepareStatement("select field_fst_location, field_name from field_info;");
+			
+			pstmt = con.prepareStatement("select field_name from field_info where left(field_id,1)='"+loca+"';");
 			rs= pstmt.executeQuery();
-
-			if(rs.next()){
-				cate_list=new KreblechoiData();
-				cate_list.setField_id(rs.getString("field_id"));
-				cate_list.setFullname(rs.getString("field_fullname"));
-				cate_list.setField_image(rs.getString("field_image"));
-				cate_list.setField_price(rs.getInt("field_price"));
-				cate_list.setField_name(rs.getString("field_name"));
-				cate_list.setField_fst_location(rs.getString("field_fst_location"));
-				cate_list.setField_location(rs.getString("field_location"));
-				cate_list.setField_map(rs.getString("field_map"));
-				cate_list.setField_area(rs.getInt("field_area"));
-				cate_list.setField_usetime(rs.getString("field_usetime"));
-				cate_list.setField_facility(rs.getString("field_facility"));
-				cate_list.setField_call(rs.getString("field_call"));
+			while(rs.next()){
+				KreblechoiData field_list=new KreblechoiData();
+				field_list.setField_name(rs.getString("field_name"));
+				cate_list.add(field_list);
 			}
 		}catch(Exception ex){
 		}finally {

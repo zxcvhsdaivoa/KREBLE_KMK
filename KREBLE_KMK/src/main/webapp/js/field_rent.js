@@ -16,7 +16,13 @@ $(function(){
 //	if (todayCell > cellDate) {
 //	  todayCell.innerHTML += '<span class="possible">가능</span>';
 //	}
-	 $(".box_inner2").hide();	 
+	 $(".box_inner2").hide();	
+	 
+	 $(".top_text select.loca").change(function(){
+		var loca= $(this).val();
+		location.href="fieldrent.choi?location="+loca;
+		 
+	 }) 
 });
 function box_show(){ // 눌렀을때 정보 보이기
 		$(".box_inner2").show();

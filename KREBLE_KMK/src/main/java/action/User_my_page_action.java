@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.SquadDAO;
 import svc.User_my_page_service;
 import use_data.Shop_prd;
 import use_data.UserData;
@@ -23,7 +24,9 @@ public class User_my_page_action implements Action {
 		ArrayList<SquadInfo> squad_al = new ArrayList<SquadInfo>();//마이스쿼드
 		ArrayList<Shop_prd> pcart_al = new ArrayList<Shop_prd>(); //장바구니
 		
+		
 		User_my_page_service mp = new User_my_page_service();
+		int sqsize = mp.sqsize(id);
 		user_al = mp.getUserInfo(id);
 		squad_al = mp.getSquadInfo(id);
 		pcart_al = mp.getCartInfo(id);
@@ -34,7 +37,7 @@ public class User_my_page_action implements Action {
 		request.setAttribute("plike_al", plike_al);
 		request.setAttribute("pcart_al", pcart_al);
 		request.setAttribute("squad_al", squad_al);
-		
+		request.setAttribute("sqs", sqsize);
 		
 		ActionForward forward=null;
 		forward = new ActionForward();

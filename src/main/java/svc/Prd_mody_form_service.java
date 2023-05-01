@@ -9,7 +9,7 @@ import static db.JdbcUtil.*;
 
 public class Prd_mody_form_service {
 
-	public Shop_prd getArticle(String p_no) throws Exception{
+	public Shop_prd getArticle(String p_no) throws Exception {
 
 		Shop_prd article = null;
 		Connection con = getConnection();
@@ -18,7 +18,7 @@ public class Prd_mody_form_service {
 		article = shopDAO.selectArticle(p_no);
 		close(con);
 		return article;
-		
+
 	}
 
 }

@@ -9,7 +9,7 @@ import use_data.Shop_prd;
 
 public class Shop_calist_service {
 
-	public int getListCount(String prd_cata) throws Exception{
+	public int getListCount(String prd_cata) throws Exception {
 		int listCount = 0;
 		Connection con = getConnection();
 		Shop_DAO shopDAO = Shop_DAO.getInstance();
@@ -17,19 +17,19 @@ public class Shop_calist_service {
 		listCount = shopDAO.CaSelectListCount(prd_cata);
 		close(con);
 		return listCount;
-		
+
 	}
 
-	public ArrayList<Shop_prd> getArticleList(String aa, int page, int limit) throws Exception{
-		
+	public ArrayList<Shop_prd> getArticleList(String aa, int page, int limit) throws Exception {
+
 		ArrayList<Shop_prd> articleList = null;
 		Connection con = getConnection();
 		Shop_DAO shopDAO = Shop_DAO.getInstance();
 		shopDAO.setConnection(con);
-		articleList = shopDAO.caSelectArticleList(aa, page,limit);
+		articleList = shopDAO.caSelectArticleList(aa, page, limit);
 		close(con);
 		return articleList;
-		
+
 	}
 
 }

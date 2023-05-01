@@ -11,70 +11,69 @@ import vo.SquadInfo;
 
 public class UserSquadAllListService {
 
-	public ArrayList<SquadInfo> getList(int page, int limit) throws Exception{
+	public ArrayList<SquadInfo> getList(int page, int limit) throws Exception {
 		ArrayList<SquadInfo> squadList = null;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
-		squadList = commuDAO.selectSquadList(page,limit);
-		
+		squadList = commuDAO.selectSquadList(page, limit);
+
 		close(con);
 		return squadList;
 	}
-	
-	public ArrayList<SquadInfo> getOrderList(String[] order,int page, int limit) throws Exception{
+
+	public ArrayList<SquadInfo> getOrderList(String[] order, int page, int limit) throws Exception {
 		ArrayList<SquadInfo> squadList = null;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
-		squadList = commuDAO.selectOrderSquadList(order,page,limit);
-		
+		squadList = commuDAO.selectOrderSquadList(order, page, limit);
+
 		close(con);
 		return squadList;
 	}
-	
-	public ArrayList<SquadInfo> getSearchList(String search, String search_text,int page, int limit) throws Exception{
+
+	public ArrayList<SquadInfo> getSearchList(String search, String search_text, int page, int limit) throws Exception {
 		ArrayList<SquadInfo> squadList = null;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
-		squadList = commuDAO.selectSerachSquadList(search,search_text,page,limit);
-		
+		squadList = commuDAO.selectSerachSquadList(search, search_text, page, limit);
+
 		close(con);
 		return squadList;
 	}
-	
-	public ArrayList<SquadInfo> getSearchOrderList(String search, String search_text, String[] order,int page, int limit) throws Exception{
+
+	public ArrayList<SquadInfo> getSearchOrderList(String search, String search_text, String[] order, int page,
+			int limit) throws Exception {
 		ArrayList<SquadInfo> squadList = null;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
-		squadList = commuDAO.selectSearchOrderSquadList(search,search_text,order,page,limit);
-		
+		squadList = commuDAO.selectSearchOrderSquadList(search, search_text, order, page, limit);
+
 		close(con);
 		return squadList;
 	}
-	
-	
-	
-	public int getListCount() throws Exception{
-		int count=0;
+
+	public int getListCount() throws Exception {
+		int count = 0;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
 		count = commuDAO.selectAllSquadCount();
-		
+
 		close(con);
 		return count;
 	}
-	
-	public int getSearchListCount(String search,String search_text) throws Exception{
-		int count=0;
+
+	public int getSearchListCount(String search, String search_text) throws Exception {
+		int count = 0;
 		Connection con = getConnection();
 		SquadDAO commuDAO = SquadDAO.getInstance();
 		commuDAO.setConnection(con);
-		count = commuDAO.selectSearchSquadCount(search,search_text);
-		
+		count = commuDAO.selectSearchSquadCount(search, search_text);
+
 		close(con);
 		return count;
 	}

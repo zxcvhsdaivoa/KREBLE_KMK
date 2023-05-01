@@ -9,22 +9,21 @@ import dao.Shop_DAO;
 
 public class Prd_re_delete_service {
 
-	public boolean removeArticle(String p_no) throws Exception{
-		
+	public boolean removeArticle(String p_no) throws Exception {
+
 		boolean isRemoveSuccess = false;
 		Connection con = getConnection();
 		Shop_DAO sdao = Shop_DAO.getInstance();
 		sdao.setConnection(con);
 		int deleteCount = sdao.deleteArticle(p_no);
-		
-		if(deleteCount > 0){
+
+		if (deleteCount > 0) {
 			commit(con);
-			isRemoveSuccess=true;
-		}
-		else{
+			isRemoveSuccess = true;
+		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
 		return isRemoveSuccess;
 	}

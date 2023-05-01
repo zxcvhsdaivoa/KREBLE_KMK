@@ -13,20 +13,19 @@ import vo.ActionForward;
 import vo.SquadInfo;
 import vo.field_save_Data;
 
-
 public class User_my_page_action implements Action {
 
-	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = (String) request.getSession().getAttribute("ID");
-		ArrayList<UserData> user_al = new ArrayList<UserData>();//유저정보
-		ArrayList<field_save_Data> field_al = new ArrayList<field_save_Data>();//경기장대여
-		ArrayList<Shop_prd> plike_al = new ArrayList<Shop_prd>();//관심상품
-		ArrayList<SquadInfo> squad_al = new ArrayList<SquadInfo>();//마이스쿼드
-		ArrayList<Shop_prd> pcart_al = new ArrayList<Shop_prd>(); //장바구니
-		
-		
+		UserData user_al = new UserData();// 유저정보
+		ArrayList<field_save_Data> field_al = new ArrayList<field_save_Data>();// 경기장대여
+		ArrayList<Shop_prd> plike_al = new ArrayList<Shop_prd>();// 관심상품
+		ArrayList<SquadInfo> squad_al = new ArrayList<SquadInfo>();// 마이스쿼드
+		ArrayList<Shop_prd> pcart_al = new ArrayList<Shop_prd>(); // 장바구니
+
 		User_my_page_service mp = new User_my_page_service();
-		int sqsize = mp.sqsize(id);
+		String sqsize = mp.sqsize(id);
+		System.out.println(sqsize);
 		user_al = mp.getUserInfo(id);
 		squad_al = mp.getSquadInfo(id);
 		pcart_al = mp.getCartInfo(id);
@@ -38,13 +37,14 @@ public class User_my_page_action implements Action {
 		request.setAttribute("pcart_al", pcart_al);
 		request.setAttribute("squad_al", squad_al);
 		request.setAttribute("sqs", sqsize);
-		
-		ActionForward forward=null;
+		String sqs = (String) request.getAttribute("sqs");
+		System.out.println("sqs: " + sqs);
+		ActionForward forward = null;
 		forward = new ActionForward();
 		forward.setRedirect(true);
 		forward.setPath("mypage.jsp");
 		return forward;
-		
-	}  	
-	
+
+	}
+
 }

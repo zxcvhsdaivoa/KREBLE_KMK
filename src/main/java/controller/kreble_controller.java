@@ -31,65 +31,62 @@ import vo.ActionForward;
 
 @SuppressWarnings("serial")
 @WebServlet("*.kb")
-public class kreble_controller extends javax.servlet.http.HttpServlet 
-{
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
+public class kreble_controller extends javax.servlet.http.HttpServlet {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
-		String RequestURI=request.getRequestURI();
-		String contextPath=request.getContextPath();
-		String command=RequestURI.substring(contextPath.length());
-		ActionForward forward=null;
-		Action action=null;
+		String RequestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = RequestURI.substring(contextPath.length());
+		ActionForward forward = null;
+		Action action = null;
 
-
-		//마이페이지
-		if(command.equals("/mypage.kb")){
+		// 마이페이지
+		if (command.equals("/mypage.kb")) {
 			action = new User_my_page_action();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		//상품상세
-		if(command.equals("/asdfasdf.kb")){
+		// 상품상세
+		if (command.equals("/asdfasdf.kb")) {
 			action = new Shop_detail_action();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		//크래블샵
-		else if(command.equals("/asdfasdf.kb")){
-			forward=new ActionForward();
+		// 크래블샵
+		else if (command.equals("/asdfasdf.kb")) {
+			forward = new ActionForward();
 			forward.setPath("/krebleshop.jsp");
 		}
-		
-		if(forward != null){
-			
-			if(forward.isRedirect()){
+
+		if (forward != null) {
+
+			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
-			}else{
-				RequestDispatcher dispatcher=
-						request.getRequestDispatcher(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}
-			
-		}
-		
-	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		doProcess(request,response);
-	}  	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+		}
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doProcess(request,response);
-	}   
-	
+		doProcess(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doProcess(request, response);
+	}
+
 }

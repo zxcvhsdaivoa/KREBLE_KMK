@@ -26,13 +26,13 @@ String id = (String) session.getAttribute("ID");
 	<script src="js/Header_Footer_Aside_baseform.js"></script>
 	<script src="js/user_mypage.js"></script>
 	<%
-	UserData user_al = (UserData)request.getAttribute("user_al");//유저정보가져오기
+	UserData user_al = (UserData) request.getAttribute("user_al");//유저정보가져오기
 // 	field_save_Data field_al = (field_save_Data)request.getAttribute("field_al");//필드 정리되면 수정해야됨
 	Shop_prd plike_al = (Shop_prd)request.getAttribute("plike_al");//관심상품 가져오기
 	Shop_prd pcart_al = (Shop_prd)request.getAttribute("pcart_al");//장바구니가져오기
 	SquadInfo squad_al = (SquadInfo)request.getAttribute("squad_al");//마이스쿼드 가져오기
     String nowPage = (String)request.getAttribute("page");
-	int sqs = (int) request.getAttribute("sqsize");
+   
 	%>
 	
 <title>MyPage</title>
@@ -46,9 +46,17 @@ String id = (String) session.getAttribute("ID");
 	<section>
 		<!-- 활동현황/보유캐쉬 -->
 		<article>
+		<% 
+		String sqs = (String) request.getAttribute("sqs");
+		    if (sqs != null) {
+		        out.println("JSP sqs: " + sqs);
+   			}else{
+   				out.println("왜 null이지?"+ sqs);
+   			}
+   		%>
 			<ul>
 				<li>My<br>Kreble</li>
-				<li>작성한 MySquad 게시글 <%=sqs %>개</li>
+				<li>작성한 MySquad 게시글 <%= sqs %>개</li>
 				<li>대여한 경기장 @@개</li>
 				<li>관심품목 @@개</li>
 				<li>장바구니에 담아둔 물건 @@개</li>
